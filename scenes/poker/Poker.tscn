@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://cfuvnryxlpn4b"]
+
+[ext_resource type="Script" uid="uid://bbhffq65fbv6l" path="res://scripts/poker/Poker.cs" id="1_3pkwn"]
+[ext_resource type="Texture2D" uid="uid://bsu52jci56vuk" path="res://assets/art/textures/poker/Surface/default.png" id="1_h3tri"]
+[ext_resource type="AnimationLibrary" uid="uid://c60hqc7h6ph53" path="res://resource/animation/poker/Poker.res" id="2_dnpyj"]
+[ext_resource type="Texture2D" uid="uid://dagraq78372or" path="res://assets/art/textures/poker/Suit/diamond.png" id="2_mv11n"]
+
+[sub_resource type="Animation" id="Animation_dnpyj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dnpyj"]
+_data = {
+&"RESET": SubResource("Animation_dnpyj")
+}
+
+[node name="Poker" type="Button" unique_id=351593249]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+anchor_right = 0.1
+anchor_bottom = 0.26700002
+offset_bottom = -0.18000793
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(48, 72)
+script = ExtResource("1_3pkwn")
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=404025345]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_dnpyj")
+libraries/Poker = ExtResource("2_dnpyj")
+
+[node name="Back" type="TextureRect" parent="." unique_id=2005219249]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Surface" type="TextureRect" parent="." unique_id=341902432]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("1_h3tri")
+
+[node name="Suit" type="TextureRect" parent="." unique_id=2136729553]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_mv11n")
+
+[node name="Num" type="Label" parent="." unique_id=358447265]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 32.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "24"
+horizontal_alignment = 1
+vertical_alignment = 1
