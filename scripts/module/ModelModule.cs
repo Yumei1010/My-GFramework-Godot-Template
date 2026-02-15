@@ -6,6 +6,7 @@ using GFramework.Game.setting;
 using GFramework.Godot.setting;
 using GFramework.Godot.setting.data;
 using GFrameworkGodotTemplate.scripts.setting;
+using Twentyfour.scripts.model;
 
 namespace GFrameworkGodotTemplate.scripts.module;
 
@@ -37,5 +38,6 @@ public class ModelModule : AbstractModule
                         .RegisterApplicator(new GodotLocalizationSettings(it, new LocalizationMap()));
                 })
         );
+        architecture.RegisterModel<IPokerModel>(new PokerModel());
     }
 }
