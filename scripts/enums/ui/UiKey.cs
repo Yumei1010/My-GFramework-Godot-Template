@@ -18,26 +18,30 @@ public enum UiKey
     /// <summary>
     ///     加载菜单界面键值
     /// </summary>
-    /// <remarks>
-    ///     表示加载菜单相关的界面状态或操作类型
-    /// </remarks>
     LoadMenu,
 
     /// <summary>
     ///     选项菜单界面键值
     /// </summary>
-    /// <remarks>
-    ///     表示选项菜单相关的界面状态或操作类型
-    /// </remarks>
     OptionsMenu,
 
     /// <summary>
     ///     版权信息界面键值
     /// </summary>
-    /// <remarks>
-    ///     表示显示版权信息的界面状态或操作类型
-    /// </remarks>
     Credits,
-    HomeUi,
+    
+    /// <summary>
+    ///     选择牌组界面键值
+    /// </summary>
+    SelectMenu,
+    
+    /// <summary>
+    ///     时钟地图界面键值
+    /// </summary>
+    ClockMenu,
+    
+    /// <summary>
+    ///     暂停界面键值
+    /// </summary>
     PauseMenu
 }

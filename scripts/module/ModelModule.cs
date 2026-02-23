@@ -5,8 +5,8 @@ using GFramework.Game.architecture;
 using GFramework.Game.setting;
 using GFramework.Godot.setting;
 using GFramework.Godot.setting.data;
+using GFrameworkGodotTemplate.scripts.model;
 using GFrameworkGodotTemplate.scripts.setting;
-using Twentyfour.scripts.model;
 
 namespace GFrameworkGodotTemplate.scripts.module;
 

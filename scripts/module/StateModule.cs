@@ -23,7 +23,9 @@ public class StateModule : AbstractModule
                 .Register(new PlayingState())
                 .Register(new PausedState())
                 .Register(new GameOverState())
-                .Register(new BootStartState());
+                .Register(new BootStartState())
+                .Register(new SelectMenuState())
+                .Register(new ClockMenuState());
         }));
     }
 }

@@ -1,12 +1,12 @@
 using GFramework.Core.Abstractions.controller;
 using GFramework.Core.extensions;
-using Godot;
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
-using Twentyfour.scripts.model;
-using Twentyfour.scripts.command.poker;
+using GFrameworkGodotTemplate.scripts.command.poker;
+using GFrameworkGodotTemplate.scripts.model;
+using Godot;
 
-namespace Twentyfour.scripts.poker;
+namespace GFrameworkGodotTemplate.scripts.component;
 
 [Log]
 [ContextAware]
@@ -23,39 +23,9 @@ public partial class Poker : Button , IController
     
     public override void _Ready()
     {
-        _model = this.GetModel<IPokerModel>()!;
-        
-        this.RegisterEvent<PokerModel.ChangedValueEvent>(e =>
-        {
-            UpdateNum(e.Value);
-        });
-        
-        this.RegisterEvent<PokerModel.ChangedPositionEvent>(e =>
-        {
-            ResetPosition();
-        });
-        
-        ButtonDown += () => this.SendCommand(new StartMoveCommand());
-
-        ButtonUp += () => this.SendCommand(new FinishMoveCommand());
-
-        MouseEntered += () =>
-        { 
-            if (AnimationPlayer.IsPlaying())
-            {
-                AnimationPlayer.Stop();
-            }
-            AnimationPlayer.Play("Poker/focused");
-        };
-
-        MouseExited += () =>
-        {
-            if (AnimationPlayer.IsPlaying())
-            {
-                AnimationPlayer.Stop();
-            }
-            AnimationPlayer.Play("Poker/blured");
-        };
+        _ = ReadyAsync();
+        ConnectSignal();
+        RegisterEvent();
     }
 
     public override void _PhysicsProcess(double delta)
@@ -64,6 +34,32 @@ public partial class Poker : Button , IController
         {
             GlobalPosition = GetGlobalMousePosition() - Size / 2;
         }
+    }
+
+    private async Task ReadyAsync()
+    {
+        _model = ContextAwareExtensions.GetModel<IPokerModel>(this)!;
+    }
+    
+    private void ConnectSignal()
+    {
+        ButtonDown += () => ContextAwareExtensions.SendCommand(this, new StartMoveCommand());
+        ButtonUp += () => ContextAwareExtensions.SendCommand(this, new FinishMoveCommand());
+        MouseEntered += () => {if(AnimationPlayer.IsPlaying()){ AnimationPlayer.Stop();}AnimationPlayer.Play("Poker/focused");};
+        MouseExited += () => {if(AnimationPlayer.IsPlaying()){ AnimationPlayer.Stop();}AnimationPlayer.Play("Poker/blured");};
+    }
+
+    private void RegisterEvent()
+    {
+        ContextAwareExtensions.RegisterEvent<PokerModel.ChangedValueEvent>(this, e =>
+        {
+            UpdateNum(e.Value);
+        });
+        
+        ContextAwareExtensions.RegisterEvent<PokerModel.ChangedPositionEvent>(this, e =>
+        {
+            ResetPosition();
+        });
     }
     
     private void UpdateNum(String value)

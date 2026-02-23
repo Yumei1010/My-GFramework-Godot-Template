@@ -3,7 +3,7 @@ using GFramework.Core.model;
 using GFrameworkGodotTemplate.scripts.enums.poker;
 using Godot;
 
-namespace Twentyfour.scripts.model;
+namespace GFrameworkGodotTemplate.scripts.model;
 
 public class PokerModel : AbstractModel , IPokerModel
 {

@@ -1,9 +1,9 @@
 ﻿using GFramework.Core.command;
 using GFramework.Core.extensions;
+using GFrameworkGodotTemplate.scripts.model;
 using Godot;
-using Twentyfour.scripts.model;
 
-namespace Twentyfour.scripts.command.poker;
+namespace GFrameworkGodotTemplate.scripts.command.poker;
 
 public class StartMoveCommand : AbstractCommand
 {

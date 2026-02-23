@@ -20,46 +20,15 @@ namespace GFrameworkGodotTemplate.scripts.pause_menu;
 [Log]
 public partial class PauseMenu : Control, IController, IUiPageBehaviorProvider, ISimpleUiPage
 {
-    /// <summary>
-    ///     页面行为实例的私有字段
-    /// </summary>
-    private IUiPageBehavior? _page;
-
-    private IStateMachineSystem _stateMachineSystem = null!;
-
-    /// <summary>
-    ///     获取恢复游戏按钮节点
-    /// </summary>
     private Button ResumeButton => GetNode<Button>("%ResumeButton");
-
-    /// <summary>
-    ///     获取保存游戏按钮节点
-    /// </summary>
     private Button SaveButton => GetNode<Button>("%SaveButton");
-
-    /// <summary>
-    ///     获取加载游戏按钮节点
-    /// </summary>
     private Button LoadButton => GetNode<Button>("%LoadButton");
-
-    /// <summary>
-    ///     获取选项按钮节点
-    /// </summary>
     private Button OptionsButton => GetNode<Button>("%OptionsButton");
-
-    /// <summary>
-    ///     获取主菜单按钮节点
-    /// </summary>
     private Button MainMenuButton => GetNode<Button>("%MainMenuButton");
-
-    /// <summary>
-    ///     获取退出游戏按钮节点
-    /// </summary>
     private Button QuitButton => GetNode<Button>("%QuitButton");
-
-    /// <summary>
-    ///     Ui Key的字符串形式
-    /// </summary>
+    
+    private IUiPageBehavior? _page;
+    private IStateMachineSystem _stateMachineSystem = null!;
     public static string UiKeyStr => nameof(UiKey.PauseMenu);
 
 

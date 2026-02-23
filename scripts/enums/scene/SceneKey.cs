@@ -17,7 +17,4 @@ public enum SceneKey
     ///     核心游戏逻辑和主要界面显示的场景
     /// </summary>
     Main,
-    Scene1,
-    Scene2,
-    Home
 }

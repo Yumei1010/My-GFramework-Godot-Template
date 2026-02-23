@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ble4f8jycgkh4"
-path="res://.godot/imported/default.png-008eaba70ccc4056b3964b0ddf9702d3.ctex"
+uid="uid://dl2sqfw8f1hsk"
+path="res://.godot/imported/nextButton.png-00829c70ba3c5e4c6588e36d3447aab1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/textures/poker/surface/default.png"
-dest_files=["res://.godot/imported/default.png-008eaba70ccc4056b3964b0ddf9702d3.ctex"]
+source_file="res://assets/art/textures/button/nextButton.png"
+dest_files=["res://.godot/imported/nextButton.png-00829c70ba3c5e4c6588e36d3447aab1.ctex"]
 
 [params]
 

@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://cfuvnryxlpn4b"]
 
-[ext_resource type="Script" uid="uid://bbhffq65fbv6l" path="res://scripts/poker/Poker.cs" id="1_3pkwn"]
-[ext_resource type="Texture2D" uid="uid://bsu52jci56vuk" path="res://assets/art/textures/poker/Surface/default.png" id="1_h3tri"]
+[ext_resource type="Script" uid="uid://bbhffq65fbv6l" path="res://scripts/component/Poker.cs" id="1_3pkwn"]
 [ext_resource type="AnimationLibrary" uid="uid://c60hqc7h6ph53" path="res://resource/animation/poker/Poker.res" id="2_dnpyj"]
-[ext_resource type="Texture2D" uid="uid://dagraq78372or" path="res://assets/art/textures/poker/Suit/diamond.png" id="2_mv11n"]
+[ext_resource type="Texture2D" uid="uid://dagraq78372or" path="res://assets/art/textures/poker/suit/diamond.png" id="2_mv11n"]
+[ext_resource type="Texture2D" uid="uid://ble4f8jycgkh4" path="res://assets/art/textures/poker/surface/default.png" id="3_dnpyj"]
 
 [sub_resource type="Animation" id="Animation_dnpyj"]
 length = 0.001
@@ -46,6 +46,8 @@ offset_bottom = -0.18000793
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(48, 72)
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_3pkwn")
 metadata/_edit_lock_ = true
 
@@ -73,7 +75,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("1_h3tri")
+texture = ExtResource("3_dnpyj")
 
 [node name="Suit" type="TextureRect" parent="." unique_id=2136729553]
 unique_name_in_owner = true

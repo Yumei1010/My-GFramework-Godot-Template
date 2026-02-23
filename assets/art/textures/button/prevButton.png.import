@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://p5dak2wsc1nk"
-path="res://.godot/imported/nooblogo.png-6d8bf1993898cf54fed3412f1093f639.ctex"
+uid="uid://c7fnbiymctfci"
+path="res://.godot/imported/prevButton.png-4e537ab4e213635c55ef034ffabe2158.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://nooblogo.png"
-dest_files=["res://.godot/imported/nooblogo.png-6d8bf1993898cf54fed3412f1093f639.ctex"]
+source_file="res://assets/art/textures/button/prevButton.png"
+dest_files=["res://.godot/imported/prevButton.png-4e537ab4e213635c55ef034ffabe2158.ctex"]
 
 [params]
 

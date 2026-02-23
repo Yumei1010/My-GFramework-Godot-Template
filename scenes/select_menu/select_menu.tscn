@@ -1,0 +1,189 @@
+[gd_scene format=3 uid="uid://dsdd24i8moly3"]
+
+[ext_resource type="Script" uid="uid://mtqvjk8i48ch" path="res://scripts/select_menu/SelectMenu.cs" id="1_yn1ev"]
+[ext_resource type="Texture2D" uid="uid://c7fnbiymctfci" path="res://assets/art/textures/button/prevButton.png" id="3_ga22j"]
+[ext_resource type="Texture2D" uid="uid://dl2sqfw8f1hsk" path="res://assets/art/textures/button/nextButton.png" id="4_usiwy"]
+[ext_resource type="Texture2D" uid="uid://ble4f8jycgkh4" path="res://assets/art/textures/poker/surface/default.png" id="4_wlw48"]
+[ext_resource type="Texture2D" uid="uid://dwg8e2aurpr6o" path="res://assets/art/textures/calculate_icon/add.png" id="5_wlw48"]
+[ext_resource type="FontFile" uid="uid://dapxowp0mirbf" path="res://assets/fonts/VonwaonBitmap-16px.ttf" id="6_uua2n"]
+[ext_resource type="Texture2D" uid="uid://jck0m0v21wsh" path="res://assets/art/textures/calculate_icon/subtract.png" id="6_veiqj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wlw48"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="SelectMenu" type="Control" unique_id=954626254 node_paths=PackedStringArray("ThemeColorBlock")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yn1ev")
+ThemeColorBlock = [NodePath("MarginContainer2/VBoxContainer/ColorRect"), NodePath("MarginContainer2/VBoxContainer/HBoxContainer/ColorRect"), NodePath("MarginContainer2/VBoxContainer/HBoxContainer/ColorRect2")]
+metadata/_edit_lock_ = true
+
+[node name="Background" type="ColorRect" parent="." unique_id=948902066]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.16862746, 0.16862746, 0.16862746, 1)
+metadata/_edit_lock_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=985941565]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 400
+theme_override_constants/margin_top = 160
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 188
+metadata/_edit_lock_ = true
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer" unique_id=317245058]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 4
+columns = 4
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/GridContainer" unique_id=528785902]
+layout_mode = 2
+texture = ExtResource("5_wlw48")
+
+[node name="Label" type="Label" parent="MarginContainer/GridContainer" unique_id=960051990]
+layout_mode = 2
+text = "-----"
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/GridContainer" unique_id=372990663]
+layout_mode = 2
+texture = ExtResource("6_veiqj")
+
+[node name="Label2" type="Label" parent="MarginContainer/GridContainer" unique_id=1628671561]
+layout_mode = 2
+text = "-----"
+
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=808977026]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 108
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2" unique_id=1729698069]
+layout_mode = 2
+theme_override_constants/separation = 272
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer2/VBoxContainer" unique_id=171742941]
+custom_minimum_size = Vector2(960, 64)
+layout_mode = 2
+color = Color(0.9411765, 0.15294118, 0.36862746, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer2/VBoxContainer/ColorRect" unique_id=1662080246]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer/ColorRect/CenterContainer" unique_id=333517877]
+layout_mode = 2
+theme_override_constants/separation = 48
+alignment = 1
+
+[node name="PrevButton" type="TextureButton" parent="MarginContainer2/VBoxContainer/ColorRect/CenterContainer/HBoxContainer" unique_id=1749484991]
+unique_name_in_owner = true
+self_modulate = Color(0.16862746, 0.16862746, 0.16862746, 1)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture_normal = ExtResource("3_ga22j")
+
+[node name="PileName" type="Label" parent="MarginContainer2/VBoxContainer/ColorRect/CenterContainer/HBoxContainer" unique_id=1594656577]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.16862746, 0.16862746, 0.16862746, 1)
+theme_override_font_sizes/font_size = 40
+text = "红桃"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NextButton" type="TextureButton" parent="MarginContainer2/VBoxContainer/ColorRect/CenterContainer/HBoxContainer" unique_id=93182556]
+unique_name_in_owner = true
+self_modulate = Color(0.16862746, 0.16862746, 0.16862746, 1)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture_normal = ExtResource("4_usiwy")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer" unique_id=1154588353]
+custom_minimum_size = Vector2(960, 48)
+layout_mode = 2
+theme_override_constants/separation = 116
+alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer2/VBoxContainer/HBoxContainer" unique_id=1301470053]
+custom_minimum_size = Vector2(144, 48)
+layout_mode = 2
+color = Color(0.9411765, 0.15294118, 0.36862746, 1)
+
+[node name="CheckButton" type="Button" parent="MarginContainer2/VBoxContainer/HBoxContainer/ColorRect" unique_id=861975321]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.16862746, 0.16862746, 0.16862746, 1)
+theme_override_fonts/font = ExtResource("6_uua2n")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_wlw48")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wlw48")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wlw48")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_wlw48")
+theme_override_styles/focus = SubResource("StyleBoxFlat_wlw48")
+text = "确认"
+
+[node name="ColorRect2" type="ColorRect" parent="MarginContainer2/VBoxContainer/HBoxContainer" unique_id=1148153731]
+custom_minimum_size = Vector2(144, 32)
+layout_mode = 2
+color = Color(0.9411765, 0.15294118, 0.36862746, 1)
+
+[node name="ReturnButton" type="Button" parent="MarginContainer2/VBoxContainer/HBoxContainer/ColorRect2" unique_id=1514794181]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.16862746, 0.16862746, 0.16862746, 1)
+theme_override_fonts/font = ExtResource("6_uua2n")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_wlw48")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wlw48")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wlw48")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_wlw48")
+theme_override_styles/focus = SubResource("StyleBoxFlat_wlw48")
+text = "返回"
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1294059606]
+
+[node name="Pile" type="TextureButton" parent="Node2D" unique_id=1178600004]
+unique_name_in_owner = true
+offset_left = 240.0
+offset_top = 184.0
+offset_right = 336.0
+offset_bottom = 328.0
+pivot_offset = Vector2(48, 72)
+texture_normal = ExtResource("4_wlw48")
