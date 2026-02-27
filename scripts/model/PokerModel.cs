@@ -17,12 +17,12 @@ public class PokerModel : AbstractModel , IPokerModel
 
     protected override void OnInit()
     {
-        SuitType = SuitType.Heart;
-        NumType = NumType.Integer;
-        Value = "24";
-        
-        SpawnPosition = new Vector2(480,270);
-        IsMoving = false;
+        // SuitType = SuitType.Heart;
+        // NumType = NumType.Integer;
+        // Value = "24";
+        //
+        // SpawnPosition = new Vector2(480,270);
+        // IsMoving = false;
     }
     
     public void Increment(string targetValue)

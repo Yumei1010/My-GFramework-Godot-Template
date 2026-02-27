@@ -1,13 +1,12 @@
 ﻿using GFramework.Core.command;
-using GFramework.Core.extensions;
-using Godot;
 
 namespace GFrameworkGodotTemplate.scripts.command.menu.select;
 
+// Todo 从PileModel里拿数据
 public class SelectNextPileCommand : AbstractCommand
 {
     protected override void OnExecute()
     {
-        GD.Print("SelectNextPileCommand.OnExecute()");
+        
     }
 }

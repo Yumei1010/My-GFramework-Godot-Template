@@ -43,8 +43,8 @@ public partial class Poker : Button , IController
     
     private void ConnectSignal()
     {
-        ButtonDown += () => ContextAwareExtensions.SendCommand(this, new StartMoveCommand());
-        ButtonUp += () => ContextAwareExtensions.SendCommand(this, new FinishMoveCommand());
+        ButtonDown += () => this.SendCommand(new StartMoveCommand());
+        ButtonUp += () => this.SendCommand(new FinishMoveCommand());
         MouseEntered += () => {if(AnimationPlayer.IsPlaying()){ AnimationPlayer.Stop();}AnimationPlayer.Play("Poker/focused");};
         MouseExited += () => {if(AnimationPlayer.IsPlaying()){ AnimationPlayer.Stop();}AnimationPlayer.Play("Poker/blured");};
     }

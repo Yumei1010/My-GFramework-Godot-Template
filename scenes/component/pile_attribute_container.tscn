@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://d64g2r7hc3ev"]
+
+[ext_resource type="FontFile" uid="uid://dapxowp0mirbf" path="res://assets/fonts/VonwaonBitmap-16px.ttf" id="1_l663k"]
+[ext_resource type="Script" uid="uid://qgfnorub5de5" path="res://scripts/component/PileAttributeContainer.cs" id="1_lg04d"]
+
+[sub_resource type="Texture2DRD" id="Texture2DRD_lg04d"]
+
+[node name="AttributeContainer" type="HBoxContainer" unique_id=1142003757]
+self_modulate = Color(0.9411765, 0.15294118, 0.36862746, 1)
+anchors_preset = -1
+anchor_right = 0.23300001
+anchor_bottom = 0.089
+offset_right = -223.68001
+offset_bottom = -48.06
+theme_override_constants/separation = 0
+script = ExtResource("1_lg04d")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=823864833]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="AttributeIconRect" type="TextureRect" parent="HBoxContainer" unique_id=827232176]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = SubResource("Texture2DRD_lg04d")
+
+[node name="AttributeNameLabel" type="RichTextLabel" parent="HBoxContainer" unique_id=1005567629]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("1_l663k")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[wave amp=5 freq=5.0]流逝"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AttributeLevelLabel" type="RichTextLabel" parent="." unique_id=1757358852]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(96, 40)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("1_l663k")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[wave amp=5 freq=5.0]-----"
+vertical_alignment = 1

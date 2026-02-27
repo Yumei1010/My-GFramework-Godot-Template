@@ -1,12 +1,23 @@
 [gd_scene format=3 uid="uid://dsdd24i8moly3"]
 
 [ext_resource type="Script" uid="uid://mtqvjk8i48ch" path="res://scripts/select_menu/SelectMenu.cs" id="1_yn1ev"]
+[ext_resource type="Resource" uid="uid://dqd55dg3mfc57" path="res://scripts/pile/Heart.tres" id="2_jt6ew"]
+[ext_resource type="AnimationLibrary" uid="uid://ddxuwoy3h0jk0" path="res://resource/animation/selectMenu/SelectMenu.res" id="2_uua2n"]
+[ext_resource type="Script" uid="uid://63x3tgw3gjkk" path="res://scripts/pile/Pile.cs" id="2_yjg0p"]
 [ext_resource type="Texture2D" uid="uid://c7fnbiymctfci" path="res://assets/art/textures/button/prevButton.png" id="3_ga22j"]
+[ext_resource type="Resource" uid="uid://25qm5p8tcmhl" path="res://scripts/pile/Diamond.tres" id="3_k4h4a"]
+[ext_resource type="PackedScene" uid="uid://d64g2r7hc3ev" path="res://scenes/component/pile_attribute_container.tscn" id="3_veiqj"]
 [ext_resource type="Texture2D" uid="uid://dl2sqfw8f1hsk" path="res://assets/art/textures/button/nextButton.png" id="4_usiwy"]
 [ext_resource type="Texture2D" uid="uid://ble4f8jycgkh4" path="res://assets/art/textures/poker/surface/default.png" id="4_wlw48"]
-[ext_resource type="Texture2D" uid="uid://dwg8e2aurpr6o" path="res://assets/art/textures/calculate_icon/add.png" id="5_wlw48"]
 [ext_resource type="FontFile" uid="uid://dapxowp0mirbf" path="res://assets/fonts/VonwaonBitmap-16px.ttf" id="6_uua2n"]
-[ext_resource type="Texture2D" uid="uid://jck0m0v21wsh" path="res://assets/art/textures/calculate_icon/subtract.png" id="6_veiqj"]
+
+[sub_resource type="Animation" id="Animation_uua2n"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jt6ew"]
+_data = {
+&"RESET": SubResource("Animation_uua2n")
+}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wlw48"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -20,7 +31,18 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yn1ev")
 ThemeColorBlock = [NodePath("MarginContainer2/VBoxContainer/ColorRect"), NodePath("MarginContainer2/VBoxContainer/HBoxContainer/ColorRect"), NodePath("MarginContainer2/VBoxContainer/HBoxContainer/ColorRect2")]
+PileLib = Dictionary[String, ExtResource("2_yjg0p")]({
+"Club": null,
+"Diamond": ExtResource("3_k4h4a"),
+"Heart": ExtResource("2_jt6ew"),
+"Spade": null
+})
 metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1194228748]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_jt6ew")
+libraries/SelectMenu = ExtResource("2_uua2n")
 
 [node name="Background" type="ColorRect" parent="." unique_id=948902066]
 layout_mode = 1
@@ -40,32 +62,56 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 400
-theme_override_constants/margin_top = 160
+theme_override_constants/margin_top = 136
 theme_override_constants/margin_right = 80
-theme_override_constants/margin_bottom = 188
+theme_override_constants/margin_bottom = 196
 metadata/_edit_lock_ = true
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer" unique_id=317245058]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=2027664313]
 layout_mode = 2
-theme_override_constants/h_separation = 20
+theme_override_constants/separation = 16
+
+[node name="IntroductionLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer" unique_id=1780585680]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("6_uua2n")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[wave amp=5 freq=5.0]特性//复苏
+每次计算出24点时可回复一定时间
+"
+vertical_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer" unique_id=317245058]
+layout_mode = 2
+theme_override_constants/h_separation = -8
 theme_override_constants/v_separation = 4
-columns = 4
+columns = 2
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/GridContainer" unique_id=528785902]
+[node name="FlowRateContainer" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=1142003757 instance=ExtResource("3_veiqj")]
+unique_name_in_owner = true
 layout_mode = 2
-texture = ExtResource("5_wlw48")
 
-[node name="Label" type="Label" parent="MarginContainer/GridContainer" unique_id=960051990]
+[node name="ResilienceContainer" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=76141487 instance=ExtResource("3_veiqj")]
+unique_name_in_owner = true
 layout_mode = 2
-text = "-----"
 
-[node name="TextureRect2" type="TextureRect" parent="MarginContainer/GridContainer" unique_id=372990663]
+[node name="ConversionContainer" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=23371249 instance=ExtResource("3_veiqj")]
+unique_name_in_owner = true
 layout_mode = 2
-texture = ExtResource("6_veiqj")
 
-[node name="Label2" type="Label" parent="MarginContainer/GridContainer" unique_id=1628671561]
+[node name="DrainContainer" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=413515924 instance=ExtResource("3_veiqj")]
+unique_name_in_owner = true
 layout_mode = 2
-text = "-----"
+
+[node name="RegenerationContainer" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=230543241 instance=ExtResource("3_veiqj")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="RewindContainer" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=1059428712 instance=ExtResource("3_veiqj")]
+unique_name_in_owner = true
+layout_mode = 2
 
 [node name="MarginContainer2" type="MarginContainer" parent="." unique_id=808977026]
 layout_mode = 1
@@ -87,6 +133,8 @@ theme_override_constants/separation = 272
 [node name="ColorRect" type="ColorRect" parent="MarginContainer2/VBoxContainer" unique_id=171742941]
 custom_minimum_size = Vector2(960, 64)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 color = Color(0.9411765, 0.15294118, 0.36862746, 1)
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer2/VBoxContainer/ColorRect" unique_id=1662080246]
@@ -99,30 +147,35 @@ grow_vertical = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer/ColorRect/CenterContainer" unique_id=333517877]
 layout_mode = 2
-theme_override_constants/separation = 48
+theme_override_constants/separation = 16
 alignment = 1
 
 [node name="PrevButton" type="TextureButton" parent="MarginContainer2/VBoxContainer/ColorRect/CenterContainer/HBoxContainer" unique_id=1749484991]
 unique_name_in_owner = true
-self_modulate = Color(0.16862746, 0.16862746, 0.16862746, 1)
-custom_minimum_size = Vector2(40, 40)
+modulate = Color(0.16862746, 0.16862746, 0.16862746, 1)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 texture_normal = ExtResource("3_ga22j")
 
-[node name="PileName" type="Label" parent="MarginContainer2/VBoxContainer/ColorRect/CenterContainer/HBoxContainer" unique_id=1594656577]
+[node name="PileNameLabel" type="RichTextLabel" parent="MarginContainer2/VBoxContainer/ColorRect/CenterContainer/HBoxContainer" unique_id=598004439]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 32)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.16862746, 0.16862746, 0.16862746, 1)
-theme_override_font_sizes/font_size = 40
-text = "红桃"
+theme_override_colors/default_color = Color(0.16862746, 0.16862746, 0.16862746, 1)
+theme_override_fonts/normal_font = ExtResource("6_uua2n")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[wave amp=5 freq=7.5 ]红桃"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="NextButton" type="TextureButton" parent="MarginContainer2/VBoxContainer/ColorRect/CenterContainer/HBoxContainer" unique_id=93182556]
 unique_name_in_owner = true
-self_modulate = Color(0.16862746, 0.16862746, 0.16862746, 1)
-custom_minimum_size = Vector2(40, 40)
+modulate = Color(0.16862746, 0.16862746, 0.16862746, 1)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 texture_normal = ExtResource("4_usiwy")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer" unique_id=1154588353]

@@ -39,5 +39,6 @@ public class ModelModule : AbstractModule
                 })
         );
         architecture.RegisterModel<IPokerModel>(new PokerModel());
+        architecture.RegisterModel<IPileModel>(new PileModel());
     }
 }

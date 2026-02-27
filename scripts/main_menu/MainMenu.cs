@@ -21,6 +21,8 @@ namespace GFrameworkGodotTemplate.scripts.main_menu;
 [Log]
 public partial class MainMenu : Control, IController, IUiPageBehaviorProvider, ISimpleUiPage
 {
+    [Export] public ColorRect[] ThemeColorBlock = [];
+    
     private Button NewGameButton => GetNode<Button>("%NewGameButton");
     private Button ContinueGameButton => GetNode<Button>("%ContinueGameButton");
     private Button OptionsMenuButton => GetNode<Button>("%OptionsMenuButton");
@@ -41,6 +43,7 @@ public partial class MainMenu : Control, IController, IUiPageBehaviorProvider, I
     public override void _Ready()
     {
         _ = ReadyAsync();
+        ConnectSignal();
     }
 
     private async Task ReadyAsync()
@@ -48,7 +51,10 @@ public partial class MainMenu : Control, IController, IUiPageBehaviorProvider, I
         await GameEntryPoint.Architecture.WaitUntilReadyAsync().ConfigureAwait(false);
         _uiRouter = this.GetSystem<IUiRouter>()!;
         _stateMachineSystem = this.GetSystem<IStateMachineSystem>()!;
-        
+    }
+    
+    private void ConnectSignal()
+    {
         NewGameButton.ButtonDown += () => _stateMachineSystem.ChangeTo<SelectMenuState>();
         ContinueGameButton.ButtonDown += () => { };
         OptionsMenuButton.ButtonDown += () => this.SendCommand(new OpenOptionsMenuCommand());
