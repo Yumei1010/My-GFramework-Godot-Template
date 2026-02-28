@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://5mfgbvaive07" path="res://scripts/core/resource/SceneConfig.cs" id="7_iiepj"]
 [ext_resource type="PackedScene" uid="uid://bkpda73hbmyix" path="res://scenes/pause_menu/pause_menu.tscn" id="7_iumd8"]
 [ext_resource type="PackedScene" uid="uid://c2x0dnn3encky" path="res://scenes/clock_menu/clock_menu.tscn" id="8_1yddw"]
-[ext_resource type="Texture2D" uid="uid://6aq7b0pqd1dp" path="res://assets/art/textures/boot_start/godot.jpg" id="13_fgqit"]
+[ext_resource type="Texture2D" uid="uid://6aq7b0pqd1dp" path="res://assets/textures/boot_start/godot.jpg" id="13_fgqit"]
 [ext_resource type="PackedScene" uid="uid://db7uqtqvqp4dn" path="res://scenes/intro/intro.tscn" id="13_hjx06"]
 [ext_resource type="Script" uid="uid://ls8nkxn3gipd" path="res://scripts/core/resource/TextureConfig.cs" id="14_hjx06"]
 

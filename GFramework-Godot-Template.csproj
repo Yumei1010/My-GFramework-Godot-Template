@@ -12,11 +12,13 @@
         <Compile Remove="scripts\core\ui\UiFactory.cs"/>
         <Compile Remove="scenes\**"/>
         <Compile Remove="scripts\tests\**" />
+        <Compile Remove="scripts\extensions\**" />
     </ItemGroup>
     <ItemGroup>
         <EmbeddedResource Remove="script_templates\**"/>
         <EmbeddedResource Remove="scenes\**"/>
         <EmbeddedResource Remove="scripts\tests\**" />
+        <EmbeddedResource Remove="scripts\extensions\**" />
     </ItemGroup>
     <ItemGroup>
         <PackageReference Update="Meziantou.Analyzer" Version="2.0.298">
@@ -46,7 +48,6 @@
         <Content Include="scripts\entities\README.md"/>
         <Content Include="scripts\events\README.md"/>
         <Content Include="scripts\module\README.md"/>
-        <Content Include="scripts\poker\Poker.cs.uid" />
     </ItemGroup>
     <ItemGroup>
         <Folder Include="scripts\command\audio\input\"/>
@@ -54,7 +55,6 @@
         <Folder Include="scripts\command\setting\input\"/>
         <Folder Include="scripts\enums\game\"/>
         <Folder Include="scripts\events\settings\"/>
-        <Folder Include="scripts\extensions\"/>
         <Folder Include="scripts\intro\"/>
         <Folder Include="scripts\main_menu\"/>
     </ItemGroup>
