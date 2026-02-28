@@ -25,7 +25,7 @@ config/save/save_file_name="save.json"
 
 [audio]
 
-buses/default_bus_layout="res://resource/project_bus_layout.tres"
+buses/default_bus_layout="res://resource/bus/project_bus_layout.tres"
 
 [autoload]
 
@@ -48,6 +48,10 @@ window/stretch/mode="canvas_items"
 
 project/assembly_name="GFramework-Godot-Template"
 
+[editor_plugins]
+
+enabled=PackedStringArray()
+
 [file_customization]
 
 folder_colors={
@@ -69,3 +73,10 @@ textures/canvas_textures/default_texture_filter=3
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
+
+[richer_text_label]
+
+fonts={
+&"VonwaonBitmap-12px": "res://assets/fonts/VonwaonBitmap-12px.ttf",
+&"VonwaonBitmap-16px": "res://assets/fonts/VonwaonBitmap-16px.ttf"
+}

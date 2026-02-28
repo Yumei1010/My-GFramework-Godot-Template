@@ -21,7 +21,7 @@ namespace GFrameworkGodotTemplate.scripts.select_menu;
 public partial class SelectMenu : Control, IController, IUiPageBehaviorProvider, ISimpleUiPage
 {
     [Export] public ColorRect[] ThemeColorBlock = [];
-    [Export] public Godot.Collections.Dictionary<string, Pile> PileLib = new();
+    [Export] public Godot.Collections.Dictionary<string, PileResource> PileLib = new();
     
     private AnimationPlayer AnimationPlayer => GetNode<AnimationPlayer>("AnimationPlayer");
     private TextureButton PrevButton => GetNode<TextureButton>("%PrevButton");
@@ -44,11 +44,12 @@ public partial class SelectMenu : Control, IController, IUiPageBehaviorProvider,
     public static string UiKeyStr => nameof(UiKey.SelectMenu);
 
 
-    private Pile _currentDisplayPile = null!;
+    private PileResource _currentDisplayPileResource = null!;
+    private string[] _pileKeys = System.Array.Empty<string>();
+    private int _currentIndex = 0;
     private bool _pileIsMoving;
     private Tween _tween = null!;
     private string _themePrefix = "[wave amp=5 freq=5.0]";
-    private Color _themeColor;
     
     public IUiPageBehavior GetPage()
     {
@@ -60,8 +61,14 @@ public partial class SelectMenu : Control, IController, IUiPageBehaviorProvider,
     {
         _ = ReadyAsync();
         ConnectSignal();
-        _currentDisplayPile = PileLib["Heart"];
-        UpdatePileDisplay();
+        
+        _pileKeys = PileLib.Keys.ToArray();
+        if (_pileKeys.Length > 0)
+        {
+            _currentIndex = 0;
+            _currentDisplayPileResource = PileLib[_pileKeys[_currentIndex]];
+            UpdatePileDisplay();
+        }
     }
 
     public override void _Process(double delta)
@@ -70,24 +77,6 @@ public partial class SelectMenu : Control, IController, IUiPageBehaviorProvider,
         {
             Pile.GlobalPosition = GetGlobalMousePosition() - Pile.Size / 2;
         }
-    }
-    
-    public void UpdatePileDisplay()
-    {
-        foreach (ColorRect rect in ThemeColorBlock)
-        {
-            rect.Color = _currentDisplayPile.ThemeColor;
-        }
-        PileNameLabel.Text = _themePrefix  + _currentDisplayPile.PileName;
-        IntroductionLabel.Modulate = _currentDisplayPile.ThemeColor;
-        IntroductionLabel.Text = _themePrefix + "特性//" + _currentDisplayPile.AbilityName + "\n" + _currentDisplayPile.Introduction;
-        Pile.TextureNormal = _currentDisplayPile.PileTexture;
-        FlowRateContainer.Transform(_currentDisplayPile.ThemeColor,_currentDisplayPile.FlowRateIcon,"流逝",_currentDisplayPile.FlowRateLevel);
-        ResilienceContainer.Transform(_currentDisplayPile.ThemeColor,_currentDisplayPile.ResilienceIcon,"韧性",_currentDisplayPile.ResilienceLevel);
-        ConversionContainer.Transform(_currentDisplayPile.ThemeColor,_currentDisplayPile.ConversionIcon,"转化",_currentDisplayPile.ConversionLevel);
-        DrainContainer.Transform(_currentDisplayPile.ThemeColor,_currentDisplayPile.DrainIcon,"汲取",_currentDisplayPile.DrainLevel);
-        RegenerationContainer.Transform(_currentDisplayPile.ThemeColor,_currentDisplayPile.RegenerationIcon,"再生",_currentDisplayPile.RegenerationLevel);
-        RewindContainer.Transform(_currentDisplayPile.ThemeColor,_currentDisplayPile.RewindIcon,"回溯",_currentDisplayPile.RewindLevel);
     }
 
     private async Task ReadyAsync()
@@ -115,6 +104,24 @@ public partial class SelectMenu : Control, IController, IUiPageBehaviorProvider,
         CheckButton.ButtonDown += () => _stateMachineSystem.ChangeTo<ClockMenuState>();
         ReturnButton.ButtonDown += () => _stateMachineSystem.ChangeTo<MainMenuState>();
     }
+    
+    private void UpdatePileDisplay()
+    {
+        foreach (ColorRect rect in ThemeColorBlock)
+        {
+            rect.Color = _currentDisplayPileResource.ThemeColor;
+        }
+        PileNameLabel.Text = _themePrefix  + _currentDisplayPileResource.PileName;
+        IntroductionLabel.Modulate = _currentDisplayPileResource.ThemeColor;
+        IntroductionLabel.Text = _themePrefix + "特性//" + _currentDisplayPileResource.AbilityName + "\n" + _currentDisplayPileResource.Introduction;
+        Pile.TextureNormal = _currentDisplayPileResource.PileTexture;
+        FlowRateContainer.Transform(_currentDisplayPileResource.ThemeColor,_currentDisplayPileResource.FlowRateIcon,"流逝",_currentDisplayPileResource.FlowRateLevel);
+        ResilienceContainer.Transform(_currentDisplayPileResource.ThemeColor,_currentDisplayPileResource.ResilienceIcon,"韧性",_currentDisplayPileResource.ResilienceLevel);
+        ConversionContainer.Transform(_currentDisplayPileResource.ThemeColor,_currentDisplayPileResource.ConversionIcon,"转化",_currentDisplayPileResource.ConversionLevel);
+        DrainContainer.Transform(_currentDisplayPileResource.ThemeColor,_currentDisplayPileResource.DrainIcon,"汲取",_currentDisplayPileResource.DrainLevel);
+        RegenerationContainer.Transform(_currentDisplayPileResource.ThemeColor,_currentDisplayPileResource.RegenerationIcon,"再生",_currentDisplayPileResource.RegenerationLevel);
+        RewindContainer.Transform(_currentDisplayPileResource.ThemeColor,_currentDisplayPileResource.RewindIcon,"回溯",_currentDisplayPileResource.RewindLevel);
+    }
 
     private void OnMouseEnteredPrevButton()
     {
@@ -133,7 +140,9 @@ public partial class SelectMenu : Control, IController, IUiPageBehaviorProvider,
 
     private void OnMouseDownPrevButton()
     {
-        _currentDisplayPile = PileLib["Heart"];
+        if (_pileKeys.Length == 0) return;
+        _currentIndex = (_currentIndex - 1 + _pileKeys.Length) % _pileKeys.Length;
+        _currentDisplayPileResource = PileLib[_pileKeys[_currentIndex]];
         UpdatePileDisplay();
     }
     
@@ -154,7 +163,9 @@ public partial class SelectMenu : Control, IController, IUiPageBehaviorProvider,
     
     private void OnMouseDownNextButton()
     {
-        _currentDisplayPile = PileLib["Diamond"];
+        if (_pileKeys.Length == 0) return;
+        _currentIndex = (_currentIndex + 1) % _pileKeys.Length;
+        _currentDisplayPileResource = PileLib[_pileKeys[_currentIndex]];
         UpdatePileDisplay();
     }
     

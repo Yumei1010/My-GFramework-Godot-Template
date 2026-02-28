@@ -1,10 +1,11 @@
 [gd_resource type="Resource" script_class="Pile" format=3 uid="uid://dqd55dg3mfc57"]
 
+[ext_resource type="Texture2D" uid="uid://b0i75dlphj2ww" path="res://assets/art/textures/calculate_icon/squareRoot.png" id="1_2ggca"]
 [ext_resource type="Script" uid="uid://63x3tgw3gjkk" path="res://scripts/pile/Pile.cs" id="1_748d8"]
 [ext_resource type="Texture2D" uid="uid://c3jflp1xy6r7i" path="res://assets/art/textures/pile/attribute_icon/flowRate.png" id="1_o0sux"]
-[ext_resource type="Texture2D" uid="uid://cfdaq1vdpvih1" path="res://assets/art/textures/pile/suit/heart.png" id="2_lpub3"]
+[ext_resource type="Texture2D" uid="uid://xe2urvlsffj0" path="res://assets/art/textures/calculate_icon/absoluteValue.png" id="2_24imb"]
+[ext_resource type="Texture2D" uid="uid://6vuld8lknm7e" path="res://assets/art/textures/pile/suit/heart.png" id="2_lpub3"]
 [ext_resource type="Texture2D" uid="uid://d0elxc5igs6jr" path="res://assets/art/textures/pile/attribute_icon/resilience.png" id="2_sb5o3"]
-[ext_resource type="Texture2D" uid="uid://b7to5ckamrd02" path="res://assets/art/textures/pile/attribute_icon/rewind.png" id="3_n5olr"]
 
 [resource]
 script = ExtResource("1_748d8")
@@ -19,8 +20,11 @@ FlowRateLevel = 1
 ResilienceIcon = ExtResource("2_sb5o3")
 Resilience = 120
 ResilienceLevel = 5
+ConversionIcon = ExtResource("1_2ggca")
+DrainIcon = ExtResource("2_24imb")
+RegenerationIcon = ExtResource("1_2ggca")
 Regeneration = 30
 RegenerationLevel = 5
-RewindIcon = ExtResource("3_n5olr")
+RewindIcon = ExtResource("1_2ggca")
 Rewind = 1
 metadata/_custom_type_script = "uid://63x3tgw3gjkk"

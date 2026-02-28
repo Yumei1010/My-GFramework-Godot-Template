@@ -11,7 +11,7 @@ namespace GFrameworkGodotTemplate.scripts.component;
 [Log]
 [ContextAware]
 
-public partial class Poker : Button , IController
+public partial class PokerView : Button , IController
 {
     private AnimationPlayer AnimationPlayer => GetNode<AnimationPlayer>("AnimationPlayer");
     private TextureRect Back => GetNode<TextureRect>("%Back");

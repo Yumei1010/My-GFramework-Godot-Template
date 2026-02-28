@@ -9,8 +9,6 @@ public partial class PileAttributeContainer : HBoxContainer
     private RichTextLabel AttributeLevelLabel => GetNode<RichTextLabel>("%AttributeLevelLabel");
     
     private String _themePrefix = "[wave amp=5 freq=5.0]";
-    private bool _displayIcon;
-    private bool _displayName;
     
     public void Initialize(Color color,Texture2D iconTexture, String text,int level)
     {

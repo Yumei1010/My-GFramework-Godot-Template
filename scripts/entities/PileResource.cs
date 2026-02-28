@@ -3,7 +3,7 @@
 namespace GFrameworkGodotTemplate.scripts.pile;
 
 [GlobalClass]
-public partial class Pile : Resource
+public partial class PileResource : Resource
 {
     [Export] public Color ThemeColor;
     [Export] public Texture2D PileTexture = null!;
