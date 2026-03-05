@@ -1,6 +1,6 @@
 ﻿using GFramework.Core.command;
 using GFramework.Core.extensions;
-using GFrameworkGodotTemplate.scripts.model;
+using GFrameworkGodotTemplate.scripts.data.model;
 using Godot;
 
 namespace GFrameworkGodotTemplate.scripts.command.poker;

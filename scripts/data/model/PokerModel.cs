@@ -1,5 +1,6 @@
 ﻿using GFramework.Core.extensions;
 using GFramework.Core.model;
+using GFrameworkGodotTemplate.scripts.data.model;
 using GFrameworkGodotTemplate.scripts.enums.poker;
 using Godot;
 

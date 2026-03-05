@@ -5,6 +5,7 @@ using GFramework.Game.architecture;
 using GFramework.Game.setting;
 using GFramework.Godot.setting;
 using GFramework.Godot.setting.data;
+using GFrameworkGodotTemplate.scripts.data.model;
 using GFrameworkGodotTemplate.scripts.model;
 using GFrameworkGodotTemplate.scripts.setting;
 
@@ -40,5 +41,6 @@ public class ModelModule : AbstractModule
         );
         architecture.RegisterModel<IPokerModel>(new PokerModel());
         architecture.RegisterModel<IPileModel>(new PileModel());
+        architecture.RegisterModel<IPlayerModel>(new PlayerModel());
     }
 }

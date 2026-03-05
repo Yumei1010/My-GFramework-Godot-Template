@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cfuvnryxlpn4b"]
 
 [ext_resource type="Script" uid="uid://bbhffq65fbv6l" path="res://scripts/component/PokerView.cs" id="1_3pkwn"]
-[ext_resource type="AnimationLibrary" uid="uid://c60hqc7h6ph53" path="res://resource/animation/Poker.res" id="2_dnpyj"]
+[ext_resource type="AnimationLibrary" uid="uid://c60hqc7h6ph53" path="res://resource/animation/PokerView.res" id="2_dnpyj"]
 [ext_resource type="Texture2D" uid="uid://dagraq78372or" path="res://assets/textures/poker/suit/diamond.png" id="2_mv11n"]
 [ext_resource type="Texture2D" uid="uid://ble4f8jycgkh4" path="res://assets/textures/poker/surface/default.png" id="3_dnpyj"]
 
@@ -37,7 +37,7 @@ _data = {
 &"RESET": SubResource("Animation_dnpyj")
 }
 
-[node name="Poker" type="Button" unique_id=351593249]
+[node name="PokerView" type="Button" unique_id=351593249]
 self_modulate = Color(1, 1, 1, 0)
 anchors_preset = -1
 anchor_right = 0.1

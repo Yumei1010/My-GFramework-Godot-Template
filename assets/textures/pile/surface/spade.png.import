@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cl6fv1a3qfyqy"
-path="res://.godot/imported/spade.png-8756a8ce3f2a94003eed95c15cd68140.ctex"
+path="res://.godot/imported/spade.png-223486967fbe9025190cca7668a77263.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/pile/suit/spade.png"
-dest_files=["res://.godot/imported/spade.png-8756a8ce3f2a94003eed95c15cd68140.ctex"]
+source_file="res://assets/textures/pile/surface/spade.png"
+dest_files=["res://.godot/imported/spade.png-223486967fbe9025190cca7668a77263.ctex"]
 
 [params]
 

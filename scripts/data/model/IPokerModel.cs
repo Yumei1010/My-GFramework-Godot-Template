@@ -2,7 +2,7 @@
 using GFrameworkGodotTemplate.scripts.enums.poker;
 using Godot;
 
-namespace GFrameworkGodotTemplate.scripts.model;
+namespace GFrameworkGodotTemplate.scripts.data.model;
 
 public interface IPokerModel : IModel
 {

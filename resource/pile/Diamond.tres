@@ -2,10 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://xe2urvlsffj0" path="res://assets/textures/calculate_icon/absoluteValue.png" id="1_1xnoq"]
 [ext_resource type="Script" uid="uid://63x3tgw3gjkk" path="res://scripts/entities/PileResource.cs" id="1_8f7wd"]
-[ext_resource type="Texture2D" uid="uid://c3jflp1xy6r7i" path="res://assets/textures/pile/attribute_icon/flowRate.png" id="1_u7xnn"]
+[ext_resource type="Texture2D" uid="uid://c3jflp1xy6r7i" path="res://assets/textures/attribute_icon/flowRate.png" id="1_u7xnn"]
 [ext_resource type="Texture2D" uid="uid://br8w470lq4i6s" path="res://assets/textures/calculate_icon/floor.png" id="2_2osy3"]
-[ext_resource type="Texture2D" uid="uid://d0elxc5igs6jr" path="res://assets/textures/pile/attribute_icon/resilience.png" id="2_xpvwn"]
-[ext_resource type="Texture2D" uid="uid://bjyh6mxjxpmnk" path="res://assets/textures/pile/suit/diamond.png" id="4_4eo2y"]
+[ext_resource type="Texture2D" uid="uid://d0elxc5igs6jr" path="res://assets/textures/attribute_icon/resilience.png" id="2_xpvwn"]
+[ext_resource type="Texture2D" uid="uid://bjyh6mxjxpmnk" path="res://assets/textures/pile/surface/diamond.png" id="4_4eo2y"]
 [ext_resource type="Texture2D" uid="uid://b0i75dlphj2ww" path="res://assets/textures/calculate_icon/squareRoot.png" id="5_tga51"]
 [ext_resource type="Texture2D" uid="uid://c6oterk4euu5f" path="res://assets/textures/calculate_icon/ceil.png" id="7_1vv0s"]
 

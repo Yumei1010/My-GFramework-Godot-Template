@@ -1,6 +1,6 @@
 ﻿using GFramework.Core.Abstractions.model;
 
-namespace GFrameworkGodotTemplate.scripts.model;
+namespace GFrameworkGodotTemplate.scripts.data.model;
 
 public interface IPileModel : IModel
 {

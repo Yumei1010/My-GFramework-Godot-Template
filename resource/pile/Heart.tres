@@ -2,10 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://b0i75dlphj2ww" path="res://assets/textures/calculate_icon/squareRoot.png" id="1_2ggca"]
 [ext_resource type="Script" uid="uid://63x3tgw3gjkk" path="res://scripts/entities/PileResource.cs" id="1_748d8"]
-[ext_resource type="Texture2D" uid="uid://c3jflp1xy6r7i" path="res://assets/textures/pile/attribute_icon/flowRate.png" id="1_o0sux"]
+[ext_resource type="Texture2D" uid="uid://c3jflp1xy6r7i" path="res://assets/textures/attribute_icon/flowRate.png" id="1_o0sux"]
 [ext_resource type="Texture2D" uid="uid://xe2urvlsffj0" path="res://assets/textures/calculate_icon/absoluteValue.png" id="2_24imb"]
-[ext_resource type="Texture2D" uid="uid://6vuld8lknm7e" path="res://assets/textures/pile/suit/heart.png" id="2_lpub3"]
-[ext_resource type="Texture2D" uid="uid://d0elxc5igs6jr" path="res://assets/textures/pile/attribute_icon/resilience.png" id="2_sb5o3"]
+[ext_resource type="Texture2D" uid="uid://6vuld8lknm7e" path="res://assets/textures/pile/surface/heart.png" id="2_lpub3"]
+[ext_resource type="Texture2D" uid="uid://d0elxc5igs6jr" path="res://assets/textures/attribute_icon/resilience.png" id="2_sb5o3"]
 
 [resource]
 script = ExtResource("1_748d8")

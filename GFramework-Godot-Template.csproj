@@ -53,7 +53,6 @@
         <Folder Include="scripts\command\audio\input\"/>
         <Folder Include="scripts\command\graphics\input\"/>
         <Folder Include="scripts\command\setting\input\"/>
-        <Folder Include="scripts\enums\game\"/>
         <Folder Include="scripts\events\settings\"/>
         <Folder Include="scripts\intro\"/>
         <Folder Include="scripts\main_menu\"/>

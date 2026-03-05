@@ -1,6 +1,6 @@
 ﻿using GFramework.Core.model;
 
-namespace GFrameworkGodotTemplate.scripts.model;
+namespace GFrameworkGodotTemplate.scripts.data.model;
 
 public class PileModel : AbstractModel , IPileModel
 {
@@ -18,8 +18,8 @@ public class PileModel : AbstractModel , IPileModel
     public int RegenerationLevel { get; set; }
     public int RewindLevel { get; set; }
     
-    public string Introduction { get; set; }
-    
+    public string Introduction { get; set; } = null!;
+
     protected override void OnInit()
     {
         

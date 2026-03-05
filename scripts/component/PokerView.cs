@@ -3,6 +3,7 @@ using GFramework.Core.extensions;
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
 using GFrameworkGodotTemplate.scripts.command.poker;
+using GFrameworkGodotTemplate.scripts.data.model;
 using GFrameworkGodotTemplate.scripts.model;
 using Godot;
 
@@ -11,7 +12,7 @@ namespace GFrameworkGodotTemplate.scripts.component;
 [Log]
 [ContextAware]
 
-public partial class PokerView : Button , IController
+public partial class PokerView : Button, IController
 {
     private AnimationPlayer AnimationPlayer => GetNode<AnimationPlayer>("AnimationPlayer");
     private TextureRect Back => GetNode<TextureRect>("%Back");

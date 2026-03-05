@@ -8,11 +8,12 @@
 [ext_resource type="Resource" uid="uid://25qm5p8tcmhl" path="res://resource/pile/Diamond.tres" id="3_k4h4a"]
 [ext_resource type="PackedScene" uid="uid://d64g2r7hc3ev" path="res://scenes/component/pile_attribute_container.tscn" id="3_veiqj"]
 [ext_resource type="Texture2D" uid="uid://dl2sqfw8f1hsk" path="res://assets/textures/button/nextButton.png" id="4_usiwy"]
-[ext_resource type="Texture2D" uid="uid://ble4f8jycgkh4" path="res://assets/textures/poker/surface/default.png" id="4_wlw48"]
 [ext_resource type="Resource" uid="uid://cgikxddxbnwhg" path="res://resource/pile/Spade.tres" id="5_745e7"]
 [ext_resource type="FontFile" uid="uid://dapxowp0mirbf" path="res://assets/fonts/VonwaonBitmap-16px.ttf" id="6_uua2n"]
+[ext_resource type="PackedScene" uid="uid://fp0ogkpc0ikr" path="res://scenes/component/pile_view.tscn" id="11_745e7"]
 
 [sub_resource type="Animation" id="Animation_uua2n"]
+resource_name = "RESET"
 length = 0.001
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jt6ew"]
@@ -121,14 +122,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 0
-theme_override_constants/margin_top = 48
+theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 0
-theme_override_constants/margin_bottom = 108
+theme_override_constants/margin_bottom = 32
 metadata/_edit_lock_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2" unique_id=1729698069]
 layout_mode = 2
-theme_override_constants/separation = 272
+theme_override_constants/separation = 332
 
 [node name="ColorRect" type="ColorRect" parent="MarginContainer2/VBoxContainer" unique_id=171742941]
 custom_minimum_size = Vector2(960, 64)
@@ -232,11 +233,9 @@ text = "返回"
 
 [node name="Node2D" type="Node2D" parent="." unique_id=1294059606]
 
-[node name="Pile" type="TextureButton" parent="Node2D" unique_id=1178600004]
+[node name="PileView" parent="Node2D" unique_id=2112150154 instance=ExtResource("11_745e7")]
 unique_name_in_owner = true
 offset_left = 240.0
 offset_top = 184.0
 offset_right = 336.0
 offset_bottom = 328.0
-pivot_offset = Vector2(48, 72)
-texture_normal = ExtResource("4_wlw48")
