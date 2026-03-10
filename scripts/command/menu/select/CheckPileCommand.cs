@@ -9,6 +9,6 @@ public class CheckPileCommand : AbstractCommand
 {
     protected override void OnExecute()
     {
-        this.GetSystem<IStateMachineSystem>()!.ChangeTo<ClockMenuState>();
+        this.GetSystem<IStateMachineSystem>()!.ChangeTo<MapMenuState>();
     }
 }

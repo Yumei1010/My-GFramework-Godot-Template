@@ -36,9 +36,9 @@ public enum UiKey
     SelectMenu,
     
     /// <summary>
-    ///     时钟地图界面键值
+    ///     地图界面键值
     /// </summary>
-    ClockMenu,
+    MapMenu,
     
     /// <summary>
     ///     计算界面键值

@@ -3,15 +3,15 @@ using GFramework.Core.extensions;
 using GFramework.Core.state;
 using GFramework.Game.Abstractions.scene;
 using GFramework.Game.Abstractions.ui;
-using GFrameworkGodotTemplate.scripts.clock_menu;
+using GFrameworkGodotTemplate.scripts.map_menu;
 
 namespace GFrameworkGodotTemplate.scripts.core.state.impls;
 
 /// <summary>
-///     时钟地图菜单状态
-///     负责管理时钟地图菜单界面的显示和隐藏逻辑
+///     地图菜单状态
+///     负责管理地图菜单界面的显示和隐藏逻辑
 /// </summary>
-public class ClockMenuState : ContextAwareStateBase
+public class MapMenuState : ContextAwareStateBase
 {
     /// <summary>
     ///     状态进入时的处理方法
@@ -19,12 +19,12 @@ public class ClockMenuState : ContextAwareStateBase
     /// <param name="from">从哪个状态切换过来，可能为空</param>
     public override void OnEnter(IState? from)
     {
-        // 回到时钟地图菜单需要销毁其它所有Ui界面以及场景
+        // 回到地图菜单需要销毁其它所有Ui界面以及场景
         var uiRouter = this.GetSystem<IUiRouter>()!;
         uiRouter.Clear();
         this.GetSystem<ISceneRouter>()!.Unload();
-        // 推送时钟地图菜单UI到界面栈中，显示时钟地图菜单界面
-        uiRouter.Push(ClockMenu.UiKeyStr);
+        // 推送地图菜单UI到界面栈中，显示地图菜单界面
+        uiRouter.Push(MapMenu.UiKeyStr);
     }
 
     /// <summary>

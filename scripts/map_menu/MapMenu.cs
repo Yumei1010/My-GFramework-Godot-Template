@@ -6,21 +6,19 @@ using GFramework.Game.Abstractions.ui;
 using GFramework.Godot.ui;
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
+using GFrameworkGodotTemplate.global;
 using GFrameworkGodotTemplate.scripts.core.ui;
 using GFrameworkGodotTemplate.scripts.enums.ui;
-using GFrameworkGodotTemplate.global;
 using Godot;
 
-namespace GFrameworkGodotTemplate.scripts.clock_menu;
+namespace GFrameworkGodotTemplate.scripts.map_menu;
 
 [ContextAware]
 [Log]
-public partial class ClockMenu : Control, IController, IUiPageBehaviorProvider, ISimpleUiPage
+public partial class MapMenu : Control, IController, IUiPageBehaviorProvider, ISimpleUiPage
 {
     private IUiPageBehavior? _page;
-    private IStateMachineSystem _stateMachineSystem = null!;
-    private IUiRouter _uiRouter = null!;
-    public static string UiKeyStr => nameof(UiKey.ClockMenu);
+    public static string UiKeyStr => nameof(UiKey.MapMenu);
     
     public IUiPageBehavior GetPage()
     {
@@ -36,7 +34,5 @@ public partial class ClockMenu : Control, IController, IUiPageBehaviorProvider, 
     private async Task ReadyAsync()
     {
         await GameEntryPoint.Architecture.WaitUntilReadyAsync().ConfigureAwait(false);
-        _uiRouter = this.GetSystem<IUiRouter>()!;
-        _stateMachineSystem = this.GetSystem<IStateMachineSystem>()!;
     }
 }
