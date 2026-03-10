@@ -41,6 +41,11 @@ public enum UiKey
     ClockMenu,
     
     /// <summary>
+    ///     计算界面键值
+    /// </summary>
+    CalculateMenu,
+    
+    /// <summary>
     ///     暂停界面键值
     /// </summary>
     PauseMenu

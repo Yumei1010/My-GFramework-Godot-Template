@@ -19,9 +19,10 @@ namespace GFrameworkGodotTemplate.scripts.intro;
 [Log]
 public partial class Intro : Node2D, IController
 {
-    private IGodotTextureRegistry _textureRegistry = null!;
     private AnimationPlayer AnimationPlayer => GetNode<AnimationPlayer>("%AnimationPlayer");
     private Sprite2D Sprite => GetNode<Sprite2D>("%Sprite");
+    
+    private IGodotTextureRegistry _textureRegistry = null!;
 
     /// <summary>
     /// 节点准备就绪时的回调方法

@@ -50,8 +50,10 @@
         <Content Include="scripts\module\README.md"/>
     </ItemGroup>
     <ItemGroup>
+        <Folder Include="scripts\calculate_menu\" />
         <Folder Include="scripts\command\audio\input\"/>
         <Folder Include="scripts\command\graphics\input\"/>
+        <Folder Include="scripts\command\poker\" />
         <Folder Include="scripts\command\setting\input\"/>
         <Folder Include="scripts\events\settings\"/>
         <Folder Include="scripts\intro\"/>

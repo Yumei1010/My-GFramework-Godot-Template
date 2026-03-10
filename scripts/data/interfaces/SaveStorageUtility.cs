@@ -3,11 +3,10 @@ using GFramework.Core.Abstractions.storage;
 using GFramework.Core.extensions;
 using GFramework.Core.utility;
 using GFramework.Game.storage;
-using GFrameworkGodotTemplate.scripts.data.interfaces;
 using GFrameworkGodotTemplate.scripts.data.model;
 using Godot;
 
-namespace GFrameworkGodotTemplate.scripts.data;
+namespace GFrameworkGodotTemplate.scripts.data.interfaces;
 
 /// <summary>
 ///     存档存储工具类，负责管理游戏存档的保存、加载、删除等操作

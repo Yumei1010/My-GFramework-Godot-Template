@@ -2,7 +2,6 @@ using GFramework.Core.Abstractions.state;
 using GFramework.Core.extensions;
 using GFramework.Core.state;
 using GFramework.Game.Abstractions.ui;
-using GFrameworkGodotTemplate.scripts.select_menu;
 using SelectMenu = GFrameworkGodotTemplate.scripts.select_menu.SelectMenu;
 
 namespace GFrameworkGodotTemplate.scripts.core.state.impls;
@@ -16,6 +15,6 @@ public class PlayingState : ContextAwareStateBase
 {
     public override void OnEnter(IState? from)
     {
-        // this.GetSystem<IUiRouter>()!.Replace(SelectMenu.UiKeyStr);
+        this.GetSystem<IUiRouter>()!.Replace(SelectMenu.UiKeyStr);
     }
 }

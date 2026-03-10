@@ -3,6 +3,7 @@ using GFramework.Game.architecture;
 using GFramework.Game.setting;
 using GFrameworkGodotTemplate.scripts.core.scene;
 using GFrameworkGodotTemplate.scripts.core.ui;
+using GFrameworkGodotTemplate.scripts.poker;
 
 namespace GFrameworkGodotTemplate.scripts.module;
 
@@ -21,5 +22,6 @@ public class SystemModule : AbstractModule
         architecture.RegisterSystem(new UiRouter());
         architecture.RegisterSystem(new SceneRouter());
         architecture.RegisterSystem(new SettingsSystem());
+        architecture.RegisterSystem(new PokerPoolSystem());
     }
 }
