@@ -17,18 +17,10 @@ namespace GFrameworkGodotTemplate.scripts.credits;
 [Log]
 public partial class Credits : Control, IController, IUiPageBehaviorProvider, ISimpleUiPage
 {
-    /// <summary>
-    ///     页面行为实例的私有字段
-    /// </summary>
-    private IUiPageBehavior? _page;
-
-    private IUiRouter _uiRouter = null!;
-
     private Button BackButton => GetNode<Button>("%BackButton");
 
-    /// <summary>
-    ///     Ui Key的字符串形式
-    /// </summary>
+    private IUiPageBehavior? _page;
+    private IUiRouter _uiRouter = null!;
     public static string UiKeyStr => nameof(UiKey.Credits);
 
     /// <summary>
@@ -60,6 +52,7 @@ public partial class Credits : Control, IController, IUiPageBehaviorProvider, IS
     public override void _Ready()
     {
         _ = ReadyAsync();
+        ConnectSignal();
     }
 
     /// <summary>
@@ -69,14 +62,11 @@ public partial class Credits : Control, IController, IUiPageBehaviorProvider, IS
     {
         await GameEntryPoint.Architecture.WaitUntilReadyAsync().ConfigureAwait(false);
         _uiRouter = this.GetSystem<IUiRouter>()!;
-
-        // 在此添加就绪逻辑
-        SetupEventHandlers();
         // 这个需要延迟调用，因为UiRoot还没有添加到场景树中
         CallDeferred(nameof(CallDeferredInit));
     }
 
-    private void SetupEventHandlers()
+    private void ConnectSignal()
     {
         BackButton.Pressed += OnBackButton;
     }

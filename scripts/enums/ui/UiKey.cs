@@ -31,7 +31,7 @@ public enum UiKey
     Credits,
     
     /// <summary>
-    ///     选择牌组界面键值
+    ///     选择牌组菜单界面键值
     /// </summary>
     SelectMenu,
     
@@ -46,7 +46,12 @@ public enum UiKey
     CalculateMenu,
     
     /// <summary>
-    ///     暂停界面键值
+    ///     暂停菜单界面键值
     /// </summary>
-    PauseMenu
+    PauseMenu,
+    
+    /// <summary>
+    ///     存档菜单界面键值
+    /// </summary>
+    ArchiveMenu
 }

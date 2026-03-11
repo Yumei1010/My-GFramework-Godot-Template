@@ -18,7 +18,7 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wem23"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[node name="MainMenu" type="Control" unique_id=1093407812 node_paths=PackedStringArray("ThemeColorBlock")]
+[node name="MainMenu" type="Control" unique_id=1093407812]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,7 +26,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fsom3")
-ThemeColorBlock = [NodePath("MarginContainer2/VBoxContainer/ColorRect"), NodePath("MarginContainer2/VBoxContainer/ColorRect2"), NodePath("MarginContainer2/VBoxContainer/ColorRect3"), NodePath("MarginContainer2/VBoxContainer/ColorRect4"), NodePath("MarginContainer2/VBoxContainer/ColorRect5")]
 
 [node name="Background" type="ColorRect" parent="." unique_id=1584510554]
 layout_mode = 1

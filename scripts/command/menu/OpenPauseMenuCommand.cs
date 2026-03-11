@@ -24,16 +24,12 @@ public class OpenPauseMenuCommand(OpenPauseMenuCommandInput input) : AbstractCom
         // 获取 UI 路由系统实例，用于管理界面的显示与隐藏。
         var uiRouter = this.GetSystem<IUiRouter>()!;
         var handle = input.Handle;
-
         // 如果输入中未提供句柄，则直接显示暂停菜单界面。
         if (!handle.HasValue) return uiRouter.Show(PauseMenu.UiKeyStr, UiLayer.Modal);
-
         // 获取输入中的句柄值。
         var h = handle.Value;
-
         // 检查指定句柄是否已在模态层中存在，若不存在则显示暂停菜单界面。
         if (uiRouter.GetFromLayer(h, UiLayer.Modal) is null) return uiRouter.Show(PauseMenu.UiKeyStr, UiLayer.Modal);
-
         // 若句柄已存在于模态层中，则恢复该界面并返回句柄。
         uiRouter.Resume(h, UiLayer.Modal);
         return h;

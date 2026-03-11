@@ -3,12 +3,12 @@ using GFramework.Core.command;
 using GFramework.Core.extensions;
 using GFrameworkGodotTemplate.scripts.core.state.impls;
 
-namespace GFrameworkGodotTemplate.scripts.command.menu.select;
+namespace GFrameworkGodotTemplate.scripts.command.menu;
 
-public class ReturnMainMenuCommand : AbstractCommand
+public class OpenMapMenuCommand : AbstractCommand
 {
     protected override void OnExecute()
     {
-        this.GetSystem<IStateMachineSystem>()!.ChangeTo<MainMenuState>();
+        this.GetSystem<IStateMachineSystem>()!.ChangeTo<MapMenuState>();
     }
 }

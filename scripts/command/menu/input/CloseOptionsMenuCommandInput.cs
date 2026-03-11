@@ -3,10 +3,13 @@ using GFramework.Game.Abstractions.ui;
 
 namespace GFrameworkGodotTemplate.scripts.command.menu.input;
 
-public struct OpenPauseMenuCommandInput : ICommandInput
+/// <summary>
+///     表示关闭设置菜单命令的输入数据结构。
+/// </summary>
+public struct CloseOptionsMenuCommandInput : ICommandInput
 {
     /// <summary>
     ///     用于标识和操作UI元素的句柄。
     /// </summary>
-    public UiHandle? Handle { get; init; }
+    public UiHandle Handle { get; init; }
 }

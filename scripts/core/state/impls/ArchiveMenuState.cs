@@ -3,15 +3,15 @@ using GFramework.Core.extensions;
 using GFramework.Core.state;
 using GFramework.Game.Abstractions.scene;
 using GFramework.Game.Abstractions.ui;
-using GFrameworkGodotTemplate.scripts.calculate_menu;
+using GFrameworkGodotTemplate.scripts.archive_menu;
 
 namespace GFrameworkGodotTemplate.scripts.core.state.impls;
 
 /// <summary>
-///     计算菜单状态
-///     负责管理计算菜单界面的显示和隐藏逻辑
+///     存档菜单状态
+///     负责管理存档菜单界面的显示和隐藏逻辑
 /// </summary>
-public class CalculateMenuState : ContextAwareStateBase
+public class ArchiveMenuState : ContextAwareStateBase
 {
     /// <summary>
     ///     状态进入时的处理方法
@@ -19,12 +19,12 @@ public class CalculateMenuState : ContextAwareStateBase
     /// <param name="from">从哪个状态切换过来，可能为空</param>
     public override void OnEnter(IState? from)
     {
-        // 回到计算菜单需要销毁其它所有Ui界面以及场景
+        // 回到存档菜单需要销毁其它所有Ui界面以及场景
         var uiRouter = this.GetSystem<IUiRouter>()!;
         uiRouter.Clear();
         this.GetSystem<ISceneRouter>()!.Unload();
-        // 推送计算菜单UI到界面栈中，显示计算菜单界面
-        uiRouter.Push(CalculateMenu.UiKeyStr);
+        // 推送存档菜单UI到界面栈中，显示存档菜单界面
+        uiRouter.Push(ArchiveMenu.UiKeyStr);
     }
 
     /// <summary>

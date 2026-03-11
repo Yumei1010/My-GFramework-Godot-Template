@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bkpda73hbmyix" path="res://scenes/pause_menu/pause_menu.tscn" id="7_iumd8"]
 [ext_resource type="PackedScene" uid="uid://c2x0dnn3encky" path="res://scenes/clock_menu/clock_menu.tscn" id="8_1yddw"]
 [ext_resource type="PackedScene" uid="uid://fm27d2slodic" path="res://scenes/calculate_menu/calculate_menu.tscn" id="9_fgqit"]
+[ext_resource type="PackedScene" uid="uid://cckq74npn3ght" path="res://scenes/archive_menu/archive_menu.tscn" id="10_k055p"]
 [ext_resource type="Texture2D" uid="uid://6aq7b0pqd1dp" path="res://assets/textures/boot_start/godot.jpg" id="13_fgqit"]
 [ext_resource type="PackedScene" uid="uid://db7uqtqvqp4dn" path="res://scenes/intro/intro.tscn" id="13_hjx06"]
 [ext_resource type="Script" uid="uid://ls8nkxn3gipd" path="res://scripts/core/resource/TextureConfig.cs" id="14_hjx06"]
@@ -58,6 +59,12 @@ UiKey = 7
 Scene = ExtResource("9_fgqit")
 metadata/_custom_type_script = "uid://cowpnmhamgtd3"
 
+[sub_resource type="Resource" id="Resource_nxcnk"]
+script = ExtResource("3_x37g7")
+UiKey = 9
+Scene = ExtResource("10_k055p")
+metadata/_custom_type_script = "uid://cowpnmhamgtd3"
+
 [sub_resource type="Resource" id="Resource_iumd8"]
 script = ExtResource("7_iiepj")
 SceneKey = 1
@@ -87,6 +94,6 @@ metadata/_custom_type_script = "uid://ls8nkxn3gipd"
 
 [node name="GameEntryPoint" type="Node" unique_id=729277825]
 script = ExtResource("1_a14y6")
-UiPageConfigs = Array[Object]([SubResource("Resource_pn3ws"), SubResource("Resource_f22d5"), SubResource("Resource_inr81"), SubResource("Resource_d4hg6"), SubResource("Resource_fgqit"), SubResource("Resource_hjx06"), SubResource("Resource_1y7ah")])
+UiPageConfigs = Array[Object]([SubResource("Resource_pn3ws"), SubResource("Resource_f22d5"), SubResource("Resource_inr81"), SubResource("Resource_d4hg6"), SubResource("Resource_fgqit"), SubResource("Resource_hjx06"), SubResource("Resource_1y7ah"), SubResource("Resource_nxcnk")])
 GameSceneConfigs = Array[Object]([SubResource("Resource_iumd8"), SubResource("Resource_qdo7l")])
 TextureConfigs = Array[Object]([SubResource("Resource_k055p"), SubResource("Resource_gktnk"), SubResource("Resource_cia4t")])

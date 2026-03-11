@@ -7,7 +7,6 @@ using GFramework.Godot.ui;
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
 using GFrameworkGodotTemplate.scripts.command.game;
-using GFrameworkGodotTemplate.scripts.command.menu;
 using GFrameworkGodotTemplate.scripts.core.state.impls;
 using GFrameworkGodotTemplate.scripts.core.ui;
 using GFrameworkGodotTemplate.scripts.credits;
@@ -21,8 +20,6 @@ namespace GFrameworkGodotTemplate.scripts.main_menu;
 [Log]
 public partial class MainMenu : Control, IController, IUiPageBehaviorProvider, ISimpleUiPage
 {
-    [Export] public ColorRect[] ThemeColorBlock = [];
-    
     private Button NewGameButton => GetNode<Button>("%NewGameButton");
     private Button ContinueGameButton => GetNode<Button>("%ContinueGameButton");
     private Button OptionsMenuButton => GetNode<Button>("%OptionsMenuButton");
@@ -55,10 +52,35 @@ public partial class MainMenu : Control, IController, IUiPageBehaviorProvider, I
     
     private void ConnectSignal()
     {
-        NewGameButton.ButtonDown += () => _stateMachineSystem.ChangeTo<SelectMenuState>();
-        ContinueGameButton.ButtonDown += () => { };
-        OptionsMenuButton.ButtonDown += () => this.SendCommand(new OpenOptionsMenuCommand());
-        CreditsButton.ButtonDown += () => _uiRouter.Push(Credits.UiKeyStr);
-        ExitButton.ButtonDown += () => this.SendCommand(new ExitGameCommand());
+        NewGameButton.ButtonDown += OnMouseDownNewGameButton;
+        ContinueGameButton.ButtonDown += OnMouseDownContinueGameButton;
+        OptionsMenuButton.ButtonDown += OnMouseDownOptionsMenuButton;
+        CreditsButton.ButtonDown += OnMouseDownCreditsButton;
+        ExitButton.ButtonDown += OnMouseDownExitButton;
+    }
+
+    private void OnMouseDownNewGameButton()
+    {
+        _stateMachineSystem.ChangeTo<SelectMenuState>();
+    }
+
+    private void OnMouseDownContinueGameButton()
+    {
+        _stateMachineSystem.ChangeTo<ArchiveMenuState>();
+    }
+
+    private void OnMouseDownOptionsMenuButton()
+    {
+        _stateMachineSystem.ChangeTo<OptionsMenuState>();
+    }
+
+    private void OnMouseDownCreditsButton()
+    {
+        _uiRouter.Push(Credits.UiKeyStr);
+    }
+
+    private void OnMouseDownExitButton()
+    {
+        this.SendCommand(new ExitGameCommand());
     }
 }

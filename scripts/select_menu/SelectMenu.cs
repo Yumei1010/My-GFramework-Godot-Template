@@ -1,5 +1,4 @@
 using GFramework.Core.Abstractions.controller;
-using GFramework.Core.Abstractions.state;
 using GFramework.Core.extensions;
 using GFramework.Game.Abstractions.enums;
 using GFramework.Game.Abstractions.ui;
@@ -7,7 +6,7 @@ using GFramework.Godot.ui;
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
 using GFrameworkGodotTemplate.global;
-using GFrameworkGodotTemplate.scripts.command.menu.select;
+using GFrameworkGodotTemplate.scripts.command.menu;
 using GFrameworkGodotTemplate.scripts.component;
 using GFrameworkGodotTemplate.scripts.core.ui;
 using GFrameworkGodotTemplate.scripts.enums.ui;
@@ -39,8 +38,6 @@ public partial class SelectMenu : Control, IController, IUiPageBehaviorProvider,
     private PileView PileView => GetNode<PileView>("%PileView");
     
     private IUiPageBehavior? _page;
-    private IStateMachineSystem _stateMachineSystem = null!;
-    private IUiRouter _uiRouter = null!;
     public static string UiKeyStr => nameof(UiKey.SelectMenu);
     
     private PileResource _currentDisplayPileResource = null!;
@@ -74,8 +71,6 @@ public partial class SelectMenu : Control, IController, IUiPageBehaviorProvider,
     private async Task ReadyAsync()
     {
         await GameEntryPoint.Architecture.WaitUntilReadyAsync().ConfigureAwait(false);
-        _uiRouter = this.GetSystem<IUiRouter>()!;
-        _stateMachineSystem = this.GetSystem<IStateMachineSystem>()!;
     }
 
     private void ConnectSignal()
@@ -87,9 +82,9 @@ public partial class SelectMenu : Control, IController, IUiPageBehaviorProvider,
         NextButton.MouseEntered += OnMouseEnteredNextButton;
         NextButton.MouseExited += OnMouseExitedNextButton;
         NextButton.ButtonDown += OnMouseDownNextButton;
-        
-        CheckButton.ButtonDown += () => this.SendCommand(new CheckPileCommand());
-        ReturnButton.ButtonDown += () => this.SendCommand(new ReturnMainMenuCommand());
+
+        CheckButton.ButtonDown += () => this.SendCommand(new OpenMapMenuCommand());
+        ReturnButton.ButtonDown += () => this.SendCommand(new OpenMainMenuCommand());
     }
     
     private void RegisterEvent()
