@@ -1,4 +1,4 @@
-﻿namespace GFrameworkGodotTemplate.scripts.enums;
+﻿namespace GFrameworkGodotTemplate.scripts.enums.pile;
 
 public enum PileType
 {

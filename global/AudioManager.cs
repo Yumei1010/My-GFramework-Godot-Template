@@ -73,7 +73,6 @@ public partial class AudioManager : Node, IController
         {
             // 停止当前播放的背景音乐
             BgmAudioStreamPlayer.Stop();
-
             // 根据事件中的背景音乐类型设置对应的音频流
             BgmAudioStreamPlayer.Stream = @event.BgmType switch
             {
@@ -82,13 +81,11 @@ public partial class AudioManager : Node, IController
                 BgmType.Ready => ReadyAudioStream,
                 _ => null
             };
-
             // 如果音频流不为空则开始播放
             if (BgmAudioStreamPlayer.Stream is not null) BgmAudioStreamPlayer.Play();
         }).UnRegisterWhenNodeExitTree(this);
         // 注册音效播放事件监听器
-        this.RegisterEvent<PlaySfxEvent>(OnPlaySfx)
-            .UnRegisterWhenNodeExitTree(this);
+        this.RegisterEvent<PlaySfxEvent>(OnPlaySfx).UnRegisterWhenNodeExitTree(this);
     }
 
     /// <summary>

@@ -1,10 +1,14 @@
 ﻿using GFramework.Core.Abstractions.controller;
 using GFramework.Core.extensions;
+using GFramework.Godot.extensions;
 using GFramework.Godot.pool;
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
+using GFrameworkGodotTemplate.scripts.enums.poker;
 using GFrameworkGodotTemplate.scripts.enums.resources;
+using GFrameworkGodotTemplate.scripts.events.poker;
 using GFrameworkGodotTemplate.scripts.utility;
+using GFrameworkGodotTemplate.global;
 using Godot;
 
 namespace GFrameworkGodotTemplate.scripts.poker;
@@ -14,74 +18,61 @@ namespace GFrameworkGodotTemplate.scripts.poker;
 public partial class Poker : Button, IPoker, IController, IPoolableNode
 {
     private AnimationPlayer AnimationPlayer => GetNode<AnimationPlayer>("AnimationPlayer");
-    private TextureRect Back => GetNode<TextureRect>("%Back");
-    private TextureRect Surface => GetNode<TextureRect>("%Surface");
-    private TextureRect Suit => GetNode<TextureRect>("%Suit");
-    private Label Num => GetNode<Label>("%Num");
+    private TextureRect BackRect => GetNode<TextureRect>("%BackRect");
+    private TextureRect SurfaceRect => GetNode<TextureRect>("%SurfaceRect");
+    private TextureRect SuitRect => GetNode<TextureRect>("%SuitRect");
+    private Label NumLabel => GetNode<Label>("%NumLabel");
 
     private IGodotTextureRegistry _textureRegistry = null!;
-    
-    private bool _onDarging;
-    
-    // 扑克属性，从JSON加载
-    private PokerDefinition _definition = null!;
-    
-    private IPokerPoolSystem _pool = null!;
-    
-    /// <summary>
-    /// 节点准备就绪时的回调方法
-    /// 在节点添加到场景树后调用
-    /// </summary>
+
+    public required Guid Id { get; set; } = Guid.Empty;
+    public SuitType SuitType { get; set; } = SuitType.Heart;
+    public required string NumValue { get; set; } = null!;
+    public NumType NumType { get; set; } = NumType.Integer;
+    public IList<TagType> Tags { get; set; } = new List<TagType>();
+    public IList<StateType> States { get; set; } = new List<StateType>();
+
     public override void _Ready()
     {
+        _ = ReadyAsync();
         ConnectSignal();
-        _textureRegistry = this.GetUtility<IGodotTextureRegistry>()!;
-        Suit.Texture = _textureRegistry.Get(nameof(TextureKey.PokerSuitDiamond)) as Texture2D;
+        RegisterEvent();
     }
-
-    /// <summary>
-    /// 每次渲染帧的回调方法
-    /// 每帧调用
-    /// </summary>
+    
     public override void _Process(double delta)
     {
-        if (_onDarging)
+        if (States.Contains(StateType.OnDrag))
         {
             GlobalPosition = GetGlobalMousePosition() - Size / 2;
         }
     }
 
-    /// <summary>
-    /// 初始化
-    /// </summary>
-    public void Init(PokerDefinition definition)
-    {
-        // 初始化PokerData
-        _definition = definition;
-        
-        _pool = this.GetSystem<IPokerPoolSystem>()!;
-        
-        _log.Debug("Poker Initialized");
-    }
-
     public void OnAcquire()
     {
-        
+        States.Remove(StateType.InPool);
+        Visible = true;
     }
 
     public void OnRelease()
     {
-        
+        States.Add(StateType.InPool);
+        Visible = false;
     }
 
     public void OnPoolDestroy()
     {
-        
+        Free();
     }
 
     public Node AsNode()
     {
         return this;
+    }
+
+    private async Task ReadyAsync()
+    {
+        await GameEntryPoint.Architecture.WaitUntilReadyAsync().ConfigureAwait(false);
+        _textureRegistry = this.GetUtility<IGodotTextureRegistry>()!;
     }
     
     private void ConnectSignal()
@@ -92,34 +83,98 @@ public partial class Poker : Button, IPoker, IController, IPoolableNode
         MouseExited += OnMouseExited;
     }
 
-    private void OnButtonDown()
+    private void RegisterEvent()
     {
-        Input.SetMouseMode(Input.MouseModeEnum.ConfinedHidden);
-        _onDarging = true;
-    }
-
-    private void OnButtonUp()
-    {
-        Input.SetMouseMode(Input.MouseModeEnum.Visible);
-        _onDarging = false;
+        // 注册对花色变更事件的监听
+        this.RegisterEvent<SuitTypeChangedEvent>(e =>
+        {
+            OnSuitTypeChangedEvent(e.SuitType,e.Poker);
+        }).UnRegisterWhenNodeExitTree(this);
+        
+        // 注册对数值变更事件的监听
+        this.RegisterEvent<NumValueChangedEvent>(e =>
+        {
+            OnNumValueChangedEvent(e.NumValue,e.Poker);
+        }).UnRegisterWhenNodeExitTree(this);
+        
+        // 注册对数值类型变更事件的监听
+        this.RegisterEvent<NumTypeChangedEvent>(e =>
+        {
+            OnNumTypeChangedEvent(e.NumType,e.Poker);
+        }).UnRegisterWhenNodeExitTree(this);
     }
     
+    private void OnButtonDown()
+    {
+        // 隐藏并锁定鼠标在窗口范围内
+        Input.SetMouseMode(Input.MouseModeEnum.ConfinedHidden);
+        States.Add(StateType.OnDrag);
+    }
+    
+    private void OnButtonUp()
+    {
+        // 显示鼠标
+        Input.SetMouseMode(Input.MouseModeEnum.Visible);
+        States.Remove(StateType.OnDrag);
+    }
 
     private void OnMouseEntered()
     {
-        if (AnimationPlayer.IsPlaying())
-        {
-            AnimationPlayer.Stop();
-        }
+        // 如果正在播放动画，使其终止
+        if (AnimationPlayer.IsPlaying()) AnimationPlayer.Stop();
+        
         AnimationPlayer.Play("Poker/focused");
     }
 
     private void OnMouseExited()
     {
-        if (AnimationPlayer.IsPlaying())
+        // 如果正在播放动画，使其终止
+        if (AnimationPlayer.IsPlaying()) AnimationPlayer.Stop();
+        
+        // AnimationPlayer.Play("Poker/blured");
+    }
+
+    private void OnSuitTypeChangedEvent(SuitType suitType,Poker poker)
+    {
+        // 如果不是触发事件的poker，返回
+        if(poker != this) return;
+        // 新值与旧值相等，返回
+        if(SuitType == suitType) return;
+        
+        // 更新花色和贴图
+        SuitType = suitType;
+        SuitRect.Texture = suitType switch
         {
-            AnimationPlayer.Stop();
-        }
-        AnimationPlayer.Play("Poker/blured");
+            SuitType.Heart => _textureRegistry.Get(nameof(TextureKey.PokerSuitHeart)) as Texture2D,
+            SuitType.Diamond => _textureRegistry.Get(nameof(TextureKey.PokerSuitDiamond)) as Texture2D,
+            // SuitType.Spade => ,
+            // SuitType.Club => ,
+            _ => null
+        };
+    }
+    
+    private void OnNumValueChangedEvent(String numValue,Poker poker)
+    {
+        // 如果不是触发事件的poker，返回
+        if(poker != this) return;
+        // numValue为null，返回
+        if(numValue == null!) return;
+        // 新值与旧值相等，返回
+        if (string.Equals(NumValue, numValue, StringComparison.Ordinal)) return;
+        
+        // 更新数值和显示
+        NumValue = numValue;
+        NumLabel.Text = numValue;
+    }
+    
+    private void OnNumTypeChangedEvent(NumType numType,Poker poker)
+    {
+        // 如果不是触发事件的poker，返回
+        if(poker != this) return;
+        // 新值与旧值相等，返回
+        if(NumType == numType) return;
+        
+        // 更新数值类型
+        NumType = numType;
     }
 }

@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://c8kbsi7gheu87"]
-
-[ext_resource type="Script" uid="uid://bwypxxtdsdo8n" path="res://global/PokerSceneRegistry.cs" id="1_x56kv"]
-
-[node name="PokerSceneRegistry" type="Node" unique_id=1464491519]
-script = ExtResource("1_x56kv")
-Scenes = Dictionary[String, PackedScene]({})

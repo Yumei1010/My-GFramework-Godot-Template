@@ -5,7 +5,6 @@ using GFramework.Game.architecture;
 using GFramework.Game.setting;
 using GFramework.Godot.setting;
 using GFramework.Godot.setting.data;
-using GFrameworkGodotTemplate.scripts.data.model;
 using GFrameworkGodotTemplate.scripts.setting;
 
 namespace GFrameworkGodotTemplate.scripts.module;
@@ -38,7 +37,5 @@ public class ModelModule : AbstractModule
                         .RegisterApplicator(new GodotLocalizationSettings(it, new LocalizationMap()));
                 })
         );
-        // 注册牌组模型，用于处理牌组相关配置
-        architecture.RegisterModel<IPileModel>(new PileModel());
     }
 }

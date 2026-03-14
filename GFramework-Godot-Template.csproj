@@ -43,8 +43,8 @@
         <Content Include="addons.jsonc"/>
         <Content Include="global\README.md"/>
         <Content Include="scripts\command\README.md"/>
+        <Content Include="scripts\data\interfaces\README.md" />
         <Content Include="scripts\data\model\README.md"/>
-        <Content Include="scripts\data\README.md"/>
         <Content Include="scripts\entities\README.md"/>
         <Content Include="scripts\events\README.md"/>
         <Content Include="scripts\module\README.md"/>
@@ -55,7 +55,6 @@
         <Folder Include="scripts\command\audio\input\"/>
         <Folder Include="scripts\command\graphics\input\"/>
         <Folder Include="scripts\command\setting\input\"/>
-        <Folder Include="scripts\events\settings\"/>
         <Folder Include="scripts\intro\"/>
         <Folder Include="scripts\main_menu\"/>
     </ItemGroup>

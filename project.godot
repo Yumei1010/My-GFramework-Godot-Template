@@ -35,7 +35,6 @@ UiRoot="*res://global/ui_root.tscn"
 GlobalInputController="*res://global/GlobalInputController.cs"
 AudioManager="*res://global/audio_manager.tscn"
 SceneTransitionManager="*uid://c5sxf7tcun6yq"
-PokerSceneRegistry="*uid://c8kbsi7gheu87"
 
 [display]
 

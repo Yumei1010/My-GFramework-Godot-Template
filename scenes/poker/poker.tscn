@@ -56,7 +56,7 @@ unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_dnpyj")
 libraries/Poker = ExtResource("2_dnpyj")
 
-[node name="Back" type="TextureRect" parent="." unique_id=2005219249]
+[node name="BackRect" type="TextureRect" parent="." unique_id=2005219249]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -66,7 +66,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Surface" type="TextureRect" parent="." unique_id=341902432]
+[node name="SurfaceRect" type="TextureRect" parent="." unique_id=341902432]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -77,7 +77,7 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("3_dnpyj")
 
-[node name="Suit" type="TextureRect" parent="." unique_id=2136729553]
+[node name="SuitRect" type="TextureRect" parent="." unique_id=2136729553]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -88,7 +88,7 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("2_mv11n")
 
-[node name="Num" type="Label" parent="." unique_id=358447265]
+[node name="NumLabel" type="Label" parent="." unique_id=358447265]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 8.0

@@ -2,6 +2,7 @@ using GFramework.Core.Abstractions.controller;
 using GFramework.Core.extensions;
 using GFramework.Game.Abstractions.enums;
 using GFramework.Game.Abstractions.ui;
+using GFramework.Godot.extensions;
 using GFramework.Godot.ui;
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
@@ -10,8 +11,8 @@ using GFrameworkGodotTemplate.scripts.command.menu;
 using GFrameworkGodotTemplate.scripts.component;
 using GFrameworkGodotTemplate.scripts.core.ui;
 using GFrameworkGodotTemplate.scripts.enums.ui;
-using GFrameworkGodotTemplate.scripts.pile;
 using Godot;
+using PileAttributeConfig = GFrameworkGodotTemplate.scripts.core.resource.PileAttributeConfig;
 
 namespace GFrameworkGodotTemplate.scripts.select_menu;
 
@@ -20,7 +21,7 @@ namespace GFrameworkGodotTemplate.scripts.select_menu;
 public partial class SelectMenu : Control, IController, IUiPageBehaviorProvider, ISimpleUiPage
 {
     [Export] public ColorRect[] ThemeColorBlock = [];
-    [Export] public Godot.Collections.Dictionary<string, PileResource> PileLib = new();
+    [Export] public Godot.Collections.Dictionary<string, PileAttributeConfig> PileLib = new();
     
     private AnimationPlayer AnimationPlayer => GetNode<AnimationPlayer>("AnimationPlayer");
     private TextureButton PrevButton => GetNode<TextureButton>("%PrevButton");
@@ -40,7 +41,7 @@ public partial class SelectMenu : Control, IController, IUiPageBehaviorProvider,
     private IUiPageBehavior? _page;
     public static string UiKeyStr => nameof(UiKey.SelectMenu);
     
-    private PileResource _currentDisplayPileResource = null!;
+    private PileAttributeConfig _currentDisplayPileAttributeConfig = null!;
     private string[] _pileResourceKeys = System.Array.Empty<string>();
     private int _currentPileResourceIndex = 0;
     
@@ -58,19 +59,19 @@ public partial class SelectMenu : Control, IController, IUiPageBehaviorProvider,
         _ = ReadyAsync();
         ConnectSignal();
         RegisterEvent();
-        
-        _pileResourceKeys = PileLib.Keys.ToArray();
-        if (_pileResourceKeys.Length > 0)
-        {
-            _currentPileResourceIndex = _pileResourceKeys.IndexOf("Heart");
-            _currentDisplayPileResource = PileLib["Heart"];
-            UpdatePileDisplay();
-        }
     }
 
     private async Task ReadyAsync()
     {
         await GameEntryPoint.Architecture.WaitUntilReadyAsync().ConfigureAwait(false);
+                
+        _pileResourceKeys = PileLib.Keys.ToArray();
+        if (_pileResourceKeys.Length > 0)
+        {
+            _currentPileResourceIndex = _pileResourceKeys.IndexOf("Heart");
+            _currentDisplayPileAttributeConfig = PileLib["Heart"];
+            UpdatePileDisplay();
+        }
     }
 
     private void ConnectSignal()
@@ -93,66 +94,66 @@ public partial class SelectMenu : Control, IController, IUiPageBehaviorProvider,
         {
             IncreaseCurrentPileResourceIndex();
             UpdatePileDisplay();
-        });
+        }).UnRegisterWhenNodeExitTree(this);
         
         this.RegisterEvent<PileView.MouseWheelDown>(e =>
         {
             DecreaseCurrentPileResourceIndex();
             UpdatePileDisplay();
-        });
+        }).UnRegisterWhenNodeExitTree(this);
     }
     
     private void UpdatePileDisplay()
     {
         foreach (ColorRect rect in ThemeColorBlock)
         {
-            rect.Color = _currentDisplayPileResource.ThemeColor;
+            rect.Color = _currentDisplayPileAttributeConfig.ThemeColor;
         }
-        PileNameLabel.Text = _themePrefix  + _currentDisplayPileResource.PileName;
-        IntroductionLabel.Modulate = _currentDisplayPileResource.ThemeColor;
-        IntroductionLabel.Text = _themePrefix + "特性//" + _currentDisplayPileResource.AbilityName + "\n" + _currentDisplayPileResource.Introduction;
+        PileNameLabel.Text = _themePrefix  + _currentDisplayPileAttributeConfig.PileName;
+        IntroductionLabel.Modulate = _currentDisplayPileAttributeConfig.ThemeColor;
+        IntroductionLabel.Text = _themePrefix + "特性//" + _currentDisplayPileAttributeConfig.AbilityName + "\n" + _currentDisplayPileAttributeConfig.Introduction;
         
-        PileView.Update(null,null,_currentDisplayPileResource.PileTexture);
+        PileView.Update(null,null,_currentDisplayPileAttributeConfig.PileTexture);
         
         FlowRateContainer.Transform(
-            _currentDisplayPileResource.ThemeColor,
-            _currentDisplayPileResource.FlowRateIcon,
+            _currentDisplayPileAttributeConfig.ThemeColor,
+            _currentDisplayPileAttributeConfig.FlowRateIcon,
             "流逝",
-            _currentDisplayPileResource.FlowRateLevel
+            _currentDisplayPileAttributeConfig.FlowRateLevel
             );
         
-        ResilienceContainer.Transform(_currentDisplayPileResource.ThemeColor,
-            _currentDisplayPileResource.ResilienceIcon,
+        ResilienceContainer.Transform(_currentDisplayPileAttributeConfig.ThemeColor,
+            _currentDisplayPileAttributeConfig.ResilienceIcon,
             "韧性",
-            _currentDisplayPileResource.ResilienceLevel
+            _currentDisplayPileAttributeConfig.ResilienceLevel
             );
         
         ConversionContainer.Transform(
-            _currentDisplayPileResource.ThemeColor,
-            _currentDisplayPileResource.ConversionIcon,
+            _currentDisplayPileAttributeConfig.ThemeColor,
+            _currentDisplayPileAttributeConfig.ConversionIcon,
             "转化",
-            _currentDisplayPileResource.ConversionLevel
+            _currentDisplayPileAttributeConfig.ConversionLevel
             );
         
         DrainContainer.Transform(
-            _currentDisplayPileResource.ThemeColor,
-            _currentDisplayPileResource.DrainIcon,
+            _currentDisplayPileAttributeConfig.ThemeColor,
+            _currentDisplayPileAttributeConfig.DrainIcon,
             "汲取",
-            _currentDisplayPileResource.DrainLevel
+            _currentDisplayPileAttributeConfig.DrainLevel
             );
         
         RegenerationContainer.Transform(
-            _currentDisplayPileResource.ThemeColor,
-            _currentDisplayPileResource.RegenerationIcon,
+            _currentDisplayPileAttributeConfig.ThemeColor,
+            _currentDisplayPileAttributeConfig.RegenerationIcon,
             "再生",
-            _currentDisplayPileResource.RegenerationLevel
+            _currentDisplayPileAttributeConfig.RegenerationLevel
             );
         
         RewindContainer.Transform(
-            _currentDisplayPileResource.ThemeColor,
-            _currentDisplayPileResource.RewindIcon,
+            _currentDisplayPileAttributeConfig.ThemeColor,
+            _currentDisplayPileAttributeConfig.RewindIcon,
             "回溯",
-            _currentDisplayPileResource.RewindLevel
+            _currentDisplayPileAttributeConfig.RewindLevel
             );
     }
 
@@ -202,13 +203,13 @@ public partial class SelectMenu : Control, IController, IUiPageBehaviorProvider,
     {
         if (_pileResourceKeys.Length == 0) return;
         _currentPileResourceIndex = (_currentPileResourceIndex - 1 + _pileResourceKeys.Length) % _pileResourceKeys.Length;
-        _currentDisplayPileResource = PileLib[_pileResourceKeys[_currentPileResourceIndex]];
+        _currentDisplayPileAttributeConfig = PileLib[_pileResourceKeys[_currentPileResourceIndex]];
     }
     
     private void IncreaseCurrentPileResourceIndex()
     {
         if (_pileResourceKeys.Length == 0) return;
         _currentPileResourceIndex = (_currentPileResourceIndex + 1) % _pileResourceKeys.Length;
-        _currentDisplayPileResource = PileLib[_pileResourceKeys[_currentPileResourceIndex]];
+        _currentDisplayPileAttributeConfig = PileLib[_pileResourceKeys[_currentPileResourceIndex]];
     }
 }

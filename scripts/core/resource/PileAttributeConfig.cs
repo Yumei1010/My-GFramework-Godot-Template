@@ -1,9 +1,9 @@
 ﻿using Godot;
 
-namespace GFrameworkGodotTemplate.scripts.pile;
+namespace GFrameworkGodotTemplate.scripts.core.resource;
 
 [GlobalClass]
-public partial class PileResource : Resource
+public partial class PileAttributeConfig : Resource
 {
     [Export] public Color ThemeColor;
     [Export] public Texture2D PileTexture = null!;

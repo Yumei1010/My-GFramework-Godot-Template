@@ -1,14 +1,10 @@
 [gd_scene format=3 uid="uid://dsdd24i8moly3"]
 
 [ext_resource type="Script" uid="uid://mtqvjk8i48ch" path="res://scripts/select_menu/SelectMenu.cs" id="1_yn1ev"]
-[ext_resource type="Resource" uid="uid://dqd55dg3mfc57" path="res://resource/pile/Heart.tres" id="2_jt6ew"]
 [ext_resource type="AnimationLibrary" uid="uid://ddxuwoy3h0jk0" path="res://resource/animation/SelectMenu.res" id="2_uua2n"]
-[ext_resource type="Script" uid="uid://63x3tgw3gjkk" path="res://scripts/entities/PileResource.cs" id="2_yjg0p"]
 [ext_resource type="Texture2D" uid="uid://c7fnbiymctfci" path="res://assets/textures/button/prevButton.png" id="3_ga22j"]
-[ext_resource type="Resource" uid="uid://25qm5p8tcmhl" path="res://resource/pile/Diamond.tres" id="3_k4h4a"]
 [ext_resource type="PackedScene" uid="uid://d64g2r7hc3ev" path="res://scenes/component/pile_attribute_container.tscn" id="3_veiqj"]
 [ext_resource type="Texture2D" uid="uid://dl2sqfw8f1hsk" path="res://assets/textures/button/nextButton.png" id="4_usiwy"]
-[ext_resource type="Resource" uid="uid://cgikxddxbnwhg" path="res://resource/pile/Spade.tres" id="5_745e7"]
 [ext_resource type="FontFile" uid="uid://dapxowp0mirbf" path="res://assets/fonts/VonwaonBitmap-16px.ttf" id="6_uua2n"]
 [ext_resource type="PackedScene" uid="uid://fp0ogkpc0ikr" path="res://scenes/component/pile_view.tscn" id="11_745e7"]
 
@@ -33,11 +29,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yn1ev")
 ThemeColorBlock = [NodePath("MarginContainer2/VBoxContainer/ColorRect"), NodePath("MarginContainer2/VBoxContainer/HBoxContainer/ColorRect"), NodePath("MarginContainer2/VBoxContainer/HBoxContainer/ColorRect2")]
-PileLib = Dictionary[String, ExtResource("2_yjg0p")]({
-"Diamond": ExtResource("3_k4h4a"),
-"Heart": ExtResource("2_jt6ew"),
-"Spade": ExtResource("5_745e7")
-})
 metadata/_edit_lock_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1194228748]
