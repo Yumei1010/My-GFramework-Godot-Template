@@ -11,16 +11,6 @@ public enum UiKey
     MainMenu,
 
     /// <summary>
-    ///     保存菜单界面键值
-    /// </summary>
-    SaveMenu,
-
-    /// <summary>
-    ///     加载菜单界面键值
-    /// </summary>
-    LoadMenu,
-
-    /// <summary>
     ///     选项菜单界面键值
     /// </summary>
     OptionsMenu,
@@ -31,27 +21,7 @@ public enum UiKey
     Credits,
     
     /// <summary>
-    ///     选择牌组菜单界面键值
-    /// </summary>
-    SelectMenu,
-    
-    /// <summary>
-    ///     地图界面键值
-    /// </summary>
-    MapMenu,
-    
-    /// <summary>
     ///     计算界面键值
     /// </summary>
     CalculateMenu,
-    
-    /// <summary>
-    ///     暂停菜单界面键值
-    /// </summary>
-    PauseMenu,
-    
-    /// <summary>
-    ///     存档菜单界面键值
-    /// </summary>
-    ArchiveMenu
 }

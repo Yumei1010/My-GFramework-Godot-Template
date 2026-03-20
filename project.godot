@@ -14,7 +14,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
-config/name="GFramework-Godot-Template"
+config/name="Twenty-four"
 config/tags=PackedStringArray("gamelab")
 run/main_scene="uid://6s2urcdmkpbt"
 config/features=PackedStringArray("4.6", "C#", "GL Compatibility")

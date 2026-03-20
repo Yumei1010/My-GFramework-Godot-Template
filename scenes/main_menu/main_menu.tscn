@@ -89,35 +89,12 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_uqeha")
 theme_override_styles/focus = SubResource("StyleBoxFlat_wem23")
 text = "新游戏"
 
-[node name="ColorRect2" type="ColorRect" parent="MarginContainer2/VBoxContainer" unique_id=801096501]
+[node name="ColorRect2" type="ColorRect" parent="MarginContainer2/VBoxContainer" unique_id=20279439]
 custom_minimum_size = Vector2(144, 48)
 layout_mode = 2
 color = Color(0.9411765, 0.15294118, 0.36862746, 1)
 
-[node name="ContinueGameButton" type="Button" parent="MarginContainer2/VBoxContainer/ColorRect2" unique_id=1609470666]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0.16862746, 0.16862746, 0.16862746, 1)
-theme_override_fonts/font = ExtResource("2_0ebjn")
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_fsom3")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_0ebjn")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ob46e")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_uqeha")
-theme_override_styles/focus = SubResource("StyleBoxFlat_wem23")
-text = "继续游戏"
-
-[node name="ColorRect3" type="ColorRect" parent="MarginContainer2/VBoxContainer" unique_id=20279439]
-custom_minimum_size = Vector2(144, 48)
-layout_mode = 2
-color = Color(0.9411765, 0.15294118, 0.36862746, 1)
-
-[node name="OptionsMenuButton" type="Button" parent="MarginContainer2/VBoxContainer/ColorRect3" unique_id=1782111077]
+[node name="OptionsMenuButton" type="Button" parent="MarginContainer2/VBoxContainer/ColorRect2" unique_id=1782111077]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -135,12 +112,12 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_uqeha")
 theme_override_styles/focus = SubResource("StyleBoxFlat_wem23")
 text = "设置"
 
-[node name="ColorRect4" type="ColorRect" parent="MarginContainer2/VBoxContainer" unique_id=1763457153]
+[node name="ColorRect3" type="ColorRect" parent="MarginContainer2/VBoxContainer" unique_id=1763457153]
 custom_minimum_size = Vector2(144, 48)
 layout_mode = 2
 color = Color(0.9411765, 0.15294118, 0.36862746, 1)
 
-[node name="CreditsButton" type="Button" parent="MarginContainer2/VBoxContainer/ColorRect4" unique_id=651798123]
+[node name="CreditsButton" type="Button" parent="MarginContainer2/VBoxContainer/ColorRect3" unique_id=651798123]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -158,12 +135,12 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_uqeha")
 theme_override_styles/focus = SubResource("StyleBoxFlat_wem23")
 text = "制作组"
 
-[node name="ColorRect5" type="ColorRect" parent="MarginContainer2/VBoxContainer" unique_id=806227076]
+[node name="ColorRect4" type="ColorRect" parent="MarginContainer2/VBoxContainer" unique_id=806227076]
 custom_minimum_size = Vector2(144, 48)
 layout_mode = 2
 color = Color(0.9411765, 0.15294118, 0.36862746, 1)
 
-[node name="ExitButton" type="Button" parent="MarginContainer2/VBoxContainer/ColorRect5" unique_id=555878123]
+[node name="ExitButton" type="Button" parent="MarginContainer2/VBoxContainer/ColorRect4" unique_id=555878123]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15

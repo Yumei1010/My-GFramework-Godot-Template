@@ -7,7 +7,6 @@ using GFramework.Godot.scene;
 using GFramework.Godot.storage;
 using GFramework.Godot.ui;
 using GFrameworkGodotTemplate.scripts.data.interfaces;
-using GFrameworkGodotTemplate.scripts.poker;
 using GFrameworkGodotTemplate.scripts.utility;
 using Godot;
 

@@ -8,7 +8,7 @@ using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
 using GFrameworkGodotTemplate.scripts.core.ui;
 using GFrameworkGodotTemplate.scripts.enums.ui;
-using global::GFrameworkGodotTemplate.global;
+using GFrameworkGodotTemplate.global;
 using Godot;
 
 namespace GFrameworkGodotTemplate.scripts.calculate_menu;

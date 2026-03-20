@@ -2,8 +2,6 @@
 
 public enum TextureKey
 {
-    GodotStart,
-    
     PokerSuitHeart,
     
     PokerSuitDiamond,
@@ -13,6 +11,4 @@ public enum TextureKey
     PokerSuitClub,
     
     PokerSurfaceDefault,
-    PokerSurfaceGold,
-    PokerSurfaceSilver,
 }

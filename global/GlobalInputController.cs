@@ -50,7 +50,7 @@ public partial class GlobalInputController : GameInputController
         // 根据当前状态执行相应操作
         if (_stateMachineSystem.Current is not PlayingState) return;
         _log.Debug("暂停游戏");
-        _pauseMenuUiHandle = this.SendCommand(new PauseGameWithOpenPauseMenuCommand(new OpenPauseMenuCommandInput { Handle = _pauseMenuUiHandle }));
+        
         GetViewport().SetInputAsHandled();
     }
 }

@@ -108,8 +108,7 @@ public partial class GameEntryPoint : Node
         if (ShouldEnterMainMenu())
             this.RegisterEvent<UiRoot.UiRootReadyEvent>(_ =>
             {
-                this.GetSystem<IStateMachineSystem>()!
-                    .ChangeTo<BootStartState>();
+                this.GetSystem<IStateMachineSystem>()!.ChangeTo<MainMenuState>();
             });
 
         _log.Debug("游戏入口点就绪.");
@@ -130,10 +129,8 @@ public partial class GameEntryPoint : Node
     {
         var tree = GetTree();
         var currentScene = tree.CurrentScene;
-
         if (currentScene == null)
             return false;
-
         var scenePath = currentScene.SceneFilePath;
         return string.Equals(scenePath, _sceneRegistry.Get(nameof(SceneKey.Main)).GetPath(),
             StringComparison.Ordinal);

@@ -21,14 +21,9 @@ public class StateModule : AbstractModule
         {
             it.Register(new MainMenuState())
                 .Register(new PlayingState())
-                .Register(new PausedState())
                 .Register(new GameOverState())
-                .Register(new BootStartState())
                 .Register(new OptionsMenuState())
-                .Register(new SelectMenuState())
-                .Register(new MapMenuState())
-                .Register(new CalculateMenuState())
-                .Register(new ArchiveMenuState());
+                .Register(new CalculateMenuState());
         }));
     }
 }

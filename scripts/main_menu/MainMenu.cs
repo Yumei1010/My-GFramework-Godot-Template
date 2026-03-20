@@ -21,7 +21,6 @@ namespace GFrameworkGodotTemplate.scripts.main_menu;
 public partial class MainMenu : Control, IController, IUiPageBehaviorProvider, ISimpleUiPage
 {
     private Button NewGameButton => GetNode<Button>("%NewGameButton");
-    private Button ContinueGameButton => GetNode<Button>("%ContinueGameButton");
     private Button OptionsMenuButton => GetNode<Button>("%OptionsMenuButton");
     private Button CreditsButton => GetNode<Button>("%CreditsButton");
     private Button ExitButton => GetNode<Button>("%ExitButton");
@@ -52,8 +51,7 @@ public partial class MainMenu : Control, IController, IUiPageBehaviorProvider, I
     
     private void ConnectSignal()
     {
-        NewGameButton.ButtonDown += OnMouseDownNewGameButton;
-        ContinueGameButton.ButtonDown += OnMouseDownContinueGameButton;
+        NewGameButton.ButtonDown += OnMouseDownNewGameButton;                     
         OptionsMenuButton.ButtonDown += OnMouseDownOptionsMenuButton;
         CreditsButton.ButtonDown += OnMouseDownCreditsButton;
         ExitButton.ButtonDown += OnMouseDownExitButton;
@@ -61,12 +59,7 @@ public partial class MainMenu : Control, IController, IUiPageBehaviorProvider, I
 
     private void OnMouseDownNewGameButton()
     {
-        _stateMachineSystem.ChangeTo<SelectMenuState>();
-    }
-
-    private void OnMouseDownContinueGameButton()
-    {
-        _stateMachineSystem.ChangeTo<ArchiveMenuState>();
+        _stateMachineSystem.ChangeTo<CalculateMenuState>();
     }
 
     private void OnMouseDownOptionsMenuButton()
