@@ -19,13 +19,12 @@ using GFrameworkGodotTemplate.scripts.command.audio.input;
 using GFrameworkGodotTemplate.scripts.command.graphics;
 using GFrameworkGodotTemplate.scripts.command.graphics.input;
 using GFrameworkGodotTemplate.scripts.command.setting;
-using GFrameworkGodotTemplate.scripts.command.setting.input;
 using GFrameworkGodotTemplate.scripts.component;
 using GFrameworkGodotTemplate.scripts.core.state.impls;
 using GFrameworkGodotTemplate.scripts.core.ui;
 using GFrameworkGodotTemplate.scripts.enums.ui;
 using GFrameworkGodotTemplate.scripts.setting.query;
-using global::GFrameworkGodotTemplate.global;
+using GFrameworkGodotTemplate.global;
 using Godot;
 
 namespace GFrameworkGodotTemplate.scripts.options_menu;
@@ -43,7 +42,6 @@ public partial class OptionsMenu : Control, IController, IUiPageBehaviorProvider
     private VolumeContainer SfxVolume => GetNode<VolumeContainer>("%SfxVolumeContainer");
     private OptionButton ResolutionOptionButton => GetNode<OptionButton>("%ResolutionOptionButton");
     private OptionButton FullscreenOptionButton => GetNode<OptionButton>("%FullscreenOptionButton");
-    private OptionButton LanguageOptionButton => GetNode<OptionButton>("%LanguageOptionButton");
     private Button BackButton => GetNode<Button>("%BackButton");
     
     private IUiPageBehavior? _page;
@@ -167,14 +165,6 @@ public partial class OptionsMenu : Control, IController, IUiPageBehaviorProvider
             if (r.X == graphicsSettings.ResolutionWidth && r.Y == graphicsSettings.ResolutionHeight)
                 ResolutionOptionButton.Selected = i; // ⭐ 正确方式
         }
-
-        var localizationSettings = view.Localization;
-        LanguageOptionButton.Clear();
-        LanguageOptionButton.AddItem("简体中文");
-        LanguageOptionButton.AddItem("English");
-        LanguageOptionButton.Selected =
-            string.Equals(localizationSettings.Language, "简体中文", StringComparison.Ordinal) ? 0 : 1;
-        _initializing = false;
     }
 
     /// <summary>
@@ -208,25 +198,6 @@ public partial class OptionsMenu : Control, IController, IUiPageBehaviorProvider
             .End();
         ResolutionOptionButton.ItemSelected += async index => await OnResolutionChanged(index).ConfigureAwait(false);
         FullscreenOptionButton.ItemSelected += async index => await OnFullscreenChanged(index).ConfigureAwait(false);
-        LanguageOptionButton.ItemSelected += async index => await OnLanguageChanged(index).ConfigureAwait(false);
-    }
-
-    /// <summary>
-    ///     语言改变事件
-    /// </summary>
-    /// <param name="index">选择的语言索引</param>
-    private async Task OnLanguageChanged(long index)
-    {
-        if (_initializing) return;
-
-        // 根据索引获取对应的语言
-        var language = index == 0 ? "简体中文" : "English";
-
-        // 发送更改语言命令
-        await this.SendCommandAsync(new ChangeLanguageCommand(new ChangeLanguageCommandInput
-            { Language = language })).ConfigureAwait(false);
-
-        _log.Debug($"语言更改为: {language}");
     }
 
     /// <summary>
@@ -251,7 +222,7 @@ public partial class OptionsMenu : Control, IController, IUiPageBehaviorProvider
         var fullscreen = index == 0;
         await this.SendCommandAsync(new ToggleFullscreenCommand(new ToggleFullscreenCommandInput
             { Fullscreen = fullscreen })).ConfigureAwait(false);
-        // ⭐ 禁用 / 启用分辨率选择
+        // 禁用 / 启用分辨率选择
         ResolutionOptionButton.Disabled = fullscreen;
         _log.Debug($"全屏模式切换为: {fullscreen}");
     }
