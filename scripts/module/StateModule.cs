@@ -23,6 +23,7 @@ public class StateModule : AbstractModule
                 .Register(new PlayingState())
                 .Register(new GameOverState())
                 .Register(new OptionsMenuState())
+                .Register(new CreditsState())
                 .Register(new CalculateMenuState());
         }));
     }

@@ -1,6 +1,4 @@
 using GFramework.Core.Abstractions.controller;
-using GFramework.Core.Abstractions.state;
-using GFramework.Core.extensions;
 using GFramework.Game.Abstractions.enums;
 using GFramework.Game.Abstractions.ui;
 using GFramework.Godot.ui;
@@ -18,8 +16,6 @@ namespace GFrameworkGodotTemplate.scripts.calculate_menu;
 public partial class CalculateMenu : Control, IController, IUiPageBehaviorProvider, ISimpleUiPage
 {
     private IUiPageBehavior? _page;
-    private IStateMachineSystem _stateMachineSystem = null!;
-    private IUiRouter _uiRouter = null!;
     public static string UiKeyStr => nameof(UiKey.CalculateMenu);
     
     public IUiPageBehavior GetPage()
@@ -38,8 +34,6 @@ public partial class CalculateMenu : Control, IController, IUiPageBehaviorProvid
     private async Task ReadyAsync()
     {
         await GameEntryPoint.Architecture.WaitUntilReadyAsync().ConfigureAwait(false);
-        _uiRouter = this.GetSystem<IUiRouter>()!;
-        _stateMachineSystem = this.GetSystem<IStateMachineSystem>()!;
     }
 
     private void ConnectSignal()

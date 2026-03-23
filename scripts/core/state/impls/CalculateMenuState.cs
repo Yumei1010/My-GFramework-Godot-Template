@@ -23,7 +23,7 @@ public class CalculateMenuState : ContextAwareStateBase
         var uiRouter = this.GetSystem<IUiRouter>()!;
         uiRouter.Clear();
         this.GetSystem<ISceneRouter>()!.Unload();
-        // 推送计算菜单UI到界面栈中，显示计算菜单界面
+        // 推送计算菜单到界面栈中，显示计算菜单界面
         uiRouter.Push(CalculateMenu.UiKeyStr);
     }
 

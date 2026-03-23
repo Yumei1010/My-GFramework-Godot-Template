@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://fm27d2slodic"]
 
 [ext_resource type="Script" uid="uid://2qiga3qxnxcn" path="res://scripts/calculate_menu/CalculateMenu.cs" id="1_60nu6"]
+[ext_resource type="PackedScene" uid="uid://bbydbuw0ryr1p" path="res://scenes/component/calculate_bar.tscn" id="2_3dp4d"]
 
 [node name="CalculateMenu" type="Control" unique_id=1368381339]
 layout_mode = 3
@@ -10,3 +11,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_60nu6")
+metadata/_edit_lock_ = true
+
+[node name="Background" type="ColorRect" parent="." unique_id=1044893812]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.16862746, 0.16862746, 0.16862746, 1)
+metadata/_edit_lock_ = true
+
+[node name="CalculateBar" parent="." unique_id=356497160 instance=ExtResource("2_3dp4d")]
+layout_mode = 1

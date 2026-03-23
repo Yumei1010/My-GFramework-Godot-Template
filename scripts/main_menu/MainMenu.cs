@@ -9,7 +9,6 @@ using GFramework.SourceGenerators.Abstractions.rule;
 using GFrameworkGodotTemplate.scripts.command.game;
 using GFrameworkGodotTemplate.scripts.core.state.impls;
 using GFrameworkGodotTemplate.scripts.core.ui;
-using GFrameworkGodotTemplate.scripts.credits;
 using GFrameworkGodotTemplate.scripts.enums.ui;
 using GFrameworkGodotTemplate.global;
 using Godot;
@@ -27,7 +26,6 @@ public partial class MainMenu : Control, IController, IUiPageBehaviorProvider, I
     
     private IUiPageBehavior? _page;
     private IStateMachineSystem _stateMachineSystem = null!;
-    private IUiRouter _uiRouter = null!;
     public static string UiKeyStr => nameof(UiKey.MainMenu);
     
     public IUiPageBehavior GetPage()
@@ -45,7 +43,6 @@ public partial class MainMenu : Control, IController, IUiPageBehaviorProvider, I
     private async Task ReadyAsync()
     {
         await GameEntryPoint.Architecture.WaitUntilReadyAsync().ConfigureAwait(false);
-        _uiRouter = this.GetSystem<IUiRouter>()!;
         _stateMachineSystem = this.GetSystem<IStateMachineSystem>()!;
     }
     
@@ -69,7 +66,7 @@ public partial class MainMenu : Control, IController, IUiPageBehaviorProvider, I
 
     private void OnMouseDownCreditsButton()
     {
-        _uiRouter.Push(Credits.UiKeyStr);
+        _stateMachineSystem.ChangeTo<CreditsState>();
     }
 
     private void OnMouseDownExitButton()

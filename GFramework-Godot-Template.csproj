@@ -14,6 +14,7 @@
         <Compile Remove="scripts\tests\**" />
         <Compile Remove="scripts\extensions\**" />
         <Compile Remove="scripts\entities\**" />
+        <Compile Remove="scripts\enums\poker\TagType.cs" />
     </ItemGroup>
     <ItemGroup>
         <EmbeddedResource Remove="script_templates\**"/>

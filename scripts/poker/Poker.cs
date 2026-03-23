@@ -1,7 +1,6 @@
 ﻿using GFramework.Core.Abstractions.controller;
 using GFramework.Core.extensions;
 using GFramework.Godot.extensions;
-using GFramework.Godot.pool;
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
 using GFrameworkGodotTemplate.scripts.enums.poker;
@@ -15,9 +14,9 @@ namespace GFrameworkGodotTemplate.scripts.poker;
 
 [ContextAware]
 [Log]
-public partial class Poker : Button, IPoker, IController, IPoolableNode
+public partial class Poker : Button, IPoker, IController
 {
-    private AnimationPlayer AnimationPlayer => GetNode<AnimationPlayer>("AnimationPlayer");
+    private AnimationPlayer AnimationPlayer => GetNode<AnimationPlayer>("%AnimationPlayer");
     private TextureRect BackRect => GetNode<TextureRect>("%BackRect");
     private TextureRect SurfaceRect => GetNode<TextureRect>("%SurfaceRect");
     private TextureRect SuitRect => GetNode<TextureRect>("%SuitRect");
@@ -29,7 +28,6 @@ public partial class Poker : Button, IPoker, IController, IPoolableNode
     public SuitType SuitType { get; set; } = SuitType.Heart;
     public required string NumValue { get; set; } = null!;
     public NumType NumType { get; set; } = NumType.Integer;
-    public IList<TagType> Tags { get; set; } = new List<TagType>();
     public IList<StateType> States { get; set; } = new List<StateType>();
 
     public override void _Ready()
@@ -45,28 +43,6 @@ public partial class Poker : Button, IPoker, IController, IPoolableNode
         {
             GlobalPosition = GetGlobalMousePosition() - Size / 2;
         }
-    }
-
-    public void OnAcquire()
-    {
-        States.Remove(StateType.InPool);
-        Visible = true;
-    }
-
-    public void OnRelease()
-    {
-        States.Add(StateType.InPool);
-        Visible = false;
-    }
-
-    public void OnPoolDestroy()
-    {
-        Free();
-    }
-
-    public Node AsNode()
-    {
-        return this;
     }
 
     private async Task ReadyAsync()
@@ -131,7 +107,7 @@ public partial class Poker : Button, IPoker, IController, IPoolableNode
         // 如果正在播放动画，使其终止
         if (AnimationPlayer.IsPlaying()) AnimationPlayer.Stop();
         
-        // AnimationPlayer.Play("Poker/blured");
+        AnimationPlayer.Play("Poker/blured");
     }
 
     private void OnSuitTypeChangedEvent(SuitType suitType,Poker poker)

@@ -23,7 +23,7 @@ public class MainMenuState : ContextAwareStateBase
         var uiRouter = this.GetSystem<IUiRouter>()!;
         uiRouter.Clear();
         this.GetSystem<ISceneRouter>()!.Unload();
-        // 推送主菜单UI到界面栈中，显示主菜单界面
+        // 推送主菜单到界面栈中，显示主菜单界面
         uiRouter.Push(MainMenu.UiKeyStr);
     }
 

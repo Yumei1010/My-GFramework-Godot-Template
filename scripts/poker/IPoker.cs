@@ -28,11 +28,6 @@ public interface IPoker
     NumType NumType { get; set; }
     
     /// <summary>
-    /// 标签集合
-    /// </summary>
-    IList<TagType> Tags { get; set; }
-    
-    /// <summary>
     /// 状态集合
     /// </summary>
     IList<StateType> States { get; set; }

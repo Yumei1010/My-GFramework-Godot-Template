@@ -37,20 +37,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.16862746, 0.16862746, 0.16862746, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=700270087]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 364
-theme_override_constants/margin_top = 96
-theme_override_constants/margin_right = 364
-theme_override_constants/margin_bottom = 76
-metadata/_edit_lock_ = true
-
-[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=137869384]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=137869384]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -62,16 +49,16 @@ theme_override_constants/margin_top = 220
 theme_override_constants/margin_right = 400
 metadata/_edit_lock_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2" unique_id=1980450058]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1980450058]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer2/VBoxContainer" unique_id=215485116]
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer" unique_id=215485116]
 custom_minimum_size = Vector2(144, 48)
 layout_mode = 2
 color = Color(0.9411765, 0.15294118, 0.36862746, 1)
 
-[node name="NewGameButton" type="Button" parent="MarginContainer2/VBoxContainer/ColorRect" unique_id=159087854]
+[node name="NewGameButton" type="Button" parent="MarginContainer/VBoxContainer/ColorRect" unique_id=159087854]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -89,12 +76,12 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_uqeha")
 theme_override_styles/focus = SubResource("StyleBoxFlat_wem23")
 text = "新游戏"
 
-[node name="ColorRect2" type="ColorRect" parent="MarginContainer2/VBoxContainer" unique_id=20279439]
+[node name="ColorRect2" type="ColorRect" parent="MarginContainer/VBoxContainer" unique_id=20279439]
 custom_minimum_size = Vector2(144, 48)
 layout_mode = 2
 color = Color(0.9411765, 0.15294118, 0.36862746, 1)
 
-[node name="OptionsMenuButton" type="Button" parent="MarginContainer2/VBoxContainer/ColorRect2" unique_id=1782111077]
+[node name="OptionsMenuButton" type="Button" parent="MarginContainer/VBoxContainer/ColorRect2" unique_id=1782111077]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -112,12 +99,12 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_uqeha")
 theme_override_styles/focus = SubResource("StyleBoxFlat_wem23")
 text = "设置"
 
-[node name="ColorRect3" type="ColorRect" parent="MarginContainer2/VBoxContainer" unique_id=1763457153]
+[node name="ColorRect3" type="ColorRect" parent="MarginContainer/VBoxContainer" unique_id=1763457153]
 custom_minimum_size = Vector2(144, 48)
 layout_mode = 2
 color = Color(0.9411765, 0.15294118, 0.36862746, 1)
 
-[node name="CreditsButton" type="Button" parent="MarginContainer2/VBoxContainer/ColorRect3" unique_id=651798123]
+[node name="CreditsButton" type="Button" parent="MarginContainer/VBoxContainer/ColorRect3" unique_id=651798123]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -135,12 +122,12 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_uqeha")
 theme_override_styles/focus = SubResource("StyleBoxFlat_wem23")
 text = "制作组"
 
-[node name="ColorRect4" type="ColorRect" parent="MarginContainer2/VBoxContainer" unique_id=806227076]
+[node name="ColorRect4" type="ColorRect" parent="MarginContainer/VBoxContainer" unique_id=806227076]
 custom_minimum_size = Vector2(144, 48)
 layout_mode = 2
 color = Color(0.9411765, 0.15294118, 0.36862746, 1)
 
-[node name="ExitButton" type="Button" parent="MarginContainer2/VBoxContainer/ColorRect4" unique_id=555878123]
+[node name="ExitButton" type="Button" parent="MarginContainer/VBoxContainer/ColorRect4" unique_id=555878123]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
