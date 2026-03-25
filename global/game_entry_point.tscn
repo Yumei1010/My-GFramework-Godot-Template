@@ -9,8 +9,8 @@
 [ext_resource type="Script" uid="uid://5mfgbvaive07" path="res://scripts/core/resource/SceneConfig.cs" id="7_iiepj"]
 [ext_resource type="PackedScene" uid="uid://fm27d2slodic" path="res://scenes/calculate_menu/calculate_menu.tscn" id="9_fgqit"]
 [ext_resource type="Script" uid="uid://ls8nkxn3gipd" path="res://scripts/core/resource/TextureConfig.cs" id="14_hjx06"]
-[ext_resource type="Texture2D" uid="uid://6vuld8lknm7e" path="res://assets/textures/pile/surface/heart.png" id="15_hjx06"]
-[ext_resource type="Texture2D" uid="uid://bjyh6mxjxpmnk" path="res://assets/textures/pile/surface/diamond.png" id="16_d4hg6"]
+[ext_resource type="Texture2D" uid="uid://6vuld8lknm7e" path="res://assets/textures/poker/surface/heart.png" id="15_hjx06"]
+[ext_resource type="Texture2D" uid="uid://bjyh6mxjxpmnk" path="res://assets/textures/poker/surface/diamond.png" id="16_d4hg6"]
 
 [sub_resource type="Resource" id="Resource_pn3ws"]
 script = ExtResource("3_x37g7")

@@ -34,6 +34,15 @@ public enum StateType
     /// <summary>
     ///     展示中
     /// </summary>
-    OnDisplay
+    OnDisplay,
     
+    /// <summary>
+    ///     选择中
+    /// </summary>
+    OnSelect,
+    
+    /// <summary>
+    ///     未选择
+    /// </summary>
+    UnSelect
 }

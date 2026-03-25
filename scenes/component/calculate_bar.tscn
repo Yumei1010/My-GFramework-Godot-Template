@@ -16,9 +16,9 @@
 
 [node name="CalculateBar" type="Control" unique_id=356497160]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
+anchor_right = 0.083000004
 anchor_bottom = 1.0
+offset_right = 0.31999207
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_itn85")
@@ -26,100 +26,97 @@ metadata/_edit_lock_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=59658630]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 468
-theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 24
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
+metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
 
-[node name="Background" type="ColorRect" parent="MarginContainer" unique_id=2044854662]
-custom_minimum_size = Vector2(896, 48)
+[node name="ColorRect" type="ColorRect" parent="MarginContainer" unique_id=783898353]
 layout_mode = 2
-size_flags_horizontal = 4
-color = Color(0.22670749, 0.22670749, 0.22670746, 1)
+color = Color(0.75, 0.742, 0.71999997, 1)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Background" unique_id=1367726107]
-custom_minimum_size = Vector2(896, 48)
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ColorRect" unique_id=816270408]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 12
-alignment = 1
+theme_override_constants/separation = -4
 
-[node name="AddButton" type="TextureButton" parent="MarginContainer/Background/HBoxContainer" unique_id=1874590975]
+[node name="AddButton" type="TextureButton" parent="MarginContainer/ColorRect/VBoxContainer" unique_id=1874590975]
 unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("1_60nu6")
 
-[node name="SubtractButton" type="TextureButton" parent="MarginContainer/Background/HBoxContainer" unique_id=1758166272]
+[node name="SubtractButton" type="TextureButton" parent="MarginContainer/ColorRect/VBoxContainer" unique_id=1758166272]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 texture_normal = ExtResource("2_7kspd")
 
-[node name="MultiplyButton" type="TextureButton" parent="MarginContainer/Background/HBoxContainer" unique_id=1018209079]
+[node name="MultiplyButton" type="TextureButton" parent="MarginContainer/ColorRect/VBoxContainer" unique_id=1018209079]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 texture_normal = ExtResource("3_4d6fc")
 
-[node name="DivideButton" type="TextureButton" parent="MarginContainer/Background/HBoxContainer" unique_id=1490958461]
+[node name="DivideButton" type="TextureButton" parent="MarginContainer/ColorRect/VBoxContainer" unique_id=1490958461]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 texture_normal = ExtResource("4_4gox6")
 
-[node name="ModuloButton" type="TextureButton" parent="MarginContainer/Background/HBoxContainer" unique_id=2092539590]
+[node name="ModuloButton" type="TextureButton" parent="MarginContainer/ColorRect/VBoxContainer" unique_id=2092539590]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 texture_normal = ExtResource("7_swfoo")
 
-[node name="NthRootButton" type="TextureButton" parent="MarginContainer/Background/HBoxContainer" unique_id=1665867724]
+[node name="NthRootButton" type="TextureButton" parent="MarginContainer/ColorRect/VBoxContainer" unique_id=1665867724]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 texture_normal = ExtResource("8_dwtut")
 
-[node name="PowerButton" type="TextureButton" parent="MarginContainer/Background/HBoxContainer" unique_id=1197037256]
+[node name="PowerButton" type="TextureButton" parent="MarginContainer/ColorRect/VBoxContainer" unique_id=1197037256]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 texture_normal = ExtResource("9_4d6fc")
 
-[node name="AbsoluteValueButton" type="TextureButton" parent="MarginContainer/Background/HBoxContainer" unique_id=1258648017]
+[node name="AbsoluteValueButton" type="TextureButton" parent="MarginContainer/ColorRect/VBoxContainer" unique_id=1258648017]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 texture_normal = ExtResource("5_lbyta")
 
-[node name="FactorialButton" type="TextureButton" parent="MarginContainer/Background/HBoxContainer" unique_id=414969055]
+[node name="FactorialButton" type="TextureButton" parent="MarginContainer/ColorRect/VBoxContainer" unique_id=414969055]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 texture_normal = ExtResource("6_ynjim")
 
-[node name="SquareRootButton" type="TextureButton" parent="MarginContainer/Background/HBoxContainer" unique_id=1558690987]
+[node name="SquareRootButton" type="TextureButton" parent="MarginContainer/ColorRect/VBoxContainer" unique_id=1558690987]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 texture_normal = ExtResource("10_4gox6")
 
-[node name="CeilButton" type="TextureButton" parent="MarginContainer/Background/HBoxContainer" unique_id=118201242]
+[node name="CeilButton" type="TextureButton" parent="MarginContainer/ColorRect/VBoxContainer" unique_id=118201242]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 texture_normal = ExtResource("11_lbyta")
 
-[node name="FloorButton" type="TextureButton" parent="MarginContainer/Background/HBoxContainer" unique_id=959776843]
+[node name="FloorButton" type="TextureButton" parent="MarginContainer/ColorRect/VBoxContainer" unique_id=959776843]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2

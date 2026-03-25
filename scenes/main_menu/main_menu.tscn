@@ -35,30 +35,41 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.16862746, 0.16862746, 0.16862746, 1)
+color = Color(0.9882353, 0.9764706, 0.94509804, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=137869384]
+[node name="Title" type="TextureRect" parent="." unique_id=507432071]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 64.0
+offset_right = 832.0
+offset_bottom = 192.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1980450058]
+layout_mode = 0
+offset_left = 15.999992
+offset_top = 280.0
+offset_right = 176.0
+offset_bottom = 560.0
+rotation = -0.5235988
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Control" type="Control" parent="VBoxContainer" unique_id=945700843]
+custom_minimum_size = Vector2(144, 48)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/Control" unique_id=215485116]
+custom_minimum_size = Vector2(144, 48)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 400
-theme_override_constants/margin_top = 220
-theme_override_constants/margin_right = 400
-metadata/_edit_lock_ = true
+rotation = 0.5235988
+color = Color(0.78431374, 0.9607843, 0.30588236, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1980450058]
-layout_mode = 2
-theme_override_constants/separation = 16
-
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer" unique_id=215485116]
-custom_minimum_size = Vector2(144, 48)
-layout_mode = 2
-color = Color(0.9411765, 0.15294118, 0.36862746, 1)
-
-[node name="NewGameButton" type="Button" parent="MarginContainer/VBoxContainer/ColorRect" unique_id=159087854]
+[node name="NewGameButton" type="Button" parent="VBoxContainer/Control/ColorRect" unique_id=159087854]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -76,12 +87,22 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_uqeha")
 theme_override_styles/focus = SubResource("StyleBoxFlat_wem23")
 text = "新游戏"
 
-[node name="ColorRect2" type="ColorRect" parent="MarginContainer/VBoxContainer" unique_id=20279439]
+[node name="Control2" type="Control" parent="VBoxContainer" unique_id=2101667602]
 custom_minimum_size = Vector2(144, 48)
 layout_mode = 2
-color = Color(0.9411765, 0.15294118, 0.36862746, 1)
 
-[node name="OptionsMenuButton" type="Button" parent="MarginContainer/VBoxContainer/ColorRect2" unique_id=1782111077]
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/Control2" unique_id=20279439]
+custom_minimum_size = Vector2(144, 48)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.5235988
+color = Color(0.5764706, 0.9098039, 0.49019608, 1)
+
+[node name="OptionsMenuButton" type="Button" parent="VBoxContainer/Control2/ColorRect" unique_id=1782111077]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -99,12 +120,22 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_uqeha")
 theme_override_styles/focus = SubResource("StyleBoxFlat_wem23")
 text = "设置"
 
-[node name="ColorRect3" type="ColorRect" parent="MarginContainer/VBoxContainer" unique_id=1763457153]
+[node name="Control3" type="Control" parent="VBoxContainer" unique_id=1305619526]
 custom_minimum_size = Vector2(144, 48)
 layout_mode = 2
-color = Color(0.9411765, 0.15294118, 0.36862746, 1)
 
-[node name="CreditsButton" type="Button" parent="MarginContainer/VBoxContainer/ColorRect3" unique_id=651798123]
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/Control3" unique_id=1763457153]
+custom_minimum_size = Vector2(144, 48)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.5235988
+color = Color(0.40784314, 0.8, 0.5764706, 1)
+
+[node name="CreditsButton" type="Button" parent="VBoxContainer/Control3/ColorRect" unique_id=651798123]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -120,14 +151,24 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_0ebjn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ob46e")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_uqeha")
 theme_override_styles/focus = SubResource("StyleBoxFlat_wem23")
-text = "制作组"
+text = "制作"
 
-[node name="ColorRect4" type="ColorRect" parent="MarginContainer/VBoxContainer" unique_id=806227076]
+[node name="Control4" type="Control" parent="VBoxContainer" unique_id=1347115005]
 custom_minimum_size = Vector2(144, 48)
 layout_mode = 2
-color = Color(0.9411765, 0.15294118, 0.36862746, 1)
 
-[node name="ExitButton" type="Button" parent="MarginContainer/VBoxContainer/ColorRect4" unique_id=555878123]
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/Control4" unique_id=806227076]
+custom_minimum_size = Vector2(144, 48)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.5235988
+color = Color(0.38431373, 0.61960787, 0.50980395, 1)
+
+[node name="ExitButton" type="Button" parent="VBoxContainer/Control4/ColorRect" unique_id=555878123]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15

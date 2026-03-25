@@ -17,9 +17,7 @@ namespace GFrameworkGodotTemplate.scripts.poker;
 public partial class Poker : Button, IPoker, IController
 {
     private AnimationPlayer AnimationPlayer => GetNode<AnimationPlayer>("%AnimationPlayer");
-    private TextureRect BackRect => GetNode<TextureRect>("%BackRect");
     private TextureRect SurfaceRect => GetNode<TextureRect>("%SurfaceRect");
-    private TextureRect SuitRect => GetNode<TextureRect>("%SuitRect");
     private Label NumLabel => GetNode<Label>("%NumLabel");
 
     private IGodotTextureRegistry _textureRegistry = null!;
@@ -30,6 +28,9 @@ public partial class Poker : Button, IPoker, IController
     public NumType NumType { get; set; } = NumType.Integer;
     public IList<StateType> States { get; set; } = new List<StateType>();
 
+    private Vector2 _lastMousePosition;
+    private float _targetRotationRad;
+
     public override void _Ready()
     {
         _ = ReadyAsync();
@@ -39,9 +40,16 @@ public partial class Poker : Button, IPoker, IController
     
     public override void _Process(double delta)
     {
+        // 如果拥有状态拖拽中，则每帧调用方法变为拖拽卡牌
         if (States.Contains(StateType.OnDrag))
         {
             GlobalPosition = GetGlobalMousePosition() - Size / 2;
+            
+            Vector2 currentMousePosition =  GetGlobalMousePosition();
+            Vector2 gap = currentMousePosition - _lastMousePosition;
+            _lastMousePosition = currentMousePosition;
+            _targetRotationRad = Mathf.DegToRad(Mathf.Clamp(gap.X * 15f, -30f, 30f));
+            Rotation = Mathf.LerpAngle(Rotation, _targetRotationRad, 10f * (float)delta);
         }
     }
 
@@ -82,14 +90,39 @@ public partial class Poker : Button, IPoker, IController
     
     private void OnButtonDown()
     {
-        // 隐藏并锁定鼠标在窗口范围内
+        // 如果选择器被启用，会拥有状态未选择，则点击效果变为选择卡牌
+        if (States.Contains(StateType.UnSelect)) 
+        {
+            // 上浮一定距离以突出
+            var pos = GlobalPosition;
+            pos.Y -= Size.Y / 2;
+            GlobalPosition = pos;
+            
+            States.Remove(StateType.UnSelect);
+            States.Add(StateType.OnSelect);
+            return;
+        }
+        
+        // 如果拥有状态选择中，则点击效果变为取消选择卡牌
+        if (States.Contains(StateType.OnSelect)) 
+        {
+            // 下沉一定距离以回归
+            var pos = GlobalPosition;
+            pos.Y += Size.Y / 2;
+            GlobalPosition = pos;
+            
+            States.Remove(StateType.OnSelect);
+            return;
+        }
+        
+        // 默认点击效果为开始拖拽卡牌，隐藏并锁定鼠标在窗口范围内
         Input.SetMouseMode(Input.MouseModeEnum.ConfinedHidden);
         States.Add(StateType.OnDrag);
     }
     
     private void OnButtonUp()
     {
-        // 显示鼠标
+        // 默认释放效果为结束拖拽卡牌，显示鼠标
         Input.SetMouseMode(Input.MouseModeEnum.Visible);
         States.Remove(StateType.OnDrag);
     }
@@ -99,13 +132,38 @@ public partial class Poker : Button, IPoker, IController
         // 如果正在播放动画，使其终止
         if (AnimationPlayer.IsPlaying()) AnimationPlayer.Stop();
         
-        AnimationPlayer.Play("Poker/focused");
+        // 如果拥有状态未选择，则动画效果变为聚焦
+        if (States.Contains(StateType.UnSelect)) 
+        {
+            AnimationPlayer.Play("Poker/focused");
+            return;
+        }
+        
+        // 如果拥有状态选择中，返回
+        if (States.Contains(StateType.OnSelect)) 
+        {
+            return;
+        }
+        
+        AnimationPlayer.Play("Poker/blured");
     }
 
     private void OnMouseExited()
     {
         // 如果正在播放动画，使其终止
         if (AnimationPlayer.IsPlaying()) AnimationPlayer.Stop();
+        
+        // 如果拥有状态未选择，返回
+        if (States.Contains(StateType.UnSelect)) 
+        {
+            return;
+        }
+        
+        // 如果拥有状态选择中，返回
+        if (States.Contains(StateType.OnSelect)) 
+        {
+            return;
+        }
         
         AnimationPlayer.Play("Poker/blured");
     }
@@ -119,12 +177,12 @@ public partial class Poker : Button, IPoker, IController
         
         // 更新花色和贴图
         SuitType = suitType;
-        SuitRect.Texture = suitType switch
+        SurfaceRect.Texture = suitType switch
         {
             SuitType.Heart => _textureRegistry.Get(nameof(TextureKey.PokerSuitHeart)) as Texture2D,
             SuitType.Diamond => _textureRegistry.Get(nameof(TextureKey.PokerSuitDiamond)) as Texture2D,
-            // SuitType.Spade => ,
-            // SuitType.Club => ,
+            SuitType.Spade => _textureRegistry.Get(nameof(TextureKey.PokerSuitSpade)) as Texture2D,
+            SuitType.Club => _textureRegistry.Get(nameof(TextureKey.PokerSuitClub)) as Texture2D,
             _ => null
         };
     }

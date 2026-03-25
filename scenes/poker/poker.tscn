@@ -2,8 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dgomet07s0x3k" path="res://scripts/poker/Poker.cs" id="1_4exqo"]
 [ext_resource type="AnimationLibrary" uid="uid://c60hqc7h6ph53" path="res://resource/animation/PokerView.res" id="2_dnpyj"]
-[ext_resource type="Texture2D" uid="uid://dagraq78372or" path="res://assets/textures/poker/suit/diamond.png" id="2_mv11n"]
-[ext_resource type="Texture2D" uid="uid://ble4f8jycgkh4" path="res://assets/textures/poker/surface/default.png" id="3_dnpyj"]
+[ext_resource type="Texture2D" uid="uid://6vuld8lknm7e" path="res://assets/textures/poker/surface/heart.png" id="3_twcbr"]
 
 [sub_resource type="Animation" id="Animation_dnpyj"]
 length = 0.001
@@ -56,15 +55,20 @@ unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_dnpyj")
 libraries/Poker = ExtResource("2_dnpyj")
 
-[node name="BackRect" type="TextureRect" parent="." unique_id=2005219249]
-unique_name_in_owner = true
+[node name="ShadowRect" type="ColorRect" parent="." unique_id=2035727491]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 8.0
+offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+color = Color(0, 0, 0, 0.39215687)
+metadata/_edit_lock_ = true
 
 [node name="SurfaceRect" type="TextureRect" parent="." unique_id=341902432]
 unique_name_in_owner = true
@@ -75,18 +79,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("3_dnpyj")
-
-[node name="SuitRect" type="TextureRect" parent="." unique_id=2136729553]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-texture = ExtResource("2_mv11n")
+texture = ExtResource("3_twcbr")
 
 [node name="NumLabel" type="Label" parent="." unique_id=358447265]
 unique_name_in_owner = true
@@ -95,7 +88,6 @@ offset_left = 8.0
 offset_top = 8.0
 offset_right = 32.0
 offset_bottom = 32.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
 text = "24"
 horizontal_alignment = 1

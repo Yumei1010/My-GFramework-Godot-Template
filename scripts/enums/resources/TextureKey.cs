@@ -9,6 +9,4 @@ public enum TextureKey
     PokerSuitSpade,
     
     PokerSuitClub,
-    
-    PokerSurfaceDefault,
 }

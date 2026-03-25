@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://2qiga3qxnxcn" path="res://scripts/calculate_menu/CalculateMenu.cs" id="1_60nu6"]
 [ext_resource type="PackedScene" uid="uid://bbydbuw0ryr1p" path="res://scenes/component/calculate_bar.tscn" id="2_3dp4d"]
+[ext_resource type="PackedScene" uid="uid://cejgpn5b5k2or" path="res://scenes/component/hand_holder.tscn" id="3_ebdle"]
 
 [node name="CalculateMenu" type="Control" unique_id=1368381339]
 layout_mode = 3
@@ -21,8 +22,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.16862746, 0.16862746, 0.16862746, 1)
+color = Color(0.9882353, 0.9764706, 0.94509804, 1)
 metadata/_edit_lock_ = true
 
 [node name="CalculateBar" parent="." unique_id=356497160 instance=ExtResource("2_3dp4d")]
+layout_mode = 1
+
+[node name="HandHolder" parent="." unique_id=2114122353 instance=ExtResource("3_ebdle")]
+visible = false
 layout_mode = 1
