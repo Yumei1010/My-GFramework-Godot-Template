@@ -21,7 +21,7 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
         </PackageReference>
-        <PackageReference Update="Meziantou.Polyfill" Version="1.0.101">
+        <PackageReference Update="Meziantou.Polyfill" Version="1.0.104">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
         </PackageReference>
@@ -29,6 +29,8 @@
         <PackageReference Include="GeWuYou.GFramework.Godot" Version="0.0.177"/>
         <PackageReference Include="GeWuYou.GFramework.Godot.SourceGenerators" Version="0.0.206"/>
         <PackageReference Include="GeWuYou.GFramework.SourceGenerators" Version="0.0.177"/>
+        <PackageReference Include="GeWuYou.GFramework.Godot.SourceGenerators" Version="0.0.177"/>
+        <PackageReference Include="GeWuYou.GFramework.SourceGenerators" Version="0.0.206"/>
     </ItemGroup>
     <ItemGroup>
         <Content Include=".github\dependabot.yml"/>
