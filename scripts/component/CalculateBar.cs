@@ -1,9 +1,14 @@
+using GFramework.Core.Abstractions.controller;
+using GFramework.Core.extensions;
+using GFramework.SourceGenerators.Abstractions.rule;
 using GFrameworkGodotTemplate.global;
+using GFrameworkGodotTemplate.scripts.events.pokerSelector;
 using Godot;
 
 namespace GFrameworkGodotTemplate.scripts.component;
 
-public partial class CalculateBar : Control
+[ContextAware]
+public partial class CalculateBar : Control, IController
 {
     private TextureButton AddButton => GetNode<TextureButton>("%AddButton");
     private TextureButton SubtractButton => GetNode<TextureButton>("%SubtractButton");
@@ -44,59 +49,92 @@ public partial class CalculateBar : Control
         CeilButton.ButtonDown += OnButtonDownCeilButton;
         FloorButton.ButtonDown += OnButtonDownFloorButton;
     }
-    
+
     private void OnButtonDownAddButton()
     {
-        
+        this.SendEvent(new ModeChangedEvent()
+        {
+            Mode = "Add"
+        });
     }
 
     private void OnButtonDownSubtractButton()
     {
-        
+        this.SendEvent(new ModeChangedEvent()
+        {
+            Mode = "Subtract"
+        });
     }
 
     private void OnButtonDownMultiplyButton()
     {
-        
+        this.SendEvent(new ModeChangedEvent()
+        {
+            Mode = "Multiply"
+        });
     }
 
     private void OnButtonDownDivideButton()
     {
-        
+        this.SendEvent(new ModeChangedEvent()
+        {
+            Mode = "Divide"
+        });
     }
 
     private void OnButtonDownModuloButton()
     {
-        
+        this.SendEvent(new ModeChangedEvent()
+        {
+            Mode = "Modulo"
+        });
     }
 
     private void OnButtonDownSquareRootButton()
     {
-        
+        this.SendEvent(new ModeChangedEvent()
+        {
+            Mode = "SquareRoot"
+        });
     }
 
     private void OnButtonDownCeilButton()
     {
-        
+        this.SendEvent(new ModeChangedEvent()
+        {
+            Mode = "Ceil"
+        });
     }
 
     private void OnButtonDownFloorButton()
     {
-        
+        this.SendEvent(new ModeChangedEvent()
+        {
+            Mode = "Floor"
+        });
     }
 
     private void OnButtonDownPowerButton()
     {
-        
+        this.SendEvent(new ModeChangedEvent()
+        {
+            Mode = "Power"
+        });
     }
     
     private void OnButtonDownAbsoluteValueButton()
     {
-        
+        this.SendEvent(new ModeChangedEvent()
+        {
+            Mode = "AbsoluteValue"
+        });
     }
 
     private void OnButtonDownFactorialButton()
     {
-        
+        this.SendEvent(new ModeChangedEvent()
+        {
+            Mode = "Factorial"
+        });
     }
 }

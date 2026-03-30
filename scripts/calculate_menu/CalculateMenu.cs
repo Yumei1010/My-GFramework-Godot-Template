@@ -43,6 +43,6 @@ public partial class CalculateMenu : Control, IController, IUiPageBehaviorProvid
 
     private void RegisterEvent()
     {
-        
+       
     }
 }

@@ -38,6 +38,5 @@ public class UtilityModule : AbstractModule
                 AutoBackup = true
             }));
         architecture.RegisterUtility(new SaveStorageUtility());
-        // architecture.RegisterUtility(new PokerDataReadUtility());
     }
 }

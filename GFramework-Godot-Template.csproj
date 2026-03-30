@@ -54,6 +54,7 @@
     <ItemGroup>
         <Folder Include="scripts\calculate_menu\" />
         <Folder Include="scripts\command\audio\input\"/>
+        <Folder Include="scripts\command\calculate\" />
         <Folder Include="scripts\command\graphics\input\"/>
         <Folder Include="scripts\command\setting\input\"/>
         <Folder Include="scripts\main_menu\"/>

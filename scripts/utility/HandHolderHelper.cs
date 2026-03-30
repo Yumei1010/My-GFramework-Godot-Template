@@ -4,33 +4,33 @@ namespace GFrameworkGodotTemplate.scripts.utility;
 
 public static class HandHolderHelper
 {
-	private static readonly Vector2[][] PositionData = new Vector2[4][]
+	private static readonly Vector2[][] PositionData = new Vector2[][]
 	{
 		[
-			new Vector2(0f, -50f)
+			new Vector2(432f, 392f)
 		],
 		[
-			new Vector2(-100f, -50f),
-			new Vector2(100f, -50f)
+			new Vector2(368f, 408f),
+			new Vector2(496f, 408f)
 		],
 		[
-			new Vector2(-180f, -50f),
-			new Vector2(0f, -59f),
-			new Vector2(180f, -50f)
+			new Vector2(320f, 408f),
+			new Vector2(432f, 392f),
+			new Vector2(544f, 408f)
 		],
 		[
-			new Vector2(-240f, -25f),
-			new Vector2(-80f, -50f),
-			new Vector2(80f, -50f),
-			new Vector2(240f, -25f)
+			new Vector2(272f, 408f),
+			new Vector2(376f, 392f),
+			new Vector2(488f, 392f),
+			new Vector2(592f, 408f)
 		]
 	};
 
-	private static readonly float[][] AngleData = new float[4][]
+	private static readonly float[][] AngleData = new float[][]
 	{
-		[1],
-		[-2f, 2f],
-		[-3f, 0f, 3f],
+		[0],
+		[-4f, 4f],
+		[-6f, 0f, 6f],
 		[-8f, -4f, 4f, 8f],
 	};
 
