@@ -11,10 +11,7 @@ public class PokerFactory
     {
         var poker =  new Poker
         {
-            Id = Guid.NewGuid(),
-            SuitType = suitType,
-            NumValue = numValue,
-            NumType = numType
+            
         };
         return poker;
     }

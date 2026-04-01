@@ -33,3 +33,19 @@ layout_mode = 1
 
 [node name="CalculateBar" parent="." unique_id=356497160 instance=ExtResource("2_3dp4d")]
 layout_mode = 1
+
+[node name="Button" type="Button" parent="." unique_id=1494334784]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 488.0
+offset_top = 232.0
+offset_right = 664.0
+offset_bottom = 304.0
+
+[node name="Button2" type="Button" parent="." unique_id=1526185498]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 720.0
+offset_top = 232.0
+offset_right = 896.0
+offset_bottom = 304.0

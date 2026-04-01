@@ -57,6 +57,7 @@
         <Folder Include="scripts\command\calculate\" />
         <Folder Include="scripts\command\graphics\input\"/>
         <Folder Include="scripts\command\setting\input\"/>
+        <Folder Include="scripts\events\stateMachine\" />
         <Folder Include="scripts\main_menu\"/>
     </ItemGroup>
 </Project>

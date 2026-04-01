@@ -8,6 +8,7 @@ using GFrameworkGodotTemplate.scripts.events.poker;
 using GFrameworkGodotTemplate.scripts.utility;
 using GFrameworkGodotTemplate.global;
 using GFrameworkGodotTemplate.scripts.events.pokerSelector;
+using GFrameworkGodotTemplate.scripts.poker.state;
 using Godot;
 
 namespace GFrameworkGodotTemplate.scripts.poker;
@@ -16,23 +17,21 @@ namespace GFrameworkGodotTemplate.scripts.poker;
 public partial class Poker : Button, IPoker, IController
 {
     private AnimationPlayer AnimationPlayer => GetNode<AnimationPlayer>("%AnimationPlayer");
+    private IPokerStateMachine StateMachine => GetNode<PokerStateMachine>("%StateMachine");
     private TextureRect SurfaceRect => GetNode<TextureRect>("%SurfaceRect");
     private Label NumLabel => GetNode<Label>("%NumLabel");
 
+    private Guid Id { get; set; } = Guid.Empty;
+    private SuitType SuitType { get; set; } = SuitType.Heart;
+    private string NumValue { get; set; } = null!;
+    private NumType NumType { get; set; } = NumType.Integer;
+    private IPokerState State { get; set; } = null!;
+    
+    private Vector2 SpawnPosition { get; set; }
+    private float SpawnRotation { get; set; }
+    
     private IGodotTextureRegistry _textureRegistry = null!;
     private Tween _tween = null!;
-
-    public required Guid Id { get; set; } = Guid.Empty;
-    public SuitType SuitType { get; set; } = SuitType.Heart;
-    public required string NumValue { get; set; } = null!;
-    public NumType NumType { get; set; } = NumType.Integer;
-    
-    public IList<StateType> States { get; set; } = new List<StateType>();
-    public Vector2 HandPosition { get; set; }
-    public float HandRotation { get; set; }
-
-    private Vector2 _lastMousePosition;
-    private float _targetRotationRad;
 
     public override void _Ready()
     {
@@ -43,23 +42,15 @@ public partial class Poker : Button, IPoker, IController
     
     public override void _Process(double delta)
     {
-        // 如果拥有状态拖拽中，则每帧调用方法变为拖拽卡牌
-        if (States.Contains(StateType.OnDrag))
-        {
-            GlobalPosition = GetGlobalMousePosition() - Size / 2;
-            
-            Vector2 currentMousePosition =  GetGlobalMousePosition();
-            Vector2 gap = currentMousePosition - _lastMousePosition;
-            _lastMousePosition = currentMousePosition;
-            _targetRotationRad = Mathf.DegToRad(Mathf.Clamp(gap.X * 15f, -30f, 30f));
-            Rotation = Mathf.LerpAngle(Rotation, _targetRotationRad, 10f * (float)delta);
-        }
+        StateMachine.Process(delta);
     }
 
     private async Task ReadyAsync()
     {
         await GameEntryPoint.Architecture.WaitUntilReadyAsync().ConfigureAwait(false);
         _textureRegistry = this.GetUtility<IGodotTextureRegistry>()!;
+        
+        StateMachine.SetInitState(new IdleState());
     }
     
     private void ConnectSignal()
@@ -97,77 +88,118 @@ public partial class Poker : Button, IPoker, IController
         }).UnRegisterWhenNodeExitTree(this);
     }
     
+    public Guid GetId()
+    {
+        return Id;
+    }
+
+    public SuitType GetSuitType()
+    {
+        return SuitType;
+    }
+
+    public string GetNumValue()
+    {
+        return NumValue;
+    }
+
+    public NumType GetNumType()
+    {
+        return NumType;
+    }
+    
+    public IPokerState GetState()
+    {
+        return State;
+    }
+
+    public Vector2 GetSpawnPosition()
+    {
+        return SpawnPosition;
+    }
+
+    public void SetSuitType(SuitType suitType)
+    {
+        SuitType = suitType;
+    }
+
+    public void SetNumValue(string numValue)
+    {
+        NumValue = numValue;
+    }
+
+    public void SetNumType(NumType numType)
+    {
+        NumType = numType;
+    }
+
+    public void SetState(IPokerState state)
+    {
+        State = state;
+    }
+
+    public void SetPos(Vector2 pos)
+    {
+        GlobalPosition = pos;
+    }
+
+    public void SetRot(float angle)
+    {
+        Rotation = angle;
+    }
+
+    public void SetSpawn(Vector2 pos)
+    {
+        SpawnPosition = pos;
+    }
+    
+    public void ResetPos()
+    {
+        // 如果正在播放动画，使其终止
+        if (!_tween.IsNull() && _tween.IsRunning()) _tween.Kill();
+        
+        _tween = CreateTween();
+        _tween.SetEase(Tween.EaseType.InOut);
+        _tween.SetTrans(Tween.TransitionType.Elastic);
+        _tween.TweenProperty( this, "global_position", SpawnPosition, 0.35f);
+    }
+    
+    public void ResetRot()
+    {
+        // 如果正在播放动画，使其终止
+        if (!_tween.IsNull() && _tween.IsRunning()) _tween.Kill();
+        
+        _tween = CreateTween();
+        _tween.SetEase(Tween.EaseType.InOut);
+        _tween.SetTrans(Tween.TransitionType.Elastic);
+        _tween.TweenProperty(this, "rotation", Mathf.DegToRad(SpawnRotation), 0.15f);
+    }
+
+    public async Task ResetPosAndRot()
+    {
+        ResetPos();
+        await ToSignal(_tween, Tween.SignalName.Finished);
+        ResetRot();
+    }
+
     private void OnButtonDown()
     {
-        this.SendEvent(new SelectChangedEvent()
-        {
-            Poker = this
-        });
-        
-        // 如果拥有状态未选择，则点击效果变为选择卡牌
-        if (States.Contains(StateType.UnSelect)) 
-        {
-            // 上浮一定距离以突出
-            var pos = GlobalPosition;
-            pos.Y -= Size.Y / 2;
-            GlobalPosition = pos;
-            return;
-        }
-        
-        // 如果拥有状态选择中，则点击效果变为取消选择卡牌
-        if (States.Contains(StateType.OnSelect)) 
-        {
-            // 下沉一定距离以回归
-            var pos = GlobalPosition;
-            pos.Y += Size.Y / 2;
-            GlobalPosition = pos;
-            return;
-        }
-        
-        // 默认点击效果为开始拖拽卡牌，隐藏并锁定鼠标在窗口范围内
-        Input.SetMouseMode(Input.MouseModeEnum.ConfinedHidden);
-        States.Add(StateType.OnDrag);
+        StateMachine.MouseDown();
     }
     
     private void OnButtonUp()
     {
-        // 如果拥有状态手牌中，复位卡牌
-        if (States.Contains(StateType.InHand)) _ = ResetPosAndRot();
-        
-        // 默认释放效果为结束拖拽卡牌，显示鼠标
-        Input.SetMouseMode(Input.MouseModeEnum.Visible);
-        States.Remove(StateType.OnDrag);
+        StateMachine.MouseUp();
     }
 
     private void OnMouseEntered()
     {
-        // 如果拥有状态未选择，则动画效果变为聚焦
-        if (States.Contains(StateType.UnSelect)) 
-        {
-            AnimationPlayer.Play("Poker/focused");
-            return;
-        }
-        
-        // 如果拥有状态选择中，返回
-        if (States.Contains(StateType.OnSelect)) return;
-        
-        // 如果正在播放动画，使其终止
-        if (AnimationPlayer.IsPlaying()) AnimationPlayer.Stop();
-        AnimationPlayer.Play("Poker/blured");
-        ResetRot();
+        StateMachine.MouseEnter();
     }
 
     private void OnMouseExited()
     {
-        // 如果拥有状态未选择，返回
-        if (States.Contains(StateType.UnSelect)) return;
-        
-        // 如果拥有状态选择中，返回
-        if (States.Contains(StateType.OnSelect)) return;
-        
-        // 如果正在播放动画，使其终止
-        if (AnimationPlayer.IsPlaying()) AnimationPlayer.Stop();
-        AnimationPlayer.Play("Poker/blured");
+        StateMachine.MouseExit();
     }
 
     private void OnSuitTypeChangedEvent(SuitType suitType,Poker poker)
@@ -220,49 +252,13 @@ public partial class Poker : Button, IPoker, IController
     
     private void OnEnableChangedEvent(bool enable)
     {
-        // 如果选择器被启用，添加状态未选择，否则移除
         if (enable)
         {
-            // 如果拥有状态未选择，返回
-            if(States.Contains(StateType.UnSelect)) return;
-            
-            States.Add(StateType.UnSelect);
+            StateMachine.ChangeTo(new UnSelectState());
         }
         else
         {
-            // 如果未拥有状态未选择，返回
-            if(!States.Contains(StateType.UnSelect)) return;
-            
-            States.Remove(StateType.UnSelect);
+            StateMachine.ChangeTo(new IdleState());
         }
-    }
-
-    private void ResetPos()
-    {
-        // 如果正在播放动画，使其终止
-        if (!_tween.IsNull() && _tween.IsRunning()) _tween.Kill();
-        
-        _tween = CreateTween();
-        _tween.SetEase(Tween.EaseType.InOut);
-        _tween.SetTrans(Tween.TransitionType.Elastic);
-        _tween.TweenProperty( this, "global_position", HandPosition, 0.5f);
-    }
-    
-    private void ResetRot()
-    {
-        // 如果正在播放动画，使其终止
-        if (!_tween.IsNull() && _tween.IsRunning()) _tween.Kill();
-        
-        _tween = CreateTween();
-        _tween.SetEase(Tween.EaseType.InOut);
-        _tween.SetTrans(Tween.TransitionType.Elastic);
-        _tween.TweenProperty(this, "rotation", Mathf.DegToRad(HandRotation), 0.5f);
-    }
-    
-    private async Task ResetPosAndRot()
-    {
-        ResetPos();
-        await ToSignal(_tween, Tween.SignalName.Finished);
-        ResetRot();
     }
 }
