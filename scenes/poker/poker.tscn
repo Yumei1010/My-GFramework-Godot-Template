@@ -4,6 +4,10 @@
 [ext_resource type="AnimationLibrary" uid="uid://c60hqc7h6ph53" path="res://resource/animation/PokerView.res" id="2_dnpyj"]
 [ext_resource type="Texture2D" uid="uid://6vuld8lknm7e" path="res://assets/textures/poker/surface/heart.png" id="3_twcbr"]
 [ext_resource type="Script" uid="uid://ddwck8cwbdhqf" path="res://scripts/poker/PokerStateMachine.cs" id="4_4exqo"]
+[ext_resource type="Script" uid="uid://c14ajqqmlbmg6" path="res://scripts/poker/state/IdleState.cs" id="4_5nhq5"]
+[ext_resource type="Script" uid="uid://53xgns3lsyw5" path="res://scripts/poker/state/DragState.cs" id="5_3emhc"]
+[ext_resource type="Script" uid="uid://dcha8sa4kj58p" path="res://scripts/poker/state/UnSelectState.cs" id="6_cf1su"]
+[ext_resource type="Script" uid="uid://bx1ye0383sg7u" path="res://scripts/poker/state/OnSelectState.cs" id="7_o2w1w"]
 
 [sub_resource type="Animation" id="Animation_dnpyj"]
 length = 0.001
@@ -59,6 +63,21 @@ libraries/Poker = ExtResource("2_dnpyj")
 [node name="StateMachine" type="Node" parent="." unique_id=1870655408]
 unique_name_in_owner = true
 script = ExtResource("4_4exqo")
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=969394254]
+script = ExtResource("4_5nhq5")
+StateType = 2
+
+[node name="Drag" type="Node" parent="StateMachine" unique_id=448181989]
+script = ExtResource("5_3emhc")
+StateType = 3
+
+[node name="UnSelect" type="Node" parent="StateMachine" unique_id=933368843]
+script = ExtResource("6_cf1su")
+StateType = 1
+
+[node name="OnSelect" type="Node" parent="StateMachine" unique_id=1429832384]
+script = ExtResource("7_o2w1w")
 
 [node name="ShadowRect" type="ColorRect" parent="." unique_id=2035727491]
 layout_mode = 1

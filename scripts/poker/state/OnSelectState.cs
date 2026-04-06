@@ -1,47 +1,45 @@
-﻿using Godot;
+﻿using GFrameworkGodotTemplate.scripts.enums.poker;
+using Godot;
 
 namespace GFrameworkGodotTemplate.scripts.poker.state;
 
-public partial class OnSelectState : Node, IPokerState
+public partial class OnSelectState : PokerState
 {
-    private IPoker Poker { get; set; } = null!;
+    public override void Process(double delta)
+    {
+        
+    }
+
+    public override void Enter()
+    {
+        Vector2 pos = Poker.GetGlobalPosition();
+        pos.Y -= Poker.GetSize().Y / 2;   
+        Poker.SetPos(pos);
+    }
+
+    public override void Exit()
+    {
+        Vector2 pos = Poker.GetGlobalPosition();
+        pos.Y += Poker.GetSize().Y / 2;   
+        Poker.SetPos(pos);
+    }
+
+    public override void MouseDown()
+    {
+        RequestStateChange(StateType.UnSelect);
+    }
+
+    public override void MouseUp()
+    {
+        
+    }
+
+    public override void MouseEnter()
+    {
+        
+    }
     
-    public void SetPoker(IPoker poker)
-    {
-        Poker = poker;
-    }
-    
-    public void Process(double delta)
-    {
-        
-    }
-
-    public void Enter()
-    {
-        
-    }
-
-    public void Exit()
-    {
-        
-    }
-    
-    public void MouseDown()
-    {
-        
-    }
-
-    public void MouseUp()
-    {
-        
-    }
-
-    public void MouseEnter()
-    {
-        
-    }
-
-    public void MouseExit()
+    public override void MouseExit()
     {
         
     }

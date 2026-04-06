@@ -100,12 +100,12 @@ public interface IPoker
     float GetRotation();
     
     /// <summary>
-    ///     获取扑克记录的生成位置
+    ///     获取扑克记录的默认位置
     /// </summary>
     Vector2 GetSpawnPosition();
     
     /// <summary>
-    ///     重置扑克的位置到生成位置
+    ///     重置扑克的位置到默认位置
     /// </summary>
     void ResetPos();
 
@@ -115,7 +115,7 @@ public interface IPoker
     void ResetRot();
     
     /// <summary>
-    ///     异步重置扑克的位置和旋转角度到初始值
+    ///     异步重置扑克的位置和旋转角度到默认值
     /// </summary>
-    Task ResetPosAndRot();
+    void ResetPosAndRot();
 }

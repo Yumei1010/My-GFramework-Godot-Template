@@ -1,93 +1,85 @@
-﻿using GFramework.Core.extensions;
-using GFramework.Godot.extensions;
-using GFramework.SourceGenerators.Abstractions.rule;
-using GFrameworkGodotTemplate.scripts.enums.poker;
-using GFrameworkGodotTemplate.scripts.events.poker;
-using GFrameworkGodotTemplate.scripts.poker.state;
-using Godot.Collections;
+﻿using GFrameworkGodotTemplate.scripts.enums.poker;
 using Godot;
 
 namespace GFrameworkGodotTemplate.scripts.poker;
 
-[ContextAware]
 public partial class PokerStateMachine : Node, IPokerStateMachine
 {
-    public IPokerState PreviousState { get; set; } = null!;
-    public IPokerState CurrentState { get; set; } = null!;
-    public Dictionary States { get; set; } = null!;
-    
-    public override void _Ready()
+    private PokerState PreviousState { get; set; } = null!;
+    private PokerState CurrentState { get; set; } = null!;
+    private Dictionary<StateType, PokerState> States { get; set; } = new();
+
+    public void Init(Poker poker)
     {
-        RegisterEvent();
-    }
-    
-    private void RegisterEvent()
-    {
-        // 注册对状态变更事件的监听
-        this.RegisterEvent<StateChangedEvent>(e =>
+        foreach (var node in GetChildren())
         {
-            OnStateChangedEvent(e.NextState);
-        }).UnRegisterWhenNodeExitTree(this);
+            var state = (PokerState)node;
+            States.Add(state.StateType, state);
+            state.Poker = poker;
+            state.StateChangeRequested += OnStateChangeRequested;
+        }
+    }
+
+    public void ChangeTo(StateType stateType)
+    {
+        if (CurrentState == null!)
+        {
+            CurrentState = States[stateType];
+            CurrentState.Enter();
+            return;
+        }
+        
+        // 如果新状态与旧状态相同，返回
+        if (CurrentState == States[stateType]) return;
+        
+        CurrentState.Exit();
+        PreviousState = CurrentState;
+        CurrentState = States[stateType];
+        CurrentState.Enter();
     }
     
     public void Process(double delta)
     {
-        CurrentState.Process(delta);
-    }
-
-    public void SetInitState(IPokerState state)
-    {
-        CurrentState = state;
-        CurrentState.Enter();
+        if (CurrentState != null!)
+        {
+            CurrentState.Process(delta);
+        }
     }
     
     public void MouseDown()
     {
-        CurrentState.MouseDown();
+        if (CurrentState != null!)
+        {
+            CurrentState.MouseDown();
+        }
     }
 
     public void MouseUp()
     {
-        CurrentState.MouseUp();
+        if (CurrentState != null!)
+        {
+            CurrentState.MouseUp();
+        }
     }
 
     public void MouseEnter()
     {
-        CurrentState.MouseEnter();
+        if (CurrentState != null!)
+        {
+            CurrentState.MouseEnter();
+        }
     }
 
     public void MouseExit()
     {
-        CurrentState.MouseExit();
+        if (CurrentState != null!)
+        {
+            CurrentState.MouseExit();
+        }
     }
 
-    public void ChangeTo(IPokerState state)
+    private void OnStateChangeRequested(StateType stateType)
     {
-        state.SetPoker((IPoker)GetParent());
-        
-        // 如果新状态与当前状态相同，返回
-        if (CurrentState == state) return;
-        
-        // 退出当前状态
-        PreviousState = CurrentState;
-        PreviousState.Exit();
-        
-        // 进入新状态
-        CurrentState = state;
-        CurrentState.Enter();
-    }
-    
-    private void OnStateChangedEvent(StateType state)
-    {
-        IPokerState newState = state switch
-        {
-            StateType.Idle => new IdleState(),
-            StateType.Drag => new DragState(),
-            StateType.OnSelect => new OnSelectState(),
-            StateType.UnSelect => new UnSelectState(),
-            _ => throw new ArgumentOutOfRangeException(nameof(state), state, null)
-        };
-        
-        ChangeTo(newState);
+        ChangeTo(stateType);
     }
 }

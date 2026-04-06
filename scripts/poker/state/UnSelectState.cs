@@ -1,47 +1,50 @@
-﻿using Godot;
+﻿using GFrameworkGodotTemplate.scripts.enums.poker;
+using Godot;
 
 namespace GFrameworkGodotTemplate.scripts.poker.state;
 
-public partial class UnSelectState : Node, IPokerState
+public partial class UnSelectState : PokerState
 {
-    private IPoker Poker { get; set; } = null!;
+    private Tween _tween = null!;
     
-    public void SetPoker(IPoker poker)
+    public override void Process(double delta)
     {
-        Poker = poker;
+        
+    }
+
+    public override void Enter()
+    {
+        
+    }
+
+    public override void Exit()
+    {
+
+    }
+
+    public override void MouseDown()
+    {
+        RequestStateChange(StateType.OnSelect);
+    }
+
+    public override void MouseUp()
+    {
+        
+    }
+
+    public override void MouseEnter()
+    {
+        // 如果正在播放动画，使其终止
+        if (!_tween.IsNull() && _tween.IsRunning()) _tween.Kill();
+        
+        _tween = CreateTween();
+        _tween.SetEase(Tween.EaseType.InOut);
+        _tween.SetTrans(Tween.TransitionType.Elastic);
+        _tween.TweenProperty( Poker, "scale", new Vector2(1.05f,1.05f), 0.125f);
+        _tween.TweenProperty( Poker, "scale", new Vector2(1.0f,1.0f), 0.125f);
     }
     
-    public void Process(double delta)
-    {
-        
-    }
-
-    public void Enter()
-    {
-        
-    }
-
-    public void Exit()
-    {
-        
-    }
-    
-    public void MouseDown()
-    {
-        
-    }
-
-    public void MouseUp()
-    {
-        
-    }
-
-    public void MouseEnter()
-    {
-        
-    }
-
-    public void MouseExit()
+    public override void MouseExit()
     {
         
     }

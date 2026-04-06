@@ -1,25 +1,14 @@
-﻿using GFramework.Core.extensions;
-using GFramework.SourceGenerators.Abstractions.rule;
-using GFrameworkGodotTemplate.scripts.enums.poker;
-using GFrameworkGodotTemplate.scripts.events.poker;
+﻿using GFrameworkGodotTemplate.scripts.enums.poker;
 using Godot;
 
 namespace GFrameworkGodotTemplate.scripts.poker.state;
 
-[ContextAware]
-public partial class DragState : Node, IPokerState
+public partial class DragState : PokerState
 {
-    private IPoker Poker { get; set; } = null!;
-    
     private Vector2 _lastMousePosition;
     private float _targetRotationRad;
-
-    public void SetPoker(IPoker poker)
-    {
-        Poker = poker;
-    }
     
-    public void Process(double delta)
+    public override void Process(double delta)
     {
         Poker.SetPos(Poker.GetGlobalMousePosition() - Poker.GetSize() / 2);
         
@@ -30,38 +19,34 @@ public partial class DragState : Node, IPokerState
         Poker.SetRot(Mathf.LerpAngle(Poker.GetRotation(), _targetRotationRad, 10f * (float)delta));
     }
 
-    public void Enter()
+    public override void Enter()
     {
         // 隐藏并锁定鼠标在窗口范围内
         Input.SetMouseMode(Input.MouseModeEnum.ConfinedHidden);
     }
 
-    public void Exit()
+    public override void Exit()
     {
         // 显示鼠标
         Input.SetMouseMode(Input.MouseModeEnum.Visible);
     }
 
-    public void MouseDown()
+    public override void MouseDown()
     {
         
     }
 
-    public void MouseUp()
+    public override void MouseUp()
     {
-        this.SendEvent(new StateChangedEvent()
-        {
-            CurrentState = StateType.Drag,
-            NextState = StateType.Idle
-        });
+        RequestStateChange(StateType.Idle);
     }
 
-    public void MouseEnter()
+    public override void MouseEnter()
     {
         
     }
     
-    public void MouseExit()
+    public override void MouseExit()
     {
         
     }

@@ -31,25 +31,7 @@ offset_bottom = 12.000107
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="Poker3" parent="PokerHolderContainer" unique_id=1025080971 instance=ExtResource("2_5us6y")]
-layout_mode = 1
-offset_left = 16.000076
-offset_top = -131.99998
-offset_right = 112.00008
-offset_bottom = 12.000015
-grow_horizontal = 1
-grow_vertical = 1
-
-[node name="Poker2" parent="PokerHolderContainer" unique_id=64572461 instance=ExtResource("2_5us6y")]
-layout_mode = 1
-offset_left = -111.99995
-offset_top = -132.00002
-offset_right = -15.999947
-offset_bottom = 12.000107
-grow_horizontal = 1
-grow_vertical = 1
-
-[node name="Poker4" parent="PokerHolderContainer" unique_id=704664207 instance=ExtResource("2_5us6y")]
+[node name="Poker2" parent="PokerHolderContainer" unique_id=1025080971 instance=ExtResource("2_5us6y")]
 layout_mode = 1
 offset_left = 16.000076
 offset_top = -131.99998

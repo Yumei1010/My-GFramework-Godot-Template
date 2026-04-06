@@ -8,7 +8,6 @@ using GFrameworkGodotTemplate.scripts.events.poker;
 using GFrameworkGodotTemplate.scripts.utility;
 using GFrameworkGodotTemplate.global;
 using GFrameworkGodotTemplate.scripts.events.pokerSelector;
-using GFrameworkGodotTemplate.scripts.poker.state;
 using Godot;
 
 namespace GFrameworkGodotTemplate.scripts.poker;
@@ -50,7 +49,8 @@ public partial class Poker : Button, IPoker, IController
         await GameEntryPoint.Architecture.WaitUntilReadyAsync().ConfigureAwait(false);
         _textureRegistry = this.GetUtility<IGodotTextureRegistry>()!;
         
-        StateMachine.SetInitState(new IdleState());
+        StateMachine.Init(this);
+        StateMachine.ChangeTo(StateType.Idle);
     }
     
     private void ConnectSignal()
@@ -79,6 +79,12 @@ public partial class Poker : Button, IPoker, IController
         this.RegisterEvent<NumTypeChangedEvent>(e =>
         {
             OnNumTypeChangedEvent(e.NumType,e.Poker);
+        }).UnRegisterWhenNodeExitTree(this);
+        
+        // 注册对状态变更事件的监听
+        this.RegisterEvent<StateChangedEvent>(e =>
+        {
+            OnStateChangedEvent(e.NextState,e.Poker);
         }).UnRegisterWhenNodeExitTree(this);
         
         // 注册对选择器可用性变更事件的监听
@@ -161,7 +167,7 @@ public partial class Poker : Button, IPoker, IController
         _tween = CreateTween();
         _tween.SetEase(Tween.EaseType.InOut);
         _tween.SetTrans(Tween.TransitionType.Elastic);
-        _tween.TweenProperty( this, "global_position", SpawnPosition, 0.35f);
+        _tween.TweenProperty( this, "global_position", SpawnPosition, 0.25f);
     }
     
     public void ResetRot()
@@ -172,14 +178,19 @@ public partial class Poker : Button, IPoker, IController
         _tween = CreateTween();
         _tween.SetEase(Tween.EaseType.InOut);
         _tween.SetTrans(Tween.TransitionType.Elastic);
-        _tween.TweenProperty(this, "rotation", Mathf.DegToRad(SpawnRotation), 0.15f);
+        _tween.TweenProperty(this, "rotation", Mathf.DegToRad(SpawnRotation), 0.25f);
     }
 
-    public async Task ResetPosAndRot()
+    public void ResetPosAndRot()
     {
-        ResetPos();
-        await ToSignal(_tween, Tween.SignalName.Finished);
-        ResetRot();
+        if (!_tween.IsNull() && _tween.IsRunning()) _tween.Kill();
+        
+        _tween = CreateTween();
+        _tween.SetParallel();
+        _tween.SetEase(Tween.EaseType.InOut);
+        _tween.SetTrans(Tween.TransitionType.Elastic);
+        _tween.TweenProperty( this, "global_position", SpawnPosition, 0.25f);
+        _tween.TweenProperty(this, "rotation", Mathf.DegToRad(SpawnRotation), 0.25f);
     }
 
     private void OnButtonDown()
@@ -202,7 +213,7 @@ public partial class Poker : Button, IPoker, IController
         StateMachine.MouseExit();
     }
 
-    private void OnSuitTypeChangedEvent(SuitType suitType,Poker poker)
+    private void OnSuitTypeChangedEvent(SuitType suitType,IPoker poker)
     {
         // 如果不是触发事件的poker，返回
         if (poker != this) return;
@@ -222,7 +233,7 @@ public partial class Poker : Button, IPoker, IController
         };
     }
     
-    private void OnNumValueChangedEvent(String numValue,Poker poker)
+    private void OnNumValueChangedEvent(String numValue,IPoker poker)
     {
         // 如果不是触发事件的poker，返回
         if (poker != this) return;
@@ -238,7 +249,7 @@ public partial class Poker : Button, IPoker, IController
         NumLabel.Text = numValue;
     }
     
-    private void OnNumTypeChangedEvent(NumType numType,Poker poker)
+    private void OnNumTypeChangedEvent(NumType numType,IPoker poker)
     {
         // 如果不是触发事件的poker，返回
         if (poker != this) return;
@@ -250,15 +261,16 @@ public partial class Poker : Button, IPoker, IController
         NumType = numType;
     }
     
+    private void OnStateChangedEvent(StateType stateType,IPoker poker)
+    {
+        // 如果不是触发事件的poker，返回
+        if (poker != this) return;
+        
+        StateMachine.ChangeTo(stateType);
+    }
+    
     private void OnEnableChangedEvent(bool enable)
     {
-        if (enable)
-        {
-            StateMachine.ChangeTo(new UnSelectState());
-        }
-        else
-        {
-            StateMachine.ChangeTo(new IdleState());
-        }
+        StateMachine.ChangeTo(enable ? StateType.UnSelect : StateType.OnSelect);
     }
 }

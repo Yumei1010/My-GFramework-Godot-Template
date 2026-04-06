@@ -8,12 +8,6 @@ namespace GFrameworkGodotTemplate.scripts.poker;
 public interface IPokerState : IState
 {
     /// <summary>
-    ///     设置扑克状态的当前代理扑克。
-    /// </summary>
-    /// <param name="poker">要设置的扑克 <see cref="IPoker"/> 实例</param>
-    void SetPoker(IPoker poker);
-    
-    /// <summary>
     ///     鼠标点击时调用的方法
     /// </summary>
     void MouseDown();

@@ -1,56 +1,40 @@
-﻿using GFramework.Core.extensions;
-using GFramework.SourceGenerators.Abstractions.rule;
-using GFrameworkGodotTemplate.scripts.enums.poker;
-using GFrameworkGodotTemplate.scripts.events.poker;
-using Godot;
+﻿using GFrameworkGodotTemplate.scripts.enums.poker;
 
 namespace GFrameworkGodotTemplate.scripts.poker.state;
 
-[ContextAware]
-public partial class IdleState : Node, IPokerState
+public partial class IdleState : PokerState
 {
-    private IPoker Poker { get; set; } = null!;
-    
-    public void SetPoker(IPoker poker)
-    {
-        Poker = poker;
-    }
-    
-    public void Process(double delta)
+    public override void Process(double delta)
     {
         
     }
 
-    public void Enter()
+    public override void Enter()
     {
-        _ = Poker.ResetPosAndRot();
+        Poker.ResetPosAndRot();
     }
 
-    public void Exit()
+    public override void Exit()
     {
 
     }
 
-    public void MouseDown()
+    public override void MouseDown()
     {
-        this.SendEvent(new StateChangedEvent()
-        {
-            CurrentState = StateType.Idle,
-            NextState = StateType.Drag
-        });
+        RequestStateChange(StateType.Drag);
     }
 
-    public void MouseUp()
+    public override void MouseUp()
     {
         
     }
 
-    public void MouseEnter()
+    public override void MouseEnter()
     {
         
     }
     
-    public void MouseExit()
+    public override void MouseExit()
     {
         
     }
