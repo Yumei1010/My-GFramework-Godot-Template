@@ -24,19 +24,19 @@ mouse_filter = 2
 
 [node name="Poker" parent="PokerHolderContainer" unique_id=351593249 instance=ExtResource("2_5us6y")]
 layout_mode = 1
-offset_left = -111.99995
-offset_top = -132.00002
-offset_right = -15.999947
-offset_bottom = 12.000107
+offset_left = -280.0
+offset_top = -324.0
+offset_right = -184.0
+offset_bottom = -179.99988
 grow_horizontal = 1
 grow_vertical = 1
 
 [node name="Poker2" parent="PokerHolderContainer" unique_id=1025080971 instance=ExtResource("2_5us6y")]
 layout_mode = 1
-offset_left = 16.000076
-offset_top = -131.99998
-offset_right = 112.00008
-offset_bottom = 12.000015
+offset_left = 208.00002
+offset_top = -380.0
+offset_right = 304.0
+offset_bottom = -236.0
 grow_horizontal = 1
 grow_vertical = 1
 

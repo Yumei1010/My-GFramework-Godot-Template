@@ -1,8 +1,12 @@
-﻿using GFrameworkGodotTemplate.scripts.enums.poker;
+﻿using GFramework.Core.extensions;
+using GFramework.SourceGenerators.Abstractions.rule;
+using GFrameworkGodotTemplate.scripts.enums.poker;
+using GFrameworkGodotTemplate.scripts.events.pokerSelector;
 using Godot;
 
 namespace GFrameworkGodotTemplate.scripts.poker.state;
 
+[ContextAware]
 public partial class UnSelectState : PokerState
 {
     private Tween _tween = null!;
@@ -24,6 +28,12 @@ public partial class UnSelectState : PokerState
 
     public override void MouseDown()
     {
+        this.SendEvent(new SelectChangedEvent
+        {
+            Poker = Poker,
+            IsSelected = true
+        });
+        
         RequestStateChange(StateType.OnSelect);
     }
 

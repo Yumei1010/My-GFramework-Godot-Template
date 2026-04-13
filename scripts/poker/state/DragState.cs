@@ -10,7 +10,7 @@ public partial class DragState : PokerState
     
     public override void Process(double delta)
     {
-        Poker.SetPos(Poker.GetGlobalMousePosition() - Poker.GetSize() / 2);
+        Poker.SetGlobalPosition(Poker.GetGlobalMousePosition() - Poker.GetSize() / 2);
         
         Vector2 currentMousePosition =  Poker.GetGlobalMousePosition();
         Vector2 gap = currentMousePosition - _lastMousePosition;

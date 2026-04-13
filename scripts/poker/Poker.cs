@@ -24,10 +24,9 @@ public partial class Poker : Button, IPoker, IController
     private SuitType SuitType { get; set; } = SuitType.Heart;
     private string NumValue { get; set; } = null!;
     private NumType NumType { get; set; } = NumType.Integer;
-    private IPokerState State { get; set; } = null!;
     
-    private Vector2 SpawnPosition { get; set; }
-    private float SpawnRotation { get; set; }
+    private Vector2 DefaultPosition { get; set; }
+    private float DefaultRotation { get; set; }
     
     private IGodotTextureRegistry _textureRegistry = null!;
     private Tween _tween = null!;
@@ -113,15 +112,10 @@ public partial class Poker : Button, IPoker, IController
     {
         return NumType;
     }
-    
-    public IPokerState GetState()
-    {
-        return State;
-    }
 
     public Vector2 GetSpawnPosition()
     {
-        return SpawnPosition;
+        return DefaultPosition;
     }
 
     public void SetSuitType(SuitType suitType)
@@ -139,12 +133,7 @@ public partial class Poker : Button, IPoker, IController
         NumType = numType;
     }
 
-    public void SetState(IPokerState state)
-    {
-        State = state;
-    }
-
-    public void SetPos(Vector2 pos)
+    public void SetGlobalPosition(Vector2 pos)
     {
         GlobalPosition = pos;
     }
@@ -154,9 +143,14 @@ public partial class Poker : Button, IPoker, IController
         Rotation = angle;
     }
 
-    public void SetSpawn(Vector2 pos)
+    public void SetDefaultRotation(float angle)
     {
-        SpawnPosition = pos;
+        DefaultRotation = angle;
+    }
+    
+    public void SetDefaultPosition(Vector2 pos)
+    {
+        DefaultPosition = pos;
     }
     
     public void ResetPos()
@@ -167,7 +161,7 @@ public partial class Poker : Button, IPoker, IController
         _tween = CreateTween();
         _tween.SetEase(Tween.EaseType.InOut);
         _tween.SetTrans(Tween.TransitionType.Elastic);
-        _tween.TweenProperty( this, "global_position", SpawnPosition, 0.25f);
+        _tween.TweenProperty( this, "global_position", DefaultPosition, 0.25f);
     }
     
     public void ResetRot()
@@ -178,7 +172,7 @@ public partial class Poker : Button, IPoker, IController
         _tween = CreateTween();
         _tween.SetEase(Tween.EaseType.InOut);
         _tween.SetTrans(Tween.TransitionType.Elastic);
-        _tween.TweenProperty(this, "rotation", Mathf.DegToRad(SpawnRotation), 0.25f);
+        _tween.TweenProperty(this, "rotation", Mathf.DegToRad(DefaultRotation), 0.25f);
     }
 
     public void ResetPosAndRot()
@@ -189,8 +183,24 @@ public partial class Poker : Button, IPoker, IController
         _tween.SetParallel();
         _tween.SetEase(Tween.EaseType.InOut);
         _tween.SetTrans(Tween.TransitionType.Elastic);
-        _tween.TweenProperty( this, "global_position", SpawnPosition, 0.25f);
-        _tween.TweenProperty(this, "rotation", Mathf.DegToRad(SpawnRotation), 0.25f);
+        _tween.TweenProperty( this, "global_position", DefaultPosition, 0.25f);
+        _tween.TweenProperty(this, "rotation", Mathf.DegToRad(DefaultRotation), 0.25f);
+    }
+
+    public void MoveTo(Vector2 pos)
+    {
+        if (!_tween.IsNull() && _tween.IsRunning()) _tween.Kill();
+        
+        _tween = CreateTween();
+        _tween.SetParallel();
+        _tween.SetEase(Tween.EaseType.InOut);
+        _tween.SetTrans(Tween.TransitionType.Elastic);
+        _tween.TweenProperty( this, "global_position", pos, 0.25f);
+    }
+
+    public void ChangeTo(StateType state)
+    {
+        StateMachine.ChangeTo(state);
     }
 
     private void OnButtonDown()
@@ -271,6 +281,6 @@ public partial class Poker : Button, IPoker, IController
     
     private void OnEnableChangedEvent(bool enable)
     {
-        StateMachine.ChangeTo(enable ? StateType.UnSelect : StateType.OnSelect);
+        StateMachine.ChangeTo(enable ? StateType.UnSelect : StateType.Idle);
     }
 }

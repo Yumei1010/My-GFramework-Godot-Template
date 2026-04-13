@@ -1,8 +1,12 @@
-﻿using GFrameworkGodotTemplate.scripts.enums.poker;
+﻿using GFramework.Core.extensions;
+using GFramework.SourceGenerators.Abstractions.rule;
+using GFrameworkGodotTemplate.scripts.enums.poker;
+using GFrameworkGodotTemplate.scripts.events.pokerSelector;
 using Godot;
 
 namespace GFrameworkGodotTemplate.scripts.poker.state;
 
+[ContextAware]
 public partial class OnSelectState : PokerState
 {
     public override void Process(double delta)
@@ -14,18 +18,24 @@ public partial class OnSelectState : PokerState
     {
         Vector2 pos = Poker.GetGlobalPosition();
         pos.Y -= Poker.GetSize().Y / 2;   
-        Poker.SetPos(pos);
+        Poker.SetGlobalPosition(pos);
     }
 
     public override void Exit()
     {
         Vector2 pos = Poker.GetGlobalPosition();
         pos.Y += Poker.GetSize().Y / 2;   
-        Poker.SetPos(pos);
+        Poker.SetGlobalPosition(pos);
     }
 
     public override void MouseDown()
     {
+        this.SendEvent(new SelectChangedEvent
+        {
+            Poker = Poker,
+            IsSelected = false
+        });
+        
         RequestStateChange(StateType.UnSelect);
     }
 

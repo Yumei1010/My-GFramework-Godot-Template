@@ -16,5 +16,5 @@ public class CapacityChangedEvent
     /// <summary>
     /// 载荷
     /// </summary>
-    public IList<Poker> Loads { get; set; } = new List<Poker>();
+    public IList<IPoker> Loads { get; set; } = new List<IPoker>();
 }

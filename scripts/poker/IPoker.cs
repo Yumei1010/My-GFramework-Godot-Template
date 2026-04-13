@@ -33,12 +33,6 @@ public interface IPoker
     NumType GetNumType();
     
     /// <summary>
-    ///     获取扑克的当前状态。
-    /// </summary>
-    /// <returns>扑克的 <see cref="IPokerState"/> 状态实例</returns>
-    IPokerState GetState();
-    
-    /// <summary>
     ///     设置扑克的花色类型。
     /// </summary>
     /// <param name="suitType">花色类型 <see cref="SuitType"/></param>
@@ -57,27 +51,21 @@ public interface IPoker
     void SetNumType(NumType numType);
     
     /// <summary>
-    ///     设置扑克的当前状态。
-    /// </summary>
-    /// <param name="state">要设置的状态 <see cref="IPokerState"/> 实例</param>
-    void SetState(IPokerState state);
-    
-    /// <summary>
     ///     设置扑克的位置
     /// </summary>
     /// <param name="pos">要设置的位置向量 <see cref="Vector2"/></param>
-    void SetPos(Vector2 pos);
+    void SetGlobalPosition(Vector2 pos);
     
     /// <summary>
-    ///     设置扑克的旋转角度
+    ///     设置扑克的默认旋转角度
     /// </summary>
     /// <param name="angle">要设置的旋转角度</param>
-    void SetRot(float angle);
+    void SetDefaultRotation(float angle);
     
     /// <summary>
-    ///     设置扑克的生成位置
+    ///     设置扑克的默认位置
     /// </summary>
-    void SetSpawn(Vector2 pos);
+    void SetDefaultPosition(Vector2 pos);
     
     /// <summary>
     ///     获取扑克的全局位置
@@ -118,4 +106,16 @@ public interface IPoker
     ///     异步重置扑克的位置和旋转角度到默认值
     /// </summary>
     void ResetPosAndRot();
+    
+    /// <summary>
+    ///     移动扑克到指定位置
+    /// </summary>
+    /// <param name="pos">要设置的位置向量 <see cref="Vector2"/></param>
+    void MoveTo(Vector2 pos);
+
+    /// <summary>
+    ///     变更扑克到指定状态
+    /// </summary>
+    /// <param name="state">要设置的状态类型 <see cref="StateType"/></param>
+    void ChangeTo(StateType state);
 }

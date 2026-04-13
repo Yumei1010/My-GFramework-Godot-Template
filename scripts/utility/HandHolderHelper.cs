@@ -4,59 +4,63 @@ namespace GFrameworkGodotTemplate.scripts.utility;
 
 public static class HandHolderHelper
 {
-	private static readonly Vector2[][] PositionData = new Vector2[][]
-	{
-		[
-			new Vector2(432f, 392f)
-		],
-		[
-			new Vector2(368f, 408f),
-			new Vector2(496f, 408f)
-		],
-		[
-			new Vector2(320f, 408f),
-			new Vector2(432f, 392f),
-			new Vector2(544f, 408f)
-		],
-		[
-			new Vector2(272f, 408f),
-			new Vector2(376f, 392f),
-			new Vector2(488f, 392f),
-			new Vector2(592f, 408f)
-		]
-	};
+    private const float CenterX = 432f;          
+    private const float YEdge = 408f;            
+    private const float YMid = 392f;
+    private const float HorizontalSpacing = 48f;
+    private const float MinAngleDeg = 5f;
 
-	private static readonly float[][] AngleData = new float[][]
-	{
-		[0],
-		[-4f, 4f],
-		[-6f, 0f, 6f],
-		[-8f, -4f, 4f, 8f],
-	};
+    /// <summary>
+    /// 获取指定手牌数量的第index张牌的位置
+    /// </summary>
+    /// /// <param name="handSize">手牌数量 <see cref="int"/></param>
+    /// /// <param name="index">牌的位置 <see cref="int"/></param>
+    public static Vector2 GetPosition(int handSize, int index)
+    {
+        if (handSize <= 0)
+            throw new ArgumentOutOfRangeException(nameof(handSize), "手牌数量必须大于0");
+        if (index < 0 || index >= handSize)
+            throw new ArgumentOutOfRangeException(nameof(index), "索引超出范围");
 
-	public static Vector2 GetPosition(int handSize, int index)
-	{
-		if (handSize - 1 >= PositionData.Length)
-		{
-			throw new ArgumentOutOfRangeException($"Hand size {handSize} is greater than {PositionData.Length + 1}!");
-		}
-		if (index >= PositionData[handSize - 1].Length)
-		{
-			throw new ArgumentOutOfRangeException($"Card index {index} is greater than {PositionData[handSize - 1].Length}!");
-		}
-		return PositionData[handSize - 1][index];
-	}
+        if (handSize == 1)
+            return new Vector2(CenterX, YMid);
+        float maxOffset = HorizontalSpacing * (handSize - 1);
+        float dy = YEdge - YMid;
+        float halfAngleRad = Mathf.Atan2(dy, maxOffset);
+        float maxAngleRad = 2 * halfAngleRad;
+        float minAngleRad = MinAngleDeg * Mathf.Pi / 180f;
+        if (maxAngleRad < minAngleRad) maxAngleRad = minAngleRad;
+        float radius = maxOffset / Mathf.Sin(maxAngleRad);
+        float centerY = YMid + radius;
+        float t = (float)index / (handSize - 1);
+        float angleRad = -maxAngleRad + 2 * maxAngleRad * t;
+        float x = CenterX + radius * Mathf.Sin(angleRad);
+        float y = centerY - radius * Mathf.Cos(angleRad);
+        return new Vector2(x, y);
+    }
 
-	public static float GetAngle(int handSize, int index)
-	{
-		if (handSize - 1 >= PositionData.Length)
-		{
-			throw new ArgumentOutOfRangeException($"Hand size {handSize} is greater than {PositionData.Length + 1}!");
-		}
-		if (index >= PositionData[handSize - 1].Length)
-		{
-			throw new ArgumentOutOfRangeException($"Card index {index} is greater than {PositionData[handSize - 1].Length}!");
-		}
-		return AngleData[handSize - 1][index];
-	}
+    /// <summary>
+    /// 获取指定手牌数量的第index张牌的旋转角度（度数）
+    /// </summary>
+    /// /// <param name="handSize">手牌数量 <see cref="int"/></param>
+    /// /// <param name="index">牌的位置 <see cref="int"/></param>
+    public static float GetAngle(int handSize, int index)
+    {
+        if (handSize <= 0)
+            throw new ArgumentOutOfRangeException(nameof(handSize), "手牌数量必须大于0");
+        if (index < 0 || index >= handSize)
+            throw new ArgumentOutOfRangeException(nameof(index), "索引超出范围");
+
+        if (handSize == 1)
+            return 0f;
+        float maxOffset = HorizontalSpacing * (handSize - 1);
+        float dy = YEdge - YMid;
+        float halfAngleRad = Mathf.Atan2(dy, maxOffset);
+        float maxAngleRad = 2 * halfAngleRad;
+        float minAngleRad = MinAngleDeg * Mathf.Pi / 180f;
+        if (maxAngleRad < minAngleRad) maxAngleRad = minAngleRad;
+        float t = (float)index / (handSize - 1);
+        float angleRad = -maxAngleRad + 2 * maxAngleRad * t;
+        return angleRad * 180f / Mathf.Pi;
+    }
 }

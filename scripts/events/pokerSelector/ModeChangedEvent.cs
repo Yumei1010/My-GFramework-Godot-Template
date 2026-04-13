@@ -9,5 +9,5 @@ public class ModeChangedEvent
     /// <summary>
     /// 模式
     /// </summary>
-    public required string Mode { get; set; } = null!;
+    public required string Mode { get; init; }
 }

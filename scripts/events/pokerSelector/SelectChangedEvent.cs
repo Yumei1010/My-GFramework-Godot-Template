@@ -11,5 +11,10 @@ public class SelectChangedEvent
     /// <summary>
     /// 响应事件的poker实例
     /// </summary>
-    public Poker Poker { get; set; } = null!;
+    public required IPoker Poker { get; init; }
+
+    /// <summary>
+    /// 是否被选择
+    /// </summary>
+    public required bool IsSelected { get; init; }
 }
