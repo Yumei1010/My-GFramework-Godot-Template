@@ -9,7 +9,7 @@ public partial class PokerStateMachine : Node, IPokerStateMachine
     private PokerState CurrentState { get; set; } = null!;
     private Dictionary<StateType, PokerState> States { get; set; } = new();
 
-    public void Init(Poker poker)
+    public void Init(IPoker poker)
     {
         foreach (var node in GetChildren())
         {

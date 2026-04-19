@@ -19,7 +19,7 @@ public abstract partial class PokerState : Node, IPokerState
     /// </summary>
     [Export] public StateType StateType { get; set; }
     
-    public Poker Poker { get; set; } = null!;
+    public IPoker Poker { get; set; } = null!;
 
     public abstract void MouseDown();
     

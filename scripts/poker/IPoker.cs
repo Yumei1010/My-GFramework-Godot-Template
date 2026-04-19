@@ -106,12 +106,6 @@ public interface IPoker
     ///     异步重置扑克的位置和旋转角度到默认值
     /// </summary>
     void ResetPosAndRot();
-    
-    /// <summary>
-    ///     移动扑克到指定位置
-    /// </summary>
-    /// <param name="pos">要设置的位置向量 <see cref="Vector2"/></param>
-    void MoveTo(Vector2 pos);
 
     /// <summary>
     ///     变更扑克到指定状态

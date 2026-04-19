@@ -11,8 +11,8 @@ public interface IPokerStateMachine : IStateMachine
     /// <summary>
     ///     初始化
     /// </summary>
-    /// <param name="poker">要代理的卡牌 <see cref="Poker"/> 实例</param>
-    void Init(Poker poker);
+    /// <param name="poker">要代理的卡牌 <see cref="IPoker"/> 实例</param>
+    void Init(IPoker poker);
 
     /// <summary>
     ///     更新到指定状态

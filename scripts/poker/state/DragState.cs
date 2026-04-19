@@ -5,18 +5,9 @@ namespace GFrameworkGodotTemplate.scripts.poker.state;
 
 public partial class DragState : PokerState
 {
-    private Vector2 _lastMousePosition;
-    private float _targetRotationRad;
-    
     public override void Process(double delta)
     {
         Poker.SetGlobalPosition(Poker.GetGlobalMousePosition() - Poker.GetSize() / 2);
-        
-        Vector2 currentMousePosition =  Poker.GetGlobalMousePosition();
-        Vector2 gap = currentMousePosition - _lastMousePosition;
-        _lastMousePosition = currentMousePosition;
-        _targetRotationRad = Mathf.DegToRad(Mathf.Clamp(gap.X * 15f, -30f, 30f));
-        Poker.SetRot(Mathf.LerpAngle(Poker.GetRotation(), _targetRotationRad, 10f * (float)delta));
     }
 
     public override void Enter()

@@ -62,7 +62,13 @@ public static class CalculateHelper
 
         private static long Gcd(long a, long b) { while (b != 0) { long t = b; b = a % b; a = t; } return a; }
     }
-    
+
+    /// <summary>
+    /// 二元计算，包含加，减，乘，除，模，指数幂，N次根
+    /// </summary>
+    /// <param name="pokerA">手牌A <see cref="IPoker"/></param>
+    /// <param name="pokerB">手牌B <see cref="IPoker"/></param>
+    /// <param name="operate">运算方式 <see cref="OperateType"/></param>
     public static string Calculate(IPoker pokerA, IPoker pokerB,OperateType operate)
     {
         Fraction fa = ParseToFraction(pokerA);
@@ -77,10 +83,15 @@ public static class CalculateHelper
             OperateType.Modulo => fb.ToDouble() == 0 ? "ERROR:DivByZero" : FormatDouble(fa.ToDouble() % fb.ToDouble()),
             OperateType.Power => FormatDouble(Math.Pow(fa.ToDouble(), fb.ToDouble())),
             OperateType.NthRoot => fb.ToDouble() == 0 ? "ERROR:ZeroRootIndex" : FormatDouble(Math.Pow(fa.ToDouble(), 1.0 / fb.ToDouble())),
-            _ => "0"
+            _ => "24"
         };
     }
     
+    /// <summary>
+    /// 一元计算，包含绝对值，阶乘，平方根，向上取整，向下取整
+    /// </summary>
+    /// <param name="poker">手牌A <see cref="IPoker"/></param>
+    /// <param name="operate">运算方式 <see cref="OperateType"/></param>
     public static string Calculate(IPoker poker, OperateType operate)
     {
         double val = ParseToFraction(poker).ToDouble();
@@ -92,7 +103,7 @@ public static class CalculateHelper
             OperateType.SquareRoot => val < 0 ? "ERROR:InvalidSqrt" : FormatDouble(Math.Sqrt(val)),
             OperateType.Ceil => FormatDouble(Math.Ceiling(val)),
             OperateType.Floor => FormatDouble(Math.Floor(val)),
-            _ => "0"
+            _ => "24"
         };
     }
 
@@ -136,10 +147,7 @@ public static class CalculateHelper
         }
         return result;
     }
-
-    /// <summary>
-    /// 格式化双精度结果：整数显示整数，非整数最多保留1位小数
-    /// </summary>
+    
     private static string FormatDouble(double value)
     {
         if (Math.Abs(value - Math.Round(value)) < DoubleEpsilon) return Math.Round(value).ToString(CultureInfo.InvariantCulture);

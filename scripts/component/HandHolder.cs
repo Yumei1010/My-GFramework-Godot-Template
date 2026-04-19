@@ -1,5 +1,3 @@
-using GFrameworkGodotTemplate.scripts.enums.calculate;
-using GFrameworkGodotTemplate.scripts.enums.poker;
 using GFrameworkGodotTemplate.scripts.poker;
 using GFrameworkGodotTemplate.scripts.utility;
 using Godot;
@@ -34,14 +32,6 @@ public partial class HandHolder : Control
         }
         
         Sort();
-        
-        Hands[0].SetNumValue("12");
-        Hands[0].SetNumType(NumType.Integer);
-        
-        Hands[1].SetNumValue("24");
-        Hands[1].SetNumType(NumType.Integer);
-        
-        GD.Print("sum = ",CalculateHelper.Calculate(Hands[0],Hands[1],OperateType.Power));
     }
     
     private void Sort()

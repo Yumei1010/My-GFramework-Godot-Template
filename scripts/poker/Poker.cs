@@ -17,10 +17,11 @@ public partial class Poker : Button, IPoker, IController
 {
     private AnimationPlayer AnimationPlayer => GetNode<AnimationPlayer>("%AnimationPlayer");
     private IPokerStateMachine StateMachine => GetNode<PokerStateMachine>("%StateMachine");
+    private TextureRect ShadowRect => GetNode<TextureRect>("%ShadowRect");
     private TextureRect SurfaceRect => GetNode<TextureRect>("%SurfaceRect");
     private Label NumLabel => GetNode<Label>("%NumLabel");
 
-    private Guid Id { get; set; } = Guid.Empty;
+    private Guid Id { get; } = Guid.NewGuid();
     private SuitType SuitType { get; set; } = SuitType.Heart;
     private string NumValue { get; set; } = null!;
     private NumType NumType { get; set; } = NumType.Integer;
@@ -29,7 +30,10 @@ public partial class Poker : Button, IPoker, IController
     private float DefaultRotation { get; set; }
     
     private IGodotTextureRegistry _textureRegistry = null!;
-    private Tween _tween = null!;
+    private ShaderMaterial _material = null!;
+    private Tween _tweenPos = null!;
+    private Tween _tweenRot = null!;
+    private Tween _tweenScale = null!;
 
     public override void _Ready()
     {
@@ -41,12 +45,25 @@ public partial class Poker : Button, IPoker, IController
     public override void _Process(double delta)
     {
         StateMachine.Process(delta);
+        
+        Vector2 shadowPos = ShadowRect.Position;
+        shadowPos.X = Mathf.Lerp(0f, -Mathf.Sign(GetGlobalPosition().X - (GetViewportRect().Size / 2f).X) * 20f, Mathf.Abs((GetGlobalPosition().X - (GetViewportRect().Size / 2f).X) / (GetViewportRect().Size / 2f).X));
+        ShadowRect.Position = shadowPos;
+    }
+
+    public override void _GuiInput(InputEvent @event)
+    {
+        float rotX = Mathf.RadToDeg(Mathf.LerpAngle(Mathf.DegToRad(-5f), Mathf.DegToRad(5f), Mathf.Clamp(GetLocalMousePosition().X / Size.X, 0f, 1f)));
+        float rotY = Mathf.RadToDeg(Mathf.LerpAngle(Mathf.DegToRad(5f), Mathf.DegToRad(-5f), Mathf.Clamp(GetLocalMousePosition().Y / Size.Y, 0f, 1f)));
+        _material.SetShaderParameter("x_rot", rotY);
+        _material.SetShaderParameter("y_rot", rotX);
     }
 
     private async Task ReadyAsync()
     {
         await GameEntryPoint.Architecture.WaitUntilReadyAsync().ConfigureAwait(false);
         _textureRegistry = this.GetUtility<IGodotTextureRegistry>()!;
+        _material = (ShaderMaterial)SurfaceRect.Material;
         
         StateMachine.Init(this);
         StateMachine.ChangeTo(StateType.Idle);
@@ -138,11 +155,6 @@ public partial class Poker : Button, IPoker, IController
         GlobalPosition = pos;
     }
 
-    public void SetRot(float angle)
-    {
-        Rotation = angle;
-    }
-
     public void SetDefaultRotation(float angle)
     {
         DefaultRotation = angle;
@@ -156,46 +168,23 @@ public partial class Poker : Button, IPoker, IController
     public void ResetPos()
     {
         // 如果正在播放动画，使其终止
-        if (!_tween.IsNull() && _tween.IsRunning()) _tween.Kill();
-        
-        _tween = CreateTween();
-        _tween.SetEase(Tween.EaseType.InOut);
-        _tween.SetTrans(Tween.TransitionType.Elastic);
-        _tween.TweenProperty( this, "global_position", DefaultPosition, 0.25f);
+        if (!_tweenPos.IsNull() && _tweenPos.IsRunning()) _tweenPos.Kill();
+        _tweenPos = CreateTween().SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Elastic);
+        _tweenPos.TweenProperty( this, "global_position", DefaultPosition, 0.25f);
     }
     
     public void ResetRot()
     {
         // 如果正在播放动画，使其终止
-        if (!_tween.IsNull() && _tween.IsRunning()) _tween.Kill();
-        
-        _tween = CreateTween();
-        _tween.SetEase(Tween.EaseType.InOut);
-        _tween.SetTrans(Tween.TransitionType.Elastic);
-        _tween.TweenProperty(this, "rotation", Mathf.DegToRad(DefaultRotation), 0.25f);
+        if (!_tweenRot.IsNull() && _tweenRot.IsRunning()) _tweenRot.Kill();
+        _tweenRot = CreateTween().SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Elastic);
+        _tweenRot.TweenProperty(this, "rotation", Mathf.DegToRad(DefaultRotation), 0.25f);
     }
 
     public void ResetPosAndRot()
     {
-        if (!_tween.IsNull() && _tween.IsRunning()) _tween.Kill();
-        
-        _tween = CreateTween();
-        _tween.SetParallel();
-        _tween.SetEase(Tween.EaseType.InOut);
-        _tween.SetTrans(Tween.TransitionType.Elastic);
-        _tween.TweenProperty( this, "global_position", DefaultPosition, 0.25f);
-        _tween.TweenProperty(this, "rotation", Mathf.DegToRad(DefaultRotation), 0.25f);
-    }
-
-    public void MoveTo(Vector2 pos)
-    {
-        if (!_tween.IsNull() && _tween.IsRunning()) _tween.Kill();
-        
-        _tween = CreateTween();
-        _tween.SetParallel();
-        _tween.SetEase(Tween.EaseType.InOut);
-        _tween.SetTrans(Tween.TransitionType.Elastic);
-        _tween.TweenProperty( this, "global_position", pos, 0.25f);
+        ResetPos();
+        ResetRot();
     }
 
     public void ChangeTo(StateType state)
@@ -216,18 +205,33 @@ public partial class Poker : Button, IPoker, IController
     private void OnMouseEntered()
     {
         StateMachine.MouseEnter();
+                
+        // 如果正在播放动画，使其终止
+        if (!_tweenScale.IsNull() && _tweenScale.IsRunning()) _tweenScale.Kill();
+        _tweenScale = CreateTween().SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Elastic);
+        _tweenScale.TweenProperty(this, "scale", new Vector2(1.2f,1.2f), 0.25f);
     }
 
     private void OnMouseExited()
     {
         StateMachine.MouseExit();
+        
+        // 如果正在播放动画，使其终止
+        if (!_tweenRot.IsNull() && _tweenRot.IsRunning()) _tweenRot.Kill();
+        _tweenRot = CreateTween().SetParallel().SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Back);
+        _tweenRot.TweenProperty(_material, "shader_parameter/x_rot", 0.0f, 0.5f);
+        _tweenRot.TweenProperty(_material, "shader_parameter/y_rot", 0.0f, 0.5f);
+        
+        // 如果正在播放动画，使其终止
+        if (!_tweenScale.IsNull() && _tweenScale.IsRunning()) _tweenScale.Kill();
+        _tweenScale = CreateTween().SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Elastic);
+        _tweenScale.TweenProperty(this, "scale", new Vector2(1.0f,1.0f), 0.25f);
     }
 
     private void OnSuitTypeChangedEvent(SuitType suitType,IPoker poker)
     {
         // 如果不是触发事件的poker，返回
         if (poker != this) return;
-        
         // 新值与旧值相等，返回
         if (SuitType == suitType) return;
         
@@ -247,10 +251,8 @@ public partial class Poker : Button, IPoker, IController
     {
         // 如果不是触发事件的poker，返回
         if (poker != this) return;
-        
         // 为null，返回
         if (numValue == null!) return;
-        
         // 新值与旧值相等，返回
         if (string.Equals(NumValue, numValue, StringComparison.Ordinal)) return;
         
@@ -263,7 +265,6 @@ public partial class Poker : Button, IPoker, IController
     {
         // 如果不是触发事件的poker，返回
         if (poker != this) return;
-        
         // 新值与旧值相等，返回
         if (NumType == numType) return;
         
