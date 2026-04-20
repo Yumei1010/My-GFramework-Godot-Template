@@ -1,9 +1,10 @@
-﻿using GFrameworkGodotTemplate.scripts.stateMachine;
+﻿using GFrameworkGodotTemplate.scripts.enums.poker;
+using GFrameworkGodotTemplate.scripts.stateMachine;
 
 namespace GFrameworkGodotTemplate.scripts.poker;
 
 /// <summary>
-/// 扑克状态接口，定义了扑克状态的基本属性和必须实现的功能
+///     扑克状态接口，定义了扑克状态的基本属性和必须实现的功能
 /// </summary>
 public interface IPokerState : IState
 {
@@ -26,4 +27,16 @@ public interface IPokerState : IState
     ///     鼠标离开时调用的方法
     /// </summary>
     void MouseExit();
+
+    /// <summary>
+    ///     设置代理的扑克实例
+    /// </summary>
+    /// <param name="poker">代理的扑克 <see cref="IPoker"/> 实例</param>
+    void SetPoker(IPoker poker);
+    
+    /// <summary>
+    ///     获取扑克状态标识符
+    /// </summary>
+    /// <returns>扑克状态标识符 <see cref="StateType"/></returns>
+    StateType GetStateType();
 }

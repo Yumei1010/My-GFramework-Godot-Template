@@ -15,17 +15,16 @@ namespace GFrameworkGodotTemplate.scripts.poker;
 [ContextAware]
 public partial class Poker : Button, IPoker, IController
 {
-    private AnimationPlayer AnimationPlayer => GetNode<AnimationPlayer>("%AnimationPlayer");
     private IPokerStateMachine StateMachine => GetNode<PokerStateMachine>("%StateMachine");
     private TextureRect ShadowRect => GetNode<TextureRect>("%ShadowRect");
     private TextureRect SurfaceRect => GetNode<TextureRect>("%SurfaceRect");
     private Label NumLabel => GetNode<Label>("%NumLabel");
-
-    private Guid Id { get; } = Guid.NewGuid();
-    private SuitType SuitType { get; set; } = SuitType.Heart;
-    private string NumValue { get; set; } = null!;
-    private NumType NumType { get; set; } = NumType.Integer;
     
+    [Export] public SuitType SuitType { get; set; } = SuitType.Heart;
+    [Export] public string NumValue { get; set; } = "24";
+    [Export] NumType NumType { get; set; } = NumType.Integer;
+    
+    private Guid Id { get; } = Guid.NewGuid();
     private Vector2 DefaultPosition { get; set; }
     private float DefaultRotation { get; set; }
     
@@ -80,31 +79,31 @@ public partial class Poker : Button, IPoker, IController
     private void RegisterEvent()
     {
         // 注册对花色变更事件的监听
-        this.RegisterEvent<SuitTypeChangedEvent>(e =>
+        this.RegisterEvent<PokerSuitTypeChangedEvent>(e =>
         {
             OnSuitTypeChangedEvent(e.SuitType,e.Poker);
         }).UnRegisterWhenNodeExitTree(this);
         
         // 注册对数值变更事件的监听
-        this.RegisterEvent<NumValueChangedEvent>(e =>
+        this.RegisterEvent<PokerNumValueChangedEvent>(e =>
         {
             OnNumValueChangedEvent(e.NumValue,e.Poker);
         }).UnRegisterWhenNodeExitTree(this);
         
         // 注册对数值类型变更事件的监听
-        this.RegisterEvent<NumTypeChangedEvent>(e =>
+        this.RegisterEvent<PokerNumTypeChangedEvent>(e =>
         {
             OnNumTypeChangedEvent(e.NumType,e.Poker);
         }).UnRegisterWhenNodeExitTree(this);
         
         // 注册对状态变更事件的监听
-        this.RegisterEvent<StateChangedEvent>(e =>
+        this.RegisterEvent<PokerStateChangedEvent>(e =>
         {
-            OnStateChangedEvent(e.NextState,e.Poker);
+            OnStateChangedEvent(e.State,e.Poker);
         }).UnRegisterWhenNodeExitTree(this);
         
         // 注册对选择器可用性变更事件的监听
-        this.RegisterEvent<EnableChangedEvent>(e =>
+        this.RegisterEvent<PokerSelectorEnableChangedEvent>(e =>
         {
             OnEnableChangedEvent(e.Enable);
         }).UnRegisterWhenNodeExitTree(this);

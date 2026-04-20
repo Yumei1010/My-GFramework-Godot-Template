@@ -68,21 +68,21 @@ public static class CalculateHelper
     /// </summary>
     /// <param name="pokerA">手牌A <see cref="IPoker"/></param>
     /// <param name="pokerB">手牌B <see cref="IPoker"/></param>
-    /// <param name="operate">运算方式 <see cref="OperateType"/></param>
-    public static string Calculate(IPoker pokerA, IPoker pokerB,OperateType operate)
+    /// <param name="mode">运算方式 <see cref="ModeType"/></param>
+    public static string Calculate(IPoker pokerA, IPoker pokerB,ModeType mode)
     {
         Fraction fa = ParseToFraction(pokerA);
         Fraction fb = ParseToFraction(pokerB);
 
-        return operate switch
+        return mode switch
         {
-            OperateType.Add => (fa + fb).ToString(),
-            OperateType.Subtract => (fa - fb).ToString(),
-            OperateType.Multiply => (fa * fb).ToString(),
-            OperateType.Divide => fb.Numerator == 0 ? "ERROR:DivByZero" : (fa / fb).ToString(),
-            OperateType.Modulo => fb.ToDouble() == 0 ? "ERROR:DivByZero" : FormatDouble(fa.ToDouble() % fb.ToDouble()),
-            OperateType.Power => FormatDouble(Math.Pow(fa.ToDouble(), fb.ToDouble())),
-            OperateType.NthRoot => fb.ToDouble() == 0 ? "ERROR:ZeroRootIndex" : FormatDouble(Math.Pow(fa.ToDouble(), 1.0 / fb.ToDouble())),
+            ModeType.Add => (fa + fb).ToString(),
+            ModeType.Subtract => (fa - fb).ToString(),
+            ModeType.Multiply => (fa * fb).ToString(),
+            ModeType.Divide => fb.Numerator == 0 ? "ERROR:DivByZero" : (fa / fb).ToString(),
+            ModeType.Modulo => fb.ToDouble() == 0 ? "ERROR:DivByZero" : FormatDouble(fa.ToDouble() % fb.ToDouble()),
+            ModeType.Power => FormatDouble(Math.Pow(fa.ToDouble(), fb.ToDouble())),
+            ModeType.NthRoot => fb.ToDouble() == 0 ? "ERROR:ZeroRootIndex" : FormatDouble(Math.Pow(fa.ToDouble(), 1.0 / fb.ToDouble())),
             _ => "24"
         };
     }
@@ -91,18 +91,18 @@ public static class CalculateHelper
     /// 一元计算，包含绝对值，阶乘，平方根，向上取整，向下取整
     /// </summary>
     /// <param name="poker">手牌A <see cref="IPoker"/></param>
-    /// <param name="operate">运算方式 <see cref="OperateType"/></param>
-    public static string Calculate(IPoker poker, OperateType operate)
+    /// <param name="mode">运算方式 <see cref="ModeType"/></param>
+    public static string Calculate(IPoker poker, ModeType mode)
     {
         double val = ParseToFraction(poker).ToDouble();
 
-        return operate switch
+        return mode switch
         {
-            OperateType.AbsoluteValue => FormatDouble(Math.Abs(val)),
-            OperateType.Factorial => FormatDouble(CalculateFactorial(val)),
-            OperateType.SquareRoot => val < 0 ? "ERROR:InvalidSqrt" : FormatDouble(Math.Sqrt(val)),
-            OperateType.Ceil => FormatDouble(Math.Ceiling(val)),
-            OperateType.Floor => FormatDouble(Math.Floor(val)),
+            ModeType.AbsoluteValue => FormatDouble(Math.Abs(val)),
+            ModeType.Factorial => FormatDouble(CalculateFactorial(val)),
+            ModeType.SquareRoot => val < 0 ? "ERROR:InvalidSqrt" : FormatDouble(Math.Sqrt(val)),
+            ModeType.Ceil => FormatDouble(Math.Ceiling(val)),
+            ModeType.Floor => FormatDouble(Math.Floor(val)),
             _ => "24"
         };
     }

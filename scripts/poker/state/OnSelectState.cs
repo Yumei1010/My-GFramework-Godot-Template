@@ -30,13 +30,13 @@ public partial class OnSelectState : PokerState
 
     public override void MouseDown()
     {
-        this.SendEvent(new SelectChangedEvent
+        this.SendEvent(new PokerSelectorSelectChangedEvent
         {
             Poker = Poker,
             IsSelected = false
         });
         
-        RequestStateChange(StateType.UnSelect);
+        ChangeTo(StateType.UnSelect);
     }
 
     public override void MouseUp()

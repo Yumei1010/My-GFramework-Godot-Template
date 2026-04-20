@@ -4,7 +4,7 @@
 ///     定义计算方法类型的键值枚举
 ///     用于标识和管理不同的计算方法
 /// </summary>
-public enum OperateType
+public enum ModeType
 {
     /// <summary>
     /// 加

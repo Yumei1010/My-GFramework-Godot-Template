@@ -2,6 +2,7 @@ using GFramework.Core.Abstractions.controller;
 using GFramework.Core.extensions;
 using GFramework.SourceGenerators.Abstractions.rule;
 using GFrameworkGodotTemplate.global;
+using GFrameworkGodotTemplate.scripts.enums.calculate;
 using GFrameworkGodotTemplate.scripts.events.pokerSelector;
 using Godot;
 
@@ -52,89 +53,89 @@ public partial class CalculateBar : Control, IController
 
     private void OnButtonDownAddButton()
     {
-        this.SendEvent(new ModeChangedEvent()
+        this.SendEvent(new PokerSelectorModeChangedEvent()
         {
-            Mode = "Add"
+            Mode = ModeType.Add
         });
     }
 
     private void OnButtonDownSubtractButton()
     {
-        this.SendEvent(new ModeChangedEvent()
+        this.SendEvent(new PokerSelectorModeChangedEvent()
         {
-            Mode = "Subtract"
+            Mode = ModeType.Subtract
         });
     }
 
     private void OnButtonDownMultiplyButton()
     {
-        this.SendEvent(new ModeChangedEvent()
+        this.SendEvent(new PokerSelectorModeChangedEvent()
         {
-            Mode = "Multiply"
+            Mode = ModeType.Multiply
         });
     }
 
     private void OnButtonDownDivideButton()
     {
-        this.SendEvent(new ModeChangedEvent()
+        this.SendEvent(new PokerSelectorModeChangedEvent()
         {
-            Mode = "Divide"
+            Mode = ModeType.Divide
         });
     }
 
     private void OnButtonDownModuloButton()
     {
-        this.SendEvent(new ModeChangedEvent()
+        this.SendEvent(new PokerSelectorModeChangedEvent()
         {
-            Mode = "Modulo"
+            Mode = ModeType.Modulo
         });
     }
 
     private void OnButtonDownSquareRootButton()
     {
-        this.SendEvent(new ModeChangedEvent()
+        this.SendEvent(new PokerSelectorModeChangedEvent()
         {
-            Mode = "SquareRoot"
+            Mode = ModeType.SquareRoot
         });
     }
 
     private void OnButtonDownCeilButton()
     {
-        this.SendEvent(new ModeChangedEvent()
+        this.SendEvent(new PokerSelectorModeChangedEvent()
         {
-            Mode = "Ceil"
+            Mode = ModeType.Ceil
         });
     }
 
     private void OnButtonDownFloorButton()
     {
-        this.SendEvent(new ModeChangedEvent()
+        this.SendEvent(new PokerSelectorModeChangedEvent()
         {
-            Mode = "Floor"
+            Mode = ModeType.Floor
         });
     }
 
     private void OnButtonDownPowerButton()
     {
-        this.SendEvent(new ModeChangedEvent()
+        this.SendEvent(new PokerSelectorModeChangedEvent()
         {
-            Mode = "Power"
+            Mode = ModeType.Power
         });
     }
     
     private void OnButtonDownAbsoluteValueButton()
     {
-        this.SendEvent(new ModeChangedEvent()
+        this.SendEvent(new PokerSelectorModeChangedEvent()
         {
-            Mode = "AbsoluteValue"
+            Mode = ModeType.AbsoluteValue
         });
     }
 
     private void OnButtonDownFactorialButton()
     {
-        this.SendEvent(new ModeChangedEvent()
+        this.SendEvent(new PokerSelectorModeChangedEvent()
         {
-            Mode = "Factorial"
+            Mode = ModeType.Factorial
         });
     }
 }

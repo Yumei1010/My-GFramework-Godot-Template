@@ -29,7 +29,7 @@ public partial class DragState : PokerState
 
     public override void MouseUp()
     {
-        RequestStateChange(StateType.Idle);
+        ChangeTo(StateType.Idle);
     }
 
     public override void MouseEnter()

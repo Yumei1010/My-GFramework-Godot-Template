@@ -1,25 +1,26 @@
-﻿using GFrameworkGodotTemplate.scripts.enums.poker;
+﻿using GFramework.Core.extensions;
+using GFramework.SourceGenerators.Abstractions.rule;
+using GFrameworkGodotTemplate.scripts.enums.poker;
+using GFrameworkGodotTemplate.scripts.events.pokerStateMachine;
 using Godot;
 
 namespace GFrameworkGodotTemplate.scripts.poker;
 
 /// <summary>
-/// 扑克状态抽象基类
+///     扑克状态抽象基类
 /// </summary>
+[ContextAware]
 public abstract partial class PokerState : Node, IPokerState
 {
     /// <summary>
-    /// 请求切换到其他状态时发出的信号
-    /// </summary>
-    /// <param name="stateType">目标状态 <see cref="StateType"/> </param>
-    [Signal] public delegate void StateChangeRequestedEventHandler(StateType stateType);
-    
-    /// <summary>
-    /// 扑克状态
+    ///     扑克状态标识符 <see cref="StateType"/>
     /// </summary>
     [Export] public StateType StateType { get; set; }
     
-    public IPoker Poker { get; set; } = null!;
+    /// <summary>
+    ///     代理的扑克 <see cref="IPoker"/> 实例
+    /// </summary>
+    protected IPoker Poker { get; private set; } = null!;
 
     public abstract void MouseDown();
     
@@ -34,13 +35,27 @@ public abstract partial class PokerState : Node, IPokerState
     public abstract void Enter();
     
     public abstract void Exit();
+
+    public void SetPoker(IPoker poker)
+    {
+        Poker =  poker;
+    }
+    
+    public StateType GetStateType()
+    {
+        return StateType;
+    }
     
     /// <summary>
-    /// 请求切换到其他状态
+    ///     切换到指定状态
     /// </summary>
-    /// <param name="targetStateType">目标状态 <see cref="StateType"/> </param>
-    protected void RequestStateChange(StateType targetStateType)
+    /// <param name="targetStateType">目标状态 <see cref="StateType"/></param>
+    protected void ChangeTo(StateType targetStateType)
     {
-        EmitSignal(SignalName.StateChangeRequested, (int)targetStateType);
+        this.SendEvent(new PokerStateMachineStateChangedEvent
+        {
+            TargetState = targetStateType,
+            State = this
+        });
     }
 }

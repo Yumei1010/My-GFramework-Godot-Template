@@ -21,7 +21,7 @@ public partial class IdleState : PokerState
 
     public override void MouseDown()
     {
-        RequestStateChange(StateType.Drag);
+        ChangeTo(StateType.Drag);
     }
 
     public override void MouseUp()

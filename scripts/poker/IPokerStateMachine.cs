@@ -4,18 +4,18 @@ using GFrameworkGodotTemplate.scripts.stateMachine;
 namespace GFrameworkGodotTemplate.scripts.poker;
 
 /// <summary>
-/// 扑克状态机接口，定义了扑克状态机的基本属性和必须实现的功能
+///     扑克状态机接口，定义了扑克状态机的基本属性和必须实现的功能
 /// </summary>
 public interface IPokerStateMachine : IStateMachine
 {
     /// <summary>
-    ///     初始化
+    ///     初始化状态机
     /// </summary>
-    /// <param name="poker">要代理的卡牌 <see cref="IPoker"/> 实例</param>
+    /// <param name="poker">要代理的扑克 <see cref="IPoker"/> 实例</param>
     void Init(IPoker poker);
 
     /// <summary>
-    ///     更新到指定状态
+    ///     变更到指定状态
     /// </summary>
     /// <param name="state">目标状态 <see cref="StateType"/> </param>
     void ChangeTo(StateType state);

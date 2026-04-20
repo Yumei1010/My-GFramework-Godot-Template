@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://2qiga3qxnxcn" path="res://scripts/calculate_menu/CalculateMenu.cs" id="1_60nu6"]
 [ext_resource type="PackedScene" uid="uid://bbydbuw0ryr1p" path="res://scenes/component/calculate_bar.tscn" id="2_3dp4d"]
 [ext_resource type="PackedScene" uid="uid://c4q2xuutn63e5" path="res://scenes/component/poker_selector.tscn" id="2_s26vw"]
+[ext_resource type="Script" uid="uid://l4oba7iqc2wa" path="res://scripts/poker/mode/AddMode.cs" id="3_7vdiq"]
 [ext_resource type="PackedScene" uid="uid://cejgpn5b5k2or" path="res://scenes/component/hand_holder.tscn" id="3_ebdle"]
 
 [node name="CalculateMenu" type="Control" unique_id=1368381339]
@@ -27,6 +28,10 @@ color = Color(1, 1, 1, 0.39215687)
 metadata/_edit_lock_ = true
 
 [node name="PokerSelector" parent="." unique_id=1741257271 instance=ExtResource("2_s26vw")]
+
+[node name="Add" type="Node" parent="PokerSelector" unique_id=285759264]
+script = ExtResource("3_7vdiq")
+Capacity = 2
 
 [node name="HandHolder" parent="." unique_id=2114122353 instance=ExtResource("3_ebdle")]
 layout_mode = 1

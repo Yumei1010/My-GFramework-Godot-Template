@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://cfuvnryxlpn4b"]
 
 [ext_resource type="Script" uid="uid://dgomet07s0x3k" path="res://scripts/poker/Poker.cs" id="1_4exqo"]
-[ext_resource type="AnimationLibrary" uid="uid://c60hqc7h6ph53" path="res://resource/animation/PokerView.res" id="2_dnpyj"]
 [ext_resource type="Texture2D" uid="uid://6vuld8lknm7e" path="res://assets/textures/poker/surface/heart.png" id="3_twcbr"]
 [ext_resource type="Script" uid="uid://ddwck8cwbdhqf" path="res://scripts/poker/PokerStateMachine.cs" id="4_4exqo"]
 [ext_resource type="Script" uid="uid://c14ajqqmlbmg6" path="res://scripts/poker/state/IdleState.cs" id="4_5nhq5"]
@@ -10,38 +9,6 @@
 [ext_resource type="Script" uid="uid://bx1ye0383sg7u" path="res://scripts/poker/state/OnSelectState.cs" id="7_o2w1w"]
 [ext_resource type="Shader" uid="uid://nuhgfc63t5ri" path="res://assets/shader/poker/fake_3D.gdshader" id="8_o2w1w"]
 [ext_resource type="Texture2D" uid="uid://bq8e5q4wdtjbj" path="res://assets/textures/poker/shadow.png" id="10_pa15o"]
-
-[sub_resource type="Animation" id="Animation_dnpyj"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_dnpyj"]
-_data = {
-&"RESET": SubResource("Animation_dnpyj")
-}
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pa15o"]
 resource_local_to_scene = true
@@ -66,11 +33,6 @@ pivot_offset = Vector2(48, 72)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_4exqo")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=404025345]
-unique_name_in_owner = true
-libraries/ = SubResource("AnimationLibrary_dnpyj")
-libraries/Poker = ExtResource("2_dnpyj")
 
 [node name="StateMachine" type="Node" parent="." unique_id=1870655408]
 unique_name_in_owner = true
