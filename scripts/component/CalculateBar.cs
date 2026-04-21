@@ -21,7 +21,7 @@ public partial class CalculateBar : Control, IController
     private TextureButton AbsoluteValueButton => GetNode<TextureButton>("%AbsoluteValueButton");
     private TextureButton FactorialButton => GetNode<TextureButton>("%FactorialButton");
     private TextureButton SquareRootButton => GetNode<TextureButton>("%SquareRootButton");
-    private TextureButton CeilButton => GetNode<TextureButton>("%CeilButton");
+    private TextureButton CeilButton => GetNode<TextureButton>("%CeilButton"); 
     private TextureButton FloorButton => GetNode<TextureButton>("%FloorButton");
     
     public override void _Ready()
@@ -42,7 +42,7 @@ public partial class CalculateBar : Control, IController
         MultiplyButton.ButtonDown += OnButtonDownMultiplyButton; 
         DivideButton.ButtonDown += OnButtonDownDivideButton;
         ModuloButton.ButtonDown += OnButtonDownModuloButton;
-        NthRootButton.ButtonDown += OnButtonDownSquareRootButton;
+        NthRootButton.ButtonDown += OnButtonDownNthRootButton;
         PowerButton.ButtonDown += OnButtonDownPowerButton;
         AbsoluteValueButton.ButtonDown += OnButtonDownAbsoluteValueButton;
         FactorialButton.ButtonDown += OnButtonDownFactorialButton;
@@ -51,9 +51,17 @@ public partial class CalculateBar : Control, IController
         FloorButton.ButtonDown += OnButtonDownFloorButton;
     }
 
+    private void OnButtonDownNthRootButton()
+    {
+        this.SendEvent(new PokerSelectorModeChangedEvent
+        {
+            Mode = ModeType.NthRoot
+        });
+    }
+
     private void OnButtonDownAddButton()
     {
-        this.SendEvent(new PokerSelectorModeChangedEvent()
+        this.SendEvent(new PokerSelectorModeChangedEvent
         {
             Mode = ModeType.Add
         });
@@ -61,7 +69,7 @@ public partial class CalculateBar : Control, IController
 
     private void OnButtonDownSubtractButton()
     {
-        this.SendEvent(new PokerSelectorModeChangedEvent()
+        this.SendEvent(new PokerSelectorModeChangedEvent
         {
             Mode = ModeType.Subtract
         });
@@ -69,7 +77,7 @@ public partial class CalculateBar : Control, IController
 
     private void OnButtonDownMultiplyButton()
     {
-        this.SendEvent(new PokerSelectorModeChangedEvent()
+        this.SendEvent(new PokerSelectorModeChangedEvent
         {
             Mode = ModeType.Multiply
         });
@@ -77,7 +85,7 @@ public partial class CalculateBar : Control, IController
 
     private void OnButtonDownDivideButton()
     {
-        this.SendEvent(new PokerSelectorModeChangedEvent()
+        this.SendEvent(new PokerSelectorModeChangedEvent
         {
             Mode = ModeType.Divide
         });
@@ -85,7 +93,7 @@ public partial class CalculateBar : Control, IController
 
     private void OnButtonDownModuloButton()
     {
-        this.SendEvent(new PokerSelectorModeChangedEvent()
+        this.SendEvent(new PokerSelectorModeChangedEvent
         {
             Mode = ModeType.Modulo
         });
@@ -93,7 +101,7 @@ public partial class CalculateBar : Control, IController
 
     private void OnButtonDownSquareRootButton()
     {
-        this.SendEvent(new PokerSelectorModeChangedEvent()
+        this.SendEvent(new PokerSelectorModeChangedEvent
         {
             Mode = ModeType.SquareRoot
         });
@@ -101,7 +109,7 @@ public partial class CalculateBar : Control, IController
 
     private void OnButtonDownCeilButton()
     {
-        this.SendEvent(new PokerSelectorModeChangedEvent()
+        this.SendEvent(new PokerSelectorModeChangedEvent
         {
             Mode = ModeType.Ceil
         });
@@ -109,7 +117,7 @@ public partial class CalculateBar : Control, IController
 
     private void OnButtonDownFloorButton()
     {
-        this.SendEvent(new PokerSelectorModeChangedEvent()
+        this.SendEvent(new PokerSelectorModeChangedEvent
         {
             Mode = ModeType.Floor
         });
@@ -117,7 +125,7 @@ public partial class CalculateBar : Control, IController
 
     private void OnButtonDownPowerButton()
     {
-        this.SendEvent(new PokerSelectorModeChangedEvent()
+        this.SendEvent(new PokerSelectorModeChangedEvent
         {
             Mode = ModeType.Power
         });
@@ -125,7 +133,7 @@ public partial class CalculateBar : Control, IController
     
     private void OnButtonDownAbsoluteValueButton()
     {
-        this.SendEvent(new PokerSelectorModeChangedEvent()
+        this.SendEvent(new PokerSelectorModeChangedEvent
         {
             Mode = ModeType.AbsoluteValue
         });

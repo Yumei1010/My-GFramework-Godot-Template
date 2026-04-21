@@ -82,7 +82,7 @@ public static class CalculateHelper
             ModeType.Divide => fb.Numerator == 0 ? "ERROR:DivByZero" : (fa / fb).ToString(),
             ModeType.Modulo => fb.ToDouble() == 0 ? "ERROR:DivByZero" : FormatDouble(fa.ToDouble() % fb.ToDouble()),
             ModeType.Power => FormatDouble(Math.Pow(fa.ToDouble(), fb.ToDouble())),
-            ModeType.NthRoot => fb.ToDouble() == 0 ? "ERROR:ZeroRootIndex" : FormatDouble(Math.Pow(fa.ToDouble(), 1.0 / fb.ToDouble())),
+            ModeType.NthRoot => fb.ToDouble() == 0 ? "ERROR:ZeroRootIndex" : FormatDouble(Math.Pow(fb.ToDouble(), 1.0 / fa.ToDouble())),
             _ => "24"
         };
     }

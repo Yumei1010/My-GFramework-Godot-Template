@@ -14,7 +14,7 @@ public partial class PokerSelector : Node , IPokerSelector
 {
     private IPokerSelectorMode PreviousMode { get; set; } = null!;
     private IPokerSelectorMode CurrentMode { get; set; } = null!;
-    private Dictionary<ModeType, PokerSelectorMode> Modes { get; set; } = new();
+    private Dictionary<ModeType, IPokerSelectorMode> Modes { get; set; } = new();
     private IList<IPoker> Selects { get; set; } = new List<IPoker>();
     private bool Enable { get; set; }
     
@@ -29,7 +29,7 @@ public partial class PokerSelector : Node , IPokerSelector
     {
         foreach (var node in GetChildren())
         {
-            var mode = (PokerSelectorMode)node;
+            var mode = (IPokerSelectorMode)node;
             Modes.Add(mode.GetModeType(), mode);
         }
     }
@@ -104,6 +104,7 @@ public partial class PokerSelector : Node , IPokerSelector
         // 注册对模式变更事件的监听
         this.RegisterEvent<PokerSelectorModeChangedEvent>(e =>
         {
+            GD.Print("已切换为",e.Mode);
             OnModeChangedEvent(e.Mode);
         }).UnRegisterWhenNodeExitTree(this);
     }
@@ -141,6 +142,18 @@ public partial class PokerSelector : Node , IPokerSelector
             }
                 
             Selects.Add(poker);
+
+            // 如果选择对象已满足模式要求，计算
+            if (Selects.Count == CurrentMode.GetCapacity())
+            {
+                GD.Print("本次计算");
+                for (int i = 0; i < Selects.Count; i++)
+                {
+                    GD.Print("第",i+1,"张牌数值为：",Selects[i].GetNumValue());
+                }
+            
+                Calculate();
+            }
         }
         else
         {
