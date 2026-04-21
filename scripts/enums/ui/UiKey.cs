@@ -11,33 +11,17 @@ public enum UiKey
     MainMenu,
 
     /// <summary>
-    ///     保存菜单界面键值
-    /// </summary>
-    SaveMenu,
-
-    /// <summary>
-    ///     加载菜单界面键值
-    /// </summary>
-    /// <remarks>
-    ///     表示加载菜单相关的界面状态或操作类型
-    /// </remarks>
-    LoadMenu,
-
-    /// <summary>
     ///     选项菜单界面键值
     /// </summary>
-    /// <remarks>
-    ///     表示选项菜单相关的界面状态或操作类型
-    /// </remarks>
     OptionsMenu,
 
     /// <summary>
     ///     版权信息界面键值
     /// </summary>
-    /// <remarks>
-    ///     表示显示版权信息的界面状态或操作类型
-    /// </remarks>
     Credits,
-    HomeUi,
-    PauseMenu
+    
+    /// <summary>
+    ///     计算界面键值
+    /// </summary>
+    CalculateMenu,
 }

@@ -1,5 +1,4 @@
-﻿//     定义卡牌数值类型的键值枚举
-namespace GFrameworkGodotTemplate.scripts.enums.poker;
+﻿namespace GFrameworkGodotTemplate.scripts.enums.poker;
 
 /// <summary>
 ///     定义卡牌数值类型的键值枚举

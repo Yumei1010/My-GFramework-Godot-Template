@@ -1,0 +1,124 @@
+[gd_scene format=3 uid="uid://bbydbuw0ryr1p"]
+
+[ext_resource type="Texture2D" uid="uid://dwg8e2aurpr6o" path="res://assets/textures/calculate_icon/add.png" id="1_60nu6"]
+[ext_resource type="Script" uid="uid://chgpl1tyevv1x" path="res://scripts/component/CalculateBar.cs" id="1_itn85"]
+[ext_resource type="Texture2D" uid="uid://jck0m0v21wsh" path="res://assets/textures/calculate_icon/subtract.png" id="2_7kspd"]
+[ext_resource type="Texture2D" uid="uid://cqe132fuf7kgx" path="res://assets/textures/calculate_icon/multiply.png" id="3_4d6fc"]
+[ext_resource type="Texture2D" uid="uid://5j06mkqew4mr" path="res://assets/textures/calculate_icon/divide.png" id="4_4gox6"]
+[ext_resource type="Texture2D" uid="uid://xe2urvlsffj0" path="res://assets/textures/calculate_icon/absoluteValue.png" id="5_lbyta"]
+[ext_resource type="Texture2D" uid="uid://c4mi4r3w0bj0w" path="res://assets/textures/calculate_icon/factorial.png" id="6_ynjim"]
+[ext_resource type="Texture2D" uid="uid://84b4s3cbtl8f" path="res://assets/textures/calculate_icon/modulo.png" id="7_swfoo"]
+[ext_resource type="Texture2D" uid="uid://dcfck50no5qe5" path="res://assets/textures/calculate_icon/n-thRoot.png" id="8_dwtut"]
+[ext_resource type="Texture2D" uid="uid://cp2bwxljxjual" path="res://assets/textures/calculate_icon/power.png" id="9_4d6fc"]
+[ext_resource type="Texture2D" uid="uid://b0i75dlphj2ww" path="res://assets/textures/calculate_icon/squareRoot.png" id="10_4gox6"]
+[ext_resource type="Texture2D" uid="uid://c6oterk4euu5f" path="res://assets/textures/calculate_icon/ceil.png" id="11_lbyta"]
+[ext_resource type="Texture2D" uid="uid://br8w470lq4i6s" path="res://assets/textures/calculate_icon/floor.png" id="12_ynjim"]
+
+[node name="CalculateBar" type="Control" unique_id=356497160]
+layout_mode = 3
+anchor_right = 0.083000004
+anchor_bottom = 1.0
+offset_right = 0.31999207
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_itn85")
+metadata/_edit_lock_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=59658630]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer" unique_id=783898353]
+layout_mode = 2
+color = Color(0.75, 0.742, 0.71999997, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ColorRect" unique_id=816270408]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = -4
+alignment = 1
+
+[node name="AddButton" type="TextureButton" parent="MarginContainer/ColorRect/VBoxContainer" unique_id=1874590975]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("1_60nu6")
+
+[node name="SubtractButton" type="TextureButton" parent="MarginContainer/ColorRect/VBoxContainer" unique_id=1758166272]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture_normal = ExtResource("2_7kspd")
+
+[node name="MultiplyButton" type="TextureButton" parent="MarginContainer/ColorRect/VBoxContainer" unique_id=1018209079]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture_normal = ExtResource("3_4d6fc")
+
+[node name="DivideButton" type="TextureButton" parent="MarginContainer/ColorRect/VBoxContainer" unique_id=1490958461]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture_normal = ExtResource("4_4gox6")
+
+[node name="ModuloButton" type="TextureButton" parent="MarginContainer/ColorRect/VBoxContainer" unique_id=2092539590]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture_normal = ExtResource("7_swfoo")
+
+[node name="NthRootButton" type="TextureButton" parent="MarginContainer/ColorRect/VBoxContainer" unique_id=1665867724]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture_normal = ExtResource("8_dwtut")
+
+[node name="PowerButton" type="TextureButton" parent="MarginContainer/ColorRect/VBoxContainer" unique_id=1197037256]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture_normal = ExtResource("9_4d6fc")
+
+[node name="AbsoluteValueButton" type="TextureButton" parent="MarginContainer/ColorRect/VBoxContainer" unique_id=1258648017]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture_normal = ExtResource("5_lbyta")
+
+[node name="FactorialButton" type="TextureButton" parent="MarginContainer/ColorRect/VBoxContainer" unique_id=414969055]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture_normal = ExtResource("6_ynjim")
+
+[node name="SquareRootButton" type="TextureButton" parent="MarginContainer/ColorRect/VBoxContainer" unique_id=1558690987]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture_normal = ExtResource("10_4gox6")
+
+[node name="CeilButton" type="TextureButton" parent="MarginContainer/ColorRect/VBoxContainer" unique_id=118201242]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture_normal = ExtResource("12_ynjim")
+
+[node name="FloorButton" type="TextureButton" parent="MarginContainer/ColorRect/VBoxContainer" unique_id=959776843]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture_normal = ExtResource("11_lbyta")

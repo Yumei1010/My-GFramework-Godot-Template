@@ -31,6 +31,29 @@ namespace GFrameworkGodotTemplate.global;
 [ContextAware]
 public partial class GameEntryPoint : Node
 {
+    [Export] public bool IsDev { get; set; } = true;
+    /// <summary>
+    ///     UI页面配置数组，包含所有可用的UI页面配置项
+    /// </summary>
+    /// <value>
+    ///     存储UiPageConfig对象的数组集合
+    /// </value>
+    [Export] public Array<UiPageConfig> UiPageConfigs { get; set; } = null!;
+    /// <summary>
+    ///     场景配置数组，包含所有可用的场景配置项
+    /// </summary>
+    /// <value>
+    ///     存储SceneConfig对象的数组集合
+    /// </value>
+    [Export] public Array<SceneConfig> GameSceneConfigs { get; set; } = null!;
+    /// <summary>
+    ///     贴图纹理配置数组，包含所有可用的贴图纹理配置项
+    /// </summary>
+    /// <value>
+    ///     存储TextureConfig对象的数组集合
+    /// </value>
+    [Export] public Array<TextureConfig> TextureConfigs { get; set; } = null!;
+
     private IGodotSceneRegistry _sceneRegistry = null!;
     private ISettingsModel _settingsModel = null!;
     private ISettingsSystem _settingsSystem = null!;
@@ -38,21 +61,7 @@ public partial class GameEntryPoint : Node
     private IGodotUiRegistry _uiRegistry = null!;
     public static IArchitecture Architecture { get; private set; } = null!;
     public static SceneTree Tree { get; private set; } = null!;
-    [Export] public bool IsDev { get; set; } = true;
-
-    /// <summary>
-    ///     UI页面配置数组，包含所有可用的UI页面配置项
-    /// </summary>
-    /// <value>
-    ///     存储UiPageConfig对象的数组集合
-    /// </value>
-    [Export]
-    public Array<UiPageConfig> UiPageConfigs { get; set; } = null!;
-
-    [Export] public Array<SceneConfig> GameSceneConfigs { get; set; } = null!;
-
-    [Export] public Array<TextureConfig> TextureConfigs { get; set; } = null!;
-
+    
     /// <summary>
     ///     Godot引擎调用的节点就绪方法，在此方法中初始化游戏架构和相关组件
     /// </summary>
@@ -99,11 +108,10 @@ public partial class GameEntryPoint : Node
         if (ShouldEnterMainMenu())
             this.RegisterEvent<UiRoot.UiRootReadyEvent>(_ =>
             {
-                this.GetSystem<IStateMachineSystem>()!
-                    .ChangeTo<BootStartState>();
+                this.GetSystem<IStateMachineSystem>()!.ChangeTo<MainMenuState>();
             });
 
-        _log.Debug("GameEntryPoint ready.");
+        _log.Debug("游戏入口点就绪.");
         CallDeferred(nameof(CallDeferredInit));
     }
 
@@ -121,10 +129,8 @@ public partial class GameEntryPoint : Node
     {
         var tree = GetTree();
         var currentScene = tree.CurrentScene;
-
         if (currentScene == null)
             return false;
-
         var scenePath = currentScene.SceneFilePath;
         return string.Equals(scenePath, _sceneRegistry.Get(nameof(SceneKey.Main)).GetPath(),
             StringComparison.Ordinal);

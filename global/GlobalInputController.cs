@@ -21,7 +21,8 @@ namespace GFrameworkGodotTemplate.global;
 public partial class GlobalInputController : GameInputController
 {
     private UiHandle? _pauseMenuUiHandle;
-
+    private UiHandle? _mapMenuUiHandle;
+    
     /// <summary>
     ///     状态机系统实例，用于管理游戏状态。
     /// </summary>
@@ -46,12 +47,10 @@ public partial class GlobalInputController : GameInputController
         // 检查是否按下了取消操作（通常是 ESC 键）
         if (!@event.IsActionPressed("ui_cancel"))
             return;
-
         // 根据当前状态执行相应操作
         if (_stateMachineSystem.Current is not PlayingState) return;
         _log.Debug("暂停游戏");
-        _pauseMenuUiHandle = this.SendCommand(new PauseGameWithOpenPauseMenuCommand(new OpenPauseMenuCommandInput
-            { Handle = _pauseMenuUiHandle }));
+        
         GetViewport().SetInputAsHandled();
     }
 }

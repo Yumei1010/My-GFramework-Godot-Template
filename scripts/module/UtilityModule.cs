@@ -6,7 +6,7 @@ using GFramework.Game.serializer;
 using GFramework.Godot.scene;
 using GFramework.Godot.storage;
 using GFramework.Godot.ui;
-using GFrameworkGodotTemplate.scripts.data;
+using GFrameworkGodotTemplate.scripts.data.interfaces;
 using GFrameworkGodotTemplate.scripts.utility;
 using Godot;
 

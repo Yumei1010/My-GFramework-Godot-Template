@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://cejgpn5b5k2or"]
+
+[ext_resource type="Script" uid="uid://bx63lpkr7pj3j" path="res://scripts/component/HandHolder.cs" id="1_clll1"]
+[ext_resource type="PackedScene" uid="uid://cfuvnryxlpn4b" path="res://scenes/poker/poker.tscn" id="2_5us6y"]
+
+[node name="HandHolder" type="Control" unique_id=2114122353]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_clll1")
+metadata/_edit_lock_ = true
+
+[node name="PokerHolderContainer" type="Control" parent="." unique_id=1740829209]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = 480.0
+offset_top = 540.0
+offset_right = 480.0
+offset_bottom = 540.0
+mouse_filter = 2
+
+[node name="Poker" parent="PokerHolderContainer" unique_id=351593249 instance=ExtResource("2_5us6y")]
+layout_mode = 1
+offset_left = -280.0
+offset_top = -324.0
+offset_right = -184.0
+offset_bottom = -179.99988
+grow_horizontal = 1
+grow_vertical = 1
+NumValue = "1"
+
+[node name="Poker2" parent="PokerHolderContainer" unique_id=1025080971 instance=ExtResource("2_5us6y")]
+layout_mode = 1
+offset_left = -127.999985
+offset_top = -260.0
+offset_right = -31.999985
+offset_bottom = -116.0
+grow_horizontal = 1
+grow_vertical = 1
+NumValue = "-2"
+
+[node name="Poker3" parent="PokerHolderContainer" unique_id=1624674689 instance=ExtResource("2_5us6y")]
+layout_mode = 1
+offset_left = 24.0
+offset_top = -292.0
+offset_right = 120.0
+offset_bottom = -147.99988
+grow_horizontal = 1
+grow_vertical = 1
+NumValue = "3.3"
+NumType = 2
+
+[node name="Poker4" parent="PokerHolderContainer" unique_id=1270531813 instance=ExtResource("2_5us6y")]
+layout_mode = 1
+offset_left = 200.0
+offset_top = -356.0
+offset_right = 296.0
+offset_bottom = -212.0
+grow_horizontal = 1
+grow_vertical = 1
+NumValue = "1/8"
+NumType = 1
+
+[node name="Node2D" type="Node2D" parent="." unique_id=885546197]
