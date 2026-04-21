@@ -20,9 +20,9 @@ public partial class Poker : Button, IPoker, IController
     private TextureRect SurfaceRect => GetNode<TextureRect>("%SurfaceRect");
     private Label NumLabel => GetNode<Label>("%NumLabel");
     
-    [Export] public SuitType SuitType { get; set; } = SuitType.Heart;
-    [Export] public string NumValue { get; set; } = "24";
-    [Export] NumType NumType { get; set; } = NumType.Integer;
+    [Export] private SuitType SuitType { get; set; } = SuitType.Heart;
+    [Export] private string NumValue { get; set; } = "24";
+    [Export] private NumType NumType { get; set; } = NumType.Integer;
     
     private Guid Id { get; } = Guid.NewGuid();
     private Vector2 DefaultPosition { get; set; }

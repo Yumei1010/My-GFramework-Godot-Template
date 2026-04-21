@@ -30,7 +30,7 @@ public partial class PokerSelector : Node , IPokerSelector
         foreach (var node in GetChildren())
         {
             var mode = (PokerSelectorMode)node;
-            Modes.Add(mode.ModeType, mode);
+            Modes.Add(mode.GetModeType(), mode);
         }
     }
 
