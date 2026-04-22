@@ -10,12 +10,12 @@ namespace GFrameworkGodotTemplate.scripts.events.poker;
 public abstract class PokerNumTypeChangedEvent
 {
     /// <summary>
-    ///     数值类型
+    ///     数值类型 <see cref="NumType"/>
     /// </summary>
     public required NumType NumType { get; init; }
 
     /// <summary>
-    ///     响应事件的poker实例
+    ///     响应事件的poker实例 <see cref="IPoker"/>
     /// </summary>
     public required IPoker Poker { get; init; }
 }

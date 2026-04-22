@@ -46,57 +46,57 @@ Capacity = 2
 
 [node name="Subtract" type="Node" parent="PokerSelector" unique_id=672818600]
 script = ExtResource("4_n61on")
-ModeType = 1
+Mode = 1
 Capacity = 2
 
 [node name="Multiply" type="Node" parent="PokerSelector" unique_id=762525818]
 script = ExtResource("5_4k53u")
-ModeType = 2
+Mode = 2
 Capacity = 2
 
 [node name="Divide" type="Node" parent="PokerSelector" unique_id=425116405]
 script = ExtResource("6_7kspd")
-ModeType = 3
+Mode = 3
 Capacity = 2
 
 [node name="Modulo" type="Node" parent="PokerSelector" unique_id=1315829999]
 script = ExtResource("7_4d6fc")
-ModeType = 4
+Mode = 4
 Capacity = 2
 
 [node name="Power" type="Node" parent="PokerSelector" unique_id=507382604]
 script = ExtResource("8_4gox6")
-ModeType = 5
+Mode = 5
 Capacity = 2
 
 [node name="NthRoot" type="Node" parent="PokerSelector" unique_id=1193611692]
 script = ExtResource("9_lbyta")
-ModeType = 6
+Mode = 6
 Capacity = 2
 
 [node name="AbsoluteValue" type="Node" parent="PokerSelector" unique_id=702122494]
 script = ExtResource("10_ynjim")
-ModeType = 7
+Mode = 7
 Capacity = 1
 
 [node name="Factorial" type="Node" parent="PokerSelector" unique_id=1825978302]
 script = ExtResource("11_swfoo")
-ModeType = 8
+Mode = 8
 Capacity = 1
 
 [node name="SquareRoot" type="Node" parent="PokerSelector" unique_id=483498262]
 script = ExtResource("12_dwtut")
-ModeType = 9
+Mode = 9
 Capacity = 1
 
 [node name="Ceil" type="Node" parent="PokerSelector" unique_id=580080541]
 script = ExtResource("13_mn4a0")
-ModeType = 10
+Mode = 10
 Capacity = 1
 
 [node name="Floor" type="Node" parent="PokerSelector" unique_id=1399735185]
 script = ExtResource("14_3mf7f")
-ModeType = 11
+Mode = 11
 Capacity = 1
 
 [node name="HandHolder" parent="." unique_id=2114122353 instance=ExtResource("3_ebdle")]

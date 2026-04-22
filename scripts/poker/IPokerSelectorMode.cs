@@ -11,6 +11,12 @@ public interface IPokerSelectorMode
     ///     计算时调用的方法
     /// </summary>
     void Calculate();
+    
+    /// <summary>
+    ///     获取预览结果
+    /// </summary>
+    /// <returns>预览结果 <see cref="string"/></returns>
+    string GetReserveResult();
 
     /// <summary>
     ///     设置参与计算的扑克实例列表

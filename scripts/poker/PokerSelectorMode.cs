@@ -9,21 +9,23 @@ namespace GFrameworkGodotTemplate.scripts.poker;
 public abstract partial class PokerSelectorMode : Node, IPokerSelectorMode
 {
     /// <summary>
-    ///     扑克选择器模式标识符 <see cref="ModeType"/>
+    ///     扑克选择器模式标识符 <see cref="Mode"/>
     /// </summary>
-    [Export] private ModeType ModeType { get; set; }
+    [Export] protected ModeType Mode { get; set; }
     
     /// <summary>
     ///     该模式计算所需的扑克数量 <see cref="int"/>
     /// </summary>
-    [Export] private int Capacity { get; set; }
+    [Export] protected int Capacity { get; set; }
     
     /// <summary>
     ///     参与计算的扑克 <see cref="IPoker"/> 实例列表
     /// </summary>
-    protected IList<IPoker> Pokers { get; set; } = new List<IPoker>();
+    protected IList<IPoker> Pokers { get; private set; } = new List<IPoker>();
     
     public abstract void Calculate();
+    
+    public abstract string GetReserveResult();
     
     public void SetPokers(IList<IPoker> pokers)
     {
@@ -32,7 +34,7 @@ public abstract partial class PokerSelectorMode : Node, IPokerSelectorMode
 
     public ModeType GetModeType()
     {
-        return ModeType;
+        return Mode;
     }
 
     public int GetCapacity()

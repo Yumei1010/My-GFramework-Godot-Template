@@ -15,7 +15,7 @@ public abstract partial class PokerState : Node, IPokerState
     /// <summary>
     ///     扑克状态标识符 <see cref="StateType"/>
     /// </summary>
-    [Export] private StateType StateType { get; set; }
+    [Export] protected StateType StateType { get; set; }
     
     /// <summary>
     ///     代理的扑克 <see cref="IPoker"/> 实例

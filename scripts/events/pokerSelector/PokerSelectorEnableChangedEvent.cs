@@ -7,7 +7,7 @@
 public class PokerSelectorEnableChangedEvent
 {
     /// <summary>
-    /// 是否启用
+    /// 是否启用 <see cref="bool"/>
     /// </summary>
     public bool Enable { get; init; }
 }

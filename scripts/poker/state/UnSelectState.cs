@@ -41,11 +41,19 @@ public partial class UnSelectState : PokerState
 
     public override void MouseEnter()
     {
-
+        this.SendEvent(new PokerSelectorReservesChangedEvent
+        {
+            Poker = Poker,
+            IsSelected = true
+        });
     }
     
     public override void MouseExit()
     {
-        
+        this.SendEvent(new PokerSelectorReservesChangedEvent
+        {
+            Poker = Poker,
+            IsSelected = false
+        });
     }
 }

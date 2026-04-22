@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c4q2xuutn63e5"]
 
-[ext_resource type="Script" uid="uid://c1xqldtw7idft" path="res://scripts/component/PokerSelector.cs" id="1_0gn6n"]
+[ext_resource type="Script" uid="uid://c1xqldtw7idft" path="res://scripts/poker/PokerSelector.cs" id="1_0gn6n"]
 
 [node name="PokerSelector" type="Node" unique_id=1741257271]
 script = ExtResource("1_0gn6n")

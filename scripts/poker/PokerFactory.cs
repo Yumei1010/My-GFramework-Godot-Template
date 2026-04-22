@@ -7,12 +7,5 @@ namespace GFrameworkGodotTemplate.scripts.poker;
 /// </summary>
 public class PokerFactory
 {
-    public Poker Product(SuitType suitType, string numValue, NumType numType)
-    {
-        var poker =  new Poker
-        {
-            
-        };
-        return poker;
-    }
+    
 }

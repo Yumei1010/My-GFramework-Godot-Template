@@ -3,10 +3,10 @@
 namespace GFrameworkGodotTemplate.scripts.events.pokerSelector;
 
 /// <summary>
-///     扑克选择器选择变更事件类
-///     用于表示扑克选择器选择发生变化的事件
+///     扑克选择器预览变更事件类
+///     用于表示扑克选择器预览发生变化的事件
 /// </summary>
-public class PokerSelectorSelectChangedEvent
+public class PokerSelectorReservesChangedEvent
 {
     /// <summary>
     ///     是否被选择 <see cref="bool"/>

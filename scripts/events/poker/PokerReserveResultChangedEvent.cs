@@ -3,15 +3,20 @@
 namespace GFrameworkGodotTemplate.scripts.events.poker;
 
 /// <summary>
-/// 扑克点数数值变更事件类
-/// 用于表示扑克点数数值发生变化的事件
+/// 扑克预览运算结果变更事件类
+/// 用于表示扑克预览运算结果发生变化的事件 
 /// </summary>
-public abstract class PokerNumValueChangedEvent
+public class PokerReserveResultChangedEvent
 {
     /// <summary>
-    ///     点数数值 <see cref="String"/>
+    ///     点数数值 <see cref="string"/>
     /// </summary>
     public required string NumValue { get; init; }
+    
+    /// <summary>
+    ///     是否被隐藏 <see cref="bool"/>
+    /// </summary>
+    public required bool IsHidden { get; init; }
 
     /// <summary>
     ///     响应事件的poker实例 <see cref="IPoker"/>

@@ -1,6 +1,4 @@
-﻿using GFramework.Core.Abstractions.logging;
-using GFramework.Core.extensions;
-using GFramework.Core.logging;
+﻿using GFramework.Core.extensions;
 using GFrameworkGodotTemplate.scripts.utility;
 using GFrameworkGodotTemplate.global;
 using GFrameworkGodotTemplate.scripts.enums.poker;
@@ -14,14 +12,14 @@ public partial class Poker
     private TextureRect ShadowRect => GetNode<TextureRect>("%ShadowRect");
     private TextureRect SurfaceRect => GetNode<TextureRect>("%SurfaceRect");
     private Label NumLabel => GetNode<Label>("%NumLabel");
+    private TextureRect ReserveResultRect => GetNode<TextureRect>("%ReserveResultRect");
+    private Label ReserveResultLabel => GetNode<Label>("%ReserveResultLabel");
     
     private IGodotTextureRegistry _textureRegistry = null!;
     private ShaderMaterial _material = null!;
     private Tween _tweenPos = null!;
     private Tween _tweenRot = null!;
     private Tween _tweenScale = null!;
-
-    private readonly ILogger _logger = LoggerFactoryResolver.Provider.CreateLogger("Poker");
     
     private async Task ReadyAsync()
     {
@@ -35,5 +33,8 @@ public partial class Poker
         // 初始化状态机
         StateMachine.Init(this);
         StateMachine.ChangeTo(StateType.Idle);
+        
+        // 隐藏预览运算结果悬浮框
+        ReserveResultRect.Hide();
     }
 }

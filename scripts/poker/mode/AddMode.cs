@@ -1,5 +1,4 @@
-﻿using GFrameworkGodotTemplate.scripts.enums.calculate;
-using GFrameworkGodotTemplate.scripts.utility;
+﻿using GFrameworkGodotTemplate.scripts.utility;
 
 namespace GFrameworkGodotTemplate.scripts.poker.mode;
 
@@ -12,7 +11,12 @@ public partial class AddMode : PokerSelectorMode
             "+", 
             Pokers[1].GetNumValue(),
             "=",
-            CalculateHelper.Calculate(Pokers[0], Pokers[1], ModeType.Add)
+            CalculateHelper.Calculate(Pokers[0], Pokers[1], Mode)
             );
+    }
+
+    public override string GetReserveResult()
+    {
+        return CalculateHelper.Calculate(Pokers[0], Pokers[1], Mode);
     }
 }

@@ -18,15 +18,11 @@ public partial class Poker
             OnSuitTypeChangedEvent(e.SuitType,e.Poker);
         }).UnRegisterWhenNodeExitTree(this);
         
-        _logger.Debug("RegisterEvent：PokerSuitTypeChangedEvent");
-        
         // 注册对数值变更事件的监听
         this.RegisterEvent<PokerNumValueChangedEvent>(e =>
         {
             OnNumValueChangedEvent(e.NumValue,e.Poker);
         }).UnRegisterWhenNodeExitTree(this);
-        
-        _logger.Debug("RegisterEvent：PokerNumValueChangedEvent");
         
         // 注册对数值类型变更事件的监听
         this.RegisterEvent<PokerNumTypeChangedEvent>(e =>
@@ -34,15 +30,11 @@ public partial class Poker
             OnNumTypeChangedEvent(e.NumType,e.Poker);
         }).UnRegisterWhenNodeExitTree(this);
         
-        _logger.Debug("RegisterEvent：PokerNumTypeChangedEvent");
-        
         // 注册对状态变更事件的监听
         this.RegisterEvent<PokerStateChangedEvent>(e =>
         {
             OnStateChangedEvent(e.State,e.Poker);
         }).UnRegisterWhenNodeExitTree(this);
-        
-        _logger.Debug("RegisterEvent：PokerStateChangedEvent");
         
         // 注册对选择器可用性变更事件的监听
         this.RegisterEvent<PokerSelectorEnableChangedEvent>(e =>
@@ -50,7 +42,11 @@ public partial class Poker
             OnEnableChangedEvent(e.Enable);
         }).UnRegisterWhenNodeExitTree(this);
         
-        _logger.Debug("RegisterEvent：PokerSelectorEnableChangedEvent");
+        // 注册对预览运算结果变更事件的监听
+        this.RegisterEvent<PokerReserveResultChangedEvent>(e =>
+        {
+            OnReserveResultChangedEvent(e.NumValue, e.IsHidden, e.Poker);
+        }).UnRegisterWhenNodeExitTree(this);
     }
     
     private void OnSuitTypeChangedEvent(SuitType suitType,IPoker poker)
@@ -111,5 +107,15 @@ public partial class Poker
     private void OnEnableChangedEvent(bool enable)
     {
         StateMachine.ChangeTo(enable ? StateType.UnSelect : StateType.Idle);
+    }
+
+    private void OnReserveResultChangedEvent(String numValue,bool visible,IPoker poker)
+    {
+        // 如果不是触发事件的poker，返回
+        if (poker != this) return;
+
+        ReserveResultRect.Visible = visible;
+        
+        ReserveResultLabel.Text = numValue;
     }
 }
