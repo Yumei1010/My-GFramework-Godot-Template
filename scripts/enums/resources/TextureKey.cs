@@ -9,4 +9,6 @@ public enum TextureKey
     PokerSuitSpade,
     
     PokerSuitClub,
+    
+    PokerSuitError,
 }

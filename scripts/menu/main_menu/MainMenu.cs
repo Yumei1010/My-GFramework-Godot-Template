@@ -1,5 +1,4 @@
 ﻿using GFramework.Core.Abstractions.controller;
-using GFramework.Core.Abstractions.state;
 using GFramework.Core.extensions;
 using GFramework.Game.Abstractions.enums;
 using GFramework.Game.Abstractions.ui;
@@ -10,22 +9,15 @@ using TimeToTwentyfour.scripts.core.state.impls;
 using TimeToTwentyfour.scripts.core.ui;
 using TimeToTwentyfour.scripts.cqrs.game.command;
 using TimeToTwentyfour.scripts.enums.ui;
-using global::TimeToTwentyfour.global;
 using Godot;
 
 namespace TimeToTwentyfour.scripts.menu.main_menu;
 
-[ContextAware]
 [Log]
+[ContextAware]
 public partial class MainMenu : Control, IController, IUiPageBehaviorProvider, ISimpleUiPage
 {
-    private Button NewGameButton => GetNode<Button>("%NewGameButton");
-    private Button OptionsMenuButton => GetNode<Button>("%OptionsMenuButton");
-    private Button CreditsButton => GetNode<Button>("%CreditsButton");
-    private Button ExitButton => GetNode<Button>("%ExitButton");
-    
     private IUiPageBehavior? _page;
-    private IStateMachineSystem _stateMachineSystem = null!;
     public static string UiKeyStr => nameof(UiKey.MainMenu);
     
     public IUiPageBehavior GetPage()
@@ -39,24 +31,24 @@ public partial class MainMenu : Control, IController, IUiPageBehaviorProvider, I
         _ = ReadyAsync();
         ConnectSignal();
     }
-
-    private async Task ReadyAsync()
-    {
-        await GameEntryPoint.Architecture.WaitUntilReadyAsync().ConfigureAwait(false);
-        _stateMachineSystem = ContextAwareExtensions.GetSystem<IStateMachineSystem>(this)!;
-    }
     
     private void ConnectSignal()
     {
-        NewGameButton.ButtonDown += OnMouseDownNewGameButton;                     
+        StartButton.ButtonDown += OnMouseDownStartGameButton;
+        ContinueButton.ButtonDown += OnMouseDownContinueButton;
         OptionsMenuButton.ButtonDown += OnMouseDownOptionsMenuButton;
         CreditsButton.ButtonDown += OnMouseDownCreditsButton;
         ExitButton.ButtonDown += OnMouseDownExitButton;
     }
 
-    private void OnMouseDownNewGameButton()
+    private void OnMouseDownStartGameButton()
     {
         _stateMachineSystem.ChangeTo<CalculateMenuState>();
+    }
+    
+    private void OnMouseDownContinueButton()
+    {
+        GD.Print("VAR");
     }
 
     private void OnMouseDownOptionsMenuButton()
@@ -71,6 +63,6 @@ public partial class MainMenu : Control, IController, IUiPageBehaviorProvider, I
 
     private void OnMouseDownExitButton()
     {
-        ContextAwareExtensions.SendCommand(this, new ExitGameCommand());
+        this.SendCommand(new ExitGameCommand());
     }
 }

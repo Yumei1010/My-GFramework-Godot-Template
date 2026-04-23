@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://fm27d2slodic"]
 
-[ext_resource type="Script" uid="uid://2qiga3qxnxcn" path="res://scripts/calculate_menu/CalculateMenu.cs" id="1_60nu6"]
+[ext_resource type="Script" uid="uid://2qiga3qxnxcn" path="res://scripts/menu/calculate_menu/CalculateMenu.cs" id="1_60nu6"]
 [ext_resource type="PackedScene" uid="uid://bbydbuw0ryr1p" path="res://scenes/component/calculate_bar.tscn" id="2_3dp4d"]
 [ext_resource type="Script" uid="uid://c1xqldtw7idft" path="res://scripts/entities/poker/PokerSelector.cs" id="2_3mf7f"]
 [ext_resource type="Script" uid="uid://l4oba7iqc2wa" path="res://scripts/entities/poker/mode/AddMode.cs" id="3_7vdiq"]

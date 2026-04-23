@@ -16,11 +16,11 @@ using TimeToTwentyfour.scripts.core;
 using TimeToTwentyfour.scripts.core.environment;
 using TimeToTwentyfour.scripts.core.resource;
 using TimeToTwentyfour.scripts.core.state.impls;
-using TimeToTwentyfour.scripts.cqrs.setting;
 using TimeToTwentyfour.scripts.enums.scene;
 using TimeToTwentyfour.scripts.utility;
 using Godot;
 using Godot.Collections;
+using TimeToTwentyfour.scripts.cqrs.setting.command;
 
 namespace TimeToTwentyfour.global;
 

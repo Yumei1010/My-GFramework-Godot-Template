@@ -2,7 +2,7 @@
 using GFramework.Core.extensions;
 using GFramework.Game.Abstractions.setting;
 
-namespace TimeToTwentyfour.scripts.cqrs.setting;
+namespace TimeToTwentyfour.scripts.cqrs.setting.command;
 
 /// <summary>
 ///     重置设置命令类

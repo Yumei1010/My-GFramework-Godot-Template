@@ -24,8 +24,8 @@ using TimeToTwentyfour.scripts.cqrs.audio.command;
 using TimeToTwentyfour.scripts.cqrs.audio.command.input;
 using TimeToTwentyfour.scripts.cqrs.graphics;
 using TimeToTwentyfour.scripts.cqrs.graphics.input;
-using TimeToTwentyfour.scripts.cqrs.setting;
 using Godot;
+using TimeToTwentyfour.scripts.cqrs.setting.command;
 
 namespace TimeToTwentyfour.scripts.menu.options_menu;
 

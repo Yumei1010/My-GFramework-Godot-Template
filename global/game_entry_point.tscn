@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://fm27d2slodic" path="res://scenes/menu/calculate_menu/calculate_menu.tscn" id="9_fgqit"]
 [ext_resource type="Texture2D" uid="uid://cl6fv1a3qfyqy" path="res://assets/textures/poker/surface/spade.png" id="12_iumd8"]
 [ext_resource type="Texture2D" uid="uid://bq8e5q4wdtjbj" path="res://assets/textures/poker/shadow.png" id="13_1yddw"]
+[ext_resource type="Texture2D" uid="uid://bbqv3r6op0iu7" path="res://assets/textures/poker/surface/error.png" id="14_fgqit"]
 [ext_resource type="Script" uid="uid://ls8nkxn3gipd" path="res://scripts/core/resource/TextureConfig.cs" id="14_hjx06"]
 [ext_resource type="Texture2D" uid="uid://6vuld8lknm7e" path="res://assets/textures/poker/surface/heart.png" id="15_hjx06"]
 [ext_resource type="Texture2D" uid="uid://bjyh6mxjxpmnk" path="res://assets/textures/poker/surface/diamond.png" id="16_d4hg6"]
@@ -65,8 +66,14 @@ TextureKey = 3
 Texture = ExtResource("13_1yddw")
 metadata/_custom_type_script = "uid://ls8nkxn3gipd"
 
+[sub_resource type="Resource" id="Resource_d4hg6"]
+script = ExtResource("14_hjx06")
+TextureKey = 4
+Texture = ExtResource("14_fgqit")
+metadata/_custom_type_script = "uid://ls8nkxn3gipd"
+
 [node name="GameEntryPoint" type="Node" unique_id=729277825]
 script = ExtResource("1_a14y6")
 UiPageConfigs = Array[Object]([SubResource("Resource_pn3ws"), SubResource("Resource_f22d5"), SubResource("Resource_inr81"), SubResource("Resource_1yddw")])
 GameSceneConfigs = Array[Object]([SubResource("Resource_iumd8")])
-TextureConfigs = Array[Object]([SubResource("Resource_gktnk"), SubResource("Resource_cia4t"), SubResource("Resource_fgqit"), SubResource("Resource_hjx06")])
+TextureConfigs = Array[Object]([SubResource("Resource_gktnk"), SubResource("Resource_cia4t"), SubResource("Resource_fgqit"), SubResource("Resource_hjx06"), SubResource("Resource_d4hg6")])

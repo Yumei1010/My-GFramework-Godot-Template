@@ -121,7 +121,7 @@ public partial class Poker : Button, IPoker, IController
     
     private void UpdateNumValueLabel()
     {
-        if (NumValue != "") NumLabel.Text = NumValue;
+        if (!string.IsNullOrWhiteSpace(NumValue)) NumLabel.Text = NumValue;
     }
 
     private void UpdateSurfaceRect()
@@ -132,7 +132,7 @@ public partial class Poker : Button, IPoker, IController
             SuitType.Diamond => _textureRegistry.Get(nameof(TextureKey.PokerSuitDiamond)) as Texture2D,
             SuitType.Spade => _textureRegistry.Get(nameof(TextureKey.PokerSuitSpade)) as Texture2D,
             SuitType.Club => _textureRegistry.Get(nameof(TextureKey.PokerSuitClub)) as Texture2D,
-            _ => null
+            _ => _textureRegistry.Get(nameof(TextureKey.PokerSuitError)) as Texture2D
         };
     }
 }
