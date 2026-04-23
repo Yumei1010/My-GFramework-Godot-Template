@@ -2,7 +2,7 @@
 using GFramework.Core.extensions;
 using GFramework.Game.Abstractions.setting;
 
-namespace GFrameworkGodotTemplate.scripts.cqrs.setting;
+namespace TimeToTwentyfour.scripts.cqrs.setting;
 
 /// <summary>
 ///     保存游戏设置命令类

@@ -1,11 +1,11 @@
-using GFramework.Core.command;
+﻿using GFramework.Core.command;
 using GFramework.Core.extensions;
 using GFramework.Game.Abstractions.setting;
 using GFramework.Game.Abstractions.setting.data;
 using GFramework.Godot.setting;
-using GFrameworkGodotTemplate.scripts.cqrs.audio.command.input;
+using TimeToTwentyfour.scripts.cqrs.audio.command.input;
 
-namespace GFrameworkGodotTemplate.scripts.cqrs.audio.command;
+namespace TimeToTwentyfour.scripts.cqrs.audio.command;
 
 /// <summary>
 ///     更改主音量命令类，用于处理主音量更改操作

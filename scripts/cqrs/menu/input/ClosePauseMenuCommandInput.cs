@@ -1,7 +1,7 @@
 ﻿using GFramework.Core.Abstractions.command;
 using GFramework.Game.Abstractions.ui;
 
-namespace GFrameworkGodotTemplate.scripts.cqrs.menu.input;
+namespace TimeToTwentyfour.scripts.cqrs.menu.input;
 
 /// <summary>
 ///     表示关闭暂停菜单命令的输入数据结构。

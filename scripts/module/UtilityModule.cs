@@ -6,11 +6,11 @@ using GFramework.Game.serializer;
 using GFramework.Godot.scene;
 using GFramework.Godot.storage;
 using GFramework.Godot.ui;
-using GFrameworkGodotTemplate.scripts.data.interfaces;
-using GFrameworkGodotTemplate.scripts.utility;
+using TimeToTwentyfour.scripts.data.interfaces;
+using TimeToTwentyfour.scripts.utility;
 using Godot;
 
-namespace GFrameworkGodotTemplate.scripts.module;
+namespace TimeToTwentyfour.scripts.module;
 
 /// <summary>
 ///     工具模块类，负责安装和管理游戏中的实用工具组件

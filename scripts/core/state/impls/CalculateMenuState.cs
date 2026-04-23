@@ -3,9 +3,9 @@ using GFramework.Core.extensions;
 using GFramework.Core.state;
 using GFramework.Game.Abstractions.scene;
 using GFramework.Game.Abstractions.ui;
-using GFrameworkGodotTemplate.scripts.menu.calculate_menu;
+using TimeToTwentyfour.scripts.menu.calculate_menu;
 
-namespace GFrameworkGodotTemplate.scripts.core.state.impls;
+namespace TimeToTwentyfour.scripts.core.state.impls;
 
 /// <summary>
 ///     计算菜单状态

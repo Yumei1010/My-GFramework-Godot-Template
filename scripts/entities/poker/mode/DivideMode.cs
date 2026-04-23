@@ -1,6 +1,6 @@
-﻿using GFrameworkGodotTemplate.scripts.utility;
+﻿using TimeToTwentyfour.scripts.utility;
 
-namespace GFrameworkGodotTemplate.scripts.entities.poker.mode;
+namespace TimeToTwentyfour.scripts.entities.poker.mode;
 
 public partial class DivideMode : PokerSelectorMode
 {

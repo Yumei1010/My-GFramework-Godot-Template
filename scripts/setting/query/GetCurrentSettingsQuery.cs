@@ -2,9 +2,9 @@
 using GFramework.Core.query;
 using GFramework.Game.Abstractions.setting;
 using GFramework.Game.Abstractions.setting.data;
-using GFrameworkGodotTemplate.scripts.setting.query.view;
+using TimeToTwentyfour.scripts.setting.query.view;
 
-namespace GFrameworkGodotTemplate.scripts.setting.query;
+namespace TimeToTwentyfour.scripts.setting.query;
 
 /// <summary>
 ///     获取当前设置的查询类

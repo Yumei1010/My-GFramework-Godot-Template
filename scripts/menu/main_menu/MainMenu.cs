@@ -1,4 +1,4 @@
-using GFramework.Core.Abstractions.controller;
+﻿using GFramework.Core.Abstractions.controller;
 using GFramework.Core.Abstractions.state;
 using GFramework.Core.extensions;
 using GFramework.Game.Abstractions.enums;
@@ -6,14 +6,14 @@ using GFramework.Game.Abstractions.ui;
 using GFramework.Godot.ui;
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
-using GFrameworkGodotTemplate.scripts.core.state.impls;
-using GFrameworkGodotTemplate.scripts.core.ui;
-using GFrameworkGodotTemplate.scripts.cqrs.game.command;
-using GFrameworkGodotTemplate.scripts.enums.ui;
-using global::GFrameworkGodotTemplate.global;
+using TimeToTwentyfour.scripts.core.state.impls;
+using TimeToTwentyfour.scripts.core.ui;
+using TimeToTwentyfour.scripts.cqrs.game.command;
+using TimeToTwentyfour.scripts.enums.ui;
+using global::TimeToTwentyfour.global;
 using Godot;
 
-namespace GFrameworkGodotTemplate.scripts.menu.main_menu;
+namespace TimeToTwentyfour.scripts.menu.main_menu;
 
 [ContextAware]
 [Log]

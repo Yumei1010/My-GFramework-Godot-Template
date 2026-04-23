@@ -1,4 +1,4 @@
-using GFramework.Core.extensions;
+﻿using GFramework.Core.extensions;
 using GFramework.Game.Abstractions.scene;
 using GFramework.Godot.extensions;
 using GFramework.Godot.scene;
@@ -6,7 +6,7 @@ using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
 using Godot;
 
-namespace GFrameworkGodotTemplate.global;
+namespace TimeToTwentyfour.global;
 
 [Log]
 [ContextAware]

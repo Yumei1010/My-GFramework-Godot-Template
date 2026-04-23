@@ -1,9 +1,9 @@
 ﻿using GFramework.Core.extensions;
 using GFramework.SourceGenerators.Abstractions.rule;
-using GFrameworkGodotTemplate.scripts.cqrs.poker.@event;
-using GFrameworkGodotTemplate.scripts.enums.poker;
+using TimeToTwentyfour.scripts.cqrs.poker.@event;
+using TimeToTwentyfour.scripts.enums.poker;
 
-namespace GFrameworkGodotTemplate.scripts.entities.poker.state;
+namespace TimeToTwentyfour.scripts.entities.poker.state;
 
 [ContextAware]
 public partial class UnSelectState : PokerState

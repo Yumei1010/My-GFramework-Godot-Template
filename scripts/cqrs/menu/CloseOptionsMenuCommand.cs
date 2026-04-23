@@ -2,9 +2,9 @@
 using GFramework.Core.extensions;
 using GFramework.Game.Abstractions.enums;
 using GFramework.Game.Abstractions.ui;
-using GFrameworkGodotTemplate.scripts.cqrs.menu.input;
+using TimeToTwentyfour.scripts.cqrs.menu.input;
 
-namespace GFrameworkGodotTemplate.scripts.cqrs.menu;
+namespace TimeToTwentyfour.scripts.cqrs.menu;
 
 /// <summary>
 ///     关闭暂停菜单的命令类。

@@ -1,6 +1,6 @@
-﻿using GFrameworkGodotTemplate.scripts.enums.poker;
+﻿using TimeToTwentyfour.scripts.enums.poker;
 
-namespace GFrameworkGodotTemplate.scripts.entities.poker.state;
+namespace TimeToTwentyfour.scripts.entities.poker.state;
 
 public partial class IdleState : PokerState
 {

@@ -1,8 +1,8 @@
 ﻿using GFramework.SourceGenerators.Abstractions.rule;
-using GFrameworkGodotTemplate.scripts.enums.poker;
+using TimeToTwentyfour.scripts.enums.poker;
 using Godot;
 
-namespace GFrameworkGodotTemplate.scripts.entities.poker;
+namespace TimeToTwentyfour.scripts.entities.poker;
 
 [ContextAware]
 public partial class PokerStateMachine : Node, IPokerStateMachine

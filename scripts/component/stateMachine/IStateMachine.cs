@@ -1,4 +1,4 @@
-﻿namespace GFrameworkGodotTemplate.scripts.component.stateMachine;
+﻿namespace TimeToTwentyfour.scripts.component.stateMachine;
 
 /// <summary>
 /// 状态机接口，定义了状态机的基本属性和必须实现的功能

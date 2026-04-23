@@ -1,11 +1,11 @@
 ﻿using GFramework.Core.extensions;
 using GFramework.Godot.extensions;
-using GFrameworkGodotTemplate.scripts.cqrs.poker.@event;
-using GFrameworkGodotTemplate.scripts.enums.poker;
-using GFrameworkGodotTemplate.scripts.enums.resources;
+using TimeToTwentyfour.scripts.cqrs.poker.@event;
+using TimeToTwentyfour.scripts.enums.poker;
+using TimeToTwentyfour.scripts.enums.resources;
 using Godot;
 
-namespace GFrameworkGodotTemplate.scripts.entities.poker;
+namespace TimeToTwentyfour.scripts.entities.poker;
 
 public partial class Poker
 {

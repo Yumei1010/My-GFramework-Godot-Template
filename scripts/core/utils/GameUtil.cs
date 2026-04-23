@@ -1,7 +1,7 @@
-﻿using GFrameworkGodotTemplate.global;
+﻿using TimeToTwentyfour.global;
 using Godot;
 
-namespace GFrameworkGodotTemplate.scripts.core.utils;
+namespace TimeToTwentyfour.scripts.core.utils;
 
 /// <summary>
 ///     提供游戏相关的工具方法。

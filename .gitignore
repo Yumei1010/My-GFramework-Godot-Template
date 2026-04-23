@@ -1,4 +1,4 @@
-# Godot 4+ specific ignores
+﻿# Godot 4+ specific ignores
 .godot/
 .nomedia
 
@@ -22,7 +22,7 @@ mono_crash.*.json
 .vscode/
 
 # .Net
-GFramework-Godot-Template.sln.DotSettings.user
+Time-To-Twenty-four.sln.DotSettings.user
 addons/*
 !addons/.editorconfig
 .addons/*

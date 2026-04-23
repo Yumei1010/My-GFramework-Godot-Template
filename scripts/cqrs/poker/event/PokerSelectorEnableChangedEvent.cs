@@ -1,4 +1,4 @@
-﻿namespace GFrameworkGodotTemplate.scripts.cqrs.poker.@event;
+﻿namespace TimeToTwentyfour.scripts.cqrs.poker.@event;
 
 /// <summary>
 /// 扑克选择器可用性变更事件类

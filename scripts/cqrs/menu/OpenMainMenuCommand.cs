@@ -1,9 +1,9 @@
 ﻿using GFramework.Core.Abstractions.state;
 using GFramework.Core.command;
 using GFramework.Core.extensions;
-using GFrameworkGodotTemplate.scripts.core.state.impls;
+using TimeToTwentyfour.scripts.core.state.impls;
 
-namespace GFrameworkGodotTemplate.scripts.cqrs.menu;
+namespace TimeToTwentyfour.scripts.cqrs.menu;
 
 public class OpenMainMenuCommand : AbstractCommand
 {

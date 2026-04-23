@@ -1,7 +1,7 @@
-﻿using GFrameworkGodotTemplate.scripts.component.stateMachine;
-using GFrameworkGodotTemplate.scripts.enums.poker;
+﻿using TimeToTwentyfour.scripts.component.stateMachine;
+using TimeToTwentyfour.scripts.enums.poker;
 
-namespace GFrameworkGodotTemplate.scripts.entities.poker;
+namespace TimeToTwentyfour.scripts.entities.poker;
 
 /// <summary>
 ///     扑克状态机接口，定义了扑克状态机的基本属性和必须实现的功能

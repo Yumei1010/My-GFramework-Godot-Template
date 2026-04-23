@@ -1,9 +1,9 @@
 ﻿using GFramework.Core.command;
 using GFramework.Core.extensions;
-using GFrameworkGodotTemplate.scripts.cqrs.menu;
-using GFrameworkGodotTemplate.scripts.cqrs.menu.input;
+using TimeToTwentyfour.scripts.cqrs.menu;
+using TimeToTwentyfour.scripts.cqrs.menu.input;
 
-namespace GFrameworkGodotTemplate.scripts.cqrs.game.command;
+namespace TimeToTwentyfour.scripts.cqrs.game.command;
 
 /// <summary>
 ///     恢复游戏并关闭暂停菜单的命令类。

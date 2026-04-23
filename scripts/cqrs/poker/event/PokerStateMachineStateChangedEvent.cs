@@ -1,7 +1,7 @@
-﻿using GFrameworkGodotTemplate.scripts.entities.poker;
-using GFrameworkGodotTemplate.scripts.enums.poker;
+﻿using TimeToTwentyfour.scripts.entities.poker;
+using TimeToTwentyfour.scripts.enums.poker;
 
-namespace GFrameworkGodotTemplate.scripts.cqrs.poker.@event;
+namespace TimeToTwentyfour.scripts.cqrs.poker.@event;
 
 /// <summary>
 /// 状态机状态变更事件类

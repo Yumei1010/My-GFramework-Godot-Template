@@ -1,6 +1,6 @@
-﻿using GFrameworkGodotTemplate.scripts.enums.poker;
+﻿using TimeToTwentyfour.scripts.enums.poker;
 
-namespace GFrameworkGodotTemplate.scripts.entities.poker;
+namespace TimeToTwentyfour.scripts.entities.poker;
 
 /// <summary>
 ///     扑克选择器接口，定义了扑克选择器的基本属性和必须实现的功能

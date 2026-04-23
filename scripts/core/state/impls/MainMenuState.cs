@@ -1,11 +1,11 @@
-using GFramework.Core.Abstractions.state;
+﻿using GFramework.Core.Abstractions.state;
 using GFramework.Core.extensions;
 using GFramework.Core.state;
 using GFramework.Game.Abstractions.scene;
 using GFramework.Game.Abstractions.ui;
-using GFrameworkGodotTemplate.scripts.menu.main_menu;
+using TimeToTwentyfour.scripts.menu.main_menu;
 
-namespace GFrameworkGodotTemplate.scripts.core.state.impls;
+namespace TimeToTwentyfour.scripts.core.state.impls;
 
 /// <summary>
 ///     主菜单状态

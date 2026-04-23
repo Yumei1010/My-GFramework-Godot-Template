@@ -1,11 +1,11 @@
 ﻿using GFramework.Core.Abstractions.controller;
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
-using GFrameworkGodotTemplate.scripts.enums.poker;
-using GFrameworkGodotTemplate.scripts.enums.resources;
+using TimeToTwentyfour.scripts.enums.poker;
+using TimeToTwentyfour.scripts.enums.resources;
 using Godot;
 
-namespace GFrameworkGodotTemplate.scripts.entities.poker;
+namespace TimeToTwentyfour.scripts.entities.poker;
 
 [Log]
 [ContextAware]

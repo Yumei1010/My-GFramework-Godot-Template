@@ -1,6 +1,6 @@
-using GFramework.Core.state;
+﻿using GFramework.Core.state;
 
-namespace GFrameworkGodotTemplate.scripts.core.state.impls;
+namespace TimeToTwentyfour.scripts.core.state.impls;
 
 /// <summary>
 ///     表示游戏结束状态的类。

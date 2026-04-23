@@ -1,4 +1,4 @@
-﻿namespace GFrameworkGodotTemplate.scripts.enums.resources;
+﻿namespace TimeToTwentyfour.scripts.enums.resources;
 
 public enum TextureKey
 {

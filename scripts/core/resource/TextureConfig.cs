@@ -1,8 +1,8 @@
 ﻿using GFramework.Core.Abstractions.bases;
-using GFrameworkGodotTemplate.scripts.enums.resources;
+using TimeToTwentyfour.scripts.enums.resources;
 using Godot;
 
-namespace GFrameworkGodotTemplate.scripts.core.resource;
+namespace TimeToTwentyfour.scripts.core.resource;
 
 /// <summary>
 /// TextureConfig 类用于配置纹理资源，实现 IKeyValue 接口以提供键值对访问。

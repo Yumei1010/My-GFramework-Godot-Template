@@ -1,7 +1,7 @@
-﻿using GFrameworkGodotTemplate.scripts.enums.poker;
+﻿using TimeToTwentyfour.scripts.enums.poker;
 using Godot;
 
-namespace GFrameworkGodotTemplate.scripts.entities.poker.state;
+namespace TimeToTwentyfour.scripts.entities.poker.state;
 
 public partial class DragState : PokerState
 {

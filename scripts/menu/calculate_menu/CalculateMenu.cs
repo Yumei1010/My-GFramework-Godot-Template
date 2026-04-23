@@ -1,17 +1,17 @@
-using GFramework.Core.Abstractions.controller;
+﻿using GFramework.Core.Abstractions.controller;
 using GFramework.Core.extensions;
 using GFramework.Game.Abstractions.enums;
 using GFramework.Game.Abstractions.ui;
 using GFramework.Godot.ui;
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
-using GFrameworkGodotTemplate.scripts.core.ui;
-using GFrameworkGodotTemplate.scripts.cqrs.poker.@event;
-using GFrameworkGodotTemplate.scripts.enums.ui;
-using global::GFrameworkGodotTemplate.global;
+using TimeToTwentyfour.scripts.core.ui;
+using TimeToTwentyfour.scripts.cqrs.poker.@event;
+using TimeToTwentyfour.scripts.enums.ui;
+using global::TimeToTwentyfour.global;
 using Godot;
 
-namespace GFrameworkGodotTemplate.scripts.menu.calculate_menu;
+namespace TimeToTwentyfour.scripts.menu.calculate_menu;
 
 [ContextAware]
 [Log]

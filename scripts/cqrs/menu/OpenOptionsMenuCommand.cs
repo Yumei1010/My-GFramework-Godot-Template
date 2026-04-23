@@ -2,10 +2,10 @@
 using GFramework.Core.extensions;
 using GFramework.Game.Abstractions.enums;
 using GFramework.Game.Abstractions.ui;
-using GFrameworkGodotTemplate.scripts.cqrs.menu.input;
-using GFrameworkGodotTemplate.scripts.menu.options_menu;
+using TimeToTwentyfour.scripts.cqrs.menu.input;
+using TimeToTwentyfour.scripts.menu.options_menu;
 
-namespace GFrameworkGodotTemplate.scripts.cqrs.menu;
+namespace TimeToTwentyfour.scripts.cqrs.menu;
 
 /// <summary>
 ///     打开设置菜单的命令类。

@@ -1,9 +1,9 @@
 ﻿using System.Globalization;
 using System.Runtime.InteropServices;
-using GFrameworkGodotTemplate.scripts.entities.poker;
-using GFrameworkGodotTemplate.scripts.enums.poker;
+using TimeToTwentyfour.scripts.entities.poker;
+using TimeToTwentyfour.scripts.enums.poker;
 
-namespace GFrameworkGodotTemplate.scripts.utility;
+namespace TimeToTwentyfour.scripts.utility;
 
 /// <summary>
 /// 计算辅助类

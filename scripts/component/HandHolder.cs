@@ -1,8 +1,8 @@
-using GFrameworkGodotTemplate.scripts.entities.poker;
-using GFrameworkGodotTemplate.scripts.utility;
+﻿using TimeToTwentyfour.scripts.entities.poker;
+using TimeToTwentyfour.scripts.utility;
 using Godot;
 
-namespace GFrameworkGodotTemplate.scripts.component;
+namespace TimeToTwentyfour.scripts.component;
 
 public partial class HandHolder : Control
 {

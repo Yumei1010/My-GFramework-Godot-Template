@@ -1,10 +1,10 @@
-using GFramework.Core.Abstractions.state;
+﻿using GFramework.Core.Abstractions.state;
 using GFramework.Core.extensions;
 using GFramework.Core.state;
 using GFramework.Game.Abstractions.ui;
-using GFrameworkGodotTemplate.scripts.menu.calculate_menu;
+using TimeToTwentyfour.scripts.menu.calculate_menu;
 
-namespace GFrameworkGodotTemplate.scripts.core.state.impls;
+namespace TimeToTwentyfour.scripts.core.state.impls;
 
 /// <summary>
 ///     游戏进行中状态

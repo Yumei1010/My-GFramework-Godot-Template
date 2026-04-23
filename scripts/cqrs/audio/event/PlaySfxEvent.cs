@@ -1,6 +1,6 @@
-﻿using GFrameworkGodotTemplate.scripts.enums.audio;
+﻿using TimeToTwentyfour.scripts.enums.audio;
 
-namespace GFrameworkGodotTemplate.scripts.cqrs.audio.@event;
+namespace TimeToTwentyfour.scripts.cqrs.audio.@event;
 
 /// <summary>
 ///     音效播放事件类，用于触发特定类型的音效播放

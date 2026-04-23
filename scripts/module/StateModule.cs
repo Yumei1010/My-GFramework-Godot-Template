@@ -1,10 +1,10 @@
-using GFramework.Core.Abstractions.architecture;
+﻿using GFramework.Core.Abstractions.architecture;
 using GFramework.Core.functional.pipe;
 using GFramework.Game.architecture;
 using GFramework.Game.state;
-using GFrameworkGodotTemplate.scripts.core.state.impls;
+using TimeToTwentyfour.scripts.core.state.impls;
 
-namespace GFrameworkGodotTemplate.scripts.module;
+namespace TimeToTwentyfour.scripts.module;
 
 /// <summary>
 ///     状态模块类，负责安装和注册游戏状态系统

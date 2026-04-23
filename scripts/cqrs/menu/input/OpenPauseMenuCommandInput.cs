@@ -1,7 +1,7 @@
 ﻿using GFramework.Core.Abstractions.command;
 using GFramework.Game.Abstractions.ui;
 
-namespace GFrameworkGodotTemplate.scripts.cqrs.menu.input;
+namespace TimeToTwentyfour.scripts.cqrs.menu.input;
 
 public struct OpenPauseMenuCommandInput : ICommandInput
 {

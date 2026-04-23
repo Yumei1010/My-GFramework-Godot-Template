@@ -1,11 +1,11 @@
-using GFramework.Core.command;
+﻿using GFramework.Core.command;
 using GFramework.Core.extensions;
 using GFramework.Game.Abstractions.setting;
 using GFramework.Game.Abstractions.setting.data;
 using GFramework.Godot.setting;
-using GFrameworkGodotTemplate.scripts.cqrs.graphics.input;
+using TimeToTwentyfour.scripts.cqrs.graphics.input;
 
-namespace GFrameworkGodotTemplate.scripts.cqrs.graphics;
+namespace TimeToTwentyfour.scripts.cqrs.graphics;
 
 /// <summary>
 ///     更改分辨率命令类，用于处理分辨率更改操作

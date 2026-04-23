@@ -1,6 +1,6 @@
-﻿using GFrameworkGodotTemplate.scripts.enums.poker;
+﻿using TimeToTwentyfour.scripts.enums.poker;
 
-namespace GFrameworkGodotTemplate.scripts.cqrs.poker.@event;
+namespace TimeToTwentyfour.scripts.cqrs.poker.@event;
 
 /// <summary>
 /// 扑克选择器模式变更事件类

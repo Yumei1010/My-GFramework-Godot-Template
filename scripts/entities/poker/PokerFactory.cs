@@ -1,4 +1,4 @@
-﻿namespace GFrameworkGodotTemplate.scripts.entities.poker;
+﻿namespace TimeToTwentyfour.scripts.entities.poker;
 
 /// <summary>
 ///     扑克工厂类，负责根据定义创建扑克实例

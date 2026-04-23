@@ -1,7 +1,7 @@
 ﻿using GFramework.Game.Abstractions.data;
-using GFrameworkGodotTemplate.scripts.data.model;
+using TimeToTwentyfour.scripts.data.model;
 
-namespace GFrameworkGodotTemplate.scripts.setting;
+namespace TimeToTwentyfour.scripts.setting;
 
 public class SettingDataLocationProvider : IDataLocationProvider
 {

@@ -1,7 +1,7 @@
 ﻿using GFramework.Core.command;
-using GFrameworkGodotTemplate.scripts.core.utils;
+using TimeToTwentyfour.scripts.core.utils;
 
-namespace GFrameworkGodotTemplate.scripts.cqrs.game.command;
+namespace TimeToTwentyfour.scripts.cqrs.game.command;
 
 /// <summary>
 ///     退出游戏命令类，用于处理游戏退出逻辑

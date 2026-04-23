@@ -4,7 +4,7 @@ using GFramework.Core.utility;
 using GFramework.SourceGenerators.Abstractions.logging;
 using Godot;
 
-namespace GFrameworkGodotTemplate.scripts.core.ui;
+namespace TimeToTwentyfour.scripts.core.ui;
 
 /// <summary>
 /// UI工厂类，用于创建和实例化UI页面

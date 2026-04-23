@@ -1,10 +1,10 @@
 ﻿using GFramework.Core.extensions;
 using GFramework.SourceGenerators.Abstractions.rule;
-using GFrameworkGodotTemplate.scripts.cqrs.poker.@event;
-using GFrameworkGodotTemplate.scripts.enums.poker;
+using TimeToTwentyfour.scripts.cqrs.poker.@event;
+using TimeToTwentyfour.scripts.enums.poker;
 using Godot;
 
-namespace GFrameworkGodotTemplate.scripts.entities.poker;
+namespace TimeToTwentyfour.scripts.entities.poker;
 
 /// <summary>
 ///     扑克状态抽象基类

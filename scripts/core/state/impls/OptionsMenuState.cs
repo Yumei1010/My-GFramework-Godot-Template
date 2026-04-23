@@ -3,9 +3,9 @@ using GFramework.Core.extensions;
 using GFramework.Core.state;
 using GFramework.Game.Abstractions.scene;
 using GFramework.Game.Abstractions.ui;
-using GFrameworkGodotTemplate.scripts.menu.options_menu;
+using TimeToTwentyfour.scripts.menu.options_menu;
 
-namespace GFrameworkGodotTemplate.scripts.core.state.impls;
+namespace TimeToTwentyfour.scripts.core.state.impls;
 
 /// <summary>
 ///     设置菜单状态

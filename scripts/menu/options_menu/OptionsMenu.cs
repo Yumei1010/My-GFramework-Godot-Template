@@ -1,4 +1,4 @@
-using GFramework.Core.Abstractions.controller;
+﻿using GFramework.Core.Abstractions.controller;
 using GFramework.Core.Abstractions.coroutine;
 using GFramework.Core.Abstractions.events;
 using GFramework.Core.Abstractions.state;
@@ -14,20 +14,20 @@ using GFramework.Godot.extensions.signal;
 using GFramework.Godot.ui;
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
-using GFrameworkGodotTemplate.scripts.component;
-using GFrameworkGodotTemplate.scripts.core.state.impls;
-using GFrameworkGodotTemplate.scripts.core.ui;
-using GFrameworkGodotTemplate.scripts.enums.ui;
-using GFrameworkGodotTemplate.scripts.setting.query;
-using GFrameworkGodotTemplate.global;
-using GFrameworkGodotTemplate.scripts.cqrs.audio.command;
-using GFrameworkGodotTemplate.scripts.cqrs.audio.command.input;
-using GFrameworkGodotTemplate.scripts.cqrs.graphics;
-using GFrameworkGodotTemplate.scripts.cqrs.graphics.input;
-using GFrameworkGodotTemplate.scripts.cqrs.setting;
+using TimeToTwentyfour.scripts.component;
+using TimeToTwentyfour.scripts.core.state.impls;
+using TimeToTwentyfour.scripts.core.ui;
+using TimeToTwentyfour.scripts.enums.ui;
+using TimeToTwentyfour.scripts.setting.query;
+using TimeToTwentyfour.global;
+using TimeToTwentyfour.scripts.cqrs.audio.command;
+using TimeToTwentyfour.scripts.cqrs.audio.command.input;
+using TimeToTwentyfour.scripts.cqrs.graphics;
+using TimeToTwentyfour.scripts.cqrs.graphics.input;
+using TimeToTwentyfour.scripts.cqrs.setting;
 using Godot;
 
-namespace GFrameworkGodotTemplate.scripts.menu.options_menu;
+namespace TimeToTwentyfour.scripts.menu.options_menu;
 
 /// <summary>
 ///     选项设置界面控制器

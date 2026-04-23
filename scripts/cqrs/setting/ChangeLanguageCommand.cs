@@ -1,11 +1,11 @@
-using GFramework.Core.command;
+﻿using GFramework.Core.command;
 using GFramework.Core.extensions;
 using GFramework.Game.Abstractions.setting;
 using GFramework.Game.Abstractions.setting.data;
 using GFramework.Godot.setting;
-using GFrameworkGodotTemplate.scripts.cqrs.setting.input;
+using TimeToTwentyfour.scripts.cqrs.setting.input;
 
-namespace GFrameworkGodotTemplate.scripts.cqrs.setting;
+namespace TimeToTwentyfour.scripts.cqrs.setting;
 
 /// <summary>
 ///     更改语言命令类

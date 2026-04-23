@@ -1,4 +1,4 @@
-using GFramework.Core.Abstractions.architecture;
+﻿using GFramework.Core.Abstractions.architecture;
 using GFramework.Core.Abstractions.logging;
 using GFramework.Core.Abstractions.properties;
 using GFramework.Core.Abstractions.state;
@@ -12,17 +12,17 @@ using GFramework.Godot.scene;
 using GFramework.Godot.ui;
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
-using GFrameworkGodotTemplate.scripts.core;
-using GFrameworkGodotTemplate.scripts.core.environment;
-using GFrameworkGodotTemplate.scripts.core.resource;
-using GFrameworkGodotTemplate.scripts.core.state.impls;
-using GFrameworkGodotTemplate.scripts.cqrs.setting;
-using GFrameworkGodotTemplate.scripts.enums.scene;
-using GFrameworkGodotTemplate.scripts.utility;
+using TimeToTwentyfour.scripts.core;
+using TimeToTwentyfour.scripts.core.environment;
+using TimeToTwentyfour.scripts.core.resource;
+using TimeToTwentyfour.scripts.core.state.impls;
+using TimeToTwentyfour.scripts.cqrs.setting;
+using TimeToTwentyfour.scripts.enums.scene;
+using TimeToTwentyfour.scripts.utility;
 using Godot;
 using Godot.Collections;
 
-namespace GFrameworkGodotTemplate.global;
+namespace TimeToTwentyfour.global;
 
 /// <summary>
 ///     游戏入口点节点类，负责初始化游戏架构和管理全局游戏状态

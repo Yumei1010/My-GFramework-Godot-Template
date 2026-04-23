@@ -1,4 +1,4 @@
-using GFramework.Core.Abstractions.controller;
+﻿using GFramework.Core.Abstractions.controller;
 using GFramework.Core.Abstractions.coroutine;
 using GFramework.Core.coroutine.extensions;
 using GFramework.Core.coroutine.instructions;
@@ -7,7 +7,7 @@ using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
 using Godot;
 
-namespace GFrameworkGodotTemplate.global;
+namespace TimeToTwentyfour.global;
 
 /// <summary>
 /// 场景过渡管理器，负责处理场景之间的平滑过渡效果。

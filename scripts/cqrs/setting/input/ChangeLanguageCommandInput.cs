@@ -1,6 +1,6 @@
-using GFramework.Core.Abstractions.command;
+﻿using GFramework.Core.Abstractions.command;
 
-namespace GFrameworkGodotTemplate.scripts.cqrs.setting.input;
+namespace TimeToTwentyfour.scripts.cqrs.setting.input;
 
 /// <summary>
 ///     更改语言命令输入类

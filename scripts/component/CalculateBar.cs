@@ -1,12 +1,12 @@
-using GFramework.Core.Abstractions.controller;
+﻿using GFramework.Core.Abstractions.controller;
 using GFramework.Core.extensions;
 using GFramework.SourceGenerators.Abstractions.rule;
-using GFrameworkGodotTemplate.global;
-using GFrameworkGodotTemplate.scripts.cqrs.poker.@event;
-using GFrameworkGodotTemplate.scripts.enums.poker;
+using TimeToTwentyfour.global;
+using TimeToTwentyfour.scripts.cqrs.poker.@event;
+using TimeToTwentyfour.scripts.enums.poker;
 using Godot;
 
-namespace GFrameworkGodotTemplate.scripts.component;
+namespace TimeToTwentyfour.scripts.component;
 
 [ContextAware]
 public partial class CalculateBar : Control, IController

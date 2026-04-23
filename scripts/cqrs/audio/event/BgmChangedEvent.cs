@@ -1,6 +1,6 @@
-﻿using GFrameworkGodotTemplate.scripts.enums.audio;
+﻿using TimeToTwentyfour.scripts.enums.audio;
 
-namespace GFrameworkGodotTemplate.scripts.cqrs.audio.@event;
+namespace TimeToTwentyfour.scripts.cqrs.audio.@event;
 
 /// <summary>
 /// 背景音乐变更事件类
