@@ -3,7 +3,7 @@ using GFramework.Core.extensions;
 using GFramework.Core.state;
 using GFramework.Game.Abstractions.scene;
 using GFramework.Game.Abstractions.ui;
-using GFrameworkGodotTemplate.scripts.credits;
+using GFrameworkGodotTemplate.scripts.menu.credits;
 
 namespace GFrameworkGodotTemplate.scripts.core.state.impls;
 

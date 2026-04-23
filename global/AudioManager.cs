@@ -4,8 +4,8 @@ using GFramework.Godot.extensions;
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
 using GFrameworkGodotTemplate.scripts.constants;
+using GFrameworkGodotTemplate.scripts.cqrs.audio.@event;
 using GFrameworkGodotTemplate.scripts.enums.audio;
-using GFrameworkGodotTemplate.scripts.events.audio;
 using Godot;
 
 namespace GFrameworkGodotTemplate.global;

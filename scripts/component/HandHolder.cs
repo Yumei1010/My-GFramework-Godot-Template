@@ -1,4 +1,4 @@
-using GFrameworkGodotTemplate.scripts.poker;
+using GFrameworkGodotTemplate.scripts.entities.poker;
 using GFrameworkGodotTemplate.scripts.utility;
 using Godot;
 

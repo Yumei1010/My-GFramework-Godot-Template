@@ -2,8 +2,8 @@ using GFramework.Core.Abstractions.controller;
 using GFramework.Core.extensions;
 using GFramework.SourceGenerators.Abstractions.rule;
 using GFrameworkGodotTemplate.global;
-using GFrameworkGodotTemplate.scripts.enums.calculate;
-using GFrameworkGodotTemplate.scripts.events.pokerSelector;
+using GFrameworkGodotTemplate.scripts.cqrs.poker.@event;
+using GFrameworkGodotTemplate.scripts.enums.poker;
 using Godot;
 
 namespace GFrameworkGodotTemplate.scripts.component;

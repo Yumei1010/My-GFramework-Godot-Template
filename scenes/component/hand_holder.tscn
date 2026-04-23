@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cejgpn5b5k2or"]
 
 [ext_resource type="Script" uid="uid://bx63lpkr7pj3j" path="res://scripts/component/HandHolder.cs" id="1_clll1"]
-[ext_resource type="PackedScene" uid="uid://cfuvnryxlpn4b" path="res://scenes/poker/poker.tscn" id="2_5us6y"]
+[ext_resource type="PackedScene" uid="uid://cfuvnryxlpn4b" path="res://scenes/entities/poker/poker.tscn" id="2_5us6y"]
 
 [node name="HandHolder" type="Control" unique_id=2114122353]
 layout_mode = 3
@@ -40,6 +40,7 @@ offset_right = -31.999985
 offset_bottom = -116.0
 grow_horizontal = 1
 grow_vertical = 1
+SuitType = 1
 NumValue = "-2"
 
 [node name="Poker3" parent="PokerHolderContainer" unique_id=1624674689 instance=ExtResource("2_5us6y")]
@@ -50,6 +51,7 @@ offset_right = 120.0
 offset_bottom = -147.99988
 grow_horizontal = 1
 grow_vertical = 1
+SuitType = 2
 NumValue = "3.3"
 NumType = 2
 
@@ -61,6 +63,7 @@ offset_right = 296.0
 offset_bottom = -212.0
 grow_horizontal = 1
 grow_vertical = 1
+SuitType = 3
 NumValue = "1/8"
 NumType = 1
 

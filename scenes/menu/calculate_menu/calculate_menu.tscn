@@ -1,0 +1,124 @@
+[gd_scene format=3 uid="uid://fm27d2slodic"]
+
+[ext_resource type="Script" uid="uid://2qiga3qxnxcn" path="res://scripts/calculate_menu/CalculateMenu.cs" id="1_60nu6"]
+[ext_resource type="PackedScene" uid="uid://bbydbuw0ryr1p" path="res://scenes/component/calculate_bar.tscn" id="2_3dp4d"]
+[ext_resource type="Script" uid="uid://c1xqldtw7idft" path="res://scripts/entities/poker/PokerSelector.cs" id="2_3mf7f"]
+[ext_resource type="Script" uid="uid://l4oba7iqc2wa" path="res://scripts/entities/poker/mode/AddMode.cs" id="3_7vdiq"]
+[ext_resource type="PackedScene" uid="uid://cejgpn5b5k2or" path="res://scenes/component/hand_holder.tscn" id="3_ebdle"]
+[ext_resource type="Script" uid="uid://dh377u171nle3" path="res://scripts/entities/poker/mode/SubtractMode.cs" id="4_n61on"]
+[ext_resource type="Script" uid="uid://c6hwpu1k1q14m" path="res://scripts/entities/poker/mode/MultiplyMode.cs" id="5_4k53u"]
+[ext_resource type="Script" uid="uid://boi47h0kt4i5g" path="res://scripts/entities/poker/mode/DivideMode.cs" id="6_7kspd"]
+[ext_resource type="Script" uid="uid://x6q51d8ppaph" path="res://scripts/entities/poker/mode/ModuloMode.cs" id="7_4d6fc"]
+[ext_resource type="Script" uid="uid://cuudaixs7wqa1" path="res://scripts/entities/poker/mode/PowerMode.cs" id="8_4gox6"]
+[ext_resource type="Script" uid="uid://brjgeblf5ns44" path="res://scripts/entities/poker/mode/NthRootMode.cs" id="9_lbyta"]
+[ext_resource type="Script" uid="uid://bpqubd5se65sy" path="res://scripts/entities/poker/mode/AbsoluteValueMode.cs" id="10_ynjim"]
+[ext_resource type="Script" uid="uid://dseepedm0cp0k" path="res://scripts/entities/poker/mode/FactorialMode.cs" id="11_swfoo"]
+[ext_resource type="Script" uid="uid://ce7b8pwvktctn" path="res://scripts/entities/poker/mode/SquareRootMode.cs" id="12_dwtut"]
+[ext_resource type="Script" uid="uid://qa5l5sl6tg6s" path="res://scripts/entities/poker/mode/CeilMode.cs" id="13_mn4a0"]
+[ext_resource type="Script" uid="uid://45i2ftruivbe" path="res://scripts/entities/poker/mode/FloorMode.cs" id="14_3mf7f"]
+
+[node name="CalculateMenu" type="Control" unique_id=1368381339]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_60nu6")
+metadata/_edit_lock_ = true
+
+[node name="Background" type="ColorRect" parent="." unique_id=1044893812]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0.39215687)
+metadata/_edit_lock_ = true
+
+[node name="PokerSelector" type="Node" parent="." unique_id=1538711734]
+unique_name_in_owner = true
+script = ExtResource("2_3mf7f")
+
+[node name="Add" type="Node" parent="PokerSelector" unique_id=1873660615]
+script = ExtResource("3_7vdiq")
+Capacity = 2
+
+[node name="Subtract" type="Node" parent="PokerSelector" unique_id=951307158]
+script = ExtResource("4_n61on")
+Mode = 1
+Capacity = 2
+
+[node name="Multiply" type="Node" parent="PokerSelector" unique_id=1945685379]
+script = ExtResource("5_4k53u")
+Mode = 2
+Capacity = 2
+
+[node name="Divide" type="Node" parent="PokerSelector" unique_id=700895743]
+script = ExtResource("6_7kspd")
+Mode = 3
+Capacity = 2
+
+[node name="Modulo" type="Node" parent="PokerSelector" unique_id=141272426]
+script = ExtResource("7_4d6fc")
+Mode = 4
+Capacity = 2
+
+[node name="Power" type="Node" parent="PokerSelector" unique_id=495798994]
+script = ExtResource("8_4gox6")
+Mode = 5
+Capacity = 2
+
+[node name="NthRoot" type="Node" parent="PokerSelector" unique_id=2137450193]
+script = ExtResource("9_lbyta")
+Mode = 6
+Capacity = 2
+
+[node name="AbsoluteValue" type="Node" parent="PokerSelector" unique_id=765243180]
+script = ExtResource("10_ynjim")
+Mode = 7
+Capacity = 1
+
+[node name="Factorial" type="Node" parent="PokerSelector" unique_id=1120595503]
+script = ExtResource("11_swfoo")
+Mode = 8
+Capacity = 1
+
+[node name="SquareRoot" type="Node" parent="PokerSelector" unique_id=1215772405]
+script = ExtResource("12_dwtut")
+Mode = 9
+Capacity = 1
+
+[node name="Ceil" type="Node" parent="PokerSelector" unique_id=582197095]
+script = ExtResource("13_mn4a0")
+Mode = 10
+Capacity = 1
+
+[node name="Floor" type="Node" parent="PokerSelector" unique_id=1423501795]
+script = ExtResource("14_3mf7f")
+Mode = 11
+Capacity = 1
+
+[node name="HandHolder" parent="." unique_id=2114122353 instance=ExtResource("3_ebdle")]
+layout_mode = 1
+
+[node name="CalculateBar" parent="." unique_id=356497160 instance=ExtResource("2_3dp4d")]
+layout_mode = 1
+
+[node name="Button" type="Button" parent="." unique_id=1494334784]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 488.0
+offset_top = 232.0
+offset_right = 664.0
+offset_bottom = 304.0
+
+[node name="Button2" type="Button" parent="." unique_id=1526185498]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 720.0
+offset_top = 232.0
+offset_right = 896.0
+offset_bottom = 304.0

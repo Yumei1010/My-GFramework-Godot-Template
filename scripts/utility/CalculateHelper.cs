@@ -1,8 +1,7 @@
 ﻿using System.Globalization;
 using System.Runtime.InteropServices;
-using GFrameworkGodotTemplate.scripts.enums.calculate;
+using GFrameworkGodotTemplate.scripts.entities.poker;
 using GFrameworkGodotTemplate.scripts.enums.poker;
-using GFrameworkGodotTemplate.scripts.poker;
 
 namespace GFrameworkGodotTemplate.scripts.utility;
 

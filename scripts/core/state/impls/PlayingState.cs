@@ -2,7 +2,7 @@ using GFramework.Core.Abstractions.state;
 using GFramework.Core.extensions;
 using GFramework.Core.state;
 using GFramework.Game.Abstractions.ui;
-using GFrameworkGodotTemplate.scripts.calculate_menu;
+using GFrameworkGodotTemplate.scripts.menu.calculate_menu;
 
 namespace GFrameworkGodotTemplate.scripts.core.state.impls;
 
