@@ -1,30 +1,32 @@
-﻿using Godot;
-
-namespace TimeToTwentyfour.scripts.menu.main_menu;
+﻿namespace TimeToTwentyfour.scripts.menu.main_menu;
 
 public partial class MainMenuOptionButton
 {
     private void ConnectSignal()
     {
+        ButtonDown += OnMouseDowned;
+        ButtonUp += OnMouseUped;
         MouseEntered += OnMouseEntered;
         MouseExited += OnMouseExited;
     }
     
+    private void OnMouseDowned()
+    {
+        OnMouseDown();
+    }
+
+    private void OnMouseUped()
+    {
+        OnMouseUp();
+    }
+    
     private void OnMouseEntered()
     {
-        // 如果正在播放动画，使其终止
-        if (!_tweenMask.IsNull() && _tweenMask.IsRunning()) _tweenMask.Kill();
-        
-        _tweenMask = CreateTween().SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Linear);
-        _tweenMask.TweenProperty(MaskRect, "size", new Vector2(192,32), 0.45f);
+        OnMouseEnter();
     }
 
     private void OnMouseExited()
     {
-        // 如果正在播放动画，使其终止
-        if (!_tweenMask.IsNull() && _tweenMask.IsRunning()) _tweenMask.Kill();
-        
-        _tweenMask = CreateTween().SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Linear);
-        _tweenMask.TweenProperty(MaskRect, "size", new Vector2(0,32), 0.05f);
+        OnMouseExit();
     }
 }

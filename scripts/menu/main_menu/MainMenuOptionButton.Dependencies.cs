@@ -5,11 +5,11 @@ namespace TimeToTwentyfour.scripts.menu.main_menu;
 
 public partial class MainMenuOptionButton
 {
-    private ColorRect BackgroundRect => GetNode<ColorRect>("%BackgroundRect");
-    private ColorRect MaskRect => GetNode<ColorRect>("%MaskRect");
-    private Label TextLabel => GetNode<Label>("%TextLabel");
-    
-    private Tween _tweenMask = null!;
+    protected ColorRect BackgroundRect => GetNode<ColorRect>("%BackgroundRect");
+    protected ColorRect MaskRect => GetNode<ColorRect>("%MaskRect");
+    protected Label TextLabel => GetNode<Label>("%TextLabel");
+
+    protected Tween _tweenMask = null!;
     
     private async Task ReadyAsync()
     {

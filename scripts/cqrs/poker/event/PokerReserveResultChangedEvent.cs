@@ -3,8 +3,8 @@
 namespace TimeToTwentyfour.scripts.cqrs.poker.@event;
 
 /// <summary>
-/// 扑克预览运算结果变更事件类
-/// 用于表示扑克预览运算结果发生变化的事件 
+///     扑克预览运算结果变更事件类
+///     用于表示扑克预览运算结果发生变化的事件 
 /// </summary>
 public class PokerReserveResultChangedEvent
 {

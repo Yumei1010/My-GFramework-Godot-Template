@@ -4,8 +4,8 @@ using TimeToTwentyfour.scripts.enums.poker;
 namespace TimeToTwentyfour.scripts.cqrs.poker.@event;
 
 /// <summary>
-/// 扑克花色类型变更事件类
-/// 用于表示扑克花色类型发生变化的事件
+///     扑克花色类型变更事件类
+///     用于表示扑克花色类型发生变化的事件
 /// </summary>
 public abstract class PokerSuitTypeChangedEvent
 {

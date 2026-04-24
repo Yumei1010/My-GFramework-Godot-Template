@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://cfuvnryxlpn4b"]
 
-[ext_resource type="Script" uid="uid://dgomet07s0x3k" path="res://scripts/poker/Poker.cs" id="1_4exqo"]
+[ext_resource type="Script" uid="uid://dgomet07s0x3k" path="res://scripts/entities/poker/Poker.cs" id="1_4exqo"]
 [ext_resource type="Texture2D" uid="uid://6vuld8lknm7e" path="res://assets/textures/poker/surface/heart.png" id="3_twcbr"]
-[ext_resource type="Script" uid="uid://ddwck8cwbdhqf" path="res://scripts/poker/PokerStateMachine.cs" id="4_4exqo"]
-[ext_resource type="Script" uid="uid://c14ajqqmlbmg6" path="res://scripts/poker/state/IdleState.cs" id="4_5nhq5"]
-[ext_resource type="Script" uid="uid://53xgns3lsyw5" path="res://scripts/poker/state/DragState.cs" id="5_3emhc"]
-[ext_resource type="Script" uid="uid://dcha8sa4kj58p" path="res://scripts/poker/state/UnSelectState.cs" id="6_cf1su"]
-[ext_resource type="Script" uid="uid://bx1ye0383sg7u" path="res://scripts/poker/state/OnSelectState.cs" id="7_o2w1w"]
+[ext_resource type="Script" uid="uid://ddwck8cwbdhqf" path="res://scripts/entities/poker/PokerStateMachine.cs" id="4_4exqo"]
+[ext_resource type="Script" uid="uid://c14ajqqmlbmg6" path="res://scripts/entities/poker/state/IdleState.cs" id="4_5nhq5"]
+[ext_resource type="Script" uid="uid://53xgns3lsyw5" path="res://scripts/entities/poker/state/DragState.cs" id="5_3emhc"]
+[ext_resource type="Script" uid="uid://dcha8sa4kj58p" path="res://scripts/entities/poker/state/UnSelectState.cs" id="6_cf1su"]
+[ext_resource type="Script" uid="uid://bx1ye0383sg7u" path="res://scripts/entities/poker/state/OnSelectState.cs" id="7_o2w1w"]
 [ext_resource type="Shader" uid="uid://nuhgfc63t5ri" path="res://assets/shader/poker/fake_3D.gdshader" id="8_o2w1w"]
 [ext_resource type="Texture2D" uid="uid://bq8e5q4wdtjbj" path="res://assets/textures/poker/shadow.png" id="10_pa15o"]
 

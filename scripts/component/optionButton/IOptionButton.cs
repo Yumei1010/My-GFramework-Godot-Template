@@ -21,4 +21,24 @@ public interface IOptionButton
     /// </summary>
     /// <param name="text">目标文本内容 <see cref="string"/></param>
     void UpdateTextLabel(string text);
+    
+    /// <summary>
+    /// 鼠标点击时调用的方法
+    /// </summary>
+    void OnMouseDown();
+    
+    /// <summary>
+    /// 鼠标释放时调用的方法
+    /// </summary>
+    void OnMouseUp();
+    
+    /// <summary>
+    /// 鼠标进入时调用的方法
+    /// </summary>
+    void OnMouseEnter();
+    
+    /// <summary>
+    /// 鼠标退出时调用的方法
+    /// </summary>
+    void OnMouseExit();
 }

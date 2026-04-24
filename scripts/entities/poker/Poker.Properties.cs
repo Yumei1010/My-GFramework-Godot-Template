@@ -28,10 +28,10 @@ public partial class Poker
     /// <summary>
     ///     默认坐标 <see cref="Vector2"/>
     /// </summary>
-    private Vector2 DefaultPosition { get; set; }
+    [Export] private Vector2 DefaultPosition { get; set; }
     
     /// <summary>
     ///     默认偏转角度 <see cref="float"/>
     /// </summary>
-    private float DefaultRotation { get; set; }
+    [Export] private float DefaultRotation { get; set; }
 }

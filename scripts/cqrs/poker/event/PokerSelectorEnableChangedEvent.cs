@@ -1,8 +1,8 @@
 ﻿namespace TimeToTwentyfour.scripts.cqrs.poker.@event;
 
 /// <summary>
-/// 扑克选择器可用性变更事件类
-/// 用于表示扑克选择器可用性发生变化的事件
+///     扑克选择器可用性变更事件类
+///     用于表示扑克选择器可用性发生变化的事件
 /// </summary>
 public class PokerSelectorEnableChangedEvent
 {

@@ -45,9 +45,6 @@ public partial class GlobalInputController : GameInputController
         // 检查是否按下了取消操作（通常是 ESC 键）
         if (!@event.IsActionPressed("ui_cancel"))
             return;
-        // 根据当前状态执行相应操作
-        if (_stateMachineSystem.Current is not PlayingState) return;
-        _log.Debug("暂停游戏");
         
         GetViewport().SetInputAsHandled();
     }

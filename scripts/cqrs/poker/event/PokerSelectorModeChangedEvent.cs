@@ -3,8 +3,8 @@
 namespace TimeToTwentyfour.scripts.cqrs.poker.@event;
 
 /// <summary>
-/// 扑克选择器模式变更事件类
-/// 用于表示扑克选择器模式变更的事件
+///     扑克选择器模式变更事件类
+///     用于表示扑克选择器模式变更的事件
 /// </summary>
 public class PokerSelectorModeChangedEvent
 {

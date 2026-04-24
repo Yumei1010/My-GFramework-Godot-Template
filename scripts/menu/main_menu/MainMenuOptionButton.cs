@@ -2,7 +2,7 @@
 
 namespace TimeToTwentyfour.scripts.menu.main_menu;
 
-public partial class MainMenuOptionButton : Button , IMainMenuOptionButton
+public abstract partial class MainMenuOptionButton : Button , IMainMenuOptionButton
 {
     public override void _Ready()
     {
@@ -49,7 +49,15 @@ public partial class MainMenuOptionButton : Button , IMainMenuOptionButton
         
         UpdateTextLabel();
     }
-    
+
+    public abstract void OnMouseDown();
+
+    public abstract void OnMouseUp();
+
+    public abstract void OnMouseEnter();
+
+    public abstract void OnMouseExit();
+
     private void UpdateTextColor()
     {
         var labelSettings = new LabelSettings();

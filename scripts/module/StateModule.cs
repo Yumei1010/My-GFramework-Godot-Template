@@ -20,11 +20,11 @@ public class StateModule : AbstractModule
         architecture.RegisterSystem(new GameStateMachineSystem().Also(it =>
         {
             it.Register(new MainMenuState())
-                .Register(new PlayingState())
-                .Register(new GameOverState())
                 .Register(new OptionsMenuState())
                 .Register(new CreditsState())
-                .Register(new CalculateMenuState());
+                .Register(new CalculateMenuState())
+
+                .Register(new GameOverState());
         }));
     }
 }

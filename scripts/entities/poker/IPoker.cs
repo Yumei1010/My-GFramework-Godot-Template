@@ -57,6 +57,12 @@ public interface IPoker
     void SetGlobalPosition(Vector2 pos);
     
     /// <summary>
+    ///     设置扑克的旋转角度
+    /// </summary>
+    /// <param name="angle">要设置的旋转角度</param>
+    void SetRotation(float angle);
+    
+    /// <summary>
     ///     设置扑克的默认旋转角度
     /// </summary>
     /// <param name="angle">要设置的旋转角度</param>

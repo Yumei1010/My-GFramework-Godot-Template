@@ -3,6 +3,9 @@ using TimeToTwentyfour.scripts.component.optionButton;
 
 namespace TimeToTwentyfour.scripts.menu.main_menu;
 
+/// <summary>
+/// 主菜单选项按钮接口，定义了主菜单选项按钮的基本属性和必须实现的功能
+/// </summary>
 public interface IMainMenuOptionButton : IOptionButton
 {
     /// <summary>

@@ -3,8 +3,8 @@
 namespace TimeToTwentyfour.scripts.cqrs.poker.@event;
 
 /// <summary>
-/// 扑克点数数值变更事件类
-/// 用于表示扑克点数数值发生变化的事件
+///     扑克点数数值变更事件类
+///     用于表示扑克点数数值发生变化的事件
 /// </summary>
 public abstract class PokerNumValueChangedEvent
 {

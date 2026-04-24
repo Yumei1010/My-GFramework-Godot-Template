@@ -14,12 +14,16 @@ public partial class DragState : PokerState
     {
         // 隐藏并锁定鼠标在窗口范围内
         Input.SetMouseMode(Input.MouseModeEnum.ConfinedHidden);
+        
+        Poker.SetRotation(0f);
     }
 
     public override void Exit()
     {
         // 显示鼠标
         Input.SetMouseMode(Input.MouseModeEnum.Visible);
+        
+        Poker.ResetRot();
     }
 
     public override void MouseDown()

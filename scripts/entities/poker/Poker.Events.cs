@@ -12,37 +12,37 @@ public partial class Poker
     private void RegisterEvent()
     {
         // 注册对花色变更事件的监听
-        ContextAwareExtensions.RegisterEvent<PokerSuitTypeChangedEvent>(this, e =>
+        this.RegisterEvent<PokerSuitTypeChangedEvent>(e =>
         {
             OnSuitTypeChangedEvent(e.SuitType,e.Poker);
         }).UnRegisterWhenNodeExitTree(this);
         
         // 注册对数值变更事件的监听
-        ContextAwareExtensions.RegisterEvent<PokerNumValueChangedEvent>(this, e =>
+        this.RegisterEvent<PokerNumValueChangedEvent>(e =>
         {
             OnNumValueChangedEvent(e.NumValue,e.Poker);
         }).UnRegisterWhenNodeExitTree(this);
         
         // 注册对数值类型变更事件的监听
-        ContextAwareExtensions.RegisterEvent<PokerNumTypeChangedEvent>(this, e =>
+        this.RegisterEvent<PokerNumTypeChangedEvent>(e =>
         {
             OnNumTypeChangedEvent(e.NumType,e.Poker);
         }).UnRegisterWhenNodeExitTree(this);
         
         // 注册对状态变更事件的监听
-        ContextAwareExtensions.RegisterEvent<PokerStateChangedEvent>(this, e =>
+        this.RegisterEvent<PokerStateChangedEvent>(e =>
         {
             OnStateChangedEvent(e.State,e.Poker);
         }).UnRegisterWhenNodeExitTree(this);
         
         // 注册对选择器可用性变更事件的监听
-        ContextAwareExtensions.RegisterEvent<PokerSelectorEnableChangedEvent>(this, e =>
+        this.RegisterEvent<PokerSelectorEnableChangedEvent>(e =>
         {
             OnEnableChangedEvent(e.Enable);
         }).UnRegisterWhenNodeExitTree(this);
         
         // 注册对预览运算结果变更事件的监听
-        ContextAwareExtensions.RegisterEvent<PokerReserveResultChangedEvent>(this, e =>
+        this.RegisterEvent<PokerReserveResultChangedEvent>(e =>
         {
             OnReserveResultChangedEvent(e.NumValue, e.IsHidden, e.Poker);
         }).UnRegisterWhenNodeExitTree(this);

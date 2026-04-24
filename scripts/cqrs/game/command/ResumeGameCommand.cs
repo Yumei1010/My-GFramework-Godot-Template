@@ -17,6 +17,6 @@ public sealed class ResumeGameCommand : AbstractCommand
     protected override void OnExecute()
     {
         GameUtil.GetTree().Paused = false;
-        this.GetSystem<IStateMachineSystem>()!.ChangeTo<PlayingState>();
+        this.GetSystem<IStateMachineSystem>()!.ChangeTo<CalculateMenuState>();
     }
 }

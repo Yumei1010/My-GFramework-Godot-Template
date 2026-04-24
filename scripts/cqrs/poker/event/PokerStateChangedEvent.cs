@@ -4,8 +4,8 @@ using TimeToTwentyfour.scripts.enums.poker;
 namespace TimeToTwentyfour.scripts.cqrs.poker.@event;
 
 /// <summary>
-/// 状态机状态变更事件类
-/// 用于表示状态机状态发生变化的事件
+///     状态机状态变更事件类
+///     用于表示状态机状态发生变化的事件
 /// </summary>
 public class PokerStateChangedEvent
 {

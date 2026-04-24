@@ -1,13 +1,10 @@
 ﻿using GFramework.Core.Abstractions.controller;
-using GFramework.Core.extensions;
 using GFramework.Game.Abstractions.enums;
 using GFramework.Game.Abstractions.ui;
 using GFramework.Godot.ui;
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
-using TimeToTwentyfour.scripts.core.state.impls;
 using TimeToTwentyfour.scripts.core.ui;
-using TimeToTwentyfour.scripts.cqrs.game.command;
 using TimeToTwentyfour.scripts.enums.ui;
 using Godot;
 
@@ -30,39 +27,6 @@ public partial class MainMenu : Control, IController, IUiPageBehaviorProvider, I
     {
         _ = ReadyAsync();
         ConnectSignal();
-    }
-    
-    private void ConnectSignal()
-    {
-        StartButton.ButtonDown += OnMouseDownStartGameButton;
-        ContinueButton.ButtonDown += OnMouseDownContinueButton;
-        OptionsMenuButton.ButtonDown += OnMouseDownOptionsMenuButton;
-        CreditsButton.ButtonDown += OnMouseDownCreditsButton;
-        ExitButton.ButtonDown += OnMouseDownExitButton;
-    }
-
-    private void OnMouseDownStartGameButton()
-    {
-        _stateMachineSystem.ChangeTo<CalculateMenuState>();
-    }
-    
-    private void OnMouseDownContinueButton()
-    {
-        GD.Print("VAR");
-    }
-
-    private void OnMouseDownOptionsMenuButton()
-    {
-        _stateMachineSystem.ChangeTo<OptionsMenuState>();
-    }
-
-    private void OnMouseDownCreditsButton()
-    {
-        _stateMachineSystem.ChangeTo<CreditsState>();
-    }
-
-    private void OnMouseDownExitButton()
-    {
-        this.SendCommand(new ExitGameCommand());
+        RegisterEvent();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using GFramework.Core.Abstractions.controller;
+using GFramework.Core.Abstractions.state;
 using GFramework.Core.extensions;
 using GFramework.Game.Abstractions.enums;
 using GFramework.Game.Abstractions.ui;
@@ -8,8 +9,10 @@ using GFramework.SourceGenerators.Abstractions.rule;
 using TimeToTwentyfour.scripts.constants;
 using TimeToTwentyfour.scripts.core.ui;
 using TimeToTwentyfour.scripts.enums.ui;
-using global::TimeToTwentyfour.global;
+using TimeToTwentyfour.global;
 using Godot;
+using TimeToTwentyfour.scripts.core.state.impls;
+using TimeToTwentyfour.scripts.menu.main_menu;
 
 namespace TimeToTwentyfour.scripts.menu.credits;
 
@@ -19,8 +22,10 @@ public partial class Credits : Control, IController, IUiPageBehaviorProvider, IS
 {
     private Button BackButton => GetNode<Button>("%BackButton");
 
-    private IUiPageBehavior? _page;
+    private IStateMachineSystem _stateMachineSystem = null!;
     private IUiRouter _uiRouter = null!;
+    
+    private IUiPageBehavior? _page;
     public static string UiKeyStr => nameof(UiKey.Credits);
 
     /// <summary>
@@ -60,10 +65,12 @@ public partial class Credits : Control, IController, IUiPageBehaviorProvider, IS
     /// </summary>
     private async Task ReadyAsync()
     {
+        // 等待框架加载完成
         await GameEntryPoint.Architecture.WaitUntilReadyAsync().ConfigureAwait(false);
-        _uiRouter = ContextAwareExtensions.GetSystem<IUiRouter>(this)!;
-        // 这个需要延迟调用，因为UiRoot还没有添加到场景树中
-        CallDeferred(nameof(CallDeferredInit));
+        
+        // 依赖注入
+        _stateMachineSystem = this.GetSystem<IStateMachineSystem>()!;
+        _uiRouter = this.GetSystem<IUiRouter>()!;
     }
 
     private void ConnectSignal()
@@ -73,6 +80,6 @@ public partial class Credits : Control, IController, IUiPageBehaviorProvider, IS
 
     private void OnBackButton()
     {
-        _uiRouter.Pop();
+        _stateMachineSystem.ChangeTo<MainMenuState>();
     }
 }

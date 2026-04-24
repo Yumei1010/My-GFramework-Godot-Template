@@ -30,7 +30,7 @@ public partial class OnSelectState : PokerState
 
     public override void MouseDown()
     {
-        ContextAwareExtensions.SendEvent(this, new PokerSelectorSelectChangedEvent
+        this.SendEvent(new PokerSelectorSelectChangedEvent
         {
             Poker = Poker,
             IsSelected = false
