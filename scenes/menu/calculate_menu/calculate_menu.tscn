@@ -1,10 +1,8 @@
 [gd_scene format=3 uid="uid://fm27d2slodic"]
 
 [ext_resource type="Script" uid="uid://2qiga3qxnxcn" path="res://scripts/menu/calculate_menu/CalculateMenu.cs" id="1_60nu6"]
-[ext_resource type="PackedScene" uid="uid://bbydbuw0ryr1p" path="res://scenes/component/calculate_bar.tscn" id="2_3dp4d"]
 [ext_resource type="Script" uid="uid://c1xqldtw7idft" path="res://scripts/entities/poker/PokerSelector.cs" id="2_3mf7f"]
 [ext_resource type="Script" uid="uid://l4oba7iqc2wa" path="res://scripts/entities/poker/mode/AddMode.cs" id="3_7vdiq"]
-[ext_resource type="PackedScene" uid="uid://cejgpn5b5k2or" path="res://scenes/component/hand_holder.tscn" id="3_ebdle"]
 [ext_resource type="Script" uid="uid://dh377u171nle3" path="res://scripts/entities/poker/mode/SubtractMode.cs" id="4_n61on"]
 [ext_resource type="Script" uid="uid://c6hwpu1k1q14m" path="res://scripts/entities/poker/mode/MultiplyMode.cs" id="5_4k53u"]
 [ext_resource type="Script" uid="uid://boi47h0kt4i5g" path="res://scripts/entities/poker/mode/DivideMode.cs" id="6_7kspd"]
@@ -16,6 +14,9 @@
 [ext_resource type="Script" uid="uid://ce7b8pwvktctn" path="res://scripts/entities/poker/mode/SquareRootMode.cs" id="12_dwtut"]
 [ext_resource type="Script" uid="uid://qa5l5sl6tg6s" path="res://scripts/entities/poker/mode/CeilMode.cs" id="13_mn4a0"]
 [ext_resource type="Script" uid="uid://45i2ftruivbe" path="res://scripts/entities/poker/mode/FloorMode.cs" id="14_3mf7f"]
+[ext_resource type="PackedScene" uid="uid://brxjekghcb1sr" path="res://scenes/menu/calculate_menu/calculate_menu_option_button.tscn" id="17_8cxt5"]
+[ext_resource type="Script" uid="uid://dhekr2vg4a6b2" path="res://scripts/menu/calculate_menu/optionButton/PlayOptionButton.cs" id="18_pjsn5"]
+[ext_resource type="Script" uid="uid://cnn6hug2r8aj5" path="res://scripts/menu/calculate_menu/optionButton/ModeOptionButton.cs" id="19_piecu"]
 
 [node name="CalculateMenu" type="Control" unique_id=1368381339]
 layout_mode = 3
@@ -35,7 +36,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(1, 1, 1, 0.39215687)
+color = Color(0, 0.85993636, 0.7884116, 1)
 metadata/_edit_lock_ = true
 
 [node name="PokerSelector" type="Node" parent="." unique_id=1538711734]
@@ -101,24 +102,60 @@ script = ExtResource("14_3mf7f")
 Mode = 11
 Capacity = 1
 
-[node name="HandHolder" parent="." unique_id=2114122353 instance=ExtResource("3_ebdle")]
-layout_mode = 1
-
-[node name="CalculateBar" parent="." unique_id=356497160 instance=ExtResource("2_3dp4d")]
-layout_mode = 1
-
-[node name="Button" type="Button" parent="." unique_id=1494334784]
-unique_name_in_owner = true
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=442925543]
+custom_minimum_size = Vector2(576, 64)
 layout_mode = 0
-offset_left = 488.0
-offset_top = 232.0
-offset_right = 664.0
-offset_bottom = 304.0
+offset_left = 192.0
+offset_top = 464.0
+offset_right = 768.0
+offset_bottom = 528.0
+theme_override_constants/separation = 8
+alignment = 1
+metadata/_edit_lock_ = true
 
-[node name="Button2" type="Button" parent="." unique_id=1526185498]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer" unique_id=190644855]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 16
+
+[node name="PlayButton" parent="HBoxContainer/MarginContainer" unique_id=1616409444 instance=ExtResource("17_8cxt5")]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 720.0
-offset_top = 232.0
-offset_right = 896.0
-offset_bottom = 304.0
+layout_mode = 2
+script = ExtResource("18_pjsn5")
+TextContent = "出牌"
+TextColor = Color(1, 1, 1, 1)
+BackgroundColor = Color(0.99931985, 0.4470011, 0.49724633, 1)
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer" unique_id=1125458257]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2" unique_id=744804304]
+custom_minimum_size = Vector2(192, 24)
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Suit" type="Button" parent="HBoxContainer/MarginContainer2/HBoxContainer" unique_id=1533589901]
+custom_minimum_size = Vector2(48, 24)
+layout_mode = 2
+
+[node name="Value" type="Button" parent="HBoxContainer/MarginContainer2/HBoxContainer" unique_id=306301818]
+custom_minimum_size = Vector2(48, 24)
+layout_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer" unique_id=1674178939]
+layout_mode = 2
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="ModeButton" parent="HBoxContainer/MarginContainer3" unique_id=168131686 instance=ExtResource("17_8cxt5")]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("19_piecu")
+TextContent = "模式"
+TextColor = Color(1, 1, 1, 1)
+BackgroundColor = Color(0.63748497, 0.71720433, 0.9799271, 1)

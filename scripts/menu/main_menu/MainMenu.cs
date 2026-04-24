@@ -5,7 +5,6 @@ using GFramework.Godot.ui;
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
 using TimeToTwentyfour.scripts.core.ui;
-using TimeToTwentyfour.scripts.enums.ui;
 using Godot;
 
 namespace TimeToTwentyfour.scripts.menu.main_menu;
@@ -14,9 +13,6 @@ namespace TimeToTwentyfour.scripts.menu.main_menu;
 [ContextAware]
 public partial class MainMenu : Control, IController, IUiPageBehaviorProvider, ISimpleUiPage
 {
-    private IUiPageBehavior? _page;
-    public static string UiKeyStr => nameof(UiKey.MainMenu);
-    
     public IUiPageBehavior GetPage()
     {
         _page ??= UiPageBehaviorFactory.Create<Control>(this, UiKeyStr, UiLayer.Page);
