@@ -11,7 +11,7 @@ public partial class IdleState : PokerState
 
     public override void Enter()
     {
-        Poker.ResetPosAndRot();
+        // Poker.ResetPosAndRot();
     }
 
     public override void Exit()

@@ -52,6 +52,7 @@ public partial class Poker
     {
         // 如果不是触发事件的poker，返回
         if (poker != this) return;
+        
         // 新值与旧值相等，返回
         if (SuitType == suitType) return;
         

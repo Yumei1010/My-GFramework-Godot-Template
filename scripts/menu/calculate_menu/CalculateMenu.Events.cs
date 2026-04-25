@@ -1,6 +1,5 @@
 ﻿using GFramework.Core.extensions;
 using GFramework.Godot.extensions;
-using TimeToTwentyfour.scripts.cqrs.game.command;
 using TimeToTwentyfour.scripts.cqrs.menu.calculateMenu.@event;
 
 namespace TimeToTwentyfour.scripts.menu.calculate_menu;
@@ -24,7 +23,7 @@ public partial class CalculateMenu
     
     private void OnPlayButtonClickedEvent()
     {
-        this.SendCommand(new ExitGameCommand());
+        
     }
     
     private void OnModeButtonHoverEvent()

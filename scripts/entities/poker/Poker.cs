@@ -55,7 +55,7 @@ public partial class Poker : Button, IPoker, IController
         return NumType;
     }
 
-    public Vector2 GetSpawnPosition()
+    public Vector2 GetDefaultPosition()
     {
         return DefaultPosition;
     }
@@ -83,11 +83,13 @@ public partial class Poker : Button, IPoker, IController
     public void SetDefaultRotation(float angle)
     {
         DefaultRotation = angle;
+        UpdateRotation();
     }
     
     public void SetDefaultPosition(Vector2 pos)
     {
         DefaultPosition = pos;
+        UpdatePosition();
     }
     
     public void ResetPos()
@@ -117,6 +119,30 @@ public partial class Poker : Button, IPoker, IController
     public void ChangeTo(StateType state)
     {
         StateMachine.ChangeTo(state);
+    }
+
+    public void SpawnTo(Vector2 pos)
+    {
+        GlobalPosition = pos - GetSize() / 2;
+    }
+    
+    public void MoveTo(Vector2 pos)
+    {
+        // 如果正在播放动画，使其终止
+        if (!_tweenPos.IsNull() && _tweenPos.IsRunning()) _tweenPos.Kill();
+        
+        _tweenPos = CreateTween().SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Elastic);
+        _tweenPos.TweenProperty( this, "global_position", pos, 0.25f);
+    }
+
+    private void UpdatePosition()
+    {
+        GlobalPosition = DefaultPosition;
+    }
+
+    private void UpdateRotation()
+    {
+        Rotation = DefaultRotation;
     }
     
     private void UpdateNumValueLabel()

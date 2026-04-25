@@ -25,7 +25,8 @@ public partial class UnSelectState : PokerState
 
     public override void MouseDown()
     {
-        ContextAwareExtensions.SendEvent(this, new PokerSelectorSelectChangedEvent
+        // 发送扑克选择器选择发生改变事件
+        this.SendEvent(new PokerSelectorSelectChangedEvent
         {
             Poker = Poker,
             IsSelected = true
@@ -41,7 +42,8 @@ public partial class UnSelectState : PokerState
 
     public override void MouseEnter()
     {
-        ContextAwareExtensions.SendEvent(this, new PokerSelectorReservesChangedEvent
+        // 发送扑克选择器预览发生改变事件
+        this.SendEvent(new PokerSelectorReservesChangedEvent
         {
             Poker = Poker,
             IsSelected = true
@@ -50,7 +52,8 @@ public partial class UnSelectState : PokerState
     
     public override void MouseExit()
     {
-        ContextAwareExtensions.SendEvent(this, new PokerSelectorReservesChangedEvent
+        // 发送扑克选择器预览发生改变事件
+        this.SendEvent(new PokerSelectorReservesChangedEvent
         {
             Poker = Poker,
             IsSelected = false

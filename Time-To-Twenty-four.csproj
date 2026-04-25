@@ -58,6 +58,7 @@
     </ItemGroup>
     <ItemGroup>
         <Folder Include="scripts\cqrs\game\event\" />
+        <Folder Include="scripts\cqrs\poker\command\" />
         <Folder Include="scripts\entities\" />
     </ItemGroup>
 </Project>

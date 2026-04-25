@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://ce7b8pwvktctn" path="res://scripts/entities/poker/mode/SquareRootMode.cs" id="12_dwtut"]
 [ext_resource type="Script" uid="uid://qa5l5sl6tg6s" path="res://scripts/entities/poker/mode/CeilMode.cs" id="13_mn4a0"]
 [ext_resource type="Script" uid="uid://45i2ftruivbe" path="res://scripts/entities/poker/mode/FloorMode.cs" id="14_3mf7f"]
+[ext_resource type="PackedScene" uid="uid://dt7yo04xxynhw" path="res://scenes/entities/poker/deck.tscn" id="15_pjsn5"]
 [ext_resource type="PackedScene" uid="uid://brxjekghcb1sr" path="res://scenes/menu/calculate_menu/calculate_menu_option_button.tscn" id="17_8cxt5"]
 [ext_resource type="Script" uid="uid://dhekr2vg4a6b2" path="res://scripts/menu/calculate_menu/optionButton/PlayOptionButton.cs" id="18_pjsn5"]
 [ext_resource type="Script" uid="uid://cnn6hug2r8aj5" path="res://scripts/menu/calculate_menu/optionButton/ModeOptionButton.cs" id="19_piecu"]
@@ -159,3 +160,10 @@ script = ExtResource("19_piecu")
 TextContent = "模式"
 TextColor = Color(1, 1, 1, 1)
 BackgroundColor = Color(0.63748497, 0.71720433, 0.9799271, 1)
+
+[node name="Deck" parent="." unique_id=1635477496 instance=ExtResource("15_pjsn5")]
+layout_mode = 1
+offset_left = 192.0
+offset_top = 304.0
+offset_right = -192.0
+offset_bottom = -76.0

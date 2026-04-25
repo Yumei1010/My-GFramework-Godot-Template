@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://dt7yo04xxynhw"]
+
+[ext_resource type="Script" uid="uid://ctl38v2txns8u" path="res://scripts/entities/poker/Deck.cs" id="1_y416j"]
+[ext_resource type="PackedScene" uid="uid://bc3hf50ds31o4" path="res://scenes/entities/poker/poker_holder.tscn" id="2_0xg16"]
+
+[node name="Deck" type="Control" unique_id=1635477496]
+custom_minimum_size = Vector2(576, 160)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -384.0
+offset_bottom = -380.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y416j")
+metadata/_edit_lock_ = true
+
+[node name="Panel" type="Panel" parent="." unique_id=282538368]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1007205732]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HolderContainer" type="HBoxContainer" parent="MarginContainer" unique_id=30013658]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 1
+
+[node name="Holder" parent="MarginContainer/HolderContainer" unique_id=1855016375 instance=ExtResource("2_0xg16")]
+layout_mode = 2
+
+[node name="Holder2" parent="MarginContainer/HolderContainer" unique_id=1960334376 instance=ExtResource("2_0xg16")]
+layout_mode = 2
+
+[node name="Holder3" parent="MarginContainer/HolderContainer" unique_id=1482600976 instance=ExtResource("2_0xg16")]
+layout_mode = 2
+
+[node name="Holder4" parent="MarginContainer/HolderContainer" unique_id=1765536950 instance=ExtResource("2_0xg16")]
+layout_mode = 2
+
+[node name="Holder5" parent="MarginContainer/HolderContainer" unique_id=936046114 instance=ExtResource("2_0xg16")]
+layout_mode = 2
