@@ -98,7 +98,7 @@ public partial class Poker : Button, IPoker, IController
         if (!_tweenPos.IsNull() && _tweenPos.IsRunning()) _tweenPos.Kill();
         
         _tweenPos = CreateTween().SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Elastic);
-        _tweenPos.TweenProperty( this, "global_position", DefaultPosition, 0.25f);
+        _tweenPos.TweenProperty( this, "global_position", DefaultPosition, 0.125f);
     }
     
     public void ResetRot()
@@ -107,7 +107,7 @@ public partial class Poker : Button, IPoker, IController
         if (!_tweenRot.IsNull() && _tweenRot.IsRunning()) _tweenRot.Kill();
         
         _tweenRot = CreateTween().SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Elastic);
-        _tweenRot.TweenProperty(this, "rotation", Mathf.DegToRad(DefaultRotation), 0.25f);
+        _tweenRot.TweenProperty(this, "rotation", Mathf.DegToRad(DefaultRotation), 0.125f);
     }
 
     public void ResetPosAndRot()
@@ -133,6 +133,12 @@ public partial class Poker : Button, IPoker, IController
         
         _tweenPos = CreateTween().SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Elastic);
         _tweenPos.TweenProperty( this, "global_position", pos, 0.25f);
+    }
+
+    public void Reparent(Node parent)
+    {
+        GetParent().RemoveChild(this);
+        parent.AddChild(this);
     }
 
     private void UpdatePosition()

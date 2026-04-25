@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://bc3hf50ds31o4"]
 
 [ext_resource type="Script" uid="uid://dw41mqo8eyrl" path="res://scripts/entities/poker/PokerHolder.cs" id="1_2jqri"]
-[ext_resource type="PackedScene" uid="uid://cfuvnryxlpn4b" path="res://scenes/entities/poker/poker.tscn" id="1_7vlyy"]
 
 [node name="PokerHolder" type="Control" unique_id=541375562]
 custom_minimum_size = Vector2(96, 144)
@@ -14,12 +13,3 @@ grow_vertical = 2
 pivot_offset = Vector2(48, 72)
 script = ExtResource("1_2jqri")
 metadata/_edit_lock_ = true
-
-[node name="Poker" parent="." unique_id=351593249 instance=ExtResource("1_7vlyy")]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1

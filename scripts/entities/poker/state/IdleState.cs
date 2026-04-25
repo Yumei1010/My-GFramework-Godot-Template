@@ -6,12 +6,12 @@ public partial class IdleState : PokerState
 {
     public override void Process(double delta)
     {
-        
+
     }
 
     public override void Enter()
     {
-        // Poker.ResetPosAndRot();
+        Poker.ResetPosAndRot();
     }
 
     public override void Exit()

@@ -105,6 +105,12 @@ public interface IPoker
     Vector2 GetDefaultPosition();
     
     /// <summary>
+    ///     获取父节点
+    /// </summary>
+    /// <returns>父节点 <see cref="Node"/></returns>
+    Node GetParent();
+    
+    /// <summary>
     ///     重置扑克的位置到默认位置
     /// </summary>
     void ResetPos();
@@ -136,4 +142,10 @@ public interface IPoker
     /// </summary>
     /// <param name="position">目标位置 <see cref="Vector2"/></param>
     void MoveTo(Vector2 position);
+
+    /// <summary>
+    ///     更换父节点
+    /// </summary>
+    /// <param name="parent">目标节点 <see cref="Node"/></param>
+    void Reparent(Node parent);
 }

@@ -3,7 +3,9 @@
 public partial class Deck
 {
     /// <summary>
-    ///     卡套组 <see cref="IList{IPokerHolder}"/>
+    ///     卡册 <see cref="Dictionary{IPokerHolder, IPoker}"/>
     /// </summary>
-    private IList<IPokerHolder> Holders { get; set; } = new List<IPokerHolder>();
+    private Dictionary<IPokerHolder, IPoker> Album { get; set; } = new();
+    
+    private IPoker CurrentPoker { get; set; } = null!;
 }

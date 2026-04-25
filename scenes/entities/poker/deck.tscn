@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://dt7yo04xxynhw"]
 
 [ext_resource type="Script" uid="uid://ctl38v2txns8u" path="res://scripts/entities/poker/Deck.cs" id="1_y416j"]
-[ext_resource type="PackedScene" uid="uid://bc3hf50ds31o4" path="res://scenes/entities/poker/poker_holder.tscn" id="2_0xg16"]
+[ext_resource type="Script" uid="uid://bkapwt7rl0n6b" path="res://scripts/entities/poker/PokerFactory.cs" id="2_71qkm"]
+[ext_resource type="Script" uid="uid://bk3f1yhfs45kg" path="res://scripts/entities/poker/PokerHolderFactory.cs" id="2_gm37w"]
 
 [node name="Deck" type="Control" unique_id=1635477496]
 custom_minimum_size = Vector2(576, 160)
@@ -16,7 +17,16 @@ grow_vertical = 2
 script = ExtResource("1_y416j")
 metadata/_edit_lock_ = true
 
+[node name="PokerFactory" type="Node" parent="." unique_id=1534657292]
+unique_name_in_owner = true
+script = ExtResource("2_71qkm")
+
+[node name="HolderFactory" type="Node" parent="." unique_id=1016055558]
+unique_name_in_owner = true
+script = ExtResource("2_gm37w")
+
 [node name="Panel" type="Panel" parent="." unique_id=282538368]
+modulate = Color(1, 1, 1, 0.1764706)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -40,18 +50,3 @@ theme_override_constants/margin_bottom = 8
 unique_name_in_owner = true
 layout_mode = 2
 alignment = 1
-
-[node name="Holder" parent="MarginContainer/HolderContainer" unique_id=1855016375 instance=ExtResource("2_0xg16")]
-layout_mode = 2
-
-[node name="Holder2" parent="MarginContainer/HolderContainer" unique_id=1960334376 instance=ExtResource("2_0xg16")]
-layout_mode = 2
-
-[node name="Holder3" parent="MarginContainer/HolderContainer" unique_id=1482600976 instance=ExtResource("2_0xg16")]
-layout_mode = 2
-
-[node name="Holder4" parent="MarginContainer/HolderContainer" unique_id=1765536950 instance=ExtResource("2_0xg16")]
-layout_mode = 2
-
-[node name="Holder5" parent="MarginContainer/HolderContainer" unique_id=936046114 instance=ExtResource("2_0xg16")]
-layout_mode = 2

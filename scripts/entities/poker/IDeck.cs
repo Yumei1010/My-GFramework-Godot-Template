@@ -5,5 +5,16 @@
 /// </summary>
 public interface IDeck
 {
-    void Add(IPokerHolder pokerHolder);
+    /// <summary>
+    ///     添加扑克
+    /// </summary>
+    /// <param name="poker">扑克实例 <see cref="IPoker"/></param>
+    void Add(IPoker poker);
+    
+    /// <summary>
+    ///     抽出扑克
+    /// </summary>
+    /// <param name="poker">目标扑克 <see cref="IPoker"/></param>
+    /// <returns>目标扑克 <see cref="IPoker"/></returns>
+    IPoker Remove(IPoker poker);
 }
