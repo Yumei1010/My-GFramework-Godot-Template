@@ -1,4 +1,5 @@
-﻿using TimeToTwentyfour.scripts.component.stateMachine;
+﻿using Godot;
+using TimeToTwentyfour.scripts.component.stateMachine;
 using TimeToTwentyfour.scripts.enums.poker;
 
 namespace TimeToTwentyfour.scripts.entities.poker;
@@ -19,6 +20,12 @@ public interface IPokerStateMachine : IStateMachine
     /// </summary>
     /// <param name="state">目标状态 <see cref="StateType"/> </param>
     void ChangeTo(StateType state);
+    
+    /// <summary>
+    ///     获取鼠标输入时调用的方法
+    /// </summary>
+    /// <param name="inputEvent">鼠标输入 <see cref="InputEvent"/></param>
+    void GuiInput(InputEvent inputEvent);
     
     /// <summary>
     ///     鼠标点击卡牌时调用的方法

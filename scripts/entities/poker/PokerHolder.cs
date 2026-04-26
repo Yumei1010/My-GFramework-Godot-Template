@@ -1,6 +1,5 @@
 ﻿using GFramework.Core.Abstractions.controller;
 using GFramework.Core.extensions;
-using GFramework.Godot.pool;
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
 using Godot;
@@ -10,7 +9,7 @@ namespace TimeToTwentyfour.scripts.entities.poker;
 
 [Log]
 [ContextAware]
-public partial class PokerHolder : Control, IPokerHolder, IController, IPoolableNode
+public partial class PokerHolder : Control, IPokerHolder, IController
 {
     public override void _Ready()
     {
@@ -98,6 +97,11 @@ public partial class PokerHolder : Control, IPokerHolder, IController, IPoolable
         Poker =  poker;
     }
 
+    public void Neaten()
+    {
+        Poker.SpawnTo(GlobalPosition);
+    }
+
     public void Clear()
     {
         // 如果内容物为空，返回
@@ -115,25 +119,5 @@ public partial class PokerHolder : Control, IPokerHolder, IController, IPoolable
     private Vector2 GetPokerPosition()
     {
         return Poker.GetGlobalPosition();
-    }
-
-    public void OnAcquire()
-    {
-        Poker = null!;
-    }
-
-    public void OnRelease()
-    {
-        Poker = null!;
-    }
-
-    public void OnPoolDestroy()
-    {
-        QueueFree();
-    }
-
-    public Node AsNode()
-    {
-        return this;
     }
 }

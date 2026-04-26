@@ -39,6 +39,11 @@ public interface IPokerHolder
      void Exchange(IPokerHolder holder);
 
      /// <summary>
+     ///     整理内容物位置
+     /// </summary>
+     void Neaten();
+     
+     /// <summary>
      ///     清空内容物
      /// </summary>
      void Clear();

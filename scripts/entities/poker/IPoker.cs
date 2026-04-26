@@ -35,8 +35,8 @@ public interface IPoker
     /// <summary>
     ///     设置扑克的花色类型。
     /// </summary>
-    /// <param name="suitType">花色类型 <see cref="SuitType"/></param>
-    void SetSuitType(SuitType suitType);
+    /// <param name="suit">目标花色类型 <see cref="SuitType"/></param>
+    void SetSuitType(SuitType suit);
     
     /// <summary>
     ///     设置扑克的点数数值。
@@ -47,32 +47,20 @@ public interface IPoker
     /// <summary>
     ///     设置扑克的点数类型。
     /// </summary>
-    /// <param name="numType">要设置的点数类型 <see cref="NumType"/></param>
+    /// <param name="numType">目标点数类型 <see cref="NumType"/></param>
     void SetNumType(NumType numType);
     
     /// <summary>
     ///     设置扑克的位置
     /// </summary>
-    /// <param name="pos">要设置的位置向量 <see cref="Vector2"/></param>
+    /// <param name="pos">目标位置向量 <see cref="Vector2"/></param>
     void SetGlobalPosition(Vector2 pos);
     
     /// <summary>
     ///     设置扑克的旋转角度
     /// </summary>
-    /// <param name="angle">要设置的旋转角度 <see cref="float"/></param>
-    void SetRotation(float angle);
-    
-    /// <summary>
-    ///     设置扑克的默认旋转角度
-    /// </summary>
-    /// <param name="angle">要设置的旋转角度 <see cref="float"/></param>
-    void SetDefaultRotation(float angle);
-    
-    /// <summary>
-    ///     设置扑克的默认位置
-    /// </summary>
-    /// <param name="position">要设置的旋转角度 <see cref="Vector2"/></param>
-    void SetDefaultPosition(Vector2 position);
+    /// <param name="toAngle">目标旋转角度 <see cref="float"/></param>
+    void SetRotation(float toAngle);
     
     /// <summary>
     ///     获取扑克的全局位置
@@ -99,31 +87,10 @@ public interface IPoker
     float GetRotation();
     
     /// <summary>
-    ///     获取扑克记录的默认位置
-    /// </summary>
-    /// <returns>默认位置 <see cref="Vector2"/></returns>
-    Vector2 GetDefaultPosition();
-    
-    /// <summary>
     ///     获取父节点
     /// </summary>
     /// <returns>父节点 <see cref="Node"/></returns>
     Node GetParent();
-    
-    /// <summary>
-    ///     重置扑克的位置到默认位置
-    /// </summary>
-    void ResetPos();
-
-    /// <summary>
-    ///     重置扑克的旋转角度为 0
-    /// </summary>
-    void ResetRot();
-    
-    /// <summary>
-    ///     异步重置扑克的位置和旋转角度到默认值
-    /// </summary>
-    void ResetPosAndRot();
 
     /// <summary>
     ///     变更扑克到指定状态
@@ -148,4 +115,29 @@ public interface IPoker
     /// </summary>
     /// <param name="parent">目标节点 <see cref="Node"/></param>
     void Reparent(Node parent);
+    
+    /// <summary>
+    ///     设置置顶
+    /// </summary>
+    /// <param name="topLevel">true/false <see cref="bool"/></param>
+    void SetTopLevel(bool topLevel);
+    
+    /// <summary>
+    ///     获取3D缩放可用性
+    /// </summary>
+    /// <returns>true/false <see cref="bool"/></returns>
+    bool GetFake3D();
+
+    /// <summary>
+    ///     设置shader的rotX和rotY属性
+    /// </summary>
+    /// <param name="rotX">rotX属性 <see cref="float"/></param>
+    /// <param name="rotY">rotY属性 <see cref="float"/></param>
+    void SetXRotAndYRot(float rotX, float rotY);
+
+    /// <summary>
+    /// 获取控件内鼠标坐标
+    /// </summary>
+    /// <returns>控件内鼠标坐标 <see cref="Vector2"/></returns>
+    Vector2 GetLocalMousePosition();
 }

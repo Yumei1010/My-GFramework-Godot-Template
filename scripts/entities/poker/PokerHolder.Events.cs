@@ -13,12 +13,6 @@ public partial class PokerHolder
         {
             OnPokerDragFinishedEvent(e.Poker);
         }).UnRegisterWhenNodeExitTree(this);
-        
-        // 注册对牌桌结束排序事件的监听
-        this.RegisterEvent<DeckSortFinishedEvent>(_ =>
-        {
-            OnDeckSortFinishedEvent();
-        }).UnRegisterWhenNodeExitTree(this);
     }
     
     private void OnPokerDragFinishedEvent(IPoker poker)
@@ -26,12 +20,13 @@ public partial class PokerHolder
         // 如果不是触发事件的poker，返回
         if (Poker != poker) return;
         
-        Poker.MoveTo(GlobalPosition);
+        _ = Sort();
     }
-
-    private void OnDeckSortFinishedEvent()
+    
+    private async Task Sort()
     {
-        Poker.SetDefaultPosition(GlobalPosition);
+        await GetTree().ToSignal(GetTree(),"process_frame");
+        
         Poker.MoveTo(GlobalPosition);
     }
 }

@@ -18,7 +18,7 @@ public partial class PokerStateMachine
     
     private void OnStateChangedEvent(StateType stateType,IPokerState state)
     {
-        // 如果不是触发事件的state，返回
+        // 如果不是己方的state，返回
         if (!States.ContainsValue(state)) return;
         
         ChangeTo(stateType);

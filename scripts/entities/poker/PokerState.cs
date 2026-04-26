@@ -6,9 +6,6 @@ using Godot;
 
 namespace TimeToTwentyfour.scripts.entities.poker;
 
-/// <summary>
-///     扑克状态抽象基类
-/// </summary>
 [ContextAware]
 public abstract partial class PokerState : Node, IPokerState
 {
@@ -22,6 +19,8 @@ public abstract partial class PokerState : Node, IPokerState
     /// </summary>
     protected IPoker Poker { get; private set; } = null!;
 
+    public abstract void GuiInput(InputEvent inputEvent);
+    
     public abstract void MouseDown();
     
     public abstract void MouseUp();
@@ -49,12 +48,12 @@ public abstract partial class PokerState : Node, IPokerState
     /// <summary>
     ///     切换到指定状态
     /// </summary>
-    /// <param name="targetStateType">目标状态 <see cref="StateType"/></param>
-    protected void ChangeTo(StateType targetStateType)
+    /// <param name="toState">目标状态 <see cref="StateType"/></param>
+    protected void ChangeTo(StateType toState)
     {
-        ContextAwareExtensions.SendEvent(this, new PokerStateMachineStateChangedEvent
+        this.SendEvent(new PokerStateMachineStateChangedEvent
         {
-            TargetState = targetStateType,
+            TargetState = toState,
             State = this
         });
     }

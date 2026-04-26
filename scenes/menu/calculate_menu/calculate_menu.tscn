@@ -37,7 +37,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0, 0.85993636, 0.7884116, 1)
+color = Color(1, 1, 1, 0.22352941)
 metadata/_edit_lock_ = true
 
 [node name="PokerSelector" type="Node" parent="." unique_id=1538711734]

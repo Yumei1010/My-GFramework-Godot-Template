@@ -15,7 +15,6 @@ public partial class Deck
         // 等待框架加载完成
         await GameEntryPoint.Architecture.WaitUntilReadyAsync().ConfigureAwait(false);
 
-
         for (int i = 0; i < 1; i++)
         {
             IPoker poker = PokerFactory.Product();   
@@ -34,6 +33,13 @@ public partial class Deck
         {
             IPoker poker = PokerFactory.Product();   
             poker.SetSuitType(SuitType.Spade);
+            Add(poker);
+        }
+        
+        for (int i = 0; i < 1; i++)
+        {
+            IPoker poker = PokerFactory.Product();   
+            poker.SetSuitType(SuitType.Club);
             Add(poker);
         }
     }

@@ -13,5 +13,12 @@ public partial class Deck
     private void OnHolderContainerSortChildren()
     {
         this.SendEvent(new DeckSortFinishedEvent());
+
+        foreach (var node in HolderContainer.GetChildren())
+        {
+            var holder = (IPokerHolder)node;
+
+            holder.Neaten();
+        }
     }
 }

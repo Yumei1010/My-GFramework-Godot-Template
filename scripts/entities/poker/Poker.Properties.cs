@@ -5,33 +5,21 @@ namespace TimeToTwentyfour.scripts.entities.poker;
 
 public partial class Poker
 {
-    /// <summary>
-    ///     花色类型 <see cref="SuitType"/>
-    /// </summary>
-    [Export] private SuitType SuitType { get; set; } = SuitType.Heart;
+    [ExportGroup("Style")]
+        [ExportSubgroup("Suit")]
+            [Export] private SuitType SuitType { get; set; } = SuitType.Heart;
+            [Export] private Texture2D SuitTexture { get; set; } = GD.Load<Texture2D>("res://assets/textures/poker/surface/heart.png");
     
-    /// <summary>
-    ///     点数数值 <see cref="String"/>
-    /// </summary>
-    [Export] private string NumValue { get; set; } = "24";
+        [ExportSubgroup("Value")]
+            [Export] private string NumValue { get; set; } = "24";
+            [Export] private NumType NumType { get; set; } = NumType.Integer;
+        
+    [ExportGroup("Animation")]
+        [Export] private bool Shadow { get; set; } = true;
+        [Export] private bool TweenAnimate { get; set; } = true;
+        [Export] private float TweenAnimateTime { get; set; } = 0.25f;
+        [Export] private Vector2 HoverScaleRate { get; set; } = new (1.2f,1.2f);
+        [Export] private bool Fake3D { get; set; } = true;
     
-    /// <summary>
-    ///     数值类型 <see cref="NumType"/>
-    /// </summary>
-    [Export] private NumType NumType { get; set; } = NumType.Integer;
-    
-    /// <summary>
-    ///     唯一标识符 <see cref="Guid"/>
-    /// </summary>
-    private Guid Id { get; } = Guid.NewGuid();
-    
-    /// <summary>
-    ///     默认坐标 <see cref="Vector2"/>
-    /// </summary>
-    [Export] private Vector2 DefaultPosition { get; set; }
-    
-    /// <summary>
-    ///     默认偏转角度 <see cref="float"/>
-    /// </summary>
-    [Export] private float DefaultRotation { get; set; }
+     private Guid Id { get; } = Guid.NewGuid();
 }

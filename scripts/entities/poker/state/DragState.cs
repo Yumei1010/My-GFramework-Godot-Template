@@ -7,6 +7,14 @@ namespace TimeToTwentyfour.scripts.entities.poker.state;
 
 public partial class DragState : PokerState
 {
+    public override void GuiInput(InputEvent inputEvent)
+    {
+        if (inputEvent.IsActionPressed("MouseLeft"))
+        {
+            ChangeTo(StateType.Idle);
+        }
+    }
+
     public override void Process(double delta)
     {
         Poker.SetGlobalPosition(Poker.GetGlobalMousePosition() - Poker.GetSize() / 2);
@@ -23,8 +31,7 @@ public partial class DragState : PokerState
         // 隐藏并锁定鼠标在窗口范围内
         Input.SetMouseMode(Input.MouseModeEnum.ConfinedHidden);
         
-        // 偏转角度归零
-        Poker.SetRotation(0f);
+        Poker.SetTopLevel(true);
     }
 
     public override void Exit()
@@ -38,8 +45,7 @@ public partial class DragState : PokerState
         // 显示鼠标
         Input.SetMouseMode(Input.MouseModeEnum.Visible);
         
-        // 复位偏转角度
-        Poker.ResetRot();
+        Poker.SetTopLevel(false);
     }
 
     public override void MouseDown()
@@ -49,7 +55,7 @@ public partial class DragState : PokerState
 
     public override void MouseUp()
     {
-        ChangeTo(StateType.Idle);
+        
     }
 
     public override void MouseEnter()

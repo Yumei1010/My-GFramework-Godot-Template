@@ -20,19 +20,25 @@ public partial class Poker : Button, IPoker, IController
     
     public override void _Process(double delta)
     {
-        StateMachine.Process(delta);
+        if (Shadow)
+        {
+            ShadowRect.Show();
+            
+            Vector2 shadowPos = ShadowRect.Position;
+            shadowPos.X = Mathf.Lerp(0f, -Mathf.Sign(GetGlobalPosition().X - (GetViewportRect().Size / 2f).X) * 20f, Mathf.Abs((GetGlobalPosition().X - (GetViewportRect().Size / 2f).X) / (GetViewportRect().Size / 2f).X));
+            ShadowRect.Position = shadowPos;
+        }
+        else
+        {
+            ShadowRect.Hide();
+        }
         
-        Vector2 shadowPos = ShadowRect.Position;
-        shadowPos.X = Mathf.Lerp(0f, -Mathf.Sign(GetGlobalPosition().X - (GetViewportRect().Size / 2f).X) * 20f, Mathf.Abs((GetGlobalPosition().X - (GetViewportRect().Size / 2f).X) / (GetViewportRect().Size / 2f).X));
-        ShadowRect.Position = shadowPos;
+        StateMachine.Process(delta);
     }
 
     public override void _GuiInput(InputEvent @event)
     {
-        float rotX = Mathf.RadToDeg(Mathf.LerpAngle(Mathf.DegToRad(-5f), Mathf.DegToRad(5f), Mathf.Clamp(GetLocalMousePosition().X / Size.X, 0f, 1f)));
-        float rotY = Mathf.RadToDeg(Mathf.LerpAngle(Mathf.DegToRad(5f), Mathf.DegToRad(-5f), Mathf.Clamp(GetLocalMousePosition().Y / Size.Y, 0f, 1f)));
-        _material.SetShaderParameter("x_rot", rotY);
-        _material.SetShaderParameter("y_rot", rotX);
+        StateMachine.GuiInput(@event);
     }
     
     public Guid GetId()
@@ -55,11 +61,11 @@ public partial class Poker : Button, IPoker, IController
         return NumType;
     }
 
-    public Vector2 GetDefaultPosition()
+    public bool GetFake3D()
     {
-        return DefaultPosition;
+        return Fake3D;
     }
-
+    
     public void SetSuitType(SuitType suitType)
     {
         SuitType = suitType;
@@ -80,77 +86,42 @@ public partial class Poker : Button, IPoker, IController
         GlobalPosition = pos;
     }
 
-    public void SetDefaultRotation(float angle)
-    {
-        DefaultRotation = angle;
-        UpdateRotation();
-    }
-    
-    public void SetDefaultPosition(Vector2 pos)
-    {
-        DefaultPosition = pos;
-        UpdatePosition();
-    }
-    
-    public void ResetPos()
-    {
-        // 如果正在播放动画，使其终止
-        if (!_tweenPos.IsNull() && _tweenPos.IsRunning()) _tweenPos.Kill();
-        
-        _tweenPos = CreateTween().SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Elastic);
-        _tweenPos.TweenProperty( this, "global_position", DefaultPosition, 0.125f);
-    }
-    
-    public void ResetRot()
-    {
-        // 如果正在播放动画，使其终止
-        if (!_tweenRot.IsNull() && _tweenRot.IsRunning()) _tweenRot.Kill();
-        
-        _tweenRot = CreateTween().SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Elastic);
-        _tweenRot.TweenProperty(this, "rotation", Mathf.DegToRad(DefaultRotation), 0.125f);
-    }
-
-    public void ResetPosAndRot()
-    {
-        ResetPos();
-        ResetRot();
-    }
-
     public void ChangeTo(StateType state)
     {
         StateMachine.ChangeTo(state);
     }
 
-    public void SpawnTo(Vector2 pos)
+    public void SpawnTo(Vector2 position)
     {
-        GlobalPosition = pos - GetSize() / 2;
+        GlobalPosition = position;
     }
     
-    public void MoveTo(Vector2 pos)
+    public void MoveTo(Vector2 position)
     {
-        // 如果正在播放动画，使其终止
-        if (!_tweenPos.IsNull() && _tweenPos.IsRunning()) _tweenPos.Kill();
+        if (TweenAnimate)
+        {
+            // 如果正在播放动画，使其终止
+            if (!_tweenPos.IsNull() && _tweenPos.IsRunning()) _tweenPos.Kill();
         
-        _tweenPos = CreateTween().SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Elastic);
-        _tweenPos.TweenProperty( this, "global_position", pos, 0.25f);
+            _tweenPos = CreateTween().SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Elastic);
+            _tweenPos.TweenProperty( this, "global_position", position, TweenAnimateTime);
+        }
+        else
+        {
+            GlobalPosition = position;
+        }
     }
 
     public void Reparent(Node parent)
     {
-        GetParent().RemoveChild(this);
-        parent.AddChild(this);
+        base.Reparent(parent);
     }
 
-    private void UpdatePosition()
+    public void SetTopLevel(bool topLevel)
     {
-        GlobalPosition = DefaultPosition;
+        TopLevel = topLevel;
     }
 
-    private void UpdateRotation()
-    {
-        Rotation = DefaultRotation;
-    }
-    
     private void UpdateNumValueLabel()
     {
         if (!string.IsNullOrWhiteSpace(NumValue)) NumLabel.Text = NumValue;
@@ -164,7 +135,13 @@ public partial class Poker : Button, IPoker, IController
             SuitType.Diamond => _textureRegistry.Get(nameof(TextureKey.PokerSuitDiamond)) as Texture2D,
             SuitType.Spade => _textureRegistry.Get(nameof(TextureKey.PokerSuitSpade)) as Texture2D,
             SuitType.Club => _textureRegistry.Get(nameof(TextureKey.PokerSuitClub)) as Texture2D,
-            _ => _textureRegistry.Get(nameof(TextureKey.PokerSuitError)) as Texture2D
+            _ => throw new InvalidOperationException("didn't have this SuitType")
         };
+    }
+
+    public void SetXRotAndYRot(float rotX, float rotY)
+    {
+        _material.SetShaderParameter("x_rot", rotX);
+        _material.SetShaderParameter("y_rot", rotY);
     }
 }

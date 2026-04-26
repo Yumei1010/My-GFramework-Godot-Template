@@ -49,11 +49,6 @@ public partial class Deck : Control, IDeck, IController
     {
         Album.Clear();
     }
-    
-    private void Sort()
-    {
-        
-    }
 
     private IPokerHolder FindHolderFromPoker(IPoker poker)
     {

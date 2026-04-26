@@ -42,8 +42,5 @@ public partial class Poker
 
         // 更新纹理显示
         UpdateSurfaceRect();
-        
-        // 更新位置
-        UpdatePosition();
     }
 }

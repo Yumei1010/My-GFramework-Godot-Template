@@ -1,5 +1,6 @@
 ﻿using GFramework.Core.extensions;
 using GFramework.SourceGenerators.Abstractions.rule;
+using Godot;
 using TimeToTwentyfour.scripts.cqrs.poker.@event;
 using TimeToTwentyfour.scripts.enums.poker;
 
@@ -8,6 +9,11 @@ namespace TimeToTwentyfour.scripts.entities.poker.state;
 [ContextAware]
 public partial class UnSelectState : PokerState
 {
+    public override void GuiInput(InputEvent inputEvent)
+    {
+        
+    }
+    
     public override void Process(double delta)
     {
         

@@ -9,6 +9,11 @@ namespace TimeToTwentyfour.scripts.entities.poker.state;
 [ContextAware]
 public partial class OnSelectState : PokerState
 {
+    public override void GuiInput(InputEvent inputEvent)
+    {
+        
+    }
+    
     public override void Process(double delta)
     {
         

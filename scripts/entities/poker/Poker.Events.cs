@@ -2,8 +2,6 @@
 using GFramework.Godot.extensions;
 using TimeToTwentyfour.scripts.cqrs.poker.@event;
 using TimeToTwentyfour.scripts.enums.poker;
-using TimeToTwentyfour.scripts.enums.resources;
-using Godot;
 
 namespace TimeToTwentyfour.scripts.entities.poker;
 
@@ -58,14 +56,7 @@ public partial class Poker
         
         // 更新花色和贴图
         SuitType = suitType;
-        SurfaceRect.Texture = suitType switch
-        {
-            SuitType.Heart => _textureRegistry.Get(nameof(TextureKey.PokerSuitHeart)) as Texture2D,
-            SuitType.Diamond => _textureRegistry.Get(nameof(TextureKey.PokerSuitDiamond)) as Texture2D,
-            SuitType.Spade => _textureRegistry.Get(nameof(TextureKey.PokerSuitSpade)) as Texture2D,
-            SuitType.Club => _textureRegistry.Get(nameof(TextureKey.PokerSuitClub)) as Texture2D,
-            _ => null
-        };
+        UpdateSurfaceRect();
     }
     
     private void OnNumValueChangedEvent(String numValue,IPoker poker)
@@ -81,7 +72,7 @@ public partial class Poker
         
         // 更新数值和显示
         NumValue = numValue;
-        NumLabel.Text = numValue;
+        UpdateNumValueLabel();
     }
     
     private void OnNumTypeChangedEvent(NumType numType,IPoker poker)

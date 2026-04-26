@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dw41mqo8eyrl" path="res://scripts/entities/poker/PokerHolder.cs" id="1_2jqri"]
 
-[node name="PokerHolder" type="Control" unique_id=541375562]
+[node name="PokerHolder" type="Panel" unique_id=706834722]
 custom_minimum_size = Vector2(96, 144)
-layout_mode = 3
+anchors_preset = -1
 anchor_right = 0.1
 anchor_bottom = 0.26700002
 offset_bottom = -0.18000793

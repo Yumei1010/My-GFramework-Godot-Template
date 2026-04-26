@@ -44,6 +44,14 @@ public partial class PokerStateMachine : Node, IPokerStateMachine
         // 进入目标状态
         CurrentState.Enter();
     }
+
+    public void GuiInput(InputEvent inputEvent)
+    {
+        if (CurrentState != null!)
+        {
+            CurrentState.GuiInput(inputEvent);
+        }
+    }
     
     public void Process(double delta)
     {

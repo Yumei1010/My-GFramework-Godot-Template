@@ -9,12 +9,6 @@ public partial class Deck
 {
     private void RegisterEvent()
     {
-        // 注册对扑克开始拖拽事件的监听
-        this.RegisterEvent<PokerDragStartedEvent>(e =>
-        {
-            OnPokerDragStartedEvent(e.Poker);
-        }).UnRegisterWhenNodeExitTree(this);
-        
         // 注册对扑克结束拖拽事件的监听
         this.RegisterEvent<PokerDragFinishedEvent>(e =>
         {
@@ -28,16 +22,8 @@ public partial class Deck
         }).UnRegisterWhenNodeExitTree(this);
     }
     
-    private void OnPokerDragStartedEvent(IPoker poker)
-    {
-        CurrentPoker = poker;
-    }
-    
     private void OnPokerDragFinishedEvent(IPoker poker)
     {
-        // 如果不是触发事件的poker，返回
-        if (CurrentPoker != poker) return;
-        
         HolderContainer.MoveChild(FindHolderFromPoker(poker) as Node, HolderContainer.GetChildCount());
     }
 
