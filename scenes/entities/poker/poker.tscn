@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://6vuld8lknm7e" path="res://assets/textures/poker/surface/heart.png" id="3_twcbr"]
 [ext_resource type="Script" uid="uid://ddwck8cwbdhqf" path="res://scripts/entities/poker/PokerStateMachine.cs" id="4_4exqo"]
 [ext_resource type="Script" uid="uid://c14ajqqmlbmg6" path="res://scripts/entities/poker/state/IdleState.cs" id="4_5nhq5"]
-[ext_resource type="Script" uid="uid://cyli85i3ve4t2" path="res://scripts/entities/poker/state/DisplayState.cs" id="4_dg2h8"]
 [ext_resource type="Script" uid="uid://53xgns3lsyw5" path="res://scripts/entities/poker/state/DragState.cs" id="5_3emhc"]
 [ext_resource type="Script" uid="uid://dcha8sa4kj58p" path="res://scripts/entities/poker/state/UnSelectState.cs" id="6_cf1su"]
 [ext_resource type="Script" uid="uid://bx1ye0383sg7u" path="res://scripts/entities/poker/state/OnSelectState.cs" id="7_o2w1w"]
@@ -31,10 +30,7 @@ offset_bottom = -0.18000793
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(48, 72)
-size_flags_horizontal = 4
-size_flags_vertical = 4
 script = ExtResource("1_4exqo")
-TweenAnimate = false
 
 [node name="StateMachine" type="Node" parent="." unique_id=1870655408]
 unique_name_in_owner = true
@@ -43,10 +39,6 @@ script = ExtResource("4_4exqo")
 [node name="Idle" type="Node" parent="StateMachine" unique_id=969394254]
 script = ExtResource("4_5nhq5")
 StateType = 2
-
-[node name="Display" type="Node" parent="StateMachine" unique_id=370938432]
-script = ExtResource("4_dg2h8")
-StateType = 4
 
 [node name="Drag" type="Node" parent="StateMachine" unique_id=448181989]
 script = ExtResource("5_3emhc")
@@ -59,24 +51,9 @@ StateType = 1
 [node name="OnSelect" type="Node" parent="StateMachine" unique_id=1429832384]
 script = ExtResource("7_o2w1w")
 
-[node name="SurfaceRect" type="TextureRect" parent="." unique_id=341902432]
+[node name="ShadowRect" type="TextureRect" parent="." unique_id=1157468359]
 unique_name_in_owner = true
-material = SubResource("ShaderMaterial_pa15o")
-custom_minimum_size = Vector2(96, 144)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-texture = ExtResource("3_twcbr")
-metadata/_edit_lock_ = true
-
-[node name="ShadowRect" type="TextureRect" parent="SurfaceRect" unique_id=1157468359]
-unique_name_in_owner = true
-z_index = -1
-use_parent_material = true
+modulate = Color(1, 1, 1, 0.1764706)
 custom_minimum_size = Vector2(96, 144)
 layout_mode = 1
 anchors_preset = 15
@@ -90,6 +67,20 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("10_pa15o")
+metadata/_edit_lock_ = true
+
+[node name="SurfaceRect" type="TextureRect" parent="." unique_id=341902432]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_pa15o")
+custom_minimum_size = Vector2(96, 144)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_twcbr")
 metadata/_edit_lock_ = true
 
 [node name="NumLabel" type="Label" parent="." unique_id=358447265]

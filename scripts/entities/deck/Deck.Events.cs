@@ -1,10 +1,11 @@
 ﻿using GFramework.Core.extensions;
 using GFramework.Godot.extensions;
 using TimeToTwentyfour.scripts.cqrs.poker.@event;
+using TimeToTwentyfour.scripts.entities.poker;
 
-namespace TimeToTwentyfour.scripts.entities.poker;
+namespace TimeToTwentyfour.scripts.entities.deck;
 
-public partial class PokerHolder
+public partial class Deck
 {
     private void RegisterEvent()
     {
@@ -17,16 +18,6 @@ public partial class PokerHolder
     
     private void OnPokerDragFinishedEvent(IPoker poker)
     {
-        // 如果不是触发事件的poker，返回
-        if (Poker != poker) return;
         
-        _ = Sort();
-    }
-    
-    private async Task Sort()
-    {
-        await GetTree().ToSignal(GetTree(),"process_frame");
-        
-        Poker.MoveTo(GlobalPosition);
     }
 }

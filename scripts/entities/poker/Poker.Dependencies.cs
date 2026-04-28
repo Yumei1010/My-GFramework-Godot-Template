@@ -19,7 +19,6 @@ public partial class Poker
     private ShaderMaterial _material = null!;
     private Tween _tweenPos = null!;
     private Tween _tweenRot = null!;
-    private Tween _tweenScale = null!;
     
     private async Task ReadyAsync()
     {

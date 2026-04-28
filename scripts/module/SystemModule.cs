@@ -19,7 +19,9 @@ public class SystemModule : AbstractModule
     public override void Install(IArchitecture architecture)
     {
         architecture.RegisterSystem(new UiRouter());
+
         architecture.RegisterSystem(new SceneRouter());
+        
         architecture.RegisterSystem(new SettingsSystem());
     }
 }

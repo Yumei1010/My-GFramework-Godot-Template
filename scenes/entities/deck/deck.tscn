@@ -1,46 +1,35 @@
 [gd_scene format=3 uid="uid://dt7yo04xxynhw"]
 
-[ext_resource type="Script" uid="uid://ctl38v2txns8u" path="res://scripts/entities/poker/Deck.cs" id="1_y416j"]
+[ext_resource type="Script" uid="uid://ctl38v2txns8u" path="res://scripts/entities/deck/Deck.cs" id="1_y416j"]
 [ext_resource type="Script" uid="uid://bkapwt7rl0n6b" path="res://scripts/entities/poker/PokerFactory.cs" id="2_71qkm"]
-[ext_resource type="Script" uid="uid://bk3f1yhfs45kg" path="res://scripts/entities/poker/PokerHolderFactory.cs" id="2_gm37w"]
 
 [node name="Deck" type="Control" unique_id=1635477496]
-custom_minimum_size = Vector2(576, 160)
+custom_minimum_size = Vector2(640, 160)
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -384.0
-offset_bottom = -380.0
+anchor_left = 0.16700001
+anchor_top = 0.47400004
+anchor_right = 0.83300006
+anchor_bottom = 0.97800004
+offset_left = -0.32000732
+offset_top = 96.03998
+offset_right = 0.3199463
+offset_bottom = -16.119995
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_y416j")
+Holder = false
 metadata/_edit_lock_ = true
 
 [node name="PokerFactory" type="Node" parent="." unique_id=1534657292]
 unique_name_in_owner = true
 script = ExtResource("2_71qkm")
 
-[node name="HolderFactory" type="Node" parent="." unique_id=1016055558]
-unique_name_in_owner = true
-script = ExtResource("2_gm37w")
-
-[node name="Panel" type="Panel" parent="." unique_id=282538368]
-modulate = Color(1, 1, 1, 0.1764706)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1007205732]
+custom_minimum_size = Vector2(640, 160)
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
@@ -48,5 +37,11 @@ theme_override_constants/margin_bottom = 8
 
 [node name="HolderContainer" type="HBoxContainer" parent="MarginContainer" unique_id=30013658]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(544, 144)
 layout_mode = 2
+theme_override_constants/separation = 32
 alignment = 1
+
+[node name="PokerContainer" type="Control" parent="MarginContainer" unique_id=1546091181]
+unique_name_in_owner = true
+layout_mode = 2

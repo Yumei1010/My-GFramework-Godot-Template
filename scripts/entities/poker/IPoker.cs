@@ -121,23 +121,16 @@ public interface IPoker
     /// </summary>
     /// <param name="topLevel">true/false <see cref="bool"/></param>
     void SetTopLevel(bool topLevel);
-    
-    /// <summary>
-    ///     获取3D缩放可用性
-    /// </summary>
-    /// <returns>true/false <see cref="bool"/></returns>
-    bool GetFake3D();
 
     /// <summary>
-    ///     设置shader的rotX和rotY属性
+    ///     设置重置坐标
     /// </summary>
-    /// <param name="rotX">rotX属性 <see cref="float"/></param>
-    /// <param name="rotY">rotY属性 <see cref="float"/></param>
-    void SetXRotAndYRot(float rotX, float rotY);
+    /// <param name="position">目标坐标 <see cref="Vector2"/></param>
+    void SetResetPosition(Vector2 position);
 
     /// <summary>
-    /// 获取控件内鼠标坐标
+    ///     重置指定属性
     /// </summary>
-    /// <returns>控件内鼠标坐标 <see cref="Vector2"/></returns>
-    Vector2 GetLocalMousePosition();
+    /// <param name="attributeName">属性名称 <see cref="string"/></param>
+    void Reset(string attributeName);
 }

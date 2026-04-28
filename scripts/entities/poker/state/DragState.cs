@@ -9,10 +9,7 @@ public partial class DragState : PokerState
 {
     public override void GuiInput(InputEvent inputEvent)
     {
-        if (inputEvent.IsActionPressed("MouseLeft"))
-        {
-            ChangeTo(StateType.Idle);
-        }
+
     }
 
     public override void Process(double delta)
@@ -55,7 +52,7 @@ public partial class DragState : PokerState
 
     public override void MouseUp()
     {
-        
+        ChangeTo(StateType.Idle);
     }
 
     public override void MouseEnter()

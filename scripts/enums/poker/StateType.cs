@@ -25,9 +25,4 @@ public enum StateType
     ///     拖拽中
     /// </summary>
     Drag,
-    
-    /// <summary>
-    ///     展示中
-    /// </summary>
-    Display
 }

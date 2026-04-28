@@ -18,8 +18,14 @@ public partial class Poker
         [Export] private bool Shadow { get; set; } = true;
         [Export] private bool TweenAnimate { get; set; } = true;
         [Export] private float TweenAnimateTime { get; set; } = 0.25f;
-        [Export] private Vector2 HoverScaleRate { get; set; } = new (1.2f,1.2f);
         [Export] private bool Fake3D { get; set; } = true;
     
+        
+    [ExportGroup("Debug")]
+        [Export] private Vector2 ResetPosition { get; set; } = new (0, 0);
+        [Export] private float ResetAngle { get; set; }
+    
+    
      private Guid Id { get; } = Guid.NewGuid();
+     private bool Animation { get; set; }
 }

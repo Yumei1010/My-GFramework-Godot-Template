@@ -51,14 +51,10 @@
         <Content Include=".github\workflows\release.yml"/>
         <Content Include="addons.jsonc"/>
         <Content Include="global\README.md"/>
-        <Content Include="scripts\cqrs\README.md" />
         <Content Include="scripts\data\interfaces\README.md" />
         <Content Include="scripts\data\model\README.md"/>
-        <Content Include="scripts\module\README.md"/>
     </ItemGroup>
     <ItemGroup>
         <Folder Include="scripts\cqrs\game\event\" />
-        <Folder Include="scripts\cqrs\poker\command\" />
-        <Folder Include="scripts\entities\" />
     </ItemGroup>
 </Project>
