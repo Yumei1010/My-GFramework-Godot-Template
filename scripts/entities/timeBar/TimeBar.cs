@@ -1,93 +1,120 @@
 ﻿using GFramework.Core.Abstractions.controller;
+using GFramework.Core.extensions;
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
 using Godot;
+using TimeToTwentyfour.scripts.cqrs.timeBar;
 
 namespace TimeToTwentyfour.scripts.entities.timeBar;
 
+/// <summary>
+///     时间轴契约实现类
+/// </summary>
 [Log]
 [ContextAware]
 public partial class TimeBar : Control, ITimeBar, IController
 {
-    private float _remaining;
-    private bool _isPaused;
-
-    private bool IsRunning => !Timer.IsStopped();
-    private bool IsPaused => _isPaused && !IsRunning;
-    private float TimeLeft => IsRunning ? (float)Timer.TimeLeft : (_isPaused ? _remaining : 0f);
-
     public override void _Ready()
     {
-        ConnectSignal();
-        Timer.OneShot = true; 
-        Start(10);
+        _ = ReadyAsync();
     }
     
+    public override void _Process(double delta)
+    {
+        // 如果暂停中，返回，否则，继续计时
+        if (!IsRunning) return;
+
+        // 按时间倍率扣减
+        Remaining -= (float)delta * TimeScale;
+
+        // 更新时间显示
+        UpdateTimeDisplay();
+
+        // 如果倒计时未归零，返回，否则，结束记时
+        if (!(Remaining <= 0f)) return;
+        Remaining = 0f;
+        TotalDuration = 0f;
+        Paused = false;
+        
+        this.SendEvent(new TimeBarTimeoutedEvent());
+    }
+
     public void Start(float duration)
     {
         Stop();
-        _isPaused = false;
-        Timer.WaitTime = duration;
-        Timer.Start();
+        TotalDuration = duration;
+        Remaining = duration;
+        Paused = false;
+        UpdateTimeDisplay();
     }
-    
+
     public void Pause()
     {
-        if (!IsRunning || _isPaused) return;
-
-        _remaining = (float)Timer.TimeLeft;
-        Timer.Stop();
-        _isPaused = true;
+        if (!IsRunning) return;
+        Paused = true;
     }
-    
+
     public void Resume()
     {
-        if (!_isPaused) return;
-
-        _isPaused = false;
-        Timer.WaitTime = _remaining;
-        Timer.Start();
+        if (!Paused) return;
+        Paused = false;
     }
-    
+
     public void Stop()
     {
-        Timer.Stop();
-        _isPaused = false;
-        _remaining = 0f;
+        Paused = false;
+        Remaining = 0f;
+        TotalDuration = 0f;
+        
+        UpdateTimeDisplay();
     }
-
-    /// <summary>
-    /// 增加或减少剩余时间（正数增加，负数减少）
-    /// </summary>
+    
     public void AdjustTime(float delta)
     {
-        if (IsRunning)
+        if (Remaining <= 0f && !Paused) return;
+
+        Remaining += delta;
+
+        if (Remaining <= 0f)
         {
-            float newTime = (float)Timer.TimeLeft + delta;
-            Timer.Stop();
-            _remaining = newTime;
+            Remaining = 0f;
+            TotalDuration = 0f;
+            Paused = false;
+            UpdateTimeDisplay();
+            return;
         }
-        else if (_isPaused)
+        
+        if (Remaining > TotalDuration)
         {
-            _remaining += delta;
-        }
-        // 未启动，忽略调整
-        else
-        {
-            return; 
+            TotalDuration = Remaining;
         }
 
-        if (_remaining <= 0f)
+        UpdateTimeDisplay();
+    }
+    
+    private void UpdateTimeDisplay()
+    {
+        // 更新文本
+        TimeLabel.Text = FormatTime(Remaining);
+
+        // 更新进度条
+        if (TotalDuration > 0f)
         {
-            _remaining = 0f;
-            Timer.Stop();
-            _isPaused = false;
+            TimeProgressBar.Value = Remaining / TotalDuration * 100f;
         }
-        // 运行中调整后需要重新启动
-        else if (!_isPaused)
+        else
         {
-            Timer.WaitTime = _remaining;
-            Timer.Start();
+            TimeProgressBar.Value = 0f;
         }
+    }
+    
+    private static string FormatTime(float seconds)
+    {
+        if (seconds <= 0f) return "00:00";
+
+        int totalSeconds = Mathf.CeilToInt(seconds);
+        int mins = totalSeconds / 60;
+        int secs = totalSeconds % 60;
+        return $"{mins:D2}:{secs:D2}";
     }
 }
