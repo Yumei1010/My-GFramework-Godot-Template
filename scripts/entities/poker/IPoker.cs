@@ -16,7 +16,7 @@ namespace TimeToTwentyfour.scripts.entities.poker;
 ///         poker.SuitType = SuitType.Heart; // 花色为红桃
 ///         poker.NumValue = "24"; // 点数为24
 ///         poker.NumType = NumType.Integer; // 点数类型为整数
-///         poker.Shadow = true; // 开启阴影
+///         poker.Shadow = true; // 开启阴影投影
 ///         poker.Animate = true; // 开启动画
 ///         poker.Fake3D = true; // 开启伪 3D 缩放
 ///     </code>

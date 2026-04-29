@@ -17,8 +17,8 @@ public partial class PokerStateMachine : Node, IPokerStateMachine
         foreach (var node in GetChildren())
         {
             var state = (IPokerState)node;
-            States.Add(state.GetStateType(), state);
-            state.SetPoker(poker);
+            States.Add(state.StateType, state);
+            state.Poker = poker;
         }
     }
 
