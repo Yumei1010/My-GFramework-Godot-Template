@@ -21,16 +21,16 @@ public partial class OnSelectState : PokerState
 
     public override void Enter()
     {
-        Vector2 pos = Poker.GetGlobalPosition();
-        pos.Y -= Poker.GetSize().Y / 2;   
-        Poker.SetGlobalPosition(pos);
+        Vector2 pos = Poker.GlobalPosition;
+        pos.Y -= Poker.Size.Y / 2;   
+        Poker.GlobalPosition = pos;
     }
 
     public override void Exit()
     {
-        Vector2 pos = Poker.GetGlobalPosition();
-        pos.Y += Poker.GetSize().Y / 2;   
-        Poker.SetGlobalPosition(pos);
+        Vector2 pos = Poker.GlobalPosition;
+        pos.Y += Poker.Size.Y / 2;   
+        Poker.GlobalPosition = pos;
     }
 
     public override void MouseDown()

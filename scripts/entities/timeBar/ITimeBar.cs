@@ -3,7 +3,7 @@
 /// <summary>
 ///     时间轴契约
 ///     定义倒计时控制器的完整生命周期操作。
-///     实现类负责驱动进度条 UI、更新时间文本，并通过 <see cref="_Process"/> 逐帧扣减。
+///     实现类负责驱动进度条 UI、更新时间文本，并通过调用 <c>_Process(delta)</c>/> 逐帧扣减。
 /// </summary>
 /// <remarks>
 ///     <code>
@@ -16,12 +16,45 @@
 /// </remarks>
 public interface ITimeBar
 {
+    /// <summary>
+    ///     是否正在倒计时中。
+    ///     <c>true</c> 表示剩余时间 &gt; 0 且未暂停。
+    /// </summary>
+    bool IsRunning { get; }
+
+    /// <summary>
+    ///     是否暂停中。
+    ///     设置 <c>true</c> 等价于调用 <see cref="Pause"/>，
+    ///     设置 <c>false</c> 等价于调用 <see cref="Resume"/>。
+    /// </summary>
+    bool Paused { get; set; }
+
+    /// <summary>
+    ///     本次倒计时的总时长（秒）。
+    ///     由 <see cref="Start"/> 设定；<see cref="Stop"/> 后归零。
+    /// </summary>
+    /// <remarks>
+    ///     用于计算进度条比例：<c>value = Remaining / TotalDuration * 100</c>。
+    ///     当 <see cref="AdjustTime"/> 加时超出原时长时，此值会同步增长。
+    /// </remarks>
+    float TotalDuration { get; set; }
+
+    /// <summary>
+    ///     时间流逝倍率。
+    ///     1.0 = 正常速度，2.0 = 双倍速（每实际秒扣 2 秒），
+    ///     0.5 = 半速，0 = 冻结（暂停不走时间但保持运行状态）。
+    /// </summary>
+    /// <remarks>
+    ///     设置会钳制到 [0, +∞)，负数会被截断为 0。
+    /// </remarks>
+    float TimeScale { get; set; }
+    
      /// <summary>
     ///     开始倒计时。
     ///     若调用前已有倒计时（运行中或暂停中），会先 <see cref="Stop"/> 重置再以新时长启动。
     /// </summary>
     /// <param name="duration">
-    ///     目标倒计时时长（秒）。
+    ///     目标倒计时时长（秒） <see cref="float"/>。
     ///     必须 &gt; 0，否则行为未定义。
     /// </param>
     void Start(float duration);
@@ -65,38 +98,4 @@ public interface ITimeBar
     ///     </list>
     /// </remarks>
     void AdjustTime(float delta);
-
-    /// <summary>
-    ///     是否正在倒计时中。
-    ///     <c>true</c> 表示剩余时间 &gt; 0 且未暂停。
-    /// </summary>
-    bool IsRunning { get; }
-
-    /// <summary>
-    ///     是否暂停中。
-    ///     设置 <c>true</c> 等价于调用 <see cref="Pause"/>，
-    ///     设置 <c>false</c> 等价于调用 <see cref="Resume"/>。
-    /// </summary>
-    bool Paused { get; set; }
-
-    /// <summary>
-    ///     本次倒计时的总时长（秒）。
-    ///     由 <see cref="Start"/> 设定；<see cref="Stop"/> 后归零。
-    /// </summary>
-    /// <remarks>
-    ///     用于计算进度条比例：<c>value = Remaining / TotalDuration * 100</c>。
-    ///     当 <see cref="AdjustTime"/> 加时超出原时长时，此值会同步增长。
-    /// </remarks>
-    float TotalDuration { get; set; }
-
-    /// <summary>
-    ///     时间流逝倍率。
-    ///     1.0 = 正常速度，2.0 = 双倍速（每实际秒扣 2 秒），
-    ///     0.5 = 半速，0 = 冻结（暂停不走时间但保持运行状态）。
-    /// </summary>
-    /// <remarks>
-    ///     设置会钳制到 [0, +∞)，负数会被截断为 0。
-    ///     <para>典型应用：技能加速/减速、子弹时间、快进/慢放。</para>
-    /// </remarks>
-    float TimeScale { get; set; }
 }

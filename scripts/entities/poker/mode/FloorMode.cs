@@ -8,7 +8,7 @@ public partial class FloorMode : PokerSelectorMode
     {
         Godot.GD.Print(
             "[",
-            Pokers[0].GetNumValue(),
+            Pokers[0].NumValue,
             "]", 
             "=",
             CalculateHelper.Calculate(Pokers[0], Mode)

@@ -9,7 +9,7 @@ public partial class SquareRootMode : PokerSelectorMode
         Godot.GD.Print(
             "2",
             "√",
-            Pokers[0].GetNumValue(),
+            Pokers[0].NumValue,
             "=",
             CalculateHelper.Calculate(Pokers[0], Mode)
         );

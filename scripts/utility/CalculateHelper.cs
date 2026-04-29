@@ -108,12 +108,12 @@ public static class CalculateHelper
 
     private static Fraction ParseToFraction(IPoker poker)
     {
-        string raw = poker.GetNumValue().Trim();
-        return poker.GetNumType() switch
+        string raw = poker.NumValue.Trim();
+        return poker.NumType switch
         {
             NumType.Fraction => ParseFractionString(raw),
             NumType.Decimal or NumType.Integer => ParseDecimalString(raw),
-            _ => throw new NotSupportedException($"未知数值类型: {poker.GetNumType()}")
+            _ => throw new NotSupportedException($"未知数值类型: {poker.NumType}")
         };
     }
 

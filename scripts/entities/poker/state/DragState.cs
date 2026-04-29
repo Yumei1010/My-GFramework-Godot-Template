@@ -14,7 +14,7 @@ public partial class DragState : PokerState
 
     public override void Process(double delta)
     {
-        Poker.SetGlobalPosition(Poker.GetGlobalMousePosition() - Poker.GetSize() / 2);
+        Poker.GlobalPosition = Poker.GetGlobalMousePosition() - Poker.Size / 2;
     }
 
     public override void Enter()
@@ -28,7 +28,7 @@ public partial class DragState : PokerState
         // 隐藏并锁定鼠标在窗口范围内
         Input.SetMouseMode(Input.MouseModeEnum.ConfinedHidden);
         
-        Poker.SetTopLevel(true);
+        Poker.TopLevel = true;
     }
 
     public override void Exit()
@@ -42,7 +42,7 @@ public partial class DragState : PokerState
         // 显示鼠标
         Input.SetMouseMode(Input.MouseModeEnum.Visible);
         
-        Poker.SetTopLevel(false);
+        Poker.TopLevel = false;
     }
 
     public override void MouseDown()

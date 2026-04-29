@@ -6,26 +6,23 @@ namespace TimeToTwentyfour.scripts.entities.poker;
 public partial class Poker
 {
     [ExportGroup("Style")]
-        [ExportSubgroup("Suit")]
-            [Export] private SuitType SuitType { get; set; } = SuitType.Heart;
-            [Export] private Texture2D SuitTexture { get; set; } = GD.Load<Texture2D>("res://assets/textures/poker/surface/heart.png");
+    [ExportSubgroup("Suit")]
+    [Export] public SuitType SuitType { get; set; } = SuitType.Heart;
     
-        [ExportSubgroup("Value")]
-            [Export] private string NumValue { get; set; } = "24";
-            [Export] private NumType NumType { get; set; } = NumType.Integer;
+    [ExportSubgroup("Value")]
+    [Export] public string NumValue { get; set; } = "24";
+    [Export] public NumType NumType { get; set; } = NumType.Integer;
         
     [ExportGroup("Animation")]
-        [Export] private bool Shadow { get; set; } = true;
-        [Export] private bool TweenAnimate { get; set; } = true;
-        [Export] private float TweenAnimateTime { get; set; } = 0.25f;
-        [Export] private bool Fake3D { get; set; } = true;
+    [Export] public bool Shadow { get; set; } = true;
+    [Export] public bool Animate { get; set; } = true;
+    [Export] public float AnimateTime { get; set; } = 0.25f;
+    [Export] public bool Fake3D { get; set; } = true;
     
-        
     [ExportGroup("Debug")]
-        [Export] private Vector2 ResetPosition { get; set; } = new (0, 0);
-        [Export] private float ResetAngle { get; set; }
+    [Export] public Vector2 ResetPosition { get; set; } = new (0, 0);
+
+    [Export] public float ResetRotation { get; set; }
     
-    
-     private Guid Id { get; } = Guid.NewGuid();
-     private bool Animation { get; set; }
+    public Guid Id { get; set; } = Guid.NewGuid();
 }

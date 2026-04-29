@@ -7,7 +7,7 @@ public partial class FactorialMode : PokerSelectorMode
     public override void Calculate()
     {
         Godot.GD.Print(
-            Pokers[0].GetNumValue(),
+            Pokers[0].NumValue,
             "!", 
             "=",
             CalculateHelper.Calculate(Pokers[0], Mode)

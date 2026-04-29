@@ -7,9 +7,9 @@ public partial class PowerMode : PokerSelectorMode
     public override void Calculate()
     {
         Godot.GD.Print(
-            Pokers[0].GetNumValue(),
+            Pokers[0].NumValue,
             "^", 
-            Pokers[1].GetNumValue(),
+            Pokers[1].NumValue,
             "=",
             CalculateHelper.Calculate(Pokers[0], Pokers[1], Mode)
         );

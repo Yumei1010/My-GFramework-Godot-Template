@@ -7,6 +7,9 @@ using Godot;
 
 namespace TimeToTwentyfour.scripts.entities.poker;
 
+/// <summary>
+///     扑克契约实现类
+/// </summary>
 [Log]
 [ContextAware]
 public partial class Poker : Button, IPoker, IController
@@ -48,52 +51,12 @@ public partial class Poker : Button, IPoker, IController
 
         StateMachine.GuiInput(@event);
     }
-    
-    public Guid GetId()
-    {
-        return Id;
-    }
 
-    public SuitType GetSuitType()
+    public void Reparent(Node parent)
     {
-        return SuitType;
-    }
-
-    public string GetNumValue()
-    {
-        return NumValue;
-    }
-
-    public NumType GetNumType()
-    {
-        return NumType;
+        base.Reparent(parent);
     }
     
-    public void SetSuitType(SuitType suitType)
-    {
-        SuitType = suitType;
-    }
-
-    public void SetNumValue(string numValue)
-    {
-        NumValue = numValue;
-    }
-
-    public void SetNumType(NumType numType)
-    {
-        NumType = numType;
-    }
-
-    public void SetGlobalPosition(Vector2 position)
-    {
-        GlobalPosition = position;
-    }
-    
-    public void SetResetPosition(Vector2 position)
-    {
-        ResetPosition = position - Size / 2;
-    }
-
     public void ChangeTo(StateType state)
     {
         StateMachine.ChangeTo(state);
@@ -106,13 +69,13 @@ public partial class Poker : Button, IPoker, IController
     
     public void MoveTo(Vector2 position)
     {
-        if (TweenAnimate)
+        if (Animate)
         {
             // 如果正在播放动画，使其终止
             if (!_tweenPos.IsNull() && _tweenPos.IsRunning()) _tweenPos.Kill();
             
             _tweenPos = CreateTween().SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Elastic);
-            _tweenPos.TweenProperty( this, "global_position", position, TweenAnimateTime);
+            _tweenPos.TweenProperty( this, "global_position", position, AnimateTime);
         }
         else
         {
@@ -120,28 +83,32 @@ public partial class Poker : Button, IPoker, IController
         }
     }
 
-    public void Reparent(Node parent)
-    {
-        base.Reparent(parent);
-    }
-
-    public void SetTopLevel(bool topLevel)
-    {
-        TopLevel = topLevel;
-    }
-
     public void Reset(string attributeName)
     {
         switch (attributeName)
         {
             case "Position":
-                if (TweenAnimate)
+                if (Animate)
                 {
                     // 如果正在播放动画，使其终止
                     if (!_tweenPos.IsNull() && _tweenPos.IsRunning()) _tweenPos.Kill();
             
                     _tweenPos = CreateTween().SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Elastic);
-                    _tweenPos.TweenProperty( this, "global_position", ResetPosition, TweenAnimateTime);
+                    _tweenPos.TweenProperty( this, "global_position", ResetPosition, AnimateTime);
+                }
+                else
+                {
+                    GlobalPosition = ResetPosition;
+                }
+                break;
+            case "Rotation":
+                if (Animate)
+                {
+                    // 如果正在播放动画，使其终止
+                    if (!_tweenRot.IsNull() && _tweenRot.IsRunning()) _tweenRot.Kill();
+            
+                    _tweenRot = CreateTween().SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Elastic);
+                    _tweenRot.TweenProperty( this, "rotation", ResetRotation, AnimateTime);
                 }
                 else
                 {

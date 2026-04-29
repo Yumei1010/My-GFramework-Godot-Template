@@ -88,7 +88,7 @@ public partial class PokerSelector
                 GD.Print("本次计算");
                 for (int i = 0; i < Selects.Count; i++)
                 {
-                    GD.Print("第",i+1,"张牌数值为：",Selects[i].GetNumValue());
+                    GD.Print("第",i+1,"张牌数值为：",Selects[i].NumValue);
                 }
             
                 Calculate();

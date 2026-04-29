@@ -23,7 +23,7 @@ public partial class Deck
 
             Vector2 pos = holder.GetGlobalPosition() + holder.GetSize() / 2;
             Mapping[i] = new MappingData { Position = pos, Angle = 2f * i };
-            poker.SetResetPosition(pos);
+            poker.ResetPosition = pos - poker.Size / 2;
             poker.SpawnTo(pos);
         }
     }

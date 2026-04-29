@@ -35,8 +35,8 @@ public partial class Poker
             if (!_tweenRot.IsNull() && _tweenRot.IsRunning()) _tweenRot.Kill();
             
             _tweenRot = CreateTween().SetParallel().SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Back);
-            _tweenRot.TweenProperty(_material, "shader_parameter/x_rot", 0.0f, TweenAnimateTime);
-            _tweenRot.TweenProperty(_material, "shader_parameter/y_rot", 0.0f, TweenAnimateTime);
+            _tweenRot.TweenProperty(_material, "shader_parameter/x_rot", 0.0f, AnimateTime);
+            _tweenRot.TweenProperty(_material, "shader_parameter/y_rot", 0.0f, AnimateTime);
         }
         
         StateMachine.MouseExit();
