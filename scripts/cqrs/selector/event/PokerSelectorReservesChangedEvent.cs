@@ -1,6 +1,6 @@
 ﻿using TimeToTwentyfour.scripts.entities.poker;
 
-namespace TimeToTwentyfour.scripts.cqrs.poker.@event;
+namespace TimeToTwentyfour.scripts.cqrs.selector.@event;
 
 /// <summary>
 ///     扑克选择器预览变更事件类

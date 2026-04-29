@@ -1,4 +1,6 @@
-﻿namespace TimeToTwentyfour.scripts.entities.poker;
+﻿using TimeToTwentyfour.scripts.entities.poker;
+
+namespace TimeToTwentyfour.scripts.component.pokerFactory;
 
 /// <summary>
 ///     扑克工厂接口，定义了扑克工厂的基本属性和必须实现的功能。

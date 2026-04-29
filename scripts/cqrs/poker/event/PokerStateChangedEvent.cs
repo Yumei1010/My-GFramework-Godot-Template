@@ -4,18 +4,18 @@ using TimeToTwentyfour.scripts.enums.poker;
 namespace TimeToTwentyfour.scripts.cqrs.poker.@event;
 
 /// <summary>
-///     状态机状态变更事件类
-///     用于表示状态机状态发生变化的事件
+///     扑克状态变更事件类
+///     用于表示扑克状态发生变化的事件
 /// </summary>
 public class PokerStateChangedEvent
 {
     /// <summary>
     ///     目标状态 <see cref="StateType"/>
     /// </summary>
-    public required StateType State { get; init; }
+    public required StateType TargetState { get; init; }
     
     /// <summary>
-    ///     响应事件的扑克 <see cref="IPoker"/> 实例
+    ///     响应事件的扑克状态 <see cref="IPokerState"/> 实例
     /// </summary>
-    public required IPoker Poker { get; init; }
+    public required IPokerState State { get; init; }
 }

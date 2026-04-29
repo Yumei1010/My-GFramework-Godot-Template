@@ -1,7 +1,7 @@
 ﻿using GFramework.Core.extensions;
 using GFramework.SourceGenerators.Abstractions.rule;
 using Godot;
-using TimeToTwentyfour.scripts.cqrs.poker.@event;
+using TimeToTwentyfour.scripts.cqrs.selector.@event;
 using TimeToTwentyfour.scripts.enums.poker;
 
 namespace TimeToTwentyfour.scripts.entities.poker.state;
@@ -32,7 +32,7 @@ public partial class UnSelectState : PokerState
     public override void MouseDown()
     {
         // 发送扑克选择器选择发生改变事件
-        this.SendEvent(new PokerSelectorSelectChangedEvent
+        this.SendEvent(new SelectorSelectChangedEvent
         {
             Poker = Poker,
             IsSelected = true

@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-namespace TimeToTwentyfour.scripts.entities.poker;
+namespace TimeToTwentyfour.scripts.component.pokerFactory;
 
 public partial class PokerFactory
 {

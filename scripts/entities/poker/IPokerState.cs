@@ -5,13 +5,13 @@ using TimeToTwentyfour.scripts.enums.poker;
 namespace TimeToTwentyfour.scripts.entities.poker;
 
 /// <summary>
-///     扑克牌状态契约
-///     定义一张牌在特定 <see cref="StateType"/> 下的交互行为与生命周期。
+///     扑克状态契约
+///     定义一张扑克在特定 <see cref="StateType"/> 下的交互行为与生命周期。
 ///     继承 <see cref="IState"/>，可被 <see cref="IPokerStateMachine"/> 统一管理。
 /// </summary>
 /// <remarks>
 ///     <para>
-///         一张牌在运行时会处于下列状态之一：
+///         一张扑克在运行时会处于下列状态之一：
 ///     </para>
 ///     <list type="table">
 ///         <listheader><term>状态</term><description>说明</description></listheader>
@@ -22,7 +22,7 @@ namespace TimeToTwentyfour.scripts.entities.poker;
 ///     </list>
 ///     <para>
 ///         状态切换通过 <see cref="ChangeTo"/> 发送
-///         <c>PokerStateMachineStateChangedEvent</c> 事件，由状态机统一驱动。
+///         <c>PokerStateChangedEvent</c> 事件，由状态机统一驱动。
 ///     </para>
 /// </remarks>
 public interface IPokerState : IState
@@ -41,7 +41,7 @@ public interface IPokerState : IState
 
     /// <summary>
     ///     请求切换到另一个状态。
-    ///     实际切换由状态机订阅 <c>PokerStateMachineStateChangedEvent</c> 后调用
+    ///     实际切换由状态机订阅 <c>PokerStateChangedEvent</c> 后调用
     ///     当前状态的 <see cref="IState.Exit"/> 与目标状态的 <see cref="IState.Enter"/> 完成。
     /// </summary>
     /// <param name="toState">目标状态类型</param>

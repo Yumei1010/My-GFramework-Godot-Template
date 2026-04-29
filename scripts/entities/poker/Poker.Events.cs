@@ -1,6 +1,7 @@
 ﻿using GFramework.Core.extensions;
 using GFramework.Godot.extensions;
 using TimeToTwentyfour.scripts.cqrs.poker.@event;
+using TimeToTwentyfour.scripts.cqrs.selector.@event;
 using TimeToTwentyfour.scripts.enums.poker;
 
 namespace TimeToTwentyfour.scripts.entities.poker;
@@ -9,95 +10,22 @@ public partial class Poker
 {
     private void RegisterEvent()
     {
-        // 注册对花色变更事件的监听
-        this.RegisterEvent<PokerSuitTypeChangedEvent>(e =>
+        // 注册对扑克选择器可用性变更事件的监听
+        this.RegisterEvent<SelectorEnableChangedEvent>(e =>
         {
-            OnSuitTypeChangedEvent(e.SuitType,e.Poker);
+            OnSelectorEnableChangedEvent(e.Enable);
         }).UnRegisterWhenNodeExitTree(this);
-        
-        // 注册对数值变更事件的监听
-        this.RegisterEvent<PokerNumValueChangedEvent>(e =>
-        {
-            OnNumValueChangedEvent(e.NumValue,e.Poker);
-        }).UnRegisterWhenNodeExitTree(this);
-        
-        // 注册对数值类型变更事件的监听
-        this.RegisterEvent<PokerNumTypeChangedEvent>(e =>
-        {
-            OnNumTypeChangedEvent(e.NumType,e.Poker);
-        }).UnRegisterWhenNodeExitTree(this);
-        
-        // 注册对状态变更事件的监听
-        this.RegisterEvent<PokerStateChangedEvent>(e =>
-        {
-            OnStateChangedEvent(e.State,e.Poker);
-        }).UnRegisterWhenNodeExitTree(this);
-        
-        // 注册对选择器可用性变更事件的监听
-        this.RegisterEvent<PokerSelectorEnableChangedEvent>(e =>
-        {
-            OnEnableChangedEvent(e.Enable);
-        }).UnRegisterWhenNodeExitTree(this);
-        
+            
         // 注册对预览运算结果变更事件的监听
         this.RegisterEvent<PokerReserveResultChangedEvent>(e =>
         {
             OnReserveResultChangedEvent(e.NumValue, e.IsHidden, e.Poker);
         }).UnRegisterWhenNodeExitTree(this);
     }
-    
-    private void OnSuitTypeChangedEvent(SuitType suitType,IPoker poker)
+
+    private void OnSelectorEnableChangedEvent(bool enable)
     {
-        // 如果不是触发事件的poker，返回
-        if (poker != this) return;
-        
-        // 新值与旧值相等，返回
-        if (SuitType == suitType) return;
-        
-        // 更新花色和贴图
-        SuitType = suitType;
-        UpdateSurfaceRect();
-    }
-    
-    private void OnNumValueChangedEvent(String numValue,IPoker poker)
-    {
-        // 如果不是触发事件的poker，返回
-        if (poker != this) return;
-        
-        // 为null，返回
-        if (numValue == null!) return;
-        
-        // 新值与旧值相等，返回
-        if (string.Equals(NumValue, numValue, StringComparison.Ordinal)) return;
-        
-        // 更新数值和显示
-        NumValue = numValue;
-        UpdateNumValueLabel();
-    }
-    
-    private void OnNumTypeChangedEvent(NumType numType,IPoker poker)
-    {
-        // 如果不是触发事件的poker，返回
-        if (poker != this) return;
-        
-        // 新值与旧值相等，返回
-        if (NumType == numType) return;
-        
-        // 更新数值类型
-        NumType = numType;
-    }
-    
-    private void OnStateChangedEvent(StateType stateType,IPoker poker)
-    {
-        // 如果不是触发事件的poker，返回
-        if (poker != this) return;
-        
-        StateMachine.ChangeTo(stateType);
-    }
-    
-    private void OnEnableChangedEvent(bool enable)
-    {
-        StateMachine.ChangeTo(enable ? StateType.UnSelect : StateType.Idle);
+        ChangeTo(enable ? StateType.UnSelect : StateType.Idle);
     }
 
     private void OnReserveResultChangedEvent(String numValue,bool visible,IPoker poker)

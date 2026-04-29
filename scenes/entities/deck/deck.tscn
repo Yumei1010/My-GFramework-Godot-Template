@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://dt7yo04xxynhw"]
 
 [ext_resource type="Script" uid="uid://ctl38v2txns8u" path="res://scripts/entities/deck/Deck.cs" id="1_y416j"]
-[ext_resource type="Script" uid="uid://bkapwt7rl0n6b" path="res://scripts/entities/poker/PokerFactory.cs" id="2_71qkm"]
 
 [node name="Deck" type="Control" unique_id=1635477496]
 custom_minimum_size = Vector2(640, 160)
@@ -17,12 +16,7 @@ offset_bottom = -16.119995
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_y416j")
-Holder = false
 metadata/_edit_lock_ = true
-
-[node name="PokerFactory" type="Node" parent="." unique_id=1534657292]
-unique_name_in_owner = true
-script = ExtResource("2_71qkm")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1007205732]
 custom_minimum_size = Vector2(640, 160)

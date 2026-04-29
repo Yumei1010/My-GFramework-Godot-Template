@@ -10,7 +10,7 @@ namespace TimeToTwentyfour.scripts.entities.poker;
 /// </summary>
 /// <remarks>
 ///     <para>
-///         由牌桌控制器,牌组控制器持有单张牌的引用：
+///         由牌桌控制器,牌组控制器,选择控制器持有单张牌的引用：
 ///     </para>
 ///     <code>
 ///         poker.SuitType = SuitType.Heart; // 花色为红桃
@@ -27,7 +27,7 @@ public interface IPoker
     ///    唯一标识符。
     /// </summary>
     /// <returns>唯一标识符 <see cref="Guid"/></returns>
-    Guid Id { get; set; }
+    Guid Id { get; }
     
     /// <summary>
     ///     花色类型。

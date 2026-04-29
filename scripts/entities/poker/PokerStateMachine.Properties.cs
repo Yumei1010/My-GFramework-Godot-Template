@@ -7,7 +7,7 @@ public partial class PokerStateMachine
     /// <summary>
     ///     状态表 <see cref="Dictionary{StateType, IPokerState}" />
     /// </summary>
-    private Dictionary<StateType, IPokerState> States { get; set; } = new();
+    private Dictionary<StateType, IPokerState> States { get; } = new();
     
     /// <summary>
     ///     先前状态 <see cref="IPokerState" />

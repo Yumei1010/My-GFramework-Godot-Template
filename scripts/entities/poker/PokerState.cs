@@ -53,14 +53,14 @@ public abstract partial class PokerState : Node, IPokerState
     /// <param name="state">目标状态类型。</param>
     /// <remarks>
     ///     <para>
-    ///         通过发出<see cref="PokerStateMachineStateChangedEvent"/>。
+    ///         通过发出<see cref="PokerStateChangedEvent"/>。
     ///         该事件携带当前状态实例 (<c>State = this</c>) 与目标状态枚举 (<c>TargetState</c>)，
     ///         由状态机监听并统一执行 <c>currentState.Exit() → nextState.Enter()</c> 流程。
     ///     </para>
     /// </remarks>
     public void ChangeTo(StateType state)
     {
-        this.SendEvent(new PokerStateMachineStateChangedEvent
+        this.SendEvent(new PokerStateChangedEvent
         {
             TargetState = state,
             State = this

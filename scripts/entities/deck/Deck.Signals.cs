@@ -1,9 +1,4 @@
-﻿using GFramework.Core.extensions;
-using Godot;
-using TimeToTwentyfour.scripts.cqrs.poker.@event;
-using TimeToTwentyfour.scripts.entities.poker;
-
-namespace TimeToTwentyfour.scripts.entities.deck;
+﻿namespace TimeToTwentyfour.scripts.entities.deck;
 
 public partial class Deck
 {
@@ -14,17 +9,6 @@ public partial class Deck
 
     private void OnHolderContainerSortChildren()
     {
-        this.SendEvent(new DeckSortFinishedEvent());
-
-        for (int i = 0; i < PokerContainer.GetChildCount(); i++)
-        {
-            IPoker poker = (IPoker)PokerContainer.GetChildren()[i];
-            Control holder = (Control)HolderContainer.GetChildren()[i];
-
-            Vector2 pos = holder.GetGlobalPosition() + holder.GetSize() / 2;
-            Mapping[i] = new MappingData { Position = pos, Angle = 2f * i };
-            poker.ResetPosition = pos - poker.Size / 2;
-            poker.SpawnTo(pos);
-        }
+        ReLayout();
     }
 }

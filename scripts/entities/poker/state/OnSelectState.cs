@@ -1,8 +1,8 @@
 ﻿using GFramework.Core.extensions;
 using GFramework.SourceGenerators.Abstractions.rule;
-using TimeToTwentyfour.scripts.cqrs.poker.@event;
 using TimeToTwentyfour.scripts.enums.poker;
 using Godot;
+using TimeToTwentyfour.scripts.cqrs.selector.@event;
 
 namespace TimeToTwentyfour.scripts.entities.poker.state;
 
@@ -35,7 +35,7 @@ public partial class OnSelectState : PokerState
 
     public override void MouseDown()
     {
-        this.SendEvent(new PokerSelectorSelectChangedEvent
+        this.SendEvent(new SelectorSelectChangedEvent
         {
             Poker = Poker,
             IsSelected = false

@@ -10,7 +10,7 @@ public partial class PokerStateMachine
     private void RegisterEvent()
     {
         // 注册对状态变更事件的监听
-        this.RegisterEvent<PokerStateMachineStateChangedEvent>(e =>
+        this.RegisterEvent<PokerStateChangedEvent>(e =>
         {
             OnStateChangedEvent(e.TargetState,e.State);
         }).UnRegisterWhenNodeExitTree(this);
@@ -18,7 +18,7 @@ public partial class PokerStateMachine
     
     private void OnStateChangedEvent(StateType stateType,IPokerState state)
     {
-        // 如果不是己方的state，返回
+        // 如果不是己方持有的state，返回
         if (!States.ContainsValue(state)) return;
         
         ChangeTo(stateType);

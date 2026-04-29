@@ -1,9 +1,6 @@
 ﻿using GFramework.Core.Abstractions.controller;
-using GFramework.Core.extensions;
 using GFramework.SourceGenerators.Abstractions.rule;
 using TimeToTwentyfour.global;
-using TimeToTwentyfour.scripts.cqrs.poker.@event;
-using TimeToTwentyfour.scripts.enums.poker;
 using Godot;
 
 namespace TimeToTwentyfour.scripts.component;
@@ -53,97 +50,61 @@ public partial class CalculateBar : Control, IController
 
     private void OnButtonDownNthRootButton()
     {
-        this.SendEvent(new PokerSelectorModeChangedEvent
-        {
-            Mode = ModeType.NthRoot
-        });
+
     }
 
     private void OnButtonDownAddButton()
     {
-        this.SendEvent(new PokerSelectorModeChangedEvent
-        {
-            Mode = ModeType.Add
-        });
+
     }
 
     private void OnButtonDownSubtractButton()
     {
-        this.SendEvent(new PokerSelectorModeChangedEvent
-        {
-            Mode = ModeType.Subtract
-        });
+
     }
 
     private void OnButtonDownMultiplyButton()
     {
-        this.SendEvent(new PokerSelectorModeChangedEvent
-        {
-            Mode = ModeType.Multiply
-        });
+
     }
 
     private void OnButtonDownDivideButton()
     {
-        this.SendEvent(new PokerSelectorModeChangedEvent
-        {
-            Mode = ModeType.Divide
-        });
+
     }
 
     private void OnButtonDownModuloButton()
     {
-        this.SendEvent(new PokerSelectorModeChangedEvent
-        {
-            Mode = ModeType.Modulo
-        });
+
     }
 
     private void OnButtonDownSquareRootButton()
     {
-        this.SendEvent(new PokerSelectorModeChangedEvent
-        {
-            Mode = ModeType.SquareRoot
-        });
+
     }
 
     private void OnButtonDownCeilButton()
     {
-        this.SendEvent(new PokerSelectorModeChangedEvent
-        {
-            Mode = ModeType.Ceil
-        });
+
     }
 
     private void OnButtonDownFloorButton()
     {
-        this.SendEvent(new PokerSelectorModeChangedEvent
-        {
-            Mode = ModeType.Floor
-        });
+
     }
 
     private void OnButtonDownPowerButton()
     {
-        this.SendEvent(new PokerSelectorModeChangedEvent
-        {
-            Mode = ModeType.Power
-        });
+
     }
     
     private void OnButtonDownAbsoluteValueButton()
     {
-        this.SendEvent(new PokerSelectorModeChangedEvent
-        {
-            Mode = ModeType.AbsoluteValue
-        });
+
     }
 
     private void OnButtonDownFactorialButton()
     {
-        this.SendEvent(new PokerSelectorModeChangedEvent()
-        {
-            Mode = ModeType.Factorial
-        });
+
     }
 }

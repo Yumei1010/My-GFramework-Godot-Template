@@ -1,4 +1,4 @@
-﻿namespace TimeToTwentyfour.scripts.cqrs.poker.@event;
+﻿namespace TimeToTwentyfour.scripts.cqrs.deck.@event;
 
 /// <summary>
 ///     牌桌结束排序事件类

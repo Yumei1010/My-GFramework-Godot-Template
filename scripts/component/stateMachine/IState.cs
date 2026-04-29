@@ -1,7 +1,7 @@
 ﻿namespace TimeToTwentyfour.scripts.component.stateMachine;
 
 /// <summary>
-/// 状态接口，定义了状态的基本属性和必须实现的功能
+///     状态契约
 /// </summary>
 public interface IState
 {

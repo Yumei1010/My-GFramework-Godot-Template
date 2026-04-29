@@ -5,19 +5,14 @@ namespace TimeToTwentyfour.scripts.entities.deck;
 
 public partial class Deck
 {
-    [ExportGroup("Debug")] 
-        [Export] private bool Holder { get; set; } = true;
+    private Dictionary<Panel, IPoker> Mapping { get; set; } = new();
     
-    /// <summary>
-    ///     卡册 <see cref="Dictionary{IPokerHolder, IPoker}"/>
-    /// </summary>
-    private Dictionary<Panel, IPoker> Album { get; set; } = new();
- 
-    private class MappingData
+    private SortMode CurrentSortMode { get; set; } = SortMode.Manual;
+
+    private enum SortMode
     {
-        public Vector2 Position { get; set; }
-        public float Angle { get; set; }
+        Manual,
+        BySuit,
+        ByRank
     }
-    
-    private Dictionary<int, MappingData> Mapping { get; set; } = new();
 }
