@@ -23,6 +23,8 @@ mono_crash.*.json
 
 # .Net
 Time-To-Twenty-four.sln.DotSettings.user
+bin/
+obj/
 addons/*
 !addons/.editorconfig
 .addons/*
