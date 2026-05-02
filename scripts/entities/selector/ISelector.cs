@@ -19,10 +19,10 @@ namespace TimeToTwentyfour.scripts.entities.selector;
 public interface ISelector
 {
     /// <summary>
-    ///     当前被选中的扑克列表。
+    ///     当前被选中的扑克列表（只读）。
     ///     顺序为选中先后：<c>[0]</c> 最早选中，<c>[^1]</c> 最新选中。
     /// </summary>
-    IList<IPoker> Selects { get; }
+    IReadOnlyList<IPoker> Selects { get; }
 
     /// <summary>
     ///     当前选中数量。
@@ -48,7 +48,7 @@ public interface ISelector
     /// <summary>
     ///     弹出最后选中的牌（栈顶 / 队尾）。
     /// </summary>
-    /// <returns>最后被选中的 <see cref="IPoker"/>；若列表为空则返回 <see langword="null!"/>。</returns>
+    /// <returns>最后被选中的 <see cref="IPoker"/>；若列表为空则返回 <see langword="null"/>。</returns>
     /// <remarks>
     ///     弹出后该牌从选中列表中移除。语义为"撤销最近一次选择"。
     /// </remarks>

@@ -1,8 +1,9 @@
-﻿using GFramework.SourceGenerators.Abstractions.logging;
+﻿using GFramework.Core.extensions;
+using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
 using Godot;
+using TimeToTwentyfour.scripts.cqrs.selector.@event;
 using TimeToTwentyfour.scripts.entities.poker;
-using TimeToTwentyfour.scripts.enums.poker;
 
 namespace TimeToTwentyfour.scripts.entities.selector;
 
@@ -44,7 +45,7 @@ public partial class Selector : Node, ISelector
         _selected.RemoveAt(lastIndex);
         return poker;
     }
-    
+
     private void Add(IPoker poker)
     {
         // 去重
@@ -53,10 +54,11 @@ public partial class Selector : Node, ISelector
         // 若已达上限，淘汰队首（最早选中的）
         if (Capacity > 0 && _selected.Count >= Capacity)
         {
-            _selected[0].ChangeTo(StateType.Idle);
+            var evicted = _selected[0];
             _selected.RemoveAt(0);
+            this.SendEvent(new SelectorSelectChangedEvent { IsSelected = false, Poker = evicted });
         }
-        
+
         _selected.Add(poker);
     }
     

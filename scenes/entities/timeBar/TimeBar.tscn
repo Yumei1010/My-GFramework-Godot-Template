@@ -11,6 +11,7 @@ offset_bottom = -31.980011
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_as047")
+metadata/_edit_lock_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=107548784]
 custom_minimum_size = Vector2(960, 88)

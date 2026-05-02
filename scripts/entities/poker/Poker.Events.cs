@@ -15,7 +15,13 @@ public partial class Poker
         {
             OnSelectorEnableChangedEvent(e.Enable);
         }).UnRegisterWhenNodeExitTree(this);
-            
+
+        // 注册对选择变更事件的监听
+        this.RegisterEvent<SelectorSelectChangedEvent>(e =>
+        {
+            OnSelectorSelectChangedEvent(e.IsSelected, e.Poker);
+        }).UnRegisterWhenNodeExitTree(this);
+
         // 注册对预览运算结果变更事件的监听
         this.RegisterEvent<PokerReserveResultChangedEvent>(e =>
         {
@@ -26,6 +32,12 @@ public partial class Poker
     private void OnSelectorEnableChangedEvent(bool enable)
     {
         ChangeTo(enable ? StateType.UnSelect : StateType.Idle);
+    }
+
+    private void OnSelectorSelectChangedEvent(bool isSelected, IPoker poker)
+    {
+        if (poker != this) return;
+        ChangeTo(isSelected ? StateType.OnSelect : StateType.UnSelect);
     }
 
     private void OnReserveResultChangedEvent(String numValue,bool visible,IPoker poker)

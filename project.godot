@@ -50,7 +50,7 @@ project/assembly_name="Time-To-Twenty-four"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot_mcp/plugin.cfg")
+enabled=PackedStringArray()
 
 [file_customization]
 
