@@ -1,4 +1,4 @@
-﻿namespace GFrameworkGodotTemplate.scripts.enums.resources;
+﻿namespace TimeToTwentyfour.scripts.enums.resources;
 
 public enum TextureKey
 {
@@ -9,4 +9,6 @@ public enum TextureKey
     PokerSuitSpade,
     
     PokerSuitClub,
+    
+    PokerSuitError,
 }

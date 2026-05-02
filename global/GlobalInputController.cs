@@ -1,16 +1,14 @@
-using GFramework.Core.Abstractions.state;
+﻿using GFramework.Core.Abstractions.state;
 using GFramework.Core.extensions;
 using GFramework.Game.Abstractions.ui;
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
-using GFrameworkGodotTemplate.scripts.command.game;
-using GFrameworkGodotTemplate.scripts.command.menu.input;
-using GFrameworkGodotTemplate.scripts.core.controller;
-using GFrameworkGodotTemplate.scripts.core.state.impls;
-using GFrameworkGodotTemplate.scripts.enums;
+using TimeToTwentyfour.scripts.core.controller;
+using TimeToTwentyfour.scripts.core.state.impls;
+using TimeToTwentyfour.scripts.enums;
 using Godot;
 
-namespace GFrameworkGodotTemplate.global;
+namespace TimeToTwentyfour.global;
 
 /// <summary>
 ///     全局输入控制器类，继承自 GameInputController。
@@ -47,9 +45,6 @@ public partial class GlobalInputController : GameInputController
         // 检查是否按下了取消操作（通常是 ESC 键）
         if (!@event.IsActionPressed("ui_cancel"))
             return;
-        // 根据当前状态执行相应操作
-        if (_stateMachineSystem.Current is not PlayingState) return;
-        _log.Debug("暂停游戏");
         
         GetViewport().SetInputAsHandled();
     }

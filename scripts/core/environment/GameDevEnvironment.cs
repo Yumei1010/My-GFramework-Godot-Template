@@ -1,7 +1,7 @@
 ﻿using GFramework.Core.environment;
-using GFrameworkGodotTemplate.scripts.constants;
+using TimeToTwentyfour.scripts.constants;
 
-namespace GFrameworkGodotTemplate.scripts.core.environment;
+namespace TimeToTwentyfour.scripts.core.environment;
 
 /// <summary>
 ///     游戏开发环境类，继承自EnvironmentBase

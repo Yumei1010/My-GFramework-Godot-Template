@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-namespace GFrameworkGodotTemplate.scripts.utility;
+namespace TimeToTwentyfour.scripts.utility;
 
 /// <summary>
 /// 手牌排列坐标辅助类

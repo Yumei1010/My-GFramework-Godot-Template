@@ -6,11 +6,11 @@ using GFramework.Game.serializer;
 using GFramework.Godot.scene;
 using GFramework.Godot.storage;
 using GFramework.Godot.ui;
-using GFrameworkGodotTemplate.scripts.data.interfaces;
-using GFrameworkGodotTemplate.scripts.utility;
+using TimeToTwentyfour.scripts.data.interfaces;
+using TimeToTwentyfour.scripts.utility;
 using Godot;
 
-namespace GFrameworkGodotTemplate.scripts.module;
+namespace TimeToTwentyfour.scripts.module;
 
 /// <summary>
 ///     工具模块类，负责安装和管理游戏中的实用工具组件
@@ -24,19 +24,26 @@ public class UtilityModule : AbstractModule
     public override void Install(IArchitecture architecture)
     {
         architecture.RegisterUtility(new GodotUiRegistry());
+        
         architecture.RegisterUtility(new GodotSceneRegistry());
+
         architecture.RegisterUtility(new GodotTextureRegistry());
+        
         architecture.RegisterUtility(new GodotUiFactory());
+        
         var jsonSerializer = new JsonSerializer();
         architecture.RegisterUtility(jsonSerializer);
+        
         var storage = new GodotFileStorage(jsonSerializer);
         architecture.RegisterUtility(storage);
+        
         architecture.RegisterUtility(new UnifiedSettingsDataRepository(storage, jsonSerializer,
             new DataRepositoryOptions
             {
                 BasePath = ProjectSettings.GetSetting("application/config/save/setting_path").AsString(),
                 AutoBackup = true
             }));
+        
         architecture.RegisterUtility(new SaveStorageUtility());
     }
 }

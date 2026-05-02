@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace GFrameworkGodotTemplate.scripts.data.model;
+namespace TimeToTwentyfour.scripts.data.model;
 
 /// <summary>
 ///     游戏存档数据类，用于存储游戏进度相关的序列化数据

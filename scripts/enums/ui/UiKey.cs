@@ -1,4 +1,4 @@
-﻿namespace GFrameworkGodotTemplate.scripts.enums.ui;
+﻿namespace TimeToTwentyfour.scripts.enums.ui;
 
 /// <summary>
 ///     定义用户界面键值枚举，用于标识不同的UI面板或菜单

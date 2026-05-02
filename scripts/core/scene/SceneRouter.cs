@@ -1,7 +1,7 @@
-using GFramework.Game.scene;
+﻿using GFramework.Game.scene;
 using Godot;
 
-namespace GFrameworkGodotTemplate.scripts.core.scene;
+namespace TimeToTwentyfour.scripts.core.scene;
 
 /// <summary>
 /// 场景路由器类，负责管理游戏场景的切换和路由功能

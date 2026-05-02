@@ -1,4 +1,4 @@
-﻿namespace GFrameworkGodotTemplate.scripts.enums;
+﻿namespace TimeToTwentyfour.scripts.enums;
 
 /// <summary>
 ///     定义输入处理的不同阶段，用于区分游戏逻辑中输入事件的优先级和状态。

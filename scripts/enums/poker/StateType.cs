@@ -1,4 +1,4 @@
-﻿namespace GFrameworkGodotTemplate.scripts.enums.poker;
+﻿namespace TimeToTwentyfour.scripts.enums.poker;
 
 /// <summary>
 ///     定义卡牌状态类型的键值枚举

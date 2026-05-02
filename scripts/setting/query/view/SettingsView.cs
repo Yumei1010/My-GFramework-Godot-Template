@@ -1,6 +1,6 @@
 ﻿using GFramework.Game.Abstractions.setting.data;
 
-namespace GFrameworkGodotTemplate.scripts.setting.query.view;
+namespace TimeToTwentyfour.scripts.setting.query.view;
 
 /// <summary>
 ///     表示游戏设置视图的数据模型，包含音频和显示设置信息

@@ -7,10 +7,10 @@ using GFramework.Game.Abstractions.ui;
 using GFramework.Godot.ui;
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
-using GFrameworkGodotTemplate.scripts.constants;
-using GFrameworkGodotTemplate.scripts.core.ui;
-using GFrameworkGodotTemplate.scripts.enums.ui;
-using GFrameworkGodotTemplate.global;
+using TimeToTwentyfour.scripts.constants;
+using TimeToTwentyfour.scripts.core.ui;
+using TimeToTwentyfour.scripts.enums.ui;
+using TimeToTwentyfour.global;
 
 
 [ContextAware]

@@ -1,9 +1,9 @@
 ﻿using GFramework.Core.Abstractions.controller;
 using GFramework.SourceGenerators.Abstractions.logging;
-using GFrameworkGodotTemplate.scripts.enums;
+using TimeToTwentyfour.scripts.enums;
 using Godot;
 
-namespace GFrameworkGodotTemplate.scripts.core.controller;
+namespace TimeToTwentyfour.scripts.core.controller;
 
 /// <summary>
 ///     游戏输入控制器抽象基类，继承自Node并实现IController接口

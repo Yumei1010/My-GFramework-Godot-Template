@@ -5,9 +5,9 @@ using GFramework.Game.architecture;
 using GFramework.Game.setting;
 using GFramework.Godot.setting;
 using GFramework.Godot.setting.data;
-using GFrameworkGodotTemplate.scripts.setting;
+using TimeToTwentyfour.scripts.setting;
 
-namespace GFrameworkGodotTemplate.scripts.module;
+namespace TimeToTwentyfour.scripts.module;
 
 /// <summary>
 /// ModelModule 类继承自 AbstractModule，用于在架构中安装和注册模型。

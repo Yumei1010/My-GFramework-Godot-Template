@@ -1,9 +1,9 @@
-using GFramework.Core.Abstractions.controller;
+﻿using GFramework.Core.Abstractions.controller;
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
 using Godot;
 
-namespace GFrameworkGodotTemplate.scripts.component;
+namespace TimeToTwentyfour.scripts.component;
 
 /// <summary>
 ///     音量控制容器抽象类，提供音量滑块、标签和数值显示功能

@@ -1,0 +1,162 @@
+[gd_scene format=3 uid="uid://4xqosh5cpa8o"]
+
+[ext_resource type="Script" uid="uid://dwnvfq0s5jvte" path="res://scripts/menu/main_menu/MainMenu.cs" id="1_fsom3"]
+[ext_resource type="Script" uid="uid://fdjqwbipbiny" path="res://scripts/menu/main_menu/optionButton/StartOptionButton.cs" id="3_dk276"]
+[ext_resource type="PackedScene" uid="uid://y77p26hqt4cd" path="res://scenes/menu/main_menu/main_menu_option_button.tscn" id="3_fvlue"]
+[ext_resource type="Script" uid="uid://dkw4ungtg46ju" path="res://scripts/menu/main_menu/optionButton/ContinueOptionButton.cs" id="4_dk276"]
+[ext_resource type="Script" uid="uid://j2exksmaahk2" path="res://scripts/menu/main_menu/optionButton/SettingOptionButton.cs" id="5_ww8d4"]
+[ext_resource type="Script" uid="uid://do4jijjipuwry" path="res://scripts/menu/main_menu/optionButton/CreditsOptionButton.cs" id="6_wd51l"]
+[ext_resource type="Script" uid="uid://dwxgyd32mmfjy" path="res://scripts/menu/main_menu/optionButton/ExitOptionButton.cs" id="7_3tda0"]
+[ext_resource type="PackedScene" uid="uid://cfuvnryxlpn4b" path="res://scenes/entities/poker/poker.tscn" id="8_pqpva"]
+
+[node name="MainMenu" type="Control" unique_id=1093407812]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fsom3")
+metadata/_edit_lock_ = true
+
+[node name="Background" type="ColorRect" parent="." unique_id=1584510554]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.78804016, 0.90371764, 0.96165496, 1)
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Background" unique_id=534487519]
+layout_mode = 0
+offset_left = 504.0
+offset_top = 128.0
+offset_right = 506.0
+offset_bottom = 416.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1392876735]
+layout_mode = 0
+offset_left = 576.0
+offset_top = 128.0
+offset_right = 768.0
+offset_bottom = 416.0
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="StartButton" parent="VBoxContainer" unique_id=1803715423 instance=ExtResource("3_fvlue")]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("3_dk276")
+TextContent = "开始"
+TextColor = Color(1, 1, 1, 1)
+BackgroundColor = Color(1, 0.6210423, 0.56365764, 1)
+MaskColor = Color(0.5676225, 0.7089955, 1, 1)
+
+[node name="ContinueButton" parent="VBoxContainer" unique_id=152050024 instance=ExtResource("3_fvlue")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+script = ExtResource("4_dk276")
+TextContent = "继续"
+TextColor = Color(1, 1, 1, 1)
+BackgroundColor = Color(1, 0.6210423, 0.56365764, 1)
+MaskColor = Color(0.5676225, 0.7089955, 1, 1)
+
+[node name="SettingButton" parent="VBoxContainer" unique_id=2065609292 instance=ExtResource("3_fvlue")]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("5_ww8d4")
+TextContent = "设置"
+TextColor = Color(1, 1, 1, 1)
+BackgroundColor = Color(1, 0.6210423, 0.56365764, 1)
+MaskColor = Color(0.5676225, 0.7089955, 1, 1)
+
+[node name="CreditsButton" parent="VBoxContainer" unique_id=1735088410 instance=ExtResource("3_fvlue")]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("6_wd51l")
+TextContent = "制作组"
+TextColor = Color(1, 1, 1, 1)
+BackgroundColor = Color(1, 0.6210423, 0.56365764, 1)
+MaskColor = Color(0.5676225, 0.7089955, 1, 1)
+
+[node name="ExitButton" parent="VBoxContainer" unique_id=1245963742 instance=ExtResource("3_fvlue")]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("7_3tda0")
+TextContent = "离开"
+TextColor = Color(1, 1, 1, 1)
+BackgroundColor = Color(1, 0.6210423, 0.56365764, 1)
+MaskColor = Color(0.5676225, 0.7089955, 1, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=621478167]
+custom_minimum_size = Vector2(384, 16)
+layout_mode = 0
+offset_left = 64.0
+offset_top = 320.0
+offset_right = 448.0
+offset_bottom = 336.0
+theme_override_constants/separation = 72
+alignment = 1
+
+[node name="Control" type="Control" parent="HBoxContainer" unique_id=322809513]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="PokerA" parent="HBoxContainer/Control" unique_id=351593249 instance=ExtResource("8_pqpva")]
+unique_name_in_owner = true
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -46.0
+offset_top = -70.0
+offset_right = 50.0
+offset_bottom = 74.0
+grow_horizontal = 1
+grow_vertical = 1
+DefaultPosition = Vector2(116, 320)
+DefaultRotation = -8.0
+metadata/_edit_lock_ = true
+
+[node name="Control2" type="Control" parent="HBoxContainer" unique_id=304278941]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="PokerB" parent="HBoxContainer/Control2" unique_id=544862648 instance=ExtResource("8_pqpva")]
+unique_name_in_owner = true
+layout_mode = 1
+SuitType = 1
+DefaultPosition = Vector2(204, 320)
+DefaultRotation = -4.0
+metadata/_edit_lock_ = true
+
+[node name="Control3" type="Control" parent="HBoxContainer" unique_id=941767905]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="PokerC" parent="HBoxContainer/Control3" unique_id=878173175 instance=ExtResource("8_pqpva")]
+unique_name_in_owner = true
+layout_mode = 1
+SuitType = 2
+DefaultPosition = Vector2(292, 320)
+DefaultRotation = 4.0
+metadata/_edit_lock_ = true
+
+[node name="Control4" type="Control" parent="HBoxContainer" unique_id=1853017255]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="PokerD" parent="HBoxContainer/Control4" unique_id=1855389671 instance=ExtResource("8_pqpva")]
+unique_name_in_owner = true
+layout_mode = 1
+SuitType = 3
+DefaultPosition = Vector2(380, 320)
+DefaultRotation = 8.0
+metadata/_edit_lock_ = true

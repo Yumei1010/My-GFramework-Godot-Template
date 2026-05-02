@@ -1,4 +1,4 @@
-﻿namespace GFrameworkGodotTemplate.scripts.constants;
+﻿namespace TimeToTwentyfour.scripts.constants;
 
 public static class GameConstants
 {

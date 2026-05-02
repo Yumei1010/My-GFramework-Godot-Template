@@ -1,10 +1,9 @@
 ﻿using System.Globalization;
 using System.Runtime.InteropServices;
-using GFrameworkGodotTemplate.scripts.enums.calculate;
-using GFrameworkGodotTemplate.scripts.enums.poker;
-using GFrameworkGodotTemplate.scripts.poker;
+using TimeToTwentyfour.scripts.entities.poker;
+using TimeToTwentyfour.scripts.enums.poker;
 
-namespace GFrameworkGodotTemplate.scripts.utility;
+namespace TimeToTwentyfour.scripts.utility;
 
 /// <summary>
 /// 计算辅助类
@@ -82,7 +81,7 @@ public static class CalculateHelper
             ModeType.Divide => fb.Numerator == 0 ? "ERROR:DivByZero" : (fa / fb).ToString(),
             ModeType.Modulo => fb.ToDouble() == 0 ? "ERROR:DivByZero" : FormatDouble(fa.ToDouble() % fb.ToDouble()),
             ModeType.Power => FormatDouble(Math.Pow(fa.ToDouble(), fb.ToDouble())),
-            ModeType.NthRoot => fb.ToDouble() == 0 ? "ERROR:ZeroRootIndex" : FormatDouble(Math.Pow(fb.ToDouble(), 1.0 / fa.ToDouble())),
+            ModeType.NthRoot => fa.ToDouble() == 0 ? "ERROR:ZeroRootIndex" : FormatDouble(Math.Pow(fb.ToDouble(), 1.0 / fa.ToDouble())),
             _ => "24"
         };
     }
@@ -109,12 +108,12 @@ public static class CalculateHelper
 
     private static Fraction ParseToFraction(IPoker poker)
     {
-        string raw = poker.GetNumValue().Trim();
-        return poker.GetNumType() switch
+        string raw = poker.NumValue.Trim();
+        return poker.NumType switch
         {
             NumType.Fraction => ParseFractionString(raw),
             NumType.Decimal or NumType.Integer => ParseDecimalString(raw),
-            _ => throw new NotSupportedException($"未知数值类型: {poker.GetNumType()}")
+            _ => throw new NotSupportedException($"未知数值类型: {poker.NumType}")
         };
     }
 

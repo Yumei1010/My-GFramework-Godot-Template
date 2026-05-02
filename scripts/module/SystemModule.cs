@@ -1,10 +1,10 @@
 ﻿using GFramework.Core.Abstractions.architecture;
 using GFramework.Game.architecture;
 using GFramework.Game.setting;
-using GFrameworkGodotTemplate.scripts.core.scene;
-using GFrameworkGodotTemplate.scripts.core.ui;
+using TimeToTwentyfour.scripts.core.scene;
+using TimeToTwentyfour.scripts.core.ui;
 
-namespace GFrameworkGodotTemplate.scripts.module;
+namespace TimeToTwentyfour.scripts.module;
 
 /// <summary>
 ///     系统Godot模块类，负责安装和注册游戏所需的各种系统组件
@@ -19,7 +19,9 @@ public class SystemModule : AbstractModule
     public override void Install(IArchitecture architecture)
     {
         architecture.RegisterSystem(new UiRouter());
+
         architecture.RegisterSystem(new SceneRouter());
+        
         architecture.RegisterSystem(new SettingsSystem());
     }
 }

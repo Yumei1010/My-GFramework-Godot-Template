@@ -1,14 +1,14 @@
-using GFramework.Core.Abstractions.controller;
+﻿using GFramework.Core.Abstractions.controller;
 using GFramework.Core.extensions;
 using GFramework.Godot.extensions;
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
-using GFrameworkGodotTemplate.scripts.constants;
-using GFrameworkGodotTemplate.scripts.enums.audio;
-using GFrameworkGodotTemplate.scripts.events.audio;
+using TimeToTwentyfour.scripts.constants;
+using TimeToTwentyfour.scripts.cqrs.audio.@event;
+using TimeToTwentyfour.scripts.enums.audio;
 using Godot;
 
-namespace GFrameworkGodotTemplate.global;
+namespace TimeToTwentyfour.global;
 
 [ContextAware]
 [Log]
