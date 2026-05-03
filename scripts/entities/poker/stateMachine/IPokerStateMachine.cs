@@ -1,8 +1,9 @@
 ﻿using Godot;
 using TimeToTwentyfour.scripts.component.stateMachine;
+using TimeToTwentyfour.scripts.entities.poker.state;
 using TimeToTwentyfour.scripts.enums.poker;
 
-namespace TimeToTwentyfour.scripts.entities.poker;
+namespace TimeToTwentyfour.scripts.entities.poker.stateMachine;
 
 /// <summary>
 ///     扑克牌状态机契约

@@ -1,10 +1,10 @@
 ﻿using GFramework.Core.extensions;
 using GFramework.SourceGenerators.Abstractions.rule;
+using Godot;
 using TimeToTwentyfour.scripts.cqrs.poker.@event;
 using TimeToTwentyfour.scripts.enums.poker;
-using Godot;
 
-namespace TimeToTwentyfour.scripts.entities.poker;
+namespace TimeToTwentyfour.scripts.entities.poker.state;
 
 /// <summary>
 ///     扑克牌状态契约抽象实现基类
@@ -60,7 +60,7 @@ public abstract partial class PokerState : Node, IPokerState
     /// </remarks>
     public void ChangeTo(StateType state)
     {
-        this.SendEvent(new PokerStateChangedEvent
+        ContextAwareExtensions.SendEvent(this, new PokerStateChangedEvent
         {
             TargetState = state,
             State = this

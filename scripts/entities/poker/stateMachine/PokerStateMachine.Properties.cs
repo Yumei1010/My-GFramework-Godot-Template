@@ -1,6 +1,7 @@
-﻿using TimeToTwentyfour.scripts.enums.poker;
+﻿using TimeToTwentyfour.scripts.entities.poker.state;
+using TimeToTwentyfour.scripts.enums.poker;
 
-namespace TimeToTwentyfour.scripts.entities.poker;
+namespace TimeToTwentyfour.scripts.entities.poker.stateMachine;
 
 public partial class PokerStateMachine
 {

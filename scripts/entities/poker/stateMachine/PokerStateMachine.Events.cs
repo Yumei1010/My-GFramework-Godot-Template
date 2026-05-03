@@ -1,16 +1,17 @@
 ﻿using GFramework.Core.extensions;
 using GFramework.Godot.extensions;
 using TimeToTwentyfour.scripts.cqrs.poker.@event;
+using TimeToTwentyfour.scripts.entities.poker.state;
 using TimeToTwentyfour.scripts.enums.poker;
 
-namespace TimeToTwentyfour.scripts.entities.poker;
+namespace TimeToTwentyfour.scripts.entities.poker.stateMachine;
 
 public partial class PokerStateMachine
 {
     private void RegisterEvent()
     {
         // 注册对状态变更事件的监听
-        this.RegisterEvent<PokerStateChangedEvent>(e =>
+        ContextAwareExtensions.RegisterEvent<PokerStateChangedEvent>(this, e =>
         {
             OnStateChangedEvent(e.TargetState,e.State);
         }).UnRegisterWhenNodeExitTree(this);

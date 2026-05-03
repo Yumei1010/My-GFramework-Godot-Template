@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://biiom3f1g6kcp"]
+
+[ext_resource type="Script" uid="uid://bx1ye0383sg7u" path="res://scripts/entities/poker/state/OnSelectState.cs" id="1_x8p67"]
+
+[node name="OnSelectState" type="Node" unique_id=685729332]
+script = ExtResource("1_x8p67")

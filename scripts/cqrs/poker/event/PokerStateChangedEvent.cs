@@ -1,4 +1,5 @@
 ﻿using TimeToTwentyfour.scripts.entities.poker;
+using TimeToTwentyfour.scripts.entities.poker.state;
 using TimeToTwentyfour.scripts.enums.poker;
 
 namespace TimeToTwentyfour.scripts.cqrs.poker.@event;
