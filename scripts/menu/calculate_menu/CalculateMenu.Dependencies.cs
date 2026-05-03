@@ -19,6 +19,18 @@ public partial class CalculateMenu
     private Button DiscardButton => GetNode<Button>("%DiscardButton");
     private Button SortBySuitButton => GetNode<Button>("%SortBySuitButton");
     private Button SortByRankButton => GetNode<Button>("%SortByRankButton");
+    private TextureButton AddButton => GetNode<TextureButton>("%AddButton");
+    private TextureButton SubtractButton => GetNode<TextureButton>("%SubtractButton");
+    private TextureButton MultiplyButton => GetNode<TextureButton>("%MultiplyButton");
+    private TextureButton DivideButton => GetNode<TextureButton>("%DivideButton");
+    private TextureButton ModuloButton => GetNode<TextureButton>("%ModuloButton");
+    private TextureButton NthRootButton => GetNode<TextureButton>("%NthRootButton");
+    private TextureButton PowerButton => GetNode<TextureButton>("%PowerButton");
+    private TextureButton AbsoluteValueButton => GetNode<TextureButton>("%AbsoluteValueButton");
+    private TextureButton FactorialButton => GetNode<TextureButton>("%FactorialButton");
+    private TextureButton SquareRootButton => GetNode<TextureButton>("%SquareRootButton");
+    private TextureButton CeilButton => GetNode<TextureButton>("%CeilButton"); 
+    private TextureButton FloorButton => GetNode<TextureButton>("%FloorButton");
 
     private async Task ReadyAsync()
     {

@@ -1,16 +1,16 @@
 [gd_scene format=3 uid="uid://dt7yo04xxynhw"]
 
-[ext_resource type="Script" uid="uid://ctl38v2txns8u" path="res://scripts/entities/deck/Deck.cs" id="1_y416j"]
+[ext_resource type="Script" uid="uid://ctl38v2txns8u" path="res://scripts/component/deck/Deck.cs" id="1_y416j"]
 
 [node name="Deck" type="Control" unique_id=1635477496]
 custom_minimum_size = Vector2(640, 160)
 layout_mode = 3
 anchor_left = 0.16700001
-anchor_top = 0.47400004
+anchor_top = 0.64400005
 anchor_right = 0.83300006
 anchor_bottom = 0.94100004
 offset_left = -0.32000732
-offset_top = 92.03998
+offset_top = 0.23995972
 offset_right = 0.3199463
 offset_bottom = -0.14001465
 grow_horizontal = 2

@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c681k3ura5i4p" path="res://assets/textures/timeBar/TimeBarProgress.png" id="2_kmll0"]
 
 [node name="TimeBar" type="Control" unique_id=297301655]
+custom_minimum_size = Vector2(832, 64)
 layout_mode = 3
 anchor_left = 0.067
 anchor_top = 0.059000004
