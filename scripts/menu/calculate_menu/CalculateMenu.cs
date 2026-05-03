@@ -1,4 +1,4 @@
-﻿using GFramework.Core.Abstractions.controller;
+using GFramework.Core.Abstractions.controller;
 using GFramework.Game.Abstractions.enums;
 using GFramework.Game.Abstractions.ui;
 using GFramework.Godot.ui;
