@@ -1,4 +1,4 @@
-﻿namespace TimeToTwentyfour.scripts.enums.poker;
+﻿namespace TimeToTwentyfour.scripts.enums.calculator;
 
 /// <summary>
 ///     定义计算方法类型的键值枚举

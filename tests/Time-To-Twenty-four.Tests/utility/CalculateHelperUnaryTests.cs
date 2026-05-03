@@ -1,3 +1,5 @@
+using TimeToTwentyfour.scripts.enums.calculator;
+
 namespace TimeToTwentyfour.Tests.utility;
 
 public class CalculateHelperUnaryTests
