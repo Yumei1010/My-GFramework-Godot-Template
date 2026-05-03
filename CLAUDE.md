@@ -20,6 +20,13 @@ dotnet test --filter "FullyQualifiedName~CalculateHelperBinaryTests.Add_TwoInteg
 
 Tests use xUnit and are in `tests/Time-To-Twenty-four.Tests/`. The test project references the main project directly — no Godot runtime needed for unit tests of pure C# logic (CalculateHelper only).
 
+## Commit Rules
+
+- 每次提交必须是逻辑上独立的原子操作。
+- **遇到复杂变更时必须分析**：如果一次对话的修改混杂了不同功能、bug 修复或优化，必须主动分析其原子性。
+- **按组件或职责拆分**：例如，对 API 格式的调整与对 UI 样式的修改应分开提交。
+- **主动建议**：分析后，生成一个包含多个提交的"群组提案"，而不是把所有东西一股脑儿塞进一个提交。
+
 ## Architecture
 
 **Stack:** Godot 4.6 + C# (.NET 10) + GFramework (0.0.177) — a CQRS/ECS framework from NuGet.
