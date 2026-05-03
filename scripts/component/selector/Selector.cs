@@ -5,7 +5,7 @@ using Godot;
 using TimeToTwentyfour.scripts.cqrs.selector.@event;
 using TimeToTwentyfour.scripts.entities.poker;
 
-namespace TimeToTwentyfour.scripts.entities.selector;
+namespace TimeToTwentyfour.scripts.component.selector;
 
 /// <summary>
 ///     选择器实现 —— 队列入队（FIFO 淘汰）+ 栈式弹出（LIFO 提取）。
@@ -56,7 +56,7 @@ public partial class Selector : Node, ISelector
         {
             var evicted = _selected[0];
             _selected.RemoveAt(0);
-            this.SendEvent(new SelectorSelectChangedEvent { IsSelected = false, Poker = evicted });
+            ContextAwareExtensions.SendEvent(this, new SelectorSelectChangedEvent { IsSelected = false, Poker = evicted });
         }
 
         _selected.Add(poker);

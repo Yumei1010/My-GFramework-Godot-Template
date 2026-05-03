@@ -1,7 +1,7 @@
 ﻿using Godot;
 using TimeToTwentyfour.scripts.entities.poker;
 
-namespace TimeToTwentyfour.scripts.entities.deck;
+namespace TimeToTwentyfour.scripts.component.deck;
 
 public partial class Deck
 {

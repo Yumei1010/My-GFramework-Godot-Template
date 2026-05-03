@@ -1,6 +1,6 @@
 ﻿using TimeToTwentyfour.scripts.entities.poker;
 
-namespace TimeToTwentyfour.scripts.entities.deck;
+namespace TimeToTwentyfour.scripts.component.deck;
 
 /// <summary>
 ///     牌桌契约

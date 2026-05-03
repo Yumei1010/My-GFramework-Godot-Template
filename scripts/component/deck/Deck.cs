@@ -6,7 +6,7 @@ using Godot;
 using TimeToTwentyfour.scripts.cqrs.deck.@event;
 using TimeToTwentyfour.scripts.entities.poker;
 
-namespace TimeToTwentyfour.scripts.entities.deck;
+namespace TimeToTwentyfour.scripts.component.deck;
 
 [Log]
 [ContextAware]
@@ -185,6 +185,6 @@ public partial class Deck : Control, IDeck, IController
             poker.MoveTo(poker.ResetPosition);
         }
 
-        this.SendEvent(new DeckSortFinishedEvent());
+        ContextAwareExtensions.SendEvent(this, new DeckSortFinishedEvent());
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace TimeToTwentyfour.scripts.entities.timeBar;
+﻿namespace TimeToTwentyfour.scripts.component.timeBar;
 
 /// <summary>
 ///     时间轴契约

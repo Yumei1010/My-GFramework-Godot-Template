@@ -1,6 +1,6 @@
 ﻿using TimeToTwentyfour.scripts.entities.poker;
 
-namespace TimeToTwentyfour.scripts.entities.selector;
+namespace TimeToTwentyfour.scripts.component.selector;
 
 /// <summary>
 ///     选择器契约 —— 负责追踪当前有哪些 <see cref="IPoker"/> 处于选中状态。

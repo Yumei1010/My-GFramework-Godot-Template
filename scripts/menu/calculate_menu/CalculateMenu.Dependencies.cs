@@ -1,11 +1,11 @@
 using TimeToTwentyfour.global;
 using TimeToTwentyfour.scripts.component.pokerFactory;
-using TimeToTwentyfour.scripts.entities.deck;
 using TimeToTwentyfour.scripts.entities.poker;
-using TimeToTwentyfour.scripts.entities.timeBar;
 using TimeToTwentyfour.scripts.enums.poker;
 using Godot;
-using TimeToTwentyfour.scripts.entities.selector;
+using TimeToTwentyfour.scripts.component.deck;
+using TimeToTwentyfour.scripts.component.selector;
+using TimeToTwentyfour.scripts.component.timeBar;
 
 namespace TimeToTwentyfour.scripts.menu.calculate_menu;
 

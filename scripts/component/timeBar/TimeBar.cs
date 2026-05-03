@@ -5,7 +5,7 @@ using GFramework.SourceGenerators.Abstractions.rule;
 using Godot;
 using TimeToTwentyfour.scripts.cqrs.timeBar;
 
-namespace TimeToTwentyfour.scripts.entities.timeBar;
+namespace TimeToTwentyfour.scripts.component.timeBar;
 
 /// <summary>
 ///     时间轴契约实现类
@@ -36,7 +36,7 @@ public partial class TimeBar : Control, ITimeBar, IController
         TotalDuration = 0f;
         Paused = false;
         
-        this.SendEvent(new TimeBarTimeoutedEvent());
+        ContextAwareExtensions.SendEvent(this, new TimeBarTimeoutedEvent());
     }
 
     public void Start(float duration)

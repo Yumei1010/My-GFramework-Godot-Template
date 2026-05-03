@@ -3,13 +3,13 @@ using GFramework.Godot.extensions;
 using TimeToTwentyfour.scripts.cqrs.poker.@event;
 using TimeToTwentyfour.scripts.entities.poker;
 
-namespace TimeToTwentyfour.scripts.entities.deck;
+namespace TimeToTwentyfour.scripts.component.deck;
 
 public partial class Deck
 {
     private void RegisterEvent()
     {
-        this.RegisterEvent<PokerDragFinishedEvent>(e =>
+        ContextAwareExtensions.RegisterEvent<PokerDragFinishedEvent>(this, e =>
         {
             OnPokerDragFinishedEvent(e.Poker);
         }).UnRegisterWhenNodeExitTree(this);

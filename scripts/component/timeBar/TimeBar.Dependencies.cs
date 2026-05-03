@@ -1,7 +1,7 @@
-﻿using TimeToTwentyfour.global;
+﻿using global::TimeToTwentyfour.global;
 using Godot;
 
-namespace TimeToTwentyfour.scripts.entities.timeBar;
+namespace TimeToTwentyfour.scripts.component.timeBar;
 
 public partial class TimeBar
 {

@@ -2,7 +2,7 @@
 using TimeToTwentyfour.scripts.cqrs.selector.@event;
 using TimeToTwentyfour.scripts.entities.poker;
 
-namespace TimeToTwentyfour.scripts.entities.selector;
+namespace TimeToTwentyfour.scripts.component.selector;
 
 public partial class Selector
 {
@@ -30,7 +30,7 @@ public partial class Selector
         {
             var evicted = _selected[0];
             _selected.RemoveAt(0);
-            this.SendEvent(new SelectorSelectChangedEvent { IsSelected = false, Poker = evicted });
+            ContextAwareExtensions.SendEvent(this, new SelectorSelectChangedEvent { IsSelected = false, Poker = evicted });
         }
     }
 }

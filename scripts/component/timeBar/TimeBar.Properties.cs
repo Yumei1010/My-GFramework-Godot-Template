@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-namespace TimeToTwentyfour.scripts.entities.timeBar;
+namespace TimeToTwentyfour.scripts.component.timeBar;
 
 public partial class TimeBar
 {

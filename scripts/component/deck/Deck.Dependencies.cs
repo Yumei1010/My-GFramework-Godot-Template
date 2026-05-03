@@ -1,7 +1,7 @@
-using TimeToTwentyfour.global;
+using global::TimeToTwentyfour.global;
 using Godot;
 
-namespace TimeToTwentyfour.scripts.entities.deck;
+namespace TimeToTwentyfour.scripts.component.deck;
 
 public partial class Deck
 {
