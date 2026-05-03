@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://2qiga3qxnxcn" path="res://scripts/menu/calculate_menu/CalculateMenu.cs" id="1_60nu6"]
 [ext_resource type="PackedScene" uid="uid://cva1w4wvphhmi" path="res://scenes/component/poker_factory.tscn" id="2_liykc"]
+[ext_resource type="Script" uid="uid://c1xqldtw7idft" path="res://scripts/entities/selector/Selector.cs" id="3_7p84b"]
 [ext_resource type="PackedScene" uid="uid://dt7yo04xxynhw" path="res://scenes/entities/deck/deck.tscn" id="18_piecu"]
 [ext_resource type="PackedScene" uid="uid://cgyg3mfyhrryj" path="res://scenes/entities/timeBar/TimeBar.tscn" id="19_tta4o"]
 
@@ -26,6 +27,10 @@ mouse_filter = 2
 color = Color(0.9764706, 0.84705883, 0.6117647, 1)
 metadata/_edit_lock_ = true
 
+[node name="Selector" type="Node" parent="." unique_id=90568638]
+unique_name_in_owner = true
+script = ExtResource("3_7p84b")
+
 [node name="PokerFactory" parent="." unique_id=1042755059 instance=ExtResource("2_liykc")]
 unique_name_in_owner = true
 
@@ -33,6 +38,68 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 layout_mode = 1
 
-[node name="Deck" parent="." unique_id=1635477496 instance=ExtResource("18_piecu")]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=316493379]
+layout_mode = 0
+offset_top = 340.0
+offset_right = 960.0
+offset_bottom = 540.0
+theme_override_constants/margin_left = 160
+theme_override_constants/margin_right = 160
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1007328]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Deck" parent="MarginContainer/VBoxContainer" unique_id=1635477496 instance=ExtResource("18_piecu")]
 unique_name_in_owner = true
-layout_mode = 1
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=1382884716]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer" unique_id=1530911694]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="CheckButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=304058779]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(96, 32)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "出牌"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=432289245]
+layout_mode = 2
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer" unique_id=131478732]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="SortBySuitButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/HBoxContainer" unique_id=1522249950]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 24)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "花色"
+
+[node name="SortByRankButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/HBoxContainer" unique_id=2026114897]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 24)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "点数"
+
+[node name="DiscardButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=254605519]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(96, 32)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "弃牌"
