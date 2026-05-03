@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://fm27d2slodic"]
 
 [ext_resource type="Script" uid="uid://2qiga3qxnxcn" path="res://scripts/menu/calculate_menu/CalculateMenu.cs" id="1_60nu6"]
-[ext_resource type="PackedScene" uid="uid://cva1w4wvphhmi" path="res://scenes/component/poker_factory.tscn" id="2_liykc"]
-[ext_resource type="Script" uid="uid://c1xqldtw7idft" path="res://scripts/component/selector/Selector.cs" id="3_7p84b"]
+[ext_resource type="PackedScene" uid="uid://bpbtaiebu5bsb" path="res://scenes/component/selector/selector.tscn" id="2_7p84b"]
+[ext_resource type="PackedScene" uid="uid://cva1w4wvphhmi" path="res://scenes/component/poker_factory/poker_factory.tscn" id="2_liykc"]
 [ext_resource type="PackedScene" uid="uid://dt7yo04xxynhw" path="res://scenes/component/deck/deck.tscn" id="18_piecu"]
 [ext_resource type="PackedScene" uid="uid://cgyg3mfyhrryj" path="res://scenes/component/timeBar/TimeBar.tscn" id="19_tta4o"]
 
@@ -27,9 +27,8 @@ mouse_filter = 2
 color = Color(0.9764706, 0.84705883, 0.6117647, 1)
 metadata/_edit_lock_ = true
 
-[node name="Selector" type="Node" parent="." unique_id=90568638]
+[node name="Selector" parent="." unique_id=509807042 instance=ExtResource("2_7p84b")]
 unique_name_in_owner = true
-script = ExtResource("3_7p84b")
 
 [node name="PokerFactory" parent="." unique_id=1042755059 instance=ExtResource("2_liykc")]
 unique_name_in_owner = true
