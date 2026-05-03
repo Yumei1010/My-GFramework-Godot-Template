@@ -2,5 +2,8 @@
 
 public partial class Calculator
 {
-    
+    private void RegisterEvent()
+    {
+        
+    }
 }
