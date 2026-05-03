@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bpbtaiebu5bsb" path="res://scenes/component/selector/selector.tscn" id="2_7p84b"]
 [ext_resource type="PackedScene" uid="uid://cva1w4wvphhmi" path="res://scenes/component/poker_factory/poker_factory.tscn" id="2_liykc"]
 [ext_resource type="PackedScene" uid="uid://dt7yo04xxynhw" path="res://scenes/component/deck/deck.tscn" id="18_piecu"]
-[ext_resource type="PackedScene" uid="uid://cgyg3mfyhrryj" path="res://scenes/component/timeBar/TimeBar.tscn" id="19_tta4o"]
+[ext_resource type="PackedScene" uid="uid://cgyg3mfyhrryj" path="res://scenes/component/time_bar/time_bar.tscn" id="19_tta4o"]
 
 [node name="CalculateMenu" type="Control" unique_id=1368381339]
 layout_mode = 3
