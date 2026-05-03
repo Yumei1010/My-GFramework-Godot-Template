@@ -1,89 +1,89 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+本文档为 Claude Code (claude.ai/code) 在本仓库中工作时提供指导。
 
-## Build & Test
+## 构建与测试
 
 ```bash
-# Build the project (requires Godot .NET SDK 4.6)
+# 构建项目（需要 Godot .NET SDK 4.6）
 dotnet build
 
-# Run all tests
+# 运行全部测试
 dotnet test
 
-# Run a single test class
+# 运行单个测试类
 dotnet test --filter "FullyQualifiedName~CalculateHelperBinaryTests"
 
-# Run a single test method
+# 运行单个测试方法
 dotnet test --filter "FullyQualifiedName~CalculateHelperBinaryTests.Add_TwoIntegers"
 ```
 
-Tests use xUnit and are in `tests/Time-To-Twenty-four.Tests/`. The test project references the main project directly — no Godot runtime needed for unit tests of pure C# logic (CalculateHelper only).
+测试使用 xUnit，位于 `tests/Time-To-Twenty-four.Tests/`。测试项目直接引用主项目——纯 C# 逻辑（仅 CalculateHelper）的单元测试无需 Godot 运行时。
 
-## Commit Rules
+## 提交规则
 
 - 每次提交必须是逻辑上独立的原子操作。
 - **遇到复杂变更时必须分析**：如果一次对话的修改混杂了不同功能、bug 修复或优化，必须主动分析其原子性。
 - **按组件或职责拆分**：例如，对 API 格式的调整与对 UI 样式的修改应分开提交。
 - **主动建议**：分析后，生成一个包含多个提交的"群组提案"，而不是把所有东西一股脑儿塞进一个提交。
 
-## Architecture
+## 架构
 
-**Stack:** Godot 4.6 + C# (.NET 10) + GFramework (0.0.177) — a CQRS/ECS framework from NuGet.
+**技术栈：** Godot 4.6 + C# (.NET 10) + GFramework (0.0.177) — NuGet 上的 CQRS/ECS 框架。
 
-**DI bootstrapping:** `global/GameEntryPoint` (autoload singleton) creates `GameArchitecture`, which installs 4 modules:
-- `ModelModule` — settings models with applicators (audio/graphics/localization)
-- `SystemModule` — UiRouter, SceneRouter, SettingsSystem
-- `UtilityModule` — registries, storage, serialization, factories
-- `StateModule` — `GameStateMachineSystem` with 5 states
+**DI 引导：** `global/GameEntryPoint`（自动加载单例）创建 `GameArchitecture`，安装 4 个模块：
+- `ModelModule` — 设置模型及其应用器（音频/图形/本地化）
+- `SystemModule` — UiRouter、SceneRouter、SettingsSystem
+- `UtilityModule` — 注册表、存储、序列化、工厂
+- `StateModule` — `GameStateMachineSystem`（含 5 个状态）
 
-**State → UI mapping:** Each state (MainMenuState, CalculateMenuState, OptionsMenuState, CreditsState, GameOverState) clears previous UI/scene on enter and pushes its own UI page via `UiRouter.Push()`.
+**状态 → UI 映射：** 每个状态（MainMenuState、CalculateMenuState、OptionsMenuState、CreditsState、GameOverState）在进入时清除之前的 UI/场景，并通过 `UiRouter.Push()` 推入自己的 UI 页面。
 
-**UI pages** extend `Control`, implement `IUiPageBehaviorProvider` + `ISimpleUiPage`. They follow a partial-class pattern:
+**UI 页面** 继承 `Control`，实现 `IUiPageBehaviorProvider` + `ISimpleUiPage`。采用 partial class 模式：
 
-| Partial file | Purpose |
+| Partial 文件 | 用途 |
 |---|---|
-| `*.cs` | Core: `_Ready()` calls `ReadyAsync()`, `ConnectSignal()`, `RegisterEvent()` |
-| `*.Dependencies.cs` | Godot node references (`%NodeName`), async init logic |
-| `*.Properties.cs` | Fields, `UiKeyStr` |
-| `*.Events.cs` | CQRS event subscriptions via `RegisterEvent()` |
-| `*.Signals.cs` | Godot signal → CQRS event conversion (`ConnectSignal()`) |
+| `*.cs` | 核心：`_Ready()` 调用 `ReadyAsync()`、`ConnectSignal()`、`RegisterEvent()` |
+| `*.Dependencies.cs` | Godot 节点引用（`%NodeName`）、异步初始化逻辑 |
+| `*.Properties.cs` | 字段、`UiKeyStr` |
+| `*.Events.cs` | 通过 `RegisterEvent()` 订阅 CQRS 事件 |
+| `*.Signals.cs` | Godot 信号 → CQRS 事件转换（`ConnectSignal()`） |
 
-**Entity partial classes** follow the same pattern: `Entity.cs`, `Entity.Dependencies.cs`, `Entity.Properties.cs`, `Entity.Events.cs`, `Entity.Signals.cs`.
+**Entity partial 类** 遵循相同模式：`Entity.cs`、`Entity.Dependencies.cs`、`Entity.Properties.cs`、`Entity.Events.cs`、`Entity.Signals.cs`。
 
-## Key Patterns
+## 核心模式
 
-### CQRS communication
-Components communicate through GFramework events, not Godot signals:
-- **Send:** `this.SendEvent(new SomeEvent { ... })` (fires to all registered handlers)
-- **Subscribe:** Inside `RegisterEvent()`, use `this.RegisterEvent<SomeEvent>(e => { ... })`
-- Entity events are in `scripts/cqrs/*/event/`; commands in `scripts/cqrs/*/command/`
+### CQRS 通信
+组件通过 GFramework 事件通信，而非 Godot 信号：
+- **发送：** `this.SendEvent(new SomeEvent { ... })`（触发所有已注册的处理程序）
+- **订阅：** 在 `RegisterEvent()` 内使用 `this.RegisterEvent<SomeEvent>(e => { ... })`
+- Entity 事件位于 `scripts/cqrs/*/event/`；命令位于 `scripts/cqrs/*/command/`
 
-### Poker state machine
-Each card runs a 4-state FSM: `Idle` ↔ `UnSelect` ↔ `OnSelect`, plus `Drag` (entered from Idle on mouse-down, exits to Idle on mouse-up). State changes are dispatched via `PokerStateChangedEvent`.
+### 扑克状态机
+每张牌运行 4 状态 FSM：`Idle` ↔ `UnSelect` ↔ `OnSelect`，外加 `Drag`（鼠标按下时从 Idle 进入，鼠标释放时退出到 Idle）。状态变更通过 `PokerStateChangedEvent` 分发。
 
-### Selector
-FIFO queue with capacity limit. When the queue is full, oldest selection is evicted. `Pop()` is LIFO for undo-last-selection. Reacts to `SelectorSelectChangedEvent`.
+### 选择器
+FIFO 队列，有容量限制。队列满时淘汰最早选中的牌。`Pop()` 为 LIFO（撤销最近一次选择）。响应 `SelectorSelectChangedEvent`。
 
-### Logging & Context
-- `[Log]` attribute on a class auto-generates a static `Log` property via GFramework source generators
-- `[ContextAware]` attribute auto-injects the GFramework architecture context
+### 日志与上下文
+- `[Log]` 特性通过 GFramework 源代码生成器自动生成静态 `Log` 属性
+- `[ContextAware]` 特性自动注入 GFramework 架构上下文
 
-## Core Game Logic
+## 核心游戏逻辑
 
-`scripts/utility/CalculateHelper.cs` — static calculation engine using exact rational arithmetic via a private `Fraction` struct (GCD reduction, continued-fraction conversion from doubles).
+`scripts/utility/CalculateHelper.cs` — 静态计算引擎，通过私有 `Fraction` 结构体（GCD 约分、连分数转换 double）使用精确有理数运算。
 
-- **Binary ops (7):** Add, Subtract, Multiply, Divide, Modulo, Power, NthRoot
-- **Unary ops (5):** AbsoluteValue, Factorial, SquareRoot, Ceil, Floor
-- **Input:** `IPoker` objects (reads `NumValue` string + `NumType` enum)
-- **Output:** String — either a number or `"ERROR:DivByZero"` / `"ERROR:ZeroRootIndex"` / `"ERROR:InvalidSqrt"`
+- **二元运算（7 种）：** Add、Subtract、Multiply、Divide、Modulo、Power、NthRoot
+- **一元运算（5 种）：** AbsoluteValue、Factorial、SquareRoot、Ceil、Floor
+- **输入：** `IPoker` 对象（读取 `NumValue` 字符串 + `NumType` 枚举）
+- **输出：** 字符串 — 数字或 `"ERROR:DivByZero"` / `"ERROR:ZeroRootIndex"` / `"ERROR:InvalidSqrt"`
 
-## Current Development Status
+## 当前开发状态
 
-The project follows Plan.md's 5-phase roadmap. **Phase 3 (core game loop)** is the active phase:
+项目遵循 Plan.md 的 5 阶段路线图。**阶段三（核心游戏循环）** 是当前活跃阶段：
 
-- `CalculateMenu` creates 4 test cards (20, 4, 6, 8) and starts a 120s timer — this is temporary scaffolding
-- `DeckHandCheckedEvent` and `DeckDiscardCheckedEvent` are emitted but **have no subscribers**
-- `CalculateBar` has 12 operation buttons (all `ModeType` operations) with **empty click handlers**
-- The core loop "select cards → choose operation → calculate → validate result" is **not yet wired up**
-- Phases 1, 2, 4, 5 are not started
+- `CalculateMenu` 创建 4 张测试牌（20、4、6、8）并启动 120 秒计时器——此为临时脚手架
+- `DeckHandCheckedEvent` 和 `DeckDiscardCheckedEvent` 已发送但**没有订阅者**
+- `CalculateBar` 有 12 个操作按钮（全部 `ModeType` 运算）但**点击处理函数为空**
+- 核心循环"选牌 → 选择运算 → 计算 → 验证结果"**尚未接通**
+- 阶段一、二、四、五尚未开始
