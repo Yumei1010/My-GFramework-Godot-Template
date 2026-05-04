@@ -28,4 +28,9 @@ public interface ICalculator
     /// <param name="poker">手牌 <see cref="IPoker"/></param>
     /// <returns>计算结果字符串</returns>
     string Calculate(IPoker poker);
+
+    /// <summary>
+    ///     当前运算模式类型。未设置时为 <see langword="null"/>。
+    /// </summary>
+    ModeType? CurrentModeType { get; }
 }

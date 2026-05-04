@@ -5,7 +5,9 @@ namespace TimeToTwentyfour.scripts.component.calculator;
 
 public partial class Calculator
 {
+    public ModeType? CurrentModeType => CurrentMode?.ModeType;
+    internal IMode? PreviousMode { get; set; }
+
     private Dictionary<ModeType, IMode> Modes { get; } = new();
-    private IMode PreviousMode { get; set; } = null!;
     private IMode CurrentMode { get; set; } = null!;
 }
