@@ -1,3 +1,6 @@
 [gd_scene format=3 uid="uid://but04o56w4h2m"]
 
+[ext_resource type="Script" uid="uid://ba1gy86i1nxto" path="res://scripts/component/calculator/mode/NthRootMode.cs" id="1_fasu3"]
+
 [node name="NthRootMode" type="Node" unique_id=171305190]
+script = ExtResource("1_fasu3")

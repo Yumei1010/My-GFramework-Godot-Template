@@ -1,3 +1,6 @@
 [gd_scene format=3 uid="uid://demsaxuhary8n"]
 
+[ext_resource type="Script" uid="uid://baaf2kp83ogi4" path="res://scripts/component/calculator/mode/SquareRootMode.cs" id="1_iv71q"]
+
 [node name="SquareRootMode" type="Node" unique_id=2007540116]
+script = ExtResource("1_iv71q")

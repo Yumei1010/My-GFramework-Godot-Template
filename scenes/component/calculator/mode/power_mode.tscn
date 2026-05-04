@@ -1,3 +1,6 @@
 [gd_scene format=3 uid="uid://ct3dn5gqvw0l7"]
 
+[ext_resource type="Script" uid="uid://dbaq4l6j2bh8t" path="res://scripts/component/calculator/mode/PowerMode.cs" id="1_e14l7"]
+
 [node name="PowerMode" type="Node" unique_id=1391407304]
+script = ExtResource("1_e14l7")

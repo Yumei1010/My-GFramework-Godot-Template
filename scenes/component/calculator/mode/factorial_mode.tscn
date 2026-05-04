@@ -1,3 +1,6 @@
 [gd_scene format=3 uid="uid://ciiuj0s8gj8nn"]
 
+[ext_resource type="Script" uid="uid://r1vaerhsndms" path="res://scripts/component/calculator/mode/FactorialMode.cs" id="1_20hd2"]
+
 [node name="FactorialMode" type="Node" unique_id=2146330944]
+script = ExtResource("1_20hd2")

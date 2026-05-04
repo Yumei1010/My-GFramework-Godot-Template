@@ -1,3 +1,6 @@
 [gd_scene format=3 uid="uid://yigkmxd7oxnh"]
 
+[ext_resource type="Script" uid="uid://bjol7tnmynb4" path="res://scripts/component/calculator/mode/ModuloMode.cs" id="1_10vee"]
+
 [node name="ModuloMode" type="Node" unique_id=1194096113]
+script = ExtResource("1_10vee")
