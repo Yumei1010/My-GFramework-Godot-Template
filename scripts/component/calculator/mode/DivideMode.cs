@@ -3,7 +3,10 @@ using TimeToTwentyfour.scripts.enums.calculator;
 
 namespace TimeToTwentyfour.scripts.component.calculator.mode;
 
-public class DivideMode : Mode
+/// <summary>
+///     除法运算模式，对两手牌执行 a / b。
+/// </summary>
+public sealed class DivideMode : Mode
 {
     public override ModeType ModeType => ModeType.Divide;
     public override bool IsBinary => true;

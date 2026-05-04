@@ -5,6 +5,9 @@ using Godot;
 
 namespace TimeToTwentyfour.scripts.menu.main_menu.optionButton;
 
+/// <summary>
+///     开始游戏按钮，点击后从主菜单进入计算菜单开始新游戏。
+/// </summary>
 [ContextAware]
 public partial class StartOptionButton : MainMenuOptionButton
 {

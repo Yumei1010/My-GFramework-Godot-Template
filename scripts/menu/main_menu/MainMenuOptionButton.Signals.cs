@@ -1,5 +1,8 @@
 ﻿namespace TimeToTwentyfour.scripts.menu.main_menu;
 
+/// <summary>
+///     <see cref="MainMenuOptionButton"/> 的 Godot 信号连接文件。
+/// </summary>
 public partial class MainMenuOptionButton
 {
     private void ConnectSignal()

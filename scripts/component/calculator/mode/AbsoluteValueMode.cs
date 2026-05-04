@@ -3,7 +3,10 @@ using TimeToTwentyfour.scripts.enums.calculator;
 
 namespace TimeToTwentyfour.scripts.component.calculator.mode;
 
-public class AbsoluteValueMode : Mode
+/// <summary>
+///     绝对值运算模式，对单张手牌执行 |a|。
+/// </summary>
+public sealed class AbsoluteValueMode : Mode
 {
     public override ModeType ModeType => ModeType.AbsoluteValue;
     public override bool IsBinary => false;

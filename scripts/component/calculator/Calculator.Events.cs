@@ -6,6 +6,9 @@ using TimeToTwentyfour.scripts.entities.poker;
 
 namespace TimeToTwentyfour.scripts.component.calculator;
 
+/// <summary>
+///     <see cref="Calculator"/> 的 CQRS 事件订阅文件。
+/// </summary>
 public partial class Calculator
 {
     private void RegisterEvent()

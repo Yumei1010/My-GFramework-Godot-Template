@@ -6,6 +6,9 @@ using TimeToTwentyfour.scripts.cqrs.menu.mainMenu.@event;
 
 namespace TimeToTwentyfour.scripts.menu.main_menu;
 
+/// <summary>
+///     <see cref="MainMenu"/> 的 CQRS 事件订阅文件。
+/// </summary>
 public partial class MainMenu
 {
     private void RegisterEvent()

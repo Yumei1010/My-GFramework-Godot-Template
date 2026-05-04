@@ -4,6 +4,9 @@ using TimeToTwentyfour.scripts.enums.calculator;
 
 namespace TimeToTwentyfour.scripts.component.calculator;
 
+/// <summary>
+///     <see cref="Calculator"/> 的初始化依赖注入文件。
+/// </summary>
 public partial class Calculator
 {
     private async Task ReadyAsync()

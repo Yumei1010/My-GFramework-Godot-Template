@@ -5,6 +5,9 @@ using Godot;
 
 namespace TimeToTwentyfour.scripts.menu.main_menu.optionButton;
 
+/// <summary>
+///     制作者按钮，点击后切换到制作者名单页面。
+/// </summary>
 [ContextAware]
 public partial class CreditsOptionButton : MainMenuOptionButton
 {

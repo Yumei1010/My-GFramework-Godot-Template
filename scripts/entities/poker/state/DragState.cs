@@ -5,6 +5,9 @@ using TimeToTwentyfour.scripts.cqrs.poker.@event;
 
 namespace TimeToTwentyfour.scripts.entities.poker.state;
 
+/// <summary>
+///     扑克拖拽状态，处理鼠标拖拽时的位置跟随与释放逻辑。
+/// </summary>
 public partial class DragState : PokerState
 {
     public override void GuiInput(InputEvent inputEvent)

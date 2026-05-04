@@ -3,7 +3,10 @@ using TimeToTwentyfour.scripts.enums.calculator;
 
 namespace TimeToTwentyfour.scripts.component.calculator.mode;
 
-public class NthRootMode : Mode
+/// <summary>
+///     开 N 次方运算模式，对两手牌执行 a 开 b 次方。
+/// </summary>
+public sealed class NthRootMode : Mode
 {
     public override ModeType ModeType => ModeType.NthRoot;
     public override bool IsBinary => true;

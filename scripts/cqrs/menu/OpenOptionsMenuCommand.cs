@@ -11,7 +11,7 @@ namespace TimeToTwentyfour.scripts.cqrs.menu.command;
 ///     打开设置菜单的命令类。
 ///     该类继承自 AbstractCommand，用于执行打开设置菜单的操作。
 /// </summary>
-public class OpenOptionsMenuCommand(OpenOptionsMenuCommandInput input) : AbstractCommand<OpenOptionsMenuCommandInput, UiHandle>(input)
+public sealed class OpenOptionsMenuCommand(OpenOptionsMenuCommandInput input) : AbstractCommand<OpenOptionsMenuCommandInput, UiHandle>(input)
 {
     /// <summary>
     ///     执行打开设置菜单的核心逻辑。

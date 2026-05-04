@@ -5,6 +5,9 @@ using Godot;
 
 namespace TimeToTwentyfour.scripts.menu.main_menu.optionButton;
 
+/// <summary>
+///     退出游戏按钮，点击后退出游戏应用。
+/// </summary>
 [ContextAware]
 public partial class ExitOptionButton : MainMenuOptionButton
 {

@@ -10,7 +10,7 @@ namespace TimeToTwentyfour.scripts.cqrs.menu.command;
 ///     关闭设置菜单的命令类。
 ///     该类继承自 AbstractCommand，用于执行关闭设置菜单的操作。
 /// </summary>
-public class CloseOptionsMenuCommand(CloseOptionsMenuCommandInput input) : AbstractCommand<CloseOptionsMenuCommandInput>(input)
+public sealed class CloseOptionsMenuCommand(CloseOptionsMenuCommandInput input) : AbstractCommand<CloseOptionsMenuCommandInput>(input)
 {
     /// <summary>
     ///     执行关闭设置菜单的具体逻辑。

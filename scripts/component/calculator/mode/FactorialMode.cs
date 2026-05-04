@@ -3,7 +3,10 @@ using TimeToTwentyfour.scripts.enums.calculator;
 
 namespace TimeToTwentyfour.scripts.component.calculator.mode;
 
-public class FactorialMode : Mode
+/// <summary>
+///     阶乘运算模式，对单张手牌执行 a!。
+/// </summary>
+public sealed class FactorialMode : Mode
 {
     public override ModeType ModeType => ModeType.Factorial;
     public override bool IsBinary => false;

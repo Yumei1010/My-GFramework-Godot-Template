@@ -3,7 +3,10 @@ using TimeToTwentyfour.scripts.enums.calculator;
 
 namespace TimeToTwentyfour.scripts.component.calculator.mode;
 
-public class SquareRootMode : Mode
+/// <summary>
+///     平方根运算模式，对单张手牌执行 √a。
+/// </summary>
+public sealed class SquareRootMode : Mode
 {
     public override ModeType ModeType => ModeType.SquareRoot;
     public override bool IsBinary => false;

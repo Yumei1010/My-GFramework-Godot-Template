@@ -5,6 +5,9 @@ using TimeToTwentyfour.scripts.entities.poker;
 
 namespace TimeToTwentyfour.scripts.component.selector;
 
+/// <summary>
+///     <see cref="Selector"/> 的 CQRS 事件订阅文件。
+/// </summary>
 public partial class Selector
 {
     private void RegisterEvent()

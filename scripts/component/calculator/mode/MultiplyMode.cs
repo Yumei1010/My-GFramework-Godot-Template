@@ -3,7 +3,10 @@ using TimeToTwentyfour.scripts.enums.calculator;
 
 namespace TimeToTwentyfour.scripts.component.calculator.mode;
 
-public class MultiplyMode : Mode
+/// <summary>
+///     乘法运算模式，对两手牌执行 a * b。
+/// </summary>
+public sealed class MultiplyMode : Mode
 {
     public override ModeType ModeType => ModeType.Multiply;
     public override bool IsBinary => true;

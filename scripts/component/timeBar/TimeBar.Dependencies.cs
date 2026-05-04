@@ -3,6 +3,9 @@ using Godot;
 
 namespace TimeToTwentyfour.scripts.component.timeBar;
 
+/// <summary>
+///     <see cref="TimeBar"/> 的 Godot 依赖注入文件。
+/// </summary>
 public partial class TimeBar
 {
     private TextureProgressBar TimeProgressBar => GetNode<TextureProgressBar>("%TimeProgressBar");

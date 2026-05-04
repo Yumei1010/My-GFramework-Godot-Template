@@ -39,6 +39,7 @@ public partial class TimeBar : Control, ITimeBar, IController
         ContextAwareExtensions.SendEvent(this, new TimeBarTimeoutedEvent());
     }
 
+    /// <summary>启动指定秒数的倒计时。</summary>
     public void Start(float duration)
     {
         Stop();
@@ -48,18 +49,21 @@ public partial class TimeBar : Control, ITimeBar, IController
         UpdateTimeDisplay();
     }
 
+    /// <summary>暂停倒计时。</summary>
     public void Pause()
     {
         if (!IsRunning) return;
         Paused = true;
     }
 
+    /// <summary>恢复倒计时。</summary>
     public void Resume()
     {
         if (!Paused) return;
         Paused = false;
     }
 
+    /// <summary>停止倒计时并归零。</summary>
     public void Stop()
     {
         Paused = false;
@@ -69,6 +73,7 @@ public partial class TimeBar : Control, ITimeBar, IController
         UpdateTimeDisplay();
     }
     
+    /// <summary>调整剩余时间（正值增加，负值减少）。</summary>
     public void AdjustTime(float delta)
     {
         if (Remaining <= 0f && !Paused) return;

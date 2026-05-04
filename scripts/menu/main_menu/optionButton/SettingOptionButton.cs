@@ -5,6 +5,9 @@ using Godot;
 
 namespace TimeToTwentyfour.scripts.menu.main_menu.optionButton;
 
+/// <summary>
+///     设置按钮，点击后打开设置选项菜单。
+/// </summary>
 [ContextAware]
 public partial class SettingOptionButton : MainMenuOptionButton
 {

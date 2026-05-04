@@ -3,7 +3,10 @@ using TimeToTwentyfour.scripts.enums.calculator;
 
 namespace TimeToTwentyfour.scripts.component.calculator.mode;
 
-public class AddMode : Mode
+/// <summary>
+///     加法运算模式，对两手牌执行 a + b。
+/// </summary>
+public sealed class AddMode : Mode
 {
     public override ModeType ModeType => ModeType.Add;
     public override bool IsBinary => true;

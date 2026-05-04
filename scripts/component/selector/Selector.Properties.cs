@@ -4,6 +4,9 @@ using TimeToTwentyfour.scripts.entities.poker;
 
 namespace TimeToTwentyfour.scripts.component.selector;
 
+/// <summary>
+///     <see cref="Selector"/> 的属性和字段定义文件。
+/// </summary>
 public partial class Selector
 {
     public IReadOnlyList<IPoker> Selects => _selected;

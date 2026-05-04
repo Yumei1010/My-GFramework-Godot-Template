@@ -2,6 +2,9 @@
 
 namespace TimeToTwentyfour.scripts.menu.main_menu.optionButton;
 
+/// <summary>
+///     继续游戏按钮，用于恢复上一局未完成的游戏进程。
+/// </summary>
 public partial class ContinueOptionButton : MainMenuOptionButton
 {
     public override void OnMouseDown()

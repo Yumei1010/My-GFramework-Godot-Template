@@ -3,7 +3,10 @@ using TimeToTwentyfour.scripts.enums.calculator;
 
 namespace TimeToTwentyfour.scripts.component.calculator.mode;
 
-public class PowerMode : Mode
+/// <summary>
+///     幂运算模式，对两手牌执行 a ^ b。
+/// </summary>
+public sealed class PowerMode : Mode
 {
     public override ModeType ModeType => ModeType.Power;
     public override bool IsBinary => true;
