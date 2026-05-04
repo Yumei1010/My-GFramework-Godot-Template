@@ -1,6 +1,8 @@
-﻿using GFramework.SourceGenerators.Abstractions.logging;
+using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
 using Godot;
+using TimeToTwentyfour.scripts.entities.poker;
+using TimeToTwentyfour.scripts.enums.calculator;
 
 namespace TimeToTwentyfour.scripts.component.calculator;
 
@@ -10,6 +12,24 @@ public partial class Calculator : Node, ICalculator
 {
     public override void _Ready()
     {
+        _ = ReadyAsync();
         RegisterEvent();
     }
+
+    public void ChangeTo(ModeType modeType)
+    {
+        if (CurrentMode == null!)
+        {
+            CurrentMode = Modes[modeType];
+            return;
+        }
+
+        if (CurrentMode == Modes[modeType]) return;
+
+        PreviousMode = CurrentMode;
+        CurrentMode = Modes[modeType];
+    }
+    
+    public string Calculate(IPoker pokerA, IPoker pokerB) => CurrentMode.Calculate(pokerA, pokerB);
+    public string Calculate(IPoker poker) => CurrentMode.Calculate(poker);
 }
