@@ -3,7 +3,7 @@ using GFramework.Core.extensions;
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
 using Godot;
-using TimeToTwentyfour.scripts.cqrs.timeBar;
+using TimeToTwentyfour.scripts.cqrs.timeBar.@event;
 
 namespace TimeToTwentyfour.scripts.component.timeBar;
 

@@ -31,11 +31,13 @@ public partial class Selector : Node, ISelector
         RegisterEvent();
     }
     
+    /// <summary>检查指定牌是否已被选中。</summary>
     public bool IsSelected(IPoker poker)
     {
         return _selected.Contains(poker);
     }
     
+    /// <summary>LIFO 弹出最近选中的牌；选择器未启用或无选中项时返回 null。</summary>
     public IPoker Pop()
     {
         if (!Enable || _selected.Count == 0) return null!;

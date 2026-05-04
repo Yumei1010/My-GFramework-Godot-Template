@@ -22,7 +22,7 @@ using TimeToTwentyfour.scripts.setting.query;
 using TimeToTwentyfour.global;
 using TimeToTwentyfour.scripts.cqrs.audio.command;
 using TimeToTwentyfour.scripts.cqrs.audio.command.input;
-using TimeToTwentyfour.scripts.cqrs.graphics;
+using TimeToTwentyfour.scripts.cqrs.graphics.command;
 using TimeToTwentyfour.scripts.cqrs.graphics.input;
 using Godot;
 using TimeToTwentyfour.scripts.cqrs.setting.command;

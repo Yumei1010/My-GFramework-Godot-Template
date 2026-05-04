@@ -9,6 +9,7 @@ using Godot;
 
 namespace TimeToTwentyfour.scripts.menu.calculate_menu;
 
+/// <summary>计算菜单页面：提供运算符选择、选牌确认、弃牌、排序及时间条控制。</summary>
 [Log]
 [ContextAware]
 public partial class CalculateMenu : Control, IController, IUiPageBehaviorProvider, ISimpleUiPage

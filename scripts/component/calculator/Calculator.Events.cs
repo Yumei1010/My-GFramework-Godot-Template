@@ -16,6 +16,7 @@ public partial class Calculator
         }).UnRegisterWhenNodeExitTree(this);
     }
 
+    /// <summary>处理出牌确认事件：根据当前 Mode 类型执行二元或一元计算，并发送 <see cref="CalculatorResultEvent"/>。</summary>
     private void OnDeckHandCheckedEvent(IReadOnlyList<IPoker> hands)
     {
         if (CurrentMode == null!)

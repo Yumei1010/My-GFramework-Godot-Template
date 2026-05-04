@@ -4,4 +4,4 @@
 ///     开始游戏按钮被点击事件类
 ///     用于表示开始游戏按钮被点击的事件
 /// </summary>
-public class MainMenuStartButtonClickedEvent;
+public sealed class MainMenuStartButtonClickedEvent;

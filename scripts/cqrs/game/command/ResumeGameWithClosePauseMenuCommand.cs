@@ -1,6 +1,6 @@
 ﻿using GFramework.Core.command;
 using GFramework.Core.extensions;
-using TimeToTwentyfour.scripts.cqrs.menu;
+using TimeToTwentyfour.scripts.cqrs.menu.command;
 using TimeToTwentyfour.scripts.cqrs.menu.input;
 
 namespace TimeToTwentyfour.scripts.cqrs.game.command;

@@ -16,6 +16,7 @@ public partial class Calculator : Node, ICalculator
         RegisterEvent();
     }
 
+    /// <summary>切换到指定运算模式。</summary>
     public void ChangeTo(ModeType modeType)
     {
         if (CurrentMode == null!)

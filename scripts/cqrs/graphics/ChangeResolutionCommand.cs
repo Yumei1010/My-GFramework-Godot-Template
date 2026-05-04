@@ -5,7 +5,7 @@ using GFramework.Game.Abstractions.setting.data;
 using GFramework.Godot.setting;
 using TimeToTwentyfour.scripts.cqrs.graphics.input;
 
-namespace TimeToTwentyfour.scripts.cqrs.graphics;
+namespace TimeToTwentyfour.scripts.cqrs.graphics.command;
 
 /// <summary>
 ///     更改分辨率命令类，用于处理分辨率更改操作

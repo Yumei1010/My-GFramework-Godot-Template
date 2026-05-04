@@ -4,9 +4,9 @@ using GFramework.Game.Abstractions.ui;
 namespace TimeToTwentyfour.scripts.cqrs.menu.input;
 
 /// <summary>
-///     表示关闭设置菜单命令的输入数据结构。
+///     表示关闭设置菜单命令的输入类。
 /// </summary>
-public struct CloseOptionsMenuCommandInput : ICommandInput
+public sealed class CloseOptionsMenuCommandInput : ICommandInput
 {
     /// <summary>
     ///     用于标识和操作UI元素的句柄。

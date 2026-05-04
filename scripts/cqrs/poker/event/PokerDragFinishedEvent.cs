@@ -6,7 +6,7 @@ namespace TimeToTwentyfour.scripts.cqrs.poker.@event;
 ///     扑克拖拽结束事件类
 ///     用于表示扑克拖拽结束的事件 
 /// </summary>
-public class PokerDragFinishedEvent
+public sealed class PokerDragFinishedEvent
 {
     /// <summary>
     ///     响应事件的poker实例 <see cref="IPoker"/>

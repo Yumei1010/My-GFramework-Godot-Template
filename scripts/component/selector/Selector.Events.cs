@@ -20,6 +20,7 @@ public partial class Selector
         }).UnRegisterWhenNodeExitTree(this);
     }
     
+    /// <summary>响应选择变更事件：选中时加入队列，取消选中时移除；选择器未启用时忽略。</summary>
     private void OnSelectorSelectChangedEvent(bool isSelected,IPoker poker)
     {
         if (!Enable) return;

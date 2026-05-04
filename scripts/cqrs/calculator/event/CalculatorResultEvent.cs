@@ -3,7 +3,7 @@ using TimeToTwentyfour.scripts.enums.calculator;
 
 namespace TimeToTwentyfour.scripts.cqrs.calculator.@event;
 
-public class CalculatorResultEvent
+public sealed class CalculatorResultEvent
 {
     public required string Result { get; init; }
     public required IReadOnlyList<IPoker> Hands { get; init; }

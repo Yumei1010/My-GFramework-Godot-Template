@@ -22,14 +22,16 @@ public partial class CalculateMenu
     private Button SortBySuitButton => GetNode<Button>("%SortBySuitButton");
     private Button SortByRankButton => GetNode<Button>("%SortByRankButton");
 
+    /// <summary>等待框架就绪后进入临时测试发牌流程（TODO: 替换为 IRunManager 正式发牌）。</summary>
     private async Task ReadyAsync()
     {
         await GameEntryPoint.Architecture.WaitUntilReadyAsync().ConfigureAwait(false);
-        
+
         // TODO: 替换为正式的发牌/关卡系统
         CreateTest();
     }
 
+    /// <summary>临时测试脚手架：启动 120 秒计时器并发 4 张测试牌。</summary>
     private void CreateTest()
     {
         TimeBar.Start(120f);
@@ -41,6 +43,7 @@ public partial class CalculateMenu
         AddCard(SuitType.Club, "8");
     }
 
+    /// <summary>创建单张测试牌并加入牌桌。</summary>
     private void AddCard(SuitType suit, string value)
     {
         var poker = PokerFactory.Product();

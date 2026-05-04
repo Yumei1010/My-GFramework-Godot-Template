@@ -6,7 +6,7 @@ namespace TimeToTwentyfour.scripts.cqrs.selector.@event;
 ///     扑克选择器预览变更事件类
 ///     用于表示扑克选择器预览发生变化的事件
 /// </summary>
-public class PokerSelectorReservesChangedEvent
+public sealed class PokerSelectorReservesChangedEvent
 {
     /// <summary>
     ///     是否被选择 <see cref="bool"/>
