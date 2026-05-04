@@ -1,4 +1,6 @@
-﻿namespace TimeToTwentyfour.scripts.cqrs.selector.@event;
+﻿using GFramework.Core.Abstractions.command;
+
+namespace TimeToTwentyfour.scripts.cqrs.selector.@event;
 
 /// <summary>
 ///     扑克选择器可用性变更事件类
@@ -9,5 +11,5 @@ public class SelectorEnableChangedEvent
     /// <summary>
     ///     可用性 <see cref="bool"/>
     /// </summary>
-    public bool Enable { get; set; }
+    public bool Enable { get; init; }
 }

@@ -9,15 +9,20 @@ public partial class Selector
 {
     private void RegisterEvent()
     {
-        // 注册对选择变更事件的监听
-        ContextAwareExtensions.RegisterEvent<SelectorSelectChangedEvent>(this, e =>
+        this.RegisterEvent<SelectorSelectChangedEvent>(e =>
         {
             OnSelectorSelectChangedEvent(e.IsSelected,e.Poker);
+        }).UnRegisterWhenNodeExitTree(this);
+
+        this.RegisterEvent<SelectorEnableChangedEvent>(e =>
+        {
+            Enable = e.Enable;
         }).UnRegisterWhenNodeExitTree(this);
     }
     
     private void OnSelectorSelectChangedEvent(bool isSelected,IPoker poker)
     {
+        if (!Enable) return;
         if (isSelected)
         {
             Add(poker);

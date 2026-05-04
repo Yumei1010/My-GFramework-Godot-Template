@@ -36,6 +36,11 @@ public interface ISelector
     int Capacity { get; set; }
 
     /// <summary>
+    ///     选择器是否可用。禁用时拒绝所有变更操作（选择/取消/弹出）。
+    /// </summary>
+    bool Enable { get; set; }
+
+    /// <summary>
     ///     判断指定扑克是否已被选中。
     /// </summary>
     /// <param name="poker">待查询的 <see cref="IPoker"/>。</param>

@@ -18,6 +18,8 @@ public partial class Selector
         }
     }
     
+    public bool Enable { get; set; } = true;
+
     private readonly List<IPoker> _selected = [];
     private int _capacity;
 
@@ -30,7 +32,7 @@ public partial class Selector
         {
             var evicted = _selected[0];
             _selected.RemoveAt(0);
-            ContextAwareExtensions.SendEvent(this, new SelectorSelectChangedEvent { IsSelected = false, Poker = evicted });
+            this.SendEvent(new SelectorSelectChangedEvent { IsSelected = false, Poker = evicted });
         }
     }
 }

@@ -38,7 +38,7 @@ public partial class Selector : Node, ISelector
     
     public IPoker Pop()
     {
-        if (_selected.Count == 0) return null!;
+        if (!Enable || _selected.Count == 0) return null!;
 
         var lastIndex = _selected.Count - 1;
         var poker = _selected[lastIndex];
@@ -56,7 +56,7 @@ public partial class Selector : Node, ISelector
         {
             var evicted = _selected[0];
             _selected.RemoveAt(0);
-            ContextAwareExtensions.SendEvent(this, new SelectorSelectChangedEvent { IsSelected = false, Poker = evicted });
+            this.SendEvent(new SelectorSelectChangedEvent { IsSelected = false, Poker = evicted });
         }
 
         _selected.Add(poker);

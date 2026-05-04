@@ -1,5 +1,6 @@
 using GFramework.Core.extensions;
 using TimeToTwentyfour.scripts.cqrs.deck.@event;
+using TimeToTwentyfour.scripts.cqrs.selector.@event;
 using TimeToTwentyfour.scripts.enums.calculator;
 
 namespace TimeToTwentyfour.scripts.menu.calculate_menu;
@@ -8,6 +9,7 @@ public partial class CalculateMenu
 {
     private void ConnectSignal()
     {
+        SelectButton.ButtonDown += OnButtonDownSelectButton;
         CheckButton.ButtonDown += OnButtonDownCheckButton;
         DiscardButton.ButtonDown += OnButtonDownDiscardButton;
         SortBySuitButton.ButtonDown += OnButtonDownSortBySuitButton;
@@ -24,6 +26,24 @@ public partial class CalculateMenu
         SquareRootButton.ButtonDown += OnButtonDownSquareRootButton;
         CeilButton.ButtonDown += OnButtonDownCeilButton;
         FloorButton.ButtonDown += OnButtonDownFloorButton;
+    }
+
+    private void OnButtonDownSelectButton()
+    {
+        if (Selector.Enable)
+        {
+            this.SendEvent(new SelectorEnableChangedEvent
+            {
+                Enable = false
+            });
+        }
+        else
+        {
+            this.SendEvent(new SelectorEnableChangedEvent
+            {
+                Enable = true
+            });
+        }
     }
 
     private void OnButtonDownCheckButton()

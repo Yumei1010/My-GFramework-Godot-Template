@@ -17,6 +17,7 @@ public partial class CalculateMenu
     private IPokerFactory PokerFactory => GetNode<IPokerFactory>("%PokerFactory");
     private ITimeBar TimeBar => GetNode<ITimeBar>("%TimeBar");
     private IDeck Deck => GetNode<IDeck>("%Deck");
+    private Button SelectButton => GetNode<Button>("%SelectButton");
     private Button CheckButton => GetNode<Button>("%CheckButton");
     private Button DiscardButton => GetNode<Button>("%DiscardButton");
     private Button SortBySuitButton => GetNode<Button>("%SortBySuitButton");
