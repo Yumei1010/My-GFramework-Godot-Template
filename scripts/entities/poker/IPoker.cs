@@ -46,6 +46,11 @@ public interface IPoker
     /// </summary>
     /// <returns>点数类型 <see cref="NumType"/> </returns>
     NumType NumType { get; set;}
+
+    /// <summary>
+    ///     当前 <see cref="NumValue"/> 是否与 <see cref="NumType"/> 匹配，可被正确解析。
+    /// </summary>
+    bool IsValid { get; }
     
     /// <summary>
     ///     是否启用阴影投影。

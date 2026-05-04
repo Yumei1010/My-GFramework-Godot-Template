@@ -14,6 +14,6 @@ public sealed class CeilMode : Mode
     public override string Calculate(IPoker poker)
     {
         double val = ParseToFraction(poker).ToDouble();
-        return FormatDouble(Math.Ceiling(val));
+        return FormatFractionResult(Math.Ceiling(val));
     }
 }

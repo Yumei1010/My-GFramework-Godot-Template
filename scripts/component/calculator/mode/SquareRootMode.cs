@@ -14,6 +14,6 @@ public sealed class SquareRootMode : Mode
     public override string Calculate(IPoker poker)
     {
         double val = ParseToFraction(poker).ToDouble();
-        return val < 0 ? "ERROR:InvalidSqrt" : FormatDouble(Math.Sqrt(val));
+        return val < 0 ? "ERROR:InvalidSqrt" : FormatFractionResult(Math.Sqrt(val));
     }
 }

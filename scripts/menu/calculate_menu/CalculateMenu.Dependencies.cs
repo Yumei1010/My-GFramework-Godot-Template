@@ -36,19 +36,10 @@ public partial class CalculateMenu
     {
         TimeBar.Start(120f);
         TimeBar.TimeScale = 1f;
-        
-        AddCard(SuitType.Heart, "20");
-        AddCard(SuitType.Diamond, "4");
-        AddCard(SuitType.Spade, "6");
-        AddCard(SuitType.Club, "8");
-    }
 
-    /// <summary>创建单张测试牌并加入牌桌。</summary>
-    private void AddCard(SuitType suit, string value)
-    {
-        var poker = PokerFactory.Product();
-        poker.SuitType = suit;
-        poker.NumValue = value;
-        Deck.Add(poker);
+        Deck.Add(PokerFactory.Product(SuitType.Heart, "20"));
+        Deck.Add(PokerFactory.Product(SuitType.Diamond, "4"));
+        Deck.Add(PokerFactory.Product(SuitType.Spade, "6"));
+        Deck.Add(PokerFactory.Product(SuitType.Club, "8"));
     }
 }

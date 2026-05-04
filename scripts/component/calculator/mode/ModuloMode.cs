@@ -15,6 +15,6 @@ public sealed class ModuloMode : Mode
     {
         var fa = ParseToFraction(pokerA);
         var fb = ParseToFraction(pokerB);
-        return fb.ToDouble() == 0 ? "ERROR:DivByZero" : FormatDouble(fa.ToDouble() % fb.ToDouble());
+        return fb.ToDouble() == 0 ? "ERROR:DivByZero" : FormatFractionResult(fa.ToDouble() % fb.ToDouble());
     }
 }

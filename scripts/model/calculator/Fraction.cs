@@ -50,7 +50,32 @@ internal readonly struct Fraction
     public static Fraction operator *(Fraction a, Fraction b) => new(a.Numerator * b.Numerator, a.Denominator * b.Denominator);
     public static Fraction operator /(Fraction a, Fraction b) => new(a.Numerator * b.Denominator, a.Denominator * b.Numerator);
 
-    public override string ToString() => Denominator == 1 ? Numerator.ToString(CultureInfo.InvariantCulture) : $"{Numerator}/{Denominator}";
+    /// <summary>
+    ///     智能格式化：整数→整数，有限小数→小数（分母质因数仅含 2 和 5），无限小数→分数 "num/den"。
+    /// </summary>
+    public override string ToString()
+    {
+        if (Denominator == 1)
+            return Numerator.ToString(CultureInfo.InvariantCulture);
+
+        if (IsTerminatingDenominator(Denominator))
+        {
+            double value = (double)Numerator / Denominator;
+            if (Math.Abs(value - Math.Round(value)) < DoubleEpsilon)
+                return Math.Round(value).ToString(CultureInfo.InvariantCulture);
+            return value.ToString("0.##############################", CultureInfo.InvariantCulture);
+        }
+
+        return $"{Numerator}/{Denominator}";
+    }
+
+    /// <summary>检查分母的质因数是否只有 2 和 5（即分数可表示为有限小数）。</summary>
+    private static bool IsTerminatingDenominator(long den)
+    {
+        while (den % 2 == 0) den /= 2;
+        while (den % 5 == 0) den /= 5;
+        return den == 1;
+    }
 
     private static long Gcd(long a, long b) { while (b != 0) { long t = b; b = a % b; a = t; } return a; }
 }

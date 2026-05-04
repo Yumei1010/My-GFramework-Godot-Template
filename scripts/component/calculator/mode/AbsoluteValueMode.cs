@@ -14,6 +14,6 @@ public sealed class AbsoluteValueMode : Mode
     public override string Calculate(IPoker poker)
     {
         double val = ParseToFraction(poker).ToDouble();
-        return FormatDouble(Math.Abs(val));
+        return FormatFractionResult(Math.Abs(val));
     }
 }

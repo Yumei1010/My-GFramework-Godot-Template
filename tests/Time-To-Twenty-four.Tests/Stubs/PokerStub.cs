@@ -10,6 +10,7 @@ internal class PokerStub : IPoker
     public SuitType SuitType { get; set; }
     public string NumValue { get; set; } = string.Empty;
     public NumType NumType { get; set; }
+    public bool IsValid => true;
     public bool Shadow { get; set; }
     public bool Animate { get; set; }
     public float AnimateTime { get; set; }

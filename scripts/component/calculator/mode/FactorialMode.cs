@@ -14,6 +14,6 @@ public sealed class FactorialMode : Mode
     public override string Calculate(IPoker poker)
     {
         double val = ParseToFraction(poker).ToDouble();
-        return FormatDouble(CalculateFactorial(val));
+        return FormatFractionResult(CalculateFactorial(val));
     }
 }

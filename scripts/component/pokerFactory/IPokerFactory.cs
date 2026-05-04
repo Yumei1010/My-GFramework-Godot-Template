@@ -1,4 +1,5 @@
 ﻿using TimeToTwentyfour.scripts.entities.poker;
+using TimeToTwentyfour.scripts.enums.poker;
 
 namespace TimeToTwentyfour.scripts.component.pokerFactory;
 
@@ -8,8 +9,17 @@ namespace TimeToTwentyfour.scripts.component.pokerFactory;
 public interface IPokerFactory
 {
     /// <summary>
-    ///     生产
+    ///     创建一个空白扑克实体实例。
     /// </summary>
     /// <returns>产品 <see cref="IPoker"/></returns>
     IPoker Product();
+
+    /// <summary>
+    ///     创建扑克实体实例并直接设置花色、数值与数值类型。
+    /// </summary>
+    /// <param name="suitType">花色 <see cref="SuitType"/></param>
+    /// <param name="numValue">点数数值</param>
+    /// <param name="numType">数值类型，默认 <see cref="NumType.Integer"/></param>
+    /// <returns>已配置的扑克实例 <see cref="IPoker"/></returns>
+    IPoker Product(SuitType suitType, string numValue, NumType numType = NumType.Integer);
 }

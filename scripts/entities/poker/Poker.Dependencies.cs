@@ -21,8 +21,27 @@ public partial class Poker
     [Export] public SuitType SuitType { get; set; } = SuitType.Heart;
     
     [ExportSubgroup("Value")]
-    [Export] public string NumValue { get; set; } = "24";
+    private string _numValue = "24";
+    [Export] public string NumValue
+    {
+        get => _numValue;
+        set
+        {
+            _numValue = value;
+            NumType = DetectNumType(value);
+        }
+    }
     [Export] public NumType NumType { get; set; } = NumType.Integer;
+
+    /// <summary>根据数值字符串自动推断 <see cref="NumType"/>：含 "/" → Fraction，含 "." → Decimal，其余 → Integer。</summary>
+    private static NumType DetectNumType(string value)
+    {
+        if (string.IsNullOrWhiteSpace(value)) return NumType.Integer;
+        var trimmed = value.Trim();
+        if (trimmed.Contains('/')) return NumType.Fraction;
+        if (trimmed.Contains('.')) return NumType.Decimal;
+        return NumType.Integer;
+    }
         
     [ExportGroup("Animation")]
     [Export] public bool Shadow { get; set; } = true;

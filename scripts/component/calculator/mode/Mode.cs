@@ -31,6 +31,30 @@ public abstract class Mode : IMode
         throw new NotSupportedException($"{GetType().Name} 不支持一元运算");
 
     /// <summary>
+    ///     验证手牌数值格式是否与声明的 <see cref="NumType"/> 匹配。
+    /// </summary>
+    /// <param name="value">待验证的数值字符串</param>
+    /// <param name="numType">声明的数值类型</param>
+    /// <returns>格式有效则为 <c>true</c>，否则为 <c>false</c></returns>
+    public static bool IsValidNumValue(string value, NumType numType)
+    {
+        try
+        {
+            _ = numType switch
+            {
+                NumType.Fraction => ParseFractionString(value.Trim()),
+                NumType.Decimal or NumType.Integer => ParseDecimalString(value.Trim()),
+                _ => throw new NotSupportedException($"未知数值类型: {numType}")
+            };
+            return true;
+        }
+        catch (FormatException)
+        {
+            return false;
+        }
+    }
+
+    /// <summary>
     ///     将手牌数值解析为 <see cref="Fraction"/>，根据 <see cref="NumType"/> 选择解析策略。
     /// </summary>
     private protected static Fraction ParseToFraction(IPoker poker)
@@ -78,9 +102,24 @@ public abstract class Mode : IMode
     }
 
     /// <summary>
+    ///     将 double 结果通过 <see cref="Fraction"/> 智能格式化：
+    ///     可精确表示为有理数时用分数智能格式（有限小数→小数，无限小数→分数），否则回退为普通小数格式。
+    /// </summary>
+    private protected static string FormatFractionResult(double value)
+    {
+        if (double.IsNaN(value) || double.IsInfinity(value))
+            return FormatDouble(value);
+
+        var frac = Fraction.FromDouble(value);
+        return Math.Abs(value - frac.ToDouble()) < DoubleEpsilon
+            ? frac.ToString()
+            : FormatDouble(value);
+    }
+
+    /// <summary>
     ///     格式化 double 值：整数去掉小数点，非整数保留一位小数并去除尾部零。
     /// </summary>
-    protected static string FormatDouble(double value)
+    private protected static string FormatDouble(double value)
     {
         if (Math.Abs(value - Math.Round(value)) < DoubleEpsilon) return Math.Round(value).ToString(CultureInfo.InvariantCulture);
         return Math.Round(value, 1, MidpointRounding.AwayFromZero).ToString("F1", CultureInfo.InvariantCulture).TrimEnd('0').TrimEnd('.');

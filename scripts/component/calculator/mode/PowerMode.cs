@@ -15,6 +15,6 @@ public sealed class PowerMode : Mode
     {
         var fa = ParseToFraction(pokerA);
         var fb = ParseToFraction(pokerB);
-        return FormatDouble(Math.Pow(fa.ToDouble(), fb.ToDouble()));
+        return FormatFractionResult(Math.Pow(fa.ToDouble(), fb.ToDouble()));
     }
 }

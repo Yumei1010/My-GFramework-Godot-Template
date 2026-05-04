@@ -14,6 +14,6 @@ public sealed class FloorMode : Mode
     public override string Calculate(IPoker poker)
     {
         double val = ParseToFraction(poker).ToDouble();
-        return FormatDouble(Math.Floor(val));
+        return FormatFractionResult(Math.Floor(val));
     }
 }

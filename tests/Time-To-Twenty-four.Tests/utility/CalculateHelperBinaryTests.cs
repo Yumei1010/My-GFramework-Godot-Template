@@ -57,11 +57,11 @@ public class CalculateHelperBinaryTests
     }
 
     [Fact]
-    public void Subtract_Fractions_ReturnsFraction()
+    public void Subtract_Fractions_ReturnsDecimal_WhenTerminating()
     {
         var a = Card("3/4", NumType.Fraction);
         var b = Card("1/4", NumType.Fraction);
-        Assert.Equal("1/2", new SubtractMode().Calculate(a, b));
+        Assert.Equal("0.5", new SubtractMode().Calculate(a, b));
     }
 
     // ── 乘法 ──
@@ -101,11 +101,11 @@ public class CalculateHelperBinaryTests
     }
 
     [Fact]
-    public void Divide_ResultFraction_ReturnsFraction()
+    public void Divide_ResultFraction_ReturnsDecimal_WhenTerminating()
     {
         var a = Card(1);
         var b = Card(2);
-        Assert.Equal("1/2", new DivideMode().Calculate(a, b));
+        Assert.Equal("0.5", new DivideMode().Calculate(a, b));
     }
 
     [Fact]
@@ -114,6 +114,22 @@ public class CalculateHelperBinaryTests
         var a = Card(5);
         var b = Card(0);
         Assert.Equal("ERROR:DivByZero", new DivideMode().Calculate(a, b));
+    }
+
+    [Fact]
+    public void Divide_NonTerminatingDecimal_ReturnsFraction()
+    {
+        var a = Card(1);
+        var b = Card(3);
+        Assert.Equal("1/3", new DivideMode().Calculate(a, b));
+    }
+
+    [Fact]
+    public void Divide_DenominatorPowerOf10_ReturnsDecimal()
+    {
+        var a = Card(3);
+        var b = Card(10);
+        Assert.Equal("0.3", new DivideMode().Calculate(a, b));
     }
 
     // ── 取模 ──

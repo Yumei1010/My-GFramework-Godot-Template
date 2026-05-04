@@ -15,6 +15,6 @@ public sealed class NthRootMode : Mode
     {
         var fa = ParseToFraction(pokerA);
         var fb = ParseToFraction(pokerB);
-        return fa.ToDouble() == 0 ? "ERROR:ZeroRootIndex" : FormatDouble(Math.Pow(fb.ToDouble(), 1.0 / fa.ToDouble()));
+        return fa.ToDouble() == 0 ? "ERROR:ZeroRootIndex" : FormatFractionResult(Math.Pow(fb.ToDouble(), 1.0 / fa.ToDouble()));
     }
 }
