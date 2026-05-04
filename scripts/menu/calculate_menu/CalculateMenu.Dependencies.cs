@@ -3,6 +3,7 @@ using TimeToTwentyfour.scripts.component.pokerFactory;
 using TimeToTwentyfour.scripts.entities.poker;
 using TimeToTwentyfour.scripts.enums.poker;
 using Godot;
+using TimeToTwentyfour.scripts.component.calculator;
 using TimeToTwentyfour.scripts.component.deck;
 using TimeToTwentyfour.scripts.component.selector;
 using TimeToTwentyfour.scripts.component.timeBar;
@@ -11,6 +12,7 @@ namespace TimeToTwentyfour.scripts.menu.calculate_menu;
 
 public partial class CalculateMenu
 {
+    private ICalculator Calculator => GetNode<ICalculator>("Calculator");
     private ISelector Selector => GetNode<ISelector>("%Selector");
     private IPokerFactory PokerFactory => GetNode<IPokerFactory>("%PokerFactory");
     private ITimeBar TimeBar => GetNode<ITimeBar>("%TimeBar");

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://2qiga3qxnxcn" path="res://scripts/menu/calculate_menu/CalculateMenu.cs" id="1_60nu6"]
 [ext_resource type="PackedScene" uid="uid://bpbtaiebu5bsb" path="res://scenes/component/selector/selector.tscn" id="2_7p84b"]
 [ext_resource type="PackedScene" uid="uid://cva1w4wvphhmi" path="res://scenes/component/poker_factory/poker_factory.tscn" id="2_liykc"]
+[ext_resource type="PackedScene" uid="uid://cp6rsci2mqjsr" path="res://scenes/component/calculator/calculator.tscn" id="3_pjsn5"]
 [ext_resource type="Texture2D" uid="uid://dwg8e2aurpr6o" path="res://assets/textures/calculate_icon/add.png" id="7_piecu"]
 [ext_resource type="Texture2D" uid="uid://jck0m0v21wsh" path="res://assets/textures/calculate_icon/subtract.png" id="8_tta4o"]
 [ext_resource type="Texture2D" uid="uid://cqe132fuf7kgx" path="res://assets/textures/calculate_icon/multiply.png" id="9_m381d"]
@@ -42,6 +43,9 @@ color = Color(0.9764706, 0.84705883, 0.6117647, 1)
 metadata/_edit_lock_ = true
 
 [node name="Selector" parent="." unique_id=509807042 instance=ExtResource("2_7p84b")]
+unique_name_in_owner = true
+
+[node name="Calculator" parent="." unique_id=36915116 instance=ExtResource("3_pjsn5")]
 unique_name_in_owner = true
 
 [node name="PokerFactory" parent="." unique_id=1042755059 instance=ExtResource("2_liykc")]
