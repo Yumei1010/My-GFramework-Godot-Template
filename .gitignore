@@ -28,3 +28,6 @@ obj/
 addons/*
 !addons/.editorconfig
 .addons/*
+
+# Claude Code
+.claude/settings.local.json

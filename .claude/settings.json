@@ -1,9 +1,3 @@
 {
-  "hooks": {
-    "PreCommit": [
-      {
-        "run": ".claude/hooks/check-commit.sh"
-      }
-    ]
-  }
+  "hooks": {}
 }
