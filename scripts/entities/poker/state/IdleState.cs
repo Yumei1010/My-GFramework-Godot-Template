@@ -3,6 +3,9 @@ using TimeToTwentyfour.scripts.enums.poker;
 
 namespace TimeToTwentyfour.scripts.entities.poker.state;
 
+/// <summary>
+///     扑克空闲状态，等待玩家交互输入以切换到选中或拖拽状态。
+/// </summary>
 public partial class IdleState : PokerState
 {
     public override void GuiInput(InputEvent inputEvent)

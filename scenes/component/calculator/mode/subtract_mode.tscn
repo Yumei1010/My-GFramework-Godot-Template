@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dvusmh12dpjs"]
+
+[ext_resource type="Script" uid="uid://cinloxj2e1k3k" path="res://scripts/component/calculator/mode/SubtractMode.cs" id="1_fd4jj"]
+
+[node name="SubtractMode" type="Node" unique_id=1856415535]
+script = ExtResource("1_fd4jj")

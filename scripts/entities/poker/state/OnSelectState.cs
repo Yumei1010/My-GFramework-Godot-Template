@@ -6,6 +6,9 @@ using TimeToTwentyfour.scripts.cqrs.selector.@event;
 
 namespace TimeToTwentyfour.scripts.entities.poker.state;
 
+/// <summary>
+///     扑克选中状态，表示该牌已被选择器标记为选中。
+/// </summary>
 [ContextAware]
 public partial class OnSelectState : PokerState
 {

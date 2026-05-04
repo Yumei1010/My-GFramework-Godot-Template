@@ -2,6 +2,9 @@
 
 namespace TimeToTwentyfour.scripts.menu.main_menu;
 
+/// <summary>
+///     主菜单选项按钮基类，提供鼠标交互的通用视觉反馈逻辑。
+/// </summary>
 public abstract partial class MainMenuOptionButton : Button , IMainMenuOptionButton
 {
     public override void _Ready()

@@ -1,3 +1,5 @@
+using TimeToTwentyfour.scripts.component.calculator.mode;
+
 namespace TimeToTwentyfour.Tests.utility;
 
 public class CalculateHelperBinaryTests
@@ -9,7 +11,7 @@ public class CalculateHelperBinaryTests
     {
         var a = Card(1);
         var b = Card(2);
-        Assert.Equal("3", CalculateHelper.Calculate(a, b, ModeType.Add));
+        Assert.Equal("3", new AddMode().Calculate(a, b));
     }
 
     [Fact]
@@ -17,7 +19,7 @@ public class CalculateHelperBinaryTests
     {
         var a = Card("1/2", NumType.Fraction);
         var b = Card("1/2", NumType.Fraction);
-        Assert.Equal("1", CalculateHelper.Calculate(a, b, ModeType.Add));
+        Assert.Equal("1", new AddMode().Calculate(a, b));
     }
 
     [Fact]
@@ -25,7 +27,7 @@ public class CalculateHelperBinaryTests
     {
         var a = Card(-3);
         var b = Card(5);
-        Assert.Equal("2", CalculateHelper.Calculate(a, b, ModeType.Add));
+        Assert.Equal("2", new AddMode().Calculate(a, b));
     }
 
     [Fact]
@@ -33,7 +35,7 @@ public class CalculateHelperBinaryTests
     {
         var a = Card("0.5", NumType.Decimal);
         var b = Card("0.5", NumType.Decimal);
-        Assert.Equal("1", CalculateHelper.Calculate(a, b, ModeType.Add));
+        Assert.Equal("1", new AddMode().Calculate(a, b));
     }
 
     // ── 减法 ──
@@ -43,7 +45,7 @@ public class CalculateHelperBinaryTests
     {
         var a = Card(5);
         var b = Card(3);
-        Assert.Equal("2", CalculateHelper.Calculate(a, b, ModeType.Subtract));
+        Assert.Equal("2", new SubtractMode().Calculate(a, b));
     }
 
     [Fact]
@@ -51,7 +53,7 @@ public class CalculateHelperBinaryTests
     {
         var a = Card(1);
         var b = Card(3);
-        Assert.Equal("-2", CalculateHelper.Calculate(a, b, ModeType.Subtract));
+        Assert.Equal("-2", new SubtractMode().Calculate(a, b));
     }
 
     [Fact]
@@ -59,7 +61,7 @@ public class CalculateHelperBinaryTests
     {
         var a = Card("3/4", NumType.Fraction);
         var b = Card("1/4", NumType.Fraction);
-        Assert.Equal("1/2", CalculateHelper.Calculate(a, b, ModeType.Subtract));
+        Assert.Equal("1/2", new SubtractMode().Calculate(a, b));
     }
 
     // ── 乘法 ──
@@ -69,7 +71,7 @@ public class CalculateHelperBinaryTests
     {
         var a = Card(2);
         var b = Card(3);
-        Assert.Equal("6", CalculateHelper.Calculate(a, b, ModeType.Multiply));
+        Assert.Equal("6", new MultiplyMode().Calculate(a, b));
     }
 
     [Fact]
@@ -77,7 +79,7 @@ public class CalculateHelperBinaryTests
     {
         var a = Card(5);
         var b = Card(0);
-        Assert.Equal("0", CalculateHelper.Calculate(a, b, ModeType.Multiply));
+        Assert.Equal("0", new MultiplyMode().Calculate(a, b));
     }
 
     [Fact]
@@ -85,7 +87,7 @@ public class CalculateHelperBinaryTests
     {
         var a = Card("1/2", NumType.Fraction);
         var b = Card("1/3", NumType.Fraction);
-        Assert.Equal("1/6", CalculateHelper.Calculate(a, b, ModeType.Multiply));
+        Assert.Equal("1/6", new MultiplyMode().Calculate(a, b));
     }
 
     // ── 除法 ──
@@ -95,7 +97,7 @@ public class CalculateHelperBinaryTests
     {
         var a = Card(6);
         var b = Card(2);
-        Assert.Equal("3", CalculateHelper.Calculate(a, b, ModeType.Divide));
+        Assert.Equal("3", new DivideMode().Calculate(a, b));
     }
 
     [Fact]
@@ -103,7 +105,7 @@ public class CalculateHelperBinaryTests
     {
         var a = Card(1);
         var b = Card(2);
-        Assert.Equal("1/2", CalculateHelper.Calculate(a, b, ModeType.Divide));
+        Assert.Equal("1/2", new DivideMode().Calculate(a, b));
     }
 
     [Fact]
@@ -111,7 +113,7 @@ public class CalculateHelperBinaryTests
     {
         var a = Card(5);
         var b = Card(0);
-        Assert.Equal("ERROR:DivByZero", CalculateHelper.Calculate(a, b, ModeType.Divide));
+        Assert.Equal("ERROR:DivByZero", new DivideMode().Calculate(a, b));
     }
 
     // ── 取模 ──
@@ -121,7 +123,7 @@ public class CalculateHelperBinaryTests
     {
         var a = Card(5);
         var b = Card(3);
-        Assert.Equal("2", CalculateHelper.Calculate(a, b, ModeType.Modulo));
+        Assert.Equal("2", new ModuloMode().Calculate(a, b));
     }
 
     [Fact]
@@ -129,7 +131,7 @@ public class CalculateHelperBinaryTests
     {
         var a = Card(5);
         var b = Card(0);
-        Assert.Equal("ERROR:DivByZero", CalculateHelper.Calculate(a, b, ModeType.Modulo));
+        Assert.Equal("ERROR:DivByZero", new ModuloMode().Calculate(a, b));
     }
 
     // ── 指数幂 ──
@@ -139,7 +141,7 @@ public class CalculateHelperBinaryTests
     {
         var a = Card(2);
         var b = Card(3);
-        Assert.Equal("8", CalculateHelper.Calculate(a, b, ModeType.Power));
+        Assert.Equal("8", new PowerMode().Calculate(a, b));
     }
 
     [Fact]
@@ -147,7 +149,7 @@ public class CalculateHelperBinaryTests
     {
         var a = Card(5);
         var b = Card(0);
-        Assert.Equal("1", CalculateHelper.Calculate(a, b, ModeType.Power));
+        Assert.Equal("1", new PowerMode().Calculate(a, b));
     }
 
     [Fact]
@@ -155,7 +157,7 @@ public class CalculateHelperBinaryTests
     {
         var a = Card(0);
         var b = Card(3);
-        Assert.Equal("0", CalculateHelper.Calculate(a, b, ModeType.Power));
+        Assert.Equal("0", new PowerMode().Calculate(a, b));
     }
 
     // ── N 次根 ──
@@ -165,7 +167,7 @@ public class CalculateHelperBinaryTests
     {
         var a = Card(3);
         var b = Card(8);
-        Assert.Equal("2", CalculateHelper.Calculate(a, b, ModeType.NthRoot));
+        Assert.Equal("2", new NthRootMode().Calculate(a, b));
     }
 
     [Fact]
@@ -173,6 +175,6 @@ public class CalculateHelperBinaryTests
     {
         var a = Card(0);
         var b = Card(8);
-        Assert.Equal("ERROR:ZeroRootIndex", CalculateHelper.Calculate(a, b, ModeType.NthRoot));
+        Assert.Equal("ERROR:ZeroRootIndex", new NthRootMode().Calculate(a, b));
     }
 }

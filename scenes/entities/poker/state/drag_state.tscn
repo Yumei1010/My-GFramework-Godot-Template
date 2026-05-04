@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dake4bkh4d2fj"]
+
+[ext_resource type="Script" uid="uid://53xgns3lsyw5" path="res://scripts/entities/poker/state/DragState.cs" id="1_8qjmx"]
+
+[node name="DragState" type="Node" unique_id=438985183]
+script = ExtResource("1_8qjmx")
+StateType = 3

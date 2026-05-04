@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://cgyg3mfyhrryj"]
+
+[ext_resource type="Script" uid="uid://cnh2ucqq7i0he" path="res://scripts/component/timeBar/TimeBar.cs" id="1_as047"]
+[ext_resource type="Texture2D" uid="uid://c681k3ura5i4p" path="res://assets/textures/timeBar/TimeBarProgress.png" id="2_kmll0"]
+
+[node name="TimeBar" type="Control" unique_id=297301655]
+custom_minimum_size = Vector2(832, 64)
+layout_mode = 3
+anchor_left = 0.067
+anchor_top = 0.059000004
+anchor_right = 0.933
+anchor_bottom = 0.178
+offset_left = -0.3199997
+offset_top = 0.13999748
+offset_right = 0.3199463
+offset_bottom = -0.12000275
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_as047")
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1823963682]
+custom_minimum_size = Vector2(848, 64)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=55328596]
+custom_minimum_size = Vector2(848, 32)
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 16
+
+[node name="TimeProgressBar" type="TextureProgressBar" parent="VBoxContainer/MarginContainer" unique_id=119375826]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(832, 8)
+layout_mode = 2
+value = 100.0
+texture_progress = ExtResource("2_kmll0")
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer" unique_id=371266937]
+custom_minimum_size = Vector2(848, 32)
+layout_mode = 2
+
+[node name="TimeLabel" type="Label" parent="VBoxContainer/CenterContainer" unique_id=35649897]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 32)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9411765, 0.59607846, 0.4862745, 1)
+text = "2:00"
+horizontal_alignment = 1
+vertical_alignment = 1

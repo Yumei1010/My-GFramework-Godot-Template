@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://m4xsvkibe5kl"]
+
+[ext_resource type="Script" uid="uid://0rv0l3nafaxu" path="res://scripts/component/calculator/mode/AbsoluteValueMode.cs" id="1_so62m"]
+
+[node name="AbsoluteValueMode" type="Node" unique_id=134625744]
+script = ExtResource("1_so62m")

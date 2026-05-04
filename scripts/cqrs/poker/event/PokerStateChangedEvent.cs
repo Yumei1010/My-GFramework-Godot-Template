@@ -1,4 +1,5 @@
 ﻿using TimeToTwentyfour.scripts.entities.poker;
+using TimeToTwentyfour.scripts.entities.poker.state;
 using TimeToTwentyfour.scripts.enums.poker;
 
 namespace TimeToTwentyfour.scripts.cqrs.poker.@event;
@@ -7,7 +8,7 @@ namespace TimeToTwentyfour.scripts.cqrs.poker.@event;
 ///     扑克状态变更事件类
 ///     用于表示扑克状态发生变化的事件
 /// </summary>
-public class PokerStateChangedEvent
+public sealed class PokerStateChangedEvent
 {
     /// <summary>
     ///     目标状态 <see cref="StateType"/>

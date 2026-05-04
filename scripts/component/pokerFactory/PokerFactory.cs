@@ -10,6 +10,7 @@ namespace TimeToTwentyfour.scripts.component.pokerFactory;
 [ContextAware]
 public partial class PokerFactory : Node, IPokerFactory
 {
+    /// <summary>创建一个新的扑克实体实例。</summary>
     public IPoker Product()
     {
         return  _pokerScene.Instantiate<IPoker>();

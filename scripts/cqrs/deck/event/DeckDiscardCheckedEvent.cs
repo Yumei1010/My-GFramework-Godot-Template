@@ -6,7 +6,7 @@ namespace TimeToTwentyfour.scripts.cqrs.deck.@event;
 ///     牌桌弃牌确认事件类
 ///     用于表示牌桌弃牌确认的事件 
 /// </summary>
-public class DeckDiscardCheckedEvent
+public sealed class DeckDiscardCheckedEvent
 {
     /// <summary>
     ///     要丢弃的手牌 <see cref="IReadOnlyList{IPoker}"/>

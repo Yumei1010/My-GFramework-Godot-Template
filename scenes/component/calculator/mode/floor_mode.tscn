@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://drwegbe2swgd0"]
+
+[ext_resource type="Script" uid="uid://iu0opwfoa5sx" path="res://scripts/component/calculator/mode/FloorMode.cs" id="1_dk5w3"]
+
+[node name="FloorMode" type="Node" unique_id=2085207214]
+script = ExtResource("1_dk5w3")

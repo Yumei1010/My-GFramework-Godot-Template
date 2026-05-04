@@ -5,13 +5,13 @@ using GFramework.Game.Abstractions.ui;
 using TimeToTwentyfour.scripts.cqrs.menu.input;
 using TimeToTwentyfour.scripts.menu.options_menu;
 
-namespace TimeToTwentyfour.scripts.cqrs.menu;
+namespace TimeToTwentyfour.scripts.cqrs.menu.command;
 
 /// <summary>
 ///     打开设置菜单的命令类。
-///     该类继承自 AbstractCommand，用于执行打开暂停菜单的操作。
+///     该类继承自 AbstractCommand，用于执行打开设置菜单的操作。
 /// </summary>
-public class OpenOptionsMenuCommand(OpenOptionsMenuCommandInput input) : AbstractCommand<OpenOptionsMenuCommandInput, UiHandle>(input)
+public sealed class OpenOptionsMenuCommand(OpenOptionsMenuCommandInput input) : AbstractCommand<OpenOptionsMenuCommandInput, UiHandle>(input)
 {
     /// <summary>
     ///     执行打开设置菜单的核心逻辑。

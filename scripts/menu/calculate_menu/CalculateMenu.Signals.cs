@@ -1,19 +1,38 @@
 using GFramework.Core.extensions;
 using TimeToTwentyfour.scripts.cqrs.deck.@event;
+using TimeToTwentyfour.scripts.cqrs.selector.@event;
+using TimeToTwentyfour.scripts.enums.calculator;
+using Godot;
 
 namespace TimeToTwentyfour.scripts.menu.calculate_menu;
 
 public partial class CalculateMenu
 {
+    /// <summary>连接 Godot 按钮信号并桥接至 CQRS 事件。</summary>
     private void ConnectSignal()
     {
-        CheckButton.ButtonDown += OnCheckButtonButtonDown;
-        DiscardButton.ButtonDown += OnDiscardButtonButtonDown;
-        SortBySuitButton.ButtonDown += OnSortBySuitButtonButtonDown;
-        SortByRankButton.ButtonDown += OnSortByRankButtonButtonDown;
+        SelectButton.ButtonDown += OnButtonDownSelectButton;
+        CheckButton.ButtonDown += OnButtonDownCheckButton;
+        DiscardButton.ButtonDown += OnButtonDownDiscardButton;
+        SortBySuitButton.ButtonDown += OnButtonDownSortBySuitButton;
+        SortByRankButton.ButtonDown += OnButtonDownSortByRankButton;
+
+        foreach (var modeType in Enum.GetValues<ModeType>())
+        {
+            var button = GetNode<TextureButton>($"%{modeType}Button");
+            button.ButtonDown += () => Calculator.ChangeTo(modeType);
+        }
     }
 
-    private void OnCheckButtonButtonDown()
+    private void OnButtonDownSelectButton()
+    {
+        this.SendEvent(new SelectorEnableChangedEvent
+        {
+            Enable = !Selector.Enable
+        });
+    }
+    
+    private void OnButtonDownCheckButton()
     {
         this.SendEvent(new DeckHandCheckedEvent
         {
@@ -21,7 +40,7 @@ public partial class CalculateMenu
         });
     }
 
-    private void OnDiscardButtonButtonDown()
+    private void OnButtonDownDiscardButton()
     {
         this.SendEvent(new DeckDiscardCheckedEvent
         {
@@ -29,12 +48,12 @@ public partial class CalculateMenu
         });
     }
 
-    private void OnSortBySuitButtonButtonDown()
+    private void OnButtonDownSortBySuitButton()
     {
         Deck.SortBySuit();
     }
 
-    private void OnSortByRankButtonButtonDown()
+    private void OnButtonDownSortByRankButton()
     {
         Deck.SortByRank();
     }

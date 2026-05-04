@@ -3,6 +3,7 @@ using TimeToTwentyfour.scripts.enums.poker;
 using TimeToTwentyfour.scripts.utility;
 using TimeToTwentyfour.global;
 using Godot;
+using TimeToTwentyfour.scripts.entities.poker.stateMachine;
 
 namespace TimeToTwentyfour.scripts.entities.poker;
 

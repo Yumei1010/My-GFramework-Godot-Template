@@ -3,6 +3,9 @@ using Godot;
 
 namespace TimeToTwentyfour.scripts.menu.main_menu;
 
+/// <summary>
+///     <see cref="MainMenuOptionButton"/> 的 Godot 依赖注入文件。
+/// </summary>
 public partial class MainMenuOptionButton
 {
     private ColorRect BackgroundRect => GetNode<ColorRect>("%BackgroundRect");

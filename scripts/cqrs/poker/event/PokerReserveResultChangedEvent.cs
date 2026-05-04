@@ -6,7 +6,7 @@ namespace TimeToTwentyfour.scripts.cqrs.poker.@event;
 ///     扑克预览运算结果变更事件类
 ///     用于表示扑克预览运算结果发生变化的事件 
 /// </summary>
-public class PokerReserveResultChangedEvent
+public sealed class PokerReserveResultChangedEvent
 {
     /// <summary>
     ///     点数数值 <see cref="string"/>

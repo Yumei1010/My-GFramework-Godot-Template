@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cp6rsci2mqjsr"]
+
+[ext_resource type="Script" uid="uid://db2pgu2ep3gn1" path="res://scripts/component/calculator/Calculator.cs" id="1_wequh"]
+
+[node name="Calculator" type="Node" unique_id=36915116]
+script = ExtResource("1_wequh")

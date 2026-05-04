@@ -5,6 +5,9 @@ using TimeToTwentyfour.scripts.entities.poker;
 
 namespace TimeToTwentyfour.scripts.menu.main_menu;
 
+/// <summary>
+///     <see cref="MainMenu"/> 的 Godot 依赖注入文件。
+/// </summary>
 public partial class MainMenu
 {
     private IMainMenuOptionButton StartButton => GetNode<IMainMenuOptionButton>("%StartButton");

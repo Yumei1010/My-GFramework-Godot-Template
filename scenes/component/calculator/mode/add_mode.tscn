@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cgxcs3yva54ya"]
+
+[ext_resource type="Script" uid="uid://csvxmpclhb77v" path="res://scripts/component/calculator/mode/AddMode.cs" id="1_7ehel"]
+
+[node name="AddMode" type="Node" unique_id=1896403219]
+script = ExtResource("1_7ehel")
