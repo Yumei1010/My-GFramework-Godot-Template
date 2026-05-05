@@ -2,6 +2,7 @@
 using GFramework.Godot.extensions;
 using TimeToTwentyfour.scripts.cqrs.calculator.@event;
 using TimeToTwentyfour.scripts.cqrs.deck.@event;
+using TimeToTwentyfour.scripts.component.calculator.mode;
 using TimeToTwentyfour.scripts.entities.poker;
 
 namespace TimeToTwentyfour.scripts.component.calculator;
@@ -22,52 +23,35 @@ public partial class Calculator
     /// <summary>处理出牌确认事件：根据当前 Mode 类型执行二元或一元计算，并发送 <see cref="CalculatorResultEvent"/>。</summary>
     private void OnDeckHandCheckedEvent(IReadOnlyList<IPoker> hands)
     {
-        if (CurrentMode == null!)
-        {
-            this.SendEvent(new CalculatorResultEvent
-            {
-                Result = "ERROR:NoModeSelected",
-                Hands = hands,
-                ModeType = null
-            });
-            return;
-        }
-
-        string result;
-        if (CurrentMode.IsBinary)
-        {
-            if (hands.Count < 2)
-            {
-                this.SendEvent(new CalculatorResultEvent
-                {
-                    Result = "ERROR:InsufficientHands",
-                    Hands = hands,
-                    ModeType = CurrentMode.ModeType
-                });
-                return;
-            }
-            result = Calculate(hands[0], hands[1]);
-        }
-        else
-        {
-            if (hands.Count < 1)
-            {
-                this.SendEvent(new CalculatorResultEvent
-                {
-                    Result = "ERROR:InsufficientHands",
-                    Hands = hands,
-                    ModeType = CurrentMode.ModeType
-                });
-                return;
-            }
-            result = Calculate(hands[0]);
-        }
-
+        string result = Evaluate(CurrentMode, hands);
         this.SendEvent(new CalculatorResultEvent
         {
             Result = result,
             Hands = hands,
-            ModeType = CurrentMode.ModeType
+            ModeType = CurrentMode?.ModeType
         });
+    }
+
+    /// <summary>
+    ///     根据当前模式和手牌列表执行计算验证与分发。
+    /// </summary>
+    /// <returns>计算结果字符串，或错误码。</returns>
+    internal static string Evaluate(IMode? mode, IReadOnlyList<IPoker> hands)
+    {
+        if (mode == null!)
+            return "ERROR:NoModeSelected";
+
+        if (mode.IsBinary)
+        {
+            if (hands.Count < 2)
+                return "ERROR:InsufficientHands";
+            return mode.Calculate(hands[0], hands[1]);
+        }
+        else
+        {
+            if (hands.Count < 1)
+                return "ERROR:InsufficientHands";
+            return mode.Calculate(hands[0]);
+        }
     }
 }

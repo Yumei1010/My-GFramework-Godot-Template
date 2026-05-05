@@ -82,15 +82,13 @@ public partial class Deck : Control, IDeck, IController
     private static int SuitComparer(Node a, Node b)
     {
         if (a is not IPoker pa || b is not IPoker pb) return 0;
-        int suitCmp = pb.SuitType.CompareTo(pa.SuitType);
-        return suitCmp != 0 ? suitCmp : pa.NumType.CompareTo(pb.NumType);
+        return DeckComparer.CompareBySuit(pa, pb);
     }
 
     private static int RankComparer(Node a, Node b)
     {
         if (a is not IPoker pa || b is not IPoker pb) return 0;
-        int rankCmp = pa.NumType.CompareTo(pb.NumType);
-        return rankCmp != 0 ? rankCmp : pb.SuitType.CompareTo(pa.SuitType);
+        return DeckComparer.CompareByRank(pa, pb);
     }
 
     private void ReorderChildren(Comparison<Node> comparison)
@@ -189,6 +187,6 @@ public partial class Deck : Control, IDeck, IController
             poker.MoveTo(poker.ResetPosition);
         }
 
-        ContextAwareExtensions.SendEvent(this, new DeckSortFinishedEvent());
+        this.SendEvent(new DeckSortFinishedEvent());
     }
 }

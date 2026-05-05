@@ -1,4 +1,3 @@
-using System;
 using Godot;
 using TimeToTwentyfour.scripts.entities.poker;
 

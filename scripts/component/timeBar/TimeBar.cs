@@ -113,7 +113,7 @@ public partial class TimeBar : Control, ITimeBar, IController
         }
     }
     
-    private static string FormatTime(float seconds)
+    internal static string FormatTime(float seconds)
     {
         if (seconds <= 0f) return "00:00";
 

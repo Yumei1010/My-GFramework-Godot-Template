@@ -59,4 +59,9 @@
     <ItemGroup>
         <Folder Include="scripts\cqrs\game\event\" />
     </ItemGroup>
+    <ItemGroup>
+        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+            <_Parameter1>Time-To-Twenty-four.Tests</_Parameter1>
+        </AssemblyAttribute>
+    </ItemGroup>
 </Project>
