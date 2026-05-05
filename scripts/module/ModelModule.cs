@@ -5,6 +5,7 @@ using GFramework.Game.architecture;
 using GFramework.Game.setting;
 using GFramework.Godot.setting;
 using GFramework.Godot.setting.data;
+using TimeToTwentyfour.scripts.model.player;
 using TimeToTwentyfour.scripts.setting;
 
 namespace TimeToTwentyfour.scripts.module;
@@ -37,5 +38,8 @@ public class ModelModule : AbstractModule
                         .RegisterApplicator(new GodotLocalizationSettings(it, new LocalizationMap()));
                 })
         );
+        
+        // 注册玩家模型
+        architecture.RegisterModel(new PlayerModel());
     }
 }
