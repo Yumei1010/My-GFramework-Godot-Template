@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://b3afxh3oxdk6w"]
-
-[ext_resource type="Script" uid="uid://dlc40k4ssffhg" path="res://scripts/component/calculator/mode/DivideMode.cs" id="1_m3jjd"]
-
-[node name="DivideMode" type="Node" unique_id=584606394]
-script = ExtResource("1_m3jjd")

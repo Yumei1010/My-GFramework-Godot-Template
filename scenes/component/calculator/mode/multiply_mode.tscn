@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://0eh3u8lda7yh"]
-
-[ext_resource type="Script" uid="uid://bmn265ghk8va7" path="res://scripts/component/calculator/mode/MultiplyMode.cs" id="1_wui2q"]
-
-[node name="MultiplyMode" type="Node" unique_id=2029761337]
-script = ExtResource("1_wui2q")

@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://btuponjuj28nc"]
-
-[ext_resource type="Script" uid="uid://c8bosce6ouyaq" path="res://scripts/component/calculator/mode/CeilMode.cs" id="1_dglrh"]
-
-[node name="CeilMode" type="Node" unique_id=579322907]
-script = ExtResource("1_dglrh")

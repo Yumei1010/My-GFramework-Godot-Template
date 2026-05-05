@@ -85,7 +85,7 @@ dotnet test --filter "FullyQualifiedName~CalculateHelperBinaryTests.Add_TwoInteg
 | `scripts/menu/` | UI 页面（MainMenu、CalculateMenu、OptionsMenu、Credits） | 无（由 UiRouter 管理） |
 
 ### 扑克状态机
-每张牌运行 4 状态 FSM：`Idle` ↔ `UnSelect` ↔ `OnSelect`，外加 `Drag`（鼠标按下时从 Idle 进入，鼠标释放时退出到 Idle）。状态变更通过 `PokerStateChangedEvent` 分发。
+每张牌运行 4 状态 FSM：`Idle` ↔ `UnSelect` ↔ `OnSelect`，外加 `Drag`（鼠标按下时从 Idle 进入，鼠标释放时退出到 Idle）。状态采用纯 C# 策略模式——各状态持有 `Poker` 引用，通过 `ChangeTo()` → `Poker.ChangeTo()` → `StateMachine.ChangeTo()` 调用链直接切换，不经过 CQRS 事件层。
 
 ### 选择器
 FIFO 队列，有容量限制。队列满时淘汰最早选中的牌。`Pop()` 为 LIFO（撤销最近一次选择）。通过 `SelectorEnableChangedEvent` 控制启用/禁用。响应 `SelectorSelectChangedEvent`。
