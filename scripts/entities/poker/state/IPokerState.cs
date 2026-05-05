@@ -22,8 +22,8 @@ namespace TimeToTwentyfour.scripts.entities.poker.state;
 ///         <item><term><see cref="StateType.OnSelect"/></term><description>被选中</description></item>
 ///     </list>
 ///     <para>
-///         状态切换通过 <see cref="ChangeTo"/> 发送
-///         <c>PokerStateChangedEvent</c> 事件，由状态机统一驱动。
+///         状态切换由 <see cref="PokerState.ChangeTo"/> 直接委托给 <see cref="IPoker.ChangeTo"/>
+///         → <see cref="IPokerStateMachine.ChangeTo"/>，执行 <c>Exit/Enter</c> 流程。
 ///     </para>
 /// </remarks>
 public interface IPokerState : IState
@@ -39,14 +39,6 @@ public interface IPokerState : IState
     ///     状态对象通过此引用读写牌的坐标、外观、动画等属性。
     /// </summary>
     IPoker Poker { get; set; }
-
-    /// <summary>
-    ///     请求切换到另一个状态。
-    ///     实际切换由状态机订阅 <c>PokerStateChangedEvent</c> 后调用
-    ///     当前状态的 <see cref="IState.Exit"/> 与目标状态的 <see cref="IState.Enter"/> 完成。
-    /// </summary>
-    /// <param name="toState">目标状态类型</param>
-    void ChangeTo(StateType toState);
 
     /// <summary>
     ///     GUI 输入事件入口（由 Godot 的 <c>_GuiInput</c> 传递）。

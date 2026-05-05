@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://df4iq58hu4l4"]
-
-[ext_resource type="Script" uid="uid://c14ajqqmlbmg6" path="res://scripts/entities/poker/state/IdleState.cs" id="1_7lecs"]
-
-[node name="IdleState" type="Node" unique_id=1303354925]
-script = ExtResource("1_7lecs")
-StateType = 2

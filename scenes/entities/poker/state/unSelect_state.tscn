@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://ca6gwcpv2padv"]
-
-[ext_resource type="Script" uid="uid://dcha8sa4kj58p" path="res://scripts/entities/poker/state/UnSelectState.cs" id="1_es8mm"]
-
-[node name="UnSelectState" type="Node" unique_id=1199544047]
-script = ExtResource("1_es8mm")
-StateType = 1

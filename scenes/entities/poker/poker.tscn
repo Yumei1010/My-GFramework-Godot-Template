@@ -2,11 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dgomet07s0x3k" path="res://scripts/entities/poker/Poker.cs" id="1_4exqo"]
 [ext_resource type="PackedScene" uid="uid://b5l602h2anmqe" path="res://scenes/entities/poker/stateMachine/poker_stateMachine.tscn" id="2_qu4bk"]
-[ext_resource type="PackedScene" uid="uid://df4iq58hu4l4" path="res://scenes/entities/poker/state/idle_state.tscn" id="3_dg2h8"]
 [ext_resource type="Texture2D" uid="uid://6vuld8lknm7e" path="res://assets/textures/poker/surface/heart.png" id="3_twcbr"]
-[ext_resource type="PackedScene" uid="uid://dake4bkh4d2fj" path="res://scenes/entities/poker/state/drag_state.tscn" id="4_hp0h4"]
-[ext_resource type="PackedScene" uid="uid://ca6gwcpv2padv" path="res://scenes/entities/poker/state/unSelect_state.tscn" id="5_tnkiq"]
-[ext_resource type="PackedScene" uid="uid://biiom3f1g6kcp" path="res://scenes/entities/poker/state/onSelect_state.tscn" id="6_xa353"]
 [ext_resource type="Shader" uid="uid://nuhgfc63t5ri" path="res://assets/shader/poker/fake_3D.gdshader" id="8_o2w1w"]
 [ext_resource type="Texture2D" uid="uid://bq8e5q4wdtjbj" path="res://assets/textures/poker/shadow.png" id="10_pa15o"]
 
@@ -34,14 +30,6 @@ script = ExtResource("1_4exqo")
 
 [node name="StateMachine" parent="." unique_id=2088555945 instance=ExtResource("2_qu4bk")]
 unique_name_in_owner = true
-
-[node name="Idle" parent="StateMachine" unique_id=1303354925 instance=ExtResource("3_dg2h8")]
-
-[node name="Drag" parent="StateMachine" unique_id=438985183 instance=ExtResource("4_hp0h4")]
-
-[node name="UnSelect" parent="StateMachine" unique_id=1199544047 instance=ExtResource("5_tnkiq")]
-
-[node name="OnSelect" parent="StateMachine" unique_id=685729332 instance=ExtResource("6_xa353")]
 
 [node name="ShadowRect" type="TextureRect" parent="." unique_id=1157468359]
 unique_name_in_owner = true
