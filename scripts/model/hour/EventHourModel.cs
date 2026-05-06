@@ -1,6 +1,6 @@
 ﻿namespace TimeToTwentyfour.scripts.model.hour;
 
-public class EventHourModel
+public class EventHourModel : HourModel
 {
     
 }

@@ -1,6 +1,11 @@
-﻿namespace TimeToTwentyfour.scripts.model.hour;
+﻿using GFramework.Core.model;
 
-public class HourModel
+namespace TimeToTwentyfour.scripts.model.hour;
+
+public class HourModel : AbstractModel
 {
-    
+    protected override void OnInit()
+    {
+        
+    }
 }
