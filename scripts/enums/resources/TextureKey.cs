@@ -2,13 +2,13 @@
 
 public enum TextureKey
 {
-    PokerSuitHeart,
+    PokerSurfaceHeartMaskTexture,
     
-    PokerSuitDiamond,
+    PokerSurfaceDiamondMaskTexture,
     
-    PokerSuitSpade,
+    PokerSurfaceSpadeMaskTexture,
     
-    PokerSuitClub,
+    PokerSurfaceClubMaskTexture,
     
-    PokerSuitError,
+    PokerShadowTexture
 }

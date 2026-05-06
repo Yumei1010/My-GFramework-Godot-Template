@@ -127,10 +127,10 @@ public partial class Poker : Button, IPoker, IController
     {
         SurfaceRect.Texture = SuitType switch
         {
-            SuitType.Heart => _textureRegistry.Get(nameof(TextureKey.PokerSuitHeart)) as Texture2D,
-            SuitType.Diamond => _textureRegistry.Get(nameof(TextureKey.PokerSuitDiamond)) as Texture2D,
-            SuitType.Spade => _textureRegistry.Get(nameof(TextureKey.PokerSuitSpade)) as Texture2D,
-            SuitType.Club => _textureRegistry.Get(nameof(TextureKey.PokerSuitClub)) as Texture2D,
+            SuitType.Heart => _textureRegistry.Get(nameof(TextureKey.PokerSurfaceHeartMaskTexture)) as Texture2D,
+            SuitType.Diamond => _textureRegistry.Get(nameof(TextureKey.PokerSurfaceDiamondMaskTexture)) as Texture2D,
+            SuitType.Spade => _textureRegistry.Get(nameof(TextureKey.PokerSurfaceSpadeMaskTexture)) as Texture2D,
+            SuitType.Club => _textureRegistry.Get(nameof(TextureKey.PokerSurfaceClubMaskTexture)) as Texture2D,
             _ => throw new InvalidOperationException("didn't have this SuitType")
         };
     }

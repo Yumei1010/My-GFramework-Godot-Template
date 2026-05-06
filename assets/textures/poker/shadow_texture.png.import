@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjyh6mxjxpmnk"
-path="res://.godot/imported/diamond.png-a291e921e8b49c41b7a03a60a81899b1.ctex"
+uid="uid://bq8e5q4wdtjbj"
+path="res://.godot/imported/shadow_texture.png-0bb67654b48260e36d0725b21aecf42c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/poker/surface/diamond.png"
-dest_files=["res://.godot/imported/diamond.png-a291e921e8b49c41b7a03a60a81899b1.ctex"]
+source_file="res://assets/textures/poker/shadow_texture.png"
+dest_files=["res://.godot/imported/shadow_texture.png-0bb67654b48260e36d0725b21aecf42c.ctex"]
 
 [params]
 
