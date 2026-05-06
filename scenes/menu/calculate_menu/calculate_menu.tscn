@@ -131,3 +131,5 @@ text = "弃牌"
 
 [node name="ModeBar" parent="." unique_id=612912570 instance=ExtResource("7_2eq3e")]
 layout_mode = 0
+offset_top = 0.0
+offset_bottom = 48.0
