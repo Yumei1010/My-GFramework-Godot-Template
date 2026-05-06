@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://yd2jo4bddl1v"]
 
-[ext_resource type="Script" uid="uid://c10rrfab41xch" path="res://scripts/component/VolumeContainer.cs" id="1_xyh8y"]
+[ext_resource type="Script" uid="uid://c10rrfab41xch" path="res://scripts/component/volume_container/VolumeContainer.cs" id="1_xyh8y"]
 
 [node name="VolumeContainer" type="HBoxContainer" unique_id=2081463097]
 offset_right = 488.0
