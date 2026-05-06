@@ -14,7 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://c6oterk4euu5f" path="res://assets/textures/calculate_icon/ceil.png" id="12_4b7jr"]
 
 [node name="HBoxContainer2" type="HBoxContainer" unique_id=612912570]
-modulate = Color(0.9490196, 0.7882353, 0.29803923, 1)
 custom_minimum_size = Vector2(960, 48)
 offset_top = 484.0
 offset_right = 960.0

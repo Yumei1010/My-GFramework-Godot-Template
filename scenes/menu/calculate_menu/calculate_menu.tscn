@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://fm27d2slodic"]
 
 [ext_resource type="Script" uid="uid://2qiga3qxnxcn" path="res://scripts/menu/calculate_menu/CalculateMenu.cs" id="1_60nu6"]
-[ext_resource type="PackedScene" uid="uid://bpbtaiebu5bsb" path="res://scenes/component/selector/selector.tscn" id="2_7p84b"]
+[ext_resource type="PackedScene" uid="uid://bpbtaiebu5bsb" path="res://scenes/component/Selector/selector.tscn" id="2_7p84b"]
 [ext_resource type="PackedScene" uid="uid://cva1w4wvphhmi" path="res://scenes/component/poker_factory/poker_factory.tscn" id="2_liykc"]
 [ext_resource type="PackedScene" uid="uid://cp6rsci2mqjsr" path="res://scenes/component/calculator/calculator.tscn" id="3_pjsn5"]
 [ext_resource type="PackedScene" uid="uid://n8yddofofmd1" path="res://scenes/component/mode_bar/mode_bar.tscn" id="7_2eq3e"]
@@ -131,5 +131,5 @@ text = "弃牌"
 
 [node name="ModeBar" parent="." unique_id=612912570 instance=ExtResource("7_2eq3e")]
 layout_mode = 0
-offset_top = 0.0
-offset_bottom = 48.0
+offset_top = 488.0
+offset_bottom = 536.0
