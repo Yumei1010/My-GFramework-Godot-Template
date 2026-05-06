@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cgyg3mfyhrryj"]
 
 [ext_resource type="Script" uid="uid://cnh2ucqq7i0he" path="res://scripts/component/timeBar/TimeBar.cs" id="1_as047"]
-[ext_resource type="Texture2D" uid="uid://c681k3ura5i4p" path="res://assets/textures/timeBar/TimeBarProgress.png" id="2_kmll0"]
+[ext_resource type="Texture2D" uid="uid://dkgyscpa6f15" path="res://assets/textures/timeBar/progress_blank_texture.png" id="2_0t41j"]
 
 [node name="TimeBar" type="Control" unique_id=297301655]
 custom_minimum_size = Vector2(832, 64)
@@ -43,7 +43,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(832, 8)
 layout_mode = 2
 value = 100.0
-texture_progress = ExtResource("2_kmll0")
+texture_progress = ExtResource("2_0t41j")
 
 [node name="CenterContainer" type="CenterContainer" parent="VBoxContainer" unique_id=371266937]
 custom_minimum_size = Vector2(848, 32)

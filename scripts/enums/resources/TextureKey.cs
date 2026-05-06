@@ -10,5 +10,7 @@ public enum TextureKey
     
     PokerSurfaceClubMaskTexture,
     
-    PokerShadowTexture
+    PokerShadowTexture,
+    
+    TimeBarProgressBlankTexture
 }
