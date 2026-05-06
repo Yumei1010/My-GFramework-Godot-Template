@@ -4,18 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bpbtaiebu5bsb" path="res://scenes/component/selector/selector.tscn" id="2_7p84b"]
 [ext_resource type="PackedScene" uid="uid://cva1w4wvphhmi" path="res://scenes/component/poker_factory/poker_factory.tscn" id="2_liykc"]
 [ext_resource type="PackedScene" uid="uid://cp6rsci2mqjsr" path="res://scenes/component/calculator/calculator.tscn" id="3_pjsn5"]
-[ext_resource type="Texture2D" uid="uid://dwg8e2aurpr6o" path="res://assets/textures/calculate_icon/add.png" id="7_piecu"]
-[ext_resource type="Texture2D" uid="uid://jck0m0v21wsh" path="res://assets/textures/calculate_icon/subtract.png" id="8_tta4o"]
-[ext_resource type="Texture2D" uid="uid://cqe132fuf7kgx" path="res://assets/textures/calculate_icon/multiply.png" id="9_m381d"]
-[ext_resource type="Texture2D" uid="uid://5j06mkqew4mr" path="res://assets/textures/calculate_icon/divide.png" id="10_tbm0j"]
-[ext_resource type="Texture2D" uid="uid://84b4s3cbtl8f" path="res://assets/textures/calculate_icon/modulo.png" id="11_02ncs"]
-[ext_resource type="Texture2D" uid="uid://dcfck50no5qe5" path="res://assets/textures/calculate_icon/n-thRoot.png" id="12_805pq"]
-[ext_resource type="Texture2D" uid="uid://cp2bwxljxjual" path="res://assets/textures/calculate_icon/power.png" id="13_7px8l"]
-[ext_resource type="Texture2D" uid="uid://xe2urvlsffj0" path="res://assets/textures/calculate_icon/absoluteValue.png" id="14_yiah2"]
-[ext_resource type="Texture2D" uid="uid://c4mi4r3w0bj0w" path="res://assets/textures/calculate_icon/factorial.png" id="15_4ckoe"]
-[ext_resource type="Texture2D" uid="uid://b0i75dlphj2ww" path="res://assets/textures/calculate_icon/squareRoot.png" id="16_p1yto"]
-[ext_resource type="Texture2D" uid="uid://br8w470lq4i6s" path="res://assets/textures/calculate_icon/floor.png" id="17_bpmof"]
-[ext_resource type="Texture2D" uid="uid://c6oterk4euu5f" path="res://assets/textures/calculate_icon/ceil.png" id="18_0xx8o"]
+[ext_resource type="PackedScene" uid="uid://n8yddofofmd1" path="res://scenes/component/mode_bar/mode_bar.tscn" id="7_2eq3e"]
 [ext_resource type="PackedScene" uid="uid://dt7yo04xxynhw" path="res://scenes/component/deck/deck.tscn" id="18_piecu"]
 [ext_resource type="PackedScene" uid="uid://cgyg3mfyhrryj" path="res://scenes/component/time_bar/time_bar.tscn" id="19_tta4o"]
 
@@ -39,6 +28,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+color = Color(0.101960786, 0.12156863, 0.18039216, 1)
 metadata/_edit_lock_ = true
 
 [node name="Selector" parent="." unique_id=509807042 instance=ExtResource("2_7p84b")]
@@ -139,82 +129,5 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 16
 text = "弃牌"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="." unique_id=384978291]
-custom_minimum_size = Vector2(960, 48)
+[node name="ModeBar" parent="." unique_id=612912570 instance=ExtResource("7_2eq3e")]
 layout_mode = 0
-offset_top = 484.0
-offset_right = 960.0
-offset_bottom = 532.0
-theme_override_constants/separation = 16
-alignment = 1
-
-[node name="AddButton" type="TextureButton" parent="HBoxContainer2" unique_id=1874590975]
-unique_name_in_owner = true
-layout_mode = 2
-texture_normal = ExtResource("7_piecu")
-
-[node name="SubtractButton" type="TextureButton" parent="HBoxContainer2" unique_id=1758166272]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 2
-texture_normal = ExtResource("8_tta4o")
-
-[node name="MultiplyButton" type="TextureButton" parent="HBoxContainer2" unique_id=1018209079]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 2
-texture_normal = ExtResource("9_m381d")
-
-[node name="DivideButton" type="TextureButton" parent="HBoxContainer2" unique_id=1490958461]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 2
-texture_normal = ExtResource("10_tbm0j")
-
-[node name="ModuloButton" type="TextureButton" parent="HBoxContainer2" unique_id=2092539590]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 2
-texture_normal = ExtResource("11_02ncs")
-
-[node name="NthRootButton" type="TextureButton" parent="HBoxContainer2" unique_id=1665867724]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 2
-texture_normal = ExtResource("12_805pq")
-
-[node name="PowerButton" type="TextureButton" parent="HBoxContainer2" unique_id=1197037256]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 2
-texture_normal = ExtResource("13_7px8l")
-
-[node name="AbsoluteValueButton" type="TextureButton" parent="HBoxContainer2" unique_id=1258648017]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 2
-texture_normal = ExtResource("14_yiah2")
-
-[node name="FactorialButton" type="TextureButton" parent="HBoxContainer2" unique_id=414969055]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 2
-texture_normal = ExtResource("15_4ckoe")
-
-[node name="SquareRootButton" type="TextureButton" parent="HBoxContainer2" unique_id=1558690987]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 2
-texture_normal = ExtResource("16_p1yto")
-
-[node name="CeilButton" type="TextureButton" parent="HBoxContainer2" unique_id=118201242]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 2
-texture_normal = ExtResource("17_bpmof")
-
-[node name="FloorButton" type="TextureButton" parent="HBoxContainer2" unique_id=959776843]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 2
-texture_normal = ExtResource("18_0xx8o")
