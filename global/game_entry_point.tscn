@@ -15,6 +15,10 @@
 [ext_resource type="Texture2D" uid="uid://dkgyscpa6f15" path="res://assets/textures/timeBar/progress_blank_texture.png" id="15_d4hg6"]
 [ext_resource type="Texture2D" uid="uid://bno6chga3mr4n" path="res://assets/textures/poker/heart_mask_texture.png" id="15_hjx06"]
 [ext_resource type="Texture2D" uid="uid://cseuaypinj2s0" path="res://assets/textures/poker/diamond_mask_texture.png" id="16_d4hg6"]
+[ext_resource type="Texture2D" uid="uid://dwg8e2aurpr6o" path="res://assets/textures/mode_button/add.png" id="16_k055p"]
+[ext_resource type="Texture2D" uid="uid://jck0m0v21wsh" path="res://assets/textures/mode_button/subtract.png" id="17_k055p"]
+[ext_resource type="Texture2D" uid="uid://cqe132fuf7kgx" path="res://assets/textures/mode_button/multiply.png" id="18_qdo7l"]
+[ext_resource type="Texture2D" uid="uid://5j06mkqew4mr" path="res://assets/textures/mode_button/divide.png" id="19_1y7ah"]
 
 [sub_resource type="Resource" id="Resource_pn3ws"]
 script = ExtResource("3_x37g7")
@@ -79,8 +83,32 @@ TextureKey = 5
 Texture = ExtResource("15_d4hg6")
 metadata/_custom_type_script = "uid://ls8nkxn3gipd"
 
+[sub_resource type="Resource" id="Resource_1y7ah"]
+script = ExtResource("14_hjx06")
+TextureKey = 6
+Texture = ExtResource("16_k055p")
+metadata/_custom_type_script = "uid://ls8nkxn3gipd"
+
+[sub_resource type="Resource" id="Resource_nxcnk"]
+script = ExtResource("14_hjx06")
+TextureKey = 7
+Texture = ExtResource("17_k055p")
+metadata/_custom_type_script = "uid://ls8nkxn3gipd"
+
+[sub_resource type="Resource" id="Resource_ncbsq"]
+script = ExtResource("14_hjx06")
+TextureKey = 8
+Texture = ExtResource("18_qdo7l")
+metadata/_custom_type_script = "uid://ls8nkxn3gipd"
+
+[sub_resource type="Resource" id="Resource_t3o0b"]
+script = ExtResource("14_hjx06")
+TextureKey = 9
+Texture = ExtResource("19_1y7ah")
+metadata/_custom_type_script = "uid://ls8nkxn3gipd"
+
 [node name="GameEntryPoint" type="Node" unique_id=729277825]
 script = ExtResource("1_a14y6")
 UiPageConfigs = Array[Object]([SubResource("Resource_pn3ws"), SubResource("Resource_f22d5"), SubResource("Resource_inr81"), SubResource("Resource_1yddw")])
 GameSceneConfigs = Array[Object]([SubResource("Resource_iumd8")])
-TextureConfigs = Array[Object]([SubResource("Resource_gktnk"), SubResource("Resource_cia4t"), SubResource("Resource_fgqit"), SubResource("Resource_d4hg6"), SubResource("Resource_k055p"), SubResource("Resource_qdo7l")])
+TextureConfigs = Array[Object]([SubResource("Resource_gktnk"), SubResource("Resource_cia4t"), SubResource("Resource_fgqit"), SubResource("Resource_d4hg6"), SubResource("Resource_k055p"), SubResource("Resource_qdo7l"), SubResource("Resource_1y7ah"), SubResource("Resource_nxcnk"), SubResource("Resource_ncbsq"), SubResource("Resource_t3o0b")])
