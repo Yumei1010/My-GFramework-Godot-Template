@@ -5,6 +5,7 @@ using GFramework.Game.architecture;
 using GFramework.Game.setting;
 using GFramework.Godot.setting;
 using GFramework.Godot.setting.data;
+using TimeToTwentyfour.scripts.model.color;
 using TimeToTwentyfour.scripts.model.player;
 using TimeToTwentyfour.scripts.setting;
 
@@ -41,5 +42,8 @@ public class ModelModule : AbstractModule
         
         // 注册玩家模型
         architecture.RegisterModel(new PlayerModel());
+
+        // 注册色彩方案模型
+        architecture.RegisterModel(new ColorSchemeModel());
     }
 }
