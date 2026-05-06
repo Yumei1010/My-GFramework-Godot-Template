@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcfck50no5qe5"
-path="res://.godot/imported/n-thRoot.png-c09c0523e7ed26dc3ed7f3f6ad0be615.ctex"
+uid="uid://dwg8e2aurpr6o"
+path="res://.godot/imported/add.png-c55610ac54bbe0d1d2c6743ed65327f0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/calculate_icon/n-thRoot.png"
-dest_files=["res://.godot/imported/n-thRoot.png-c09c0523e7ed26dc3ed7f3f6ad0be615.ctex"]
+source_file="res://assets/textures/mode_button/add.png"
+dest_files=["res://.godot/imported/add.png-c55610ac54bbe0d1d2c6743ed65327f0.ctex"]
 
 [params]
 

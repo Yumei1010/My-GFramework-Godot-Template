@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4mi4r3w0bj0w"
-path="res://.godot/imported/factorial.png-f52d2fb12498236cde18f06520446b24.ctex"
+uid="uid://5j06mkqew4mr"
+path="res://.godot/imported/divide.png-3db9a0537ec4088a987f52b2ed377fb1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/calculate_icon/factorial.png"
-dest_files=["res://.godot/imported/factorial.png-f52d2fb12498236cde18f06520446b24.ctex"]
+source_file="res://assets/textures/mode_button/divide.png"
+dest_files=["res://.godot/imported/divide.png-3db9a0537ec4088a987f52b2ed377fb1.ctex"]
 
 [params]
 

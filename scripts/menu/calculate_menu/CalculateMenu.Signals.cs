@@ -1,7 +1,6 @@
 using GFramework.Core.extensions;
 using TimeToTwentyfour.scripts.cqrs.deck.@event;
 using TimeToTwentyfour.scripts.cqrs.selector.@event;
-using TimeToTwentyfour.scripts.enums.calculator;
 using Godot;
 
 namespace TimeToTwentyfour.scripts.menu.calculate_menu;
@@ -16,12 +15,6 @@ public partial class CalculateMenu
         DiscardButton.ButtonDown += OnButtonDownDiscardButton;
         SortBySuitButton.ButtonDown += OnButtonDownSortBySuitButton;
         SortByRankButton.ButtonDown += OnButtonDownSortByRankButton;
-
-        foreach (var modeType in Enum.GetValues<ModeType>())
-        {
-            var button = GetNode<TextureButton>($"%{modeType}Button");
-            button.ButtonDown += () => Calculator.ChangeTo(modeType);
-        }
     }
 
     private void OnButtonDownSelectButton()

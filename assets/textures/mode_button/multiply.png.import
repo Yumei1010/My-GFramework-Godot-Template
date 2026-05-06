@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://84b4s3cbtl8f"
-path="res://.godot/imported/modulo.png-e712f559c02cd99750ee726267c86ddb.ctex"
+uid="uid://cqe132fuf7kgx"
+path="res://.godot/imported/multiply.png-5165b9431ed9036e0bc082e90cc9c534.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/calculate_icon/modulo.png"
-dest_files=["res://.godot/imported/modulo.png-e712f559c02cd99750ee726267c86ddb.ctex"]
+source_file="res://assets/textures/mode_button/multiply.png"
+dest_files=["res://.godot/imported/multiply.png-5165b9431ed9036e0bc082e90cc9c534.ctex"]
 
 [params]
 

@@ -3,14 +3,15 @@
 public enum TextureKey
 {
     PokerSurfaceHeartMaskTexture,
-    
     PokerSurfaceDiamondMaskTexture,
-    
     PokerSurfaceSpadeMaskTexture,
-    
     PokerSurfaceClubMaskTexture,
-    
     PokerShadowTexture,
     
-    TimeBarProgressBlankTexture
+    TimeBarProgressBlankTexture,
+
+    ModeButtonAddTexture,
+    ModeButtonSubtractTexture,
+    ModeButtonMultiplyTexture,
+    ModeButtonDivideTexture
 }

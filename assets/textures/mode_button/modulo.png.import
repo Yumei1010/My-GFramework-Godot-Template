@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cp2bwxljxjual"
-path="res://.godot/imported/power.png-b05978b4e70a0e27ccdc6ae1b4708db2.ctex"
+uid="uid://84b4s3cbtl8f"
+path="res://.godot/imported/modulo.png-863d5fbfb8a03d70a957ca6cf6b8847f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/calculate_icon/power.png"
-dest_files=["res://.godot/imported/power.png-b05978b4e70a0e27ccdc6ae1b4708db2.ctex"]
+source_file="res://assets/textures/mode_button/modulo.png"
+dest_files=["res://.godot/imported/modulo.png-863d5fbfb8a03d70a957ca6cf6b8847f.ctex"]
 
 [params]
 

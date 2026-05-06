@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqe132fuf7kgx"
-path="res://.godot/imported/multiply.png-031e2fcdc80dc889accb232b1a7c59c2.ctex"
+uid="uid://c6oterk4euu5f"
+path="res://.godot/imported/ceil.png-675e26a08ea605de7325f568720f49b1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/calculate_icon/multiply.png"
-dest_files=["res://.godot/imported/multiply.png-031e2fcdc80dc889accb232b1a7c59c2.ctex"]
+source_file="res://assets/textures/mode_button/ceil.png"
+dest_files=["res://.godot/imported/ceil.png-675e26a08ea605de7325f568720f49b1.ctex"]
 
 [params]
 

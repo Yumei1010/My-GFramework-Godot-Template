@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6oterk4euu5f"
-path="res://.godot/imported/ceil.png-eca41d5dcac5a87a690196b750bf06ee.ctex"
+uid="uid://b0i75dlphj2ww"
+path="res://.godot/imported/squareRoot.png-fb64337b0212d88d105b97ec6ed018b3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/calculate_icon/ceil.png"
-dest_files=["res://.godot/imported/ceil.png-eca41d5dcac5a87a690196b750bf06ee.ctex"]
+source_file="res://assets/textures/mode_button/squareRoot.png"
+dest_files=["res://.godot/imported/squareRoot.png-fb64337b0212d88d105b97ec6ed018b3.ctex"]
 
 [params]
 
