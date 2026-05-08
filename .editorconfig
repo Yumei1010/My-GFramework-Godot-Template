@@ -2,3 +2,6 @@ root = true
 
 [*]
 charset = utf-8
+
+# CS8602: 解引用可能出现空引用。
+dotnet_diagnostic.CS8602.severity = none
