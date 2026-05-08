@@ -4,13 +4,13 @@ using TimeToTwentyfour.scripts.model.player;
 
 namespace TimeToTwentyfour.scripts.cqrs.player.command;
 
-public class PlayerIncreaseTimeCommand : AbstractCommand
+public class PlayerDecreaseCurrentTotalTimeCommand : AbstractCommand
 {
-    public double TimeToIncrease { get; init; }
+    public double TimeToDecrease { get; init; }
     
     protected override void OnExecute()
     {
         var model = this.GetModel<PlayerModel>()!;
-        model.TotalTime += TimeToIncrease;
+        model.CurrentTotalTime -= TimeToDecrease;
     }
 }
