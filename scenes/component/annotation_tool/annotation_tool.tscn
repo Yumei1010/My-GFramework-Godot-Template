@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bq1pllyyqmpqf"]
+
+[ext_resource type="Script" uid="uid://c0d3n8w2b5k7m" path="res://scripts/component/annotation_tool/AnnotationTool.cs" id="1_203hp"]
+
+[node name="AnnotationTool" type="Control" unique_id=966395094]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_203hp")
