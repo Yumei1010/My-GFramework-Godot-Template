@@ -1,5 +1,6 @@
 using GFramework.Core.extensions;
 using Godot;
+using TimeToTwentyfour.scripts.component.calculator.mode;
 using TimeToTwentyfour.scripts.enums.annotation_tool;
 using TimeToTwentyfour.scripts.model.annotation_tool;
 
@@ -18,6 +19,7 @@ public partial class AnnotationTool
         CircleToolButton.ButtonDown += OnButtonDownCircleToolButton;
         EraserToolButton.ButtonDown += OnButtonDownEraserToolButton;
         ToolWidthSlider.ValueChanged += OnValueChangedToolWidthSlider;
+        PanelButton.ButtonDown += OnButtonDownPanelButton;
     }
 
     private void OnButtonDownFreehandToolButton()
@@ -62,6 +64,32 @@ public partial class AnnotationTool
 
     private void OnValueChangedToolWidthSlider(double value)
     {
-        Model.ToolWidth = (float)value;
+        _model.ToolWidth = (float)value;
+    }
+
+    private void OnButtonDownPanelButton()
+    {
+        if (_opening)
+        {
+            if (!_tween.IsNull() && _tween.IsRunning()) _tween.Kill();
+            
+                _tween = CreateTween().SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Elastic);
+                _tween.TweenProperty( ToolRect, "position", new Vector2(-256,64), 0.5f);
+
+            _opening = false;
+            _model.Enabled = false;
+            _mousePos = Vector2.Zero;
+            QueueRedraw();
+        }
+        else
+        {
+            if (!_tween.IsNull() && _tween.IsRunning()) _tween.Kill();
+
+                _tween = CreateTween().SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Elastic);
+                _tween.TweenProperty( ToolRect, "position", new Vector2(0,64), 0.5f);
+
+            _opening = true;
+            _model.Enabled = true;
+        }
     }
 }

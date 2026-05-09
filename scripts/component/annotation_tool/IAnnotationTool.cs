@@ -8,5 +8,10 @@ namespace TimeToTwentyfour.scripts.component.annotation_tool;
 /// </summary>
 public partial interface IAnnotationTool
 {
+    
+    /// <summary>
+    ///     切换当前绘制工具
+    /// </summary> 
+    /// <param name="tool">要切换到的工具类型 <see cref="AnnotationToolType"/></param>
     void ChangeTo(AnnotationToolType tool);
 }

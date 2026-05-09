@@ -1,4 +1,3 @@
-using GFramework.Core.extensions;
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
 using Godot;
@@ -21,12 +20,9 @@ public partial class AnnotationTool : Control, IAnnotationTool
         RegisterEvent();
     }
 
-    /// <summary>
-    ///     切换当前绘制工具
-    /// </summary>
     public void ChangeTo(AnnotationToolType tool)
     {
-        Model.CurrentTool = tool;
+        _model.CurrentTool = tool;
     }
 
     public override void _Draw()
@@ -47,20 +43,9 @@ public partial class AnnotationTool : Control, IAnnotationTool
         DrawCursorIndicator();
     }
 
-    private void DrawCursorIndicator()
-    {
-        if (_mousePos == Vector2.Zero)
-            return;
-
-        if (Model.CurrentTool == AnnotationToolType.Eraser)
-            DrawCircle(_mousePos, Model.ToolWidth, new Color(1, 1, 1, 0.3f), false, 1.0f);
-        else
-            DrawCircle(_mousePos, Model.ToolWidth / 2.0f, new Color(_color, 0.4f));
-    }
-
     public override void _Input(InputEvent @event)
     {
-        if (!Model.Enabled)
+        if (!_model.Enabled)
         {
             _drawing = false;
             return;
@@ -88,27 +73,38 @@ public partial class AnnotationTool : Control, IAnnotationTool
         }
     }
 
+    private void DrawCursorIndicator()
+    {
+        if (!_model.Enabled || _mousePos == Vector2.Zero)
+            return;
+
+        if (_model.CurrentTool == AnnotationToolType.Eraser)
+            DrawCircle(_mousePos, _model.ToolWidth, new Color(1, 1, 1, 0.3f), false, 1.0f);
+        else
+            DrawCircle(_mousePos, _model.ToolWidth / 2.0f, new Color(_color, 0.4f));
+    }
+
     private void OnDrawStart(Vector2 p)
     {
-        switch (Model.CurrentTool)
+        switch (_model.CurrentTool)
         {
             case AnnotationToolType.Line:
-                var line = new LineElement { Start = p, End = p, Color = _color, Width = Model.ToolWidth };
+                var line = new LineElement { Start = p, End = p, Color = _color, Width = _model.ToolWidth };
                 _lines.Add(line);
                 _currentElement = line;
                 break;
             case AnnotationToolType.Circle:
-                var circle = new CircleElement { Center = p, Radius = 0.0f, Color = _color, Width = Model.ToolWidth };
+                var circle = new CircleElement { Center = p, Radius = 0.0f, Color = _color, Width = _model.ToolWidth };
                 _circles.Add(circle);
                 _currentElement = circle;
                 break;
             case AnnotationToolType.Rect:
-                var rect = new RectElement { TopLeft = p, BottomRight = p, Color = _color, Width = Model.ToolWidth };
+                var rect = new RectElement { TopLeft = p, BottomRight = p, Color = _color, Width = _model.ToolWidth };
                 _rects.Add(rect);
                 _currentElement = rect;
                 break;
             case AnnotationToolType.Freehand:
-                var freehand = new FreehandLine { Color = _color, Width = Model.ToolWidth };
+                var freehand = new FreehandLine { Color = _color, Width = _model.ToolWidth };
                 freehand.Points.Add(p);
                 _freehandLines.Add(freehand);
                 _currentElement = freehand;
@@ -140,7 +136,7 @@ public partial class AnnotationTool : Control, IAnnotationTool
                 freehand.Points.Add(p);
                 QueueRedraw();
                 break;
-            case null when Model.CurrentTool == AnnotationToolType.Eraser:
+            case null when _model.CurrentTool == AnnotationToolType.Eraser:
                 Erase(p);
                 break;
         }
@@ -148,7 +144,7 @@ public partial class AnnotationTool : Control, IAnnotationTool
 
     private void Erase(Vector2 mousePos)
     {
-        var r = Model.ToolWidth;
+        var r = _model.ToolWidth;
 
         for (int i = _lines.Count - 1; i >= 0; i--)
         {
