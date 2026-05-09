@@ -1,3 +1,4 @@
+using GFramework.Core.extensions;
 using TimeToTwentyfour.global;
 using TimeToTwentyfour.scripts.component.pokerFactory;
 using TimeToTwentyfour.scripts.enums.poker;
@@ -6,6 +7,7 @@ using TimeToTwentyfour.scripts.component.calculator;
 using TimeToTwentyfour.scripts.component.deck;
 using TimeToTwentyfour.scripts.component.selector;
 using TimeToTwentyfour.scripts.component.timeBar;
+using TimeToTwentyfour.scripts.model.pileModel;
 
 namespace TimeToTwentyfour.scripts.menu.calculate_menu;
 
@@ -28,18 +30,24 @@ public partial class CalculateMenu
         await GameEntryPoint.Architecture.WaitUntilReadyAsync().ConfigureAwait(false);
 
         // TODO: 替换为正式的发牌/关卡系统
-        CreateTest();
+        DealTest();
     }
 
-    /// <summary>临时测试脚手架：启动 120 秒计时器并发 4 张测试牌。</summary>
-    private void CreateTest()
+    /// <summary>简易发牌测试：从抽牌堆随机取 4 张牌并加入牌桌。</summary>
+    private void DealTest()
     {
         TimeBar.Start(120f);
         TimeBar.TimeScale = 1f;
 
-        Deck.Add(PokerFactory.Product(SuitType.Heart, "20"));
-        Deck.Add(PokerFactory.Product(SuitType.Diamond, "4"));
-        Deck.Add(PokerFactory.Product(SuitType.Spade, "6"));
-        Deck.Add(PokerFactory.Product(SuitType.Club, "8"));
+        var drawPile = this.GetModel<DrawPileModel>();
+        var handPile = this.GetModel<HandPileModel>();
+
+        for (int i = 0; i < 4; i++)
+        {
+            var card = drawPile.GetRandomCard();
+            drawPile.RemoveCard(card);
+            handPile.AddCard(card);
+            Deck.Add(PokerFactory.Product(card));
+        }
     }
 }

@@ -60,6 +60,7 @@ grow_vertical = 2
 
 [node name="SurfaceRect" type="TextureRect" parent="." unique_id=341902432]
 unique_name_in_owner = true
+visible = false
 material = SubResource("ShaderMaterial_pa15o")
 custom_minimum_size = Vector2(96, 144)
 layout_mode = 1

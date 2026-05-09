@@ -6,7 +6,7 @@
         <RootNamespace>TimeToTwentyfour</RootNamespace>
         <Nullable>enable</Nullable>
         <LangVersion>preview</LangVersion>
-        <NoWarn>CS8602</NoWarn>
+        <NoWarn>CS8601;CS8602;MA0011;MA0016</NoWarn>
     </PropertyGroup>
     <ItemGroup>
         <Compile Remove="script_templates\**" />
@@ -64,5 +64,6 @@
     </ItemGroup>
     <ItemGroup>
       <Folder Include="scripts\menu\map_menu\" />
+      <Folder Include="scripts\model\pileModel\" />
     </ItemGroup>
 </Project>

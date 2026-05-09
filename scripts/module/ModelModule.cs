@@ -7,6 +7,7 @@ using GFramework.Godot.setting;
 using GFramework.Godot.setting.data;
 using TimeToTwentyfour.scripts.model.annotation_tool;
 using TimeToTwentyfour.scripts.model.color;
+using TimeToTwentyfour.scripts.model.pileModel;
 using TimeToTwentyfour.scripts.model.player;
 using TimeToTwentyfour.scripts.setting;
 
@@ -49,5 +50,14 @@ public class ModelModule : AbstractModule
 
         // 注册标注工具模型
         architecture.RegisterModel(new AnnotationToolModel());
+
+        // 注册抽牌堆模型
+        architecture.RegisterModel(new DrawPileModel());
+
+        // 注册手牌堆模型
+        architecture.RegisterModel(new HandPileModel());
+
+        // 注册弃牌堆模型
+        architecture.RegisterModel(new DiscardPileModel());
     }
 }

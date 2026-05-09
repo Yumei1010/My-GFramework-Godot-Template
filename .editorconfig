@@ -7,5 +7,7 @@ charset = utf-8
 dotnet_diagnostic.CS8601.severity = none
 # CS8602: 解引用可能出现空引用。
 dotnet_diagnostic.CS8602.severity = none
+# MA0011: 使用带有 IFormatProvider 参数的 ToString 重载。
+dotnet_diagnostic.MA0011.severity = none
 # MA0016: 优先使用集合抽象而非具体实现。
 dotnet_diagnostic.MA0016.severity = none

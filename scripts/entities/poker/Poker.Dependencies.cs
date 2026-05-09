@@ -18,7 +18,17 @@ public partial class Poker
 
     [ExportGroup("Style")]
     [ExportSubgroup("Suit")]
-    [Export] public SuitType SuitType { get; set; } = SuitType.Heart;
+    private SuitType _suitType = SuitType.Heart;
+    [Export] public SuitType SuitType
+    {
+        get => _suitType;
+        set
+        {
+            _suitType = value;
+            if (IsNodeReady())
+                UpdateSurfaceRect();
+        }
+    }
 
     [ExportSubgroup("Value")]
     private string _numValue = "24";
@@ -29,6 +39,8 @@ public partial class Poker
         {
             _numValue = value;
             NumType = DetectNumType(value);
+            if (IsNodeReady())
+                UpdateNumValueLabel();
         }
     }
     [Export] public NumType NumType { get; set; } = NumType.Integer;

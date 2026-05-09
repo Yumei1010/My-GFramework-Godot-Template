@@ -27,6 +27,12 @@ public partial class Poker
         {
             OnReserveResultChangedEvent(e.NumValue, e.IsHidden, e.Poker);
         }).UnRegisterWhenNodeExitTree(this);
+
+        // 注册对卡牌模型数据变更事件的监听
+        this.RegisterEvent<CardChangedEvent>(e =>
+        {
+            OnCardChangedEvent(e.Id, e.SuitType, e.NumValue, e.NumType);
+        }).UnRegisterWhenNodeExitTree(this);
     }
 
     private void OnSelectorEnableChangedEvent(bool enable)
@@ -46,7 +52,14 @@ public partial class Poker
         if (poker != this) return;
 
         ReserveResultRect.Visible = visible;
-        
         ReserveResultLabel.Text = numValue;
+    }
+
+    private void OnCardChangedEvent(Guid id ,SuitType suitType, String numValue, NumType numType)
+    {
+        if (id != Id) return;
+        SuitType = suitType;
+        NumValue = numValue;
+        NumType = numType;
     }
 }

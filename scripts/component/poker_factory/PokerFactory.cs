@@ -2,6 +2,7 @@
 using Godot;
 using TimeToTwentyfour.scripts.entities.poker;
 using TimeToTwentyfour.scripts.enums.poker;
+using TimeToTwentyfour.scripts.model.pileModel;
 
 namespace TimeToTwentyfour.scripts.component.pokerFactory;
 
@@ -24,6 +25,17 @@ public partial class PokerFactory : Node, IPokerFactory
         poker.SuitType = suitType;
         poker.NumValue = numValue;
         poker.NumType = numType;
+        return poker;
+    }
+
+    /// <summary>从牌面数据创建扑克实体实例，自动关联 Id 以支持模型同步。</summary>
+    public IPoker Product(Card card)
+    {
+        var poker = (Poker)Product();
+        poker.Id = card.Id;
+        poker.SuitType = card.SuitType;
+        poker.NumValue = card.NumValue;
+        poker.NumType = card.NumType;
         return poker;
     }
 }

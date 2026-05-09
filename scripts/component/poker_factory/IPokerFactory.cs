@@ -1,5 +1,6 @@
 ﻿using TimeToTwentyfour.scripts.entities.poker;
 using TimeToTwentyfour.scripts.enums.poker;
+using TimeToTwentyfour.scripts.model.pileModel;
 
 namespace TimeToTwentyfour.scripts.component.pokerFactory;
 
@@ -22,4 +23,11 @@ public interface IPokerFactory
     /// <param name="numType">数值类型，默认 <see cref="NumType.Integer"/></param>
     /// <returns>已配置的扑克实例 <see cref="IPoker"/></returns>
     IPoker Product(SuitType suitType, string numValue, NumType numType = NumType.Integer);
+
+    /// <summary>
+    ///     从 <see cref="Card"/> 数据创建扑克实体实例，自动关联 Id。
+    /// </summary>
+    /// <param name="card">牌面数据 <see cref="Card"/></param>
+    /// <returns>已配置且 Id 关联的扑克实例 <see cref="IPoker"/></returns>
+    IPoker Product(Card card);
 }
