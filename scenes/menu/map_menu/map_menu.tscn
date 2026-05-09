@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://7eco1betjeg7"]
 
 [ext_resource type="PackedScene" uid="uid://7s002k1wmlca" path="res://scenes/component/circle_container/circle_container.tscn" id="1_2b70a"]
+[ext_resource type="Script" uid="uid://1e3k37r60tl" path="res://scripts/menu/map_menu/MapMenu.cs" id="1_123ph"]
 
 [node name="MapMenu" type="Control" unique_id=1901532109]
 layout_mode = 3
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_123ph")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=553128704]
 
@@ -24,12 +26,13 @@ color = Color(0.101960786, 0.12156863, 0.18039216, 1)
 metadata/_edit_lock_ = true
 
 [node name="CircleContainer" parent="." unique_id=1801676345 instance=ExtResource("1_2b70a")]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 480.0
 offset_top = 270.0
 offset_right = 480.0
 offset_bottom = 270.0
-radius = 200.0
+radius = 250.0
 
 [node name="ColorRect" type="ColorRect" parent="CircleContainer" unique_id=470554123]
 custom_minimum_size = Vector2(20, 20)

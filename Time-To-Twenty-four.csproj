@@ -62,4 +62,7 @@
             <_Parameter1>Time-To-Twenty-four.Tests</_Parameter1>
         </AssemblyAttribute>
     </ItemGroup>
+    <ItemGroup>
+      <Folder Include="scripts\menu\map_menu\" />
+    </ItemGroup>
 </Project>
