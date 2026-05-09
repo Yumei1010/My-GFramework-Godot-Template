@@ -19,6 +19,11 @@
 [ext_resource type="Texture2D" uid="uid://jck0m0v21wsh" path="res://assets/textures/mode_button/subtract.png" id="17_k055p"]
 [ext_resource type="Texture2D" uid="uid://cqe132fuf7kgx" path="res://assets/textures/mode_button/multiply.png" id="18_qdo7l"]
 [ext_resource type="Texture2D" uid="uid://5j06mkqew4mr" path="res://assets/textures/mode_button/divide.png" id="19_1y7ah"]
+[ext_resource type="Texture2D" uid="uid://bx6ma0njm6jol" path="res://assets/textures/annotation_tool/annotation_tool_freehand_icon_texture.png" id="20_gktnk"]
+[ext_resource type="Texture2D" uid="uid://leep5f5mdium" path="res://assets/textures/annotation_tool/annotation_tool_line_icon_texture.png" id="21_cia4t"]
+[ext_resource type="Texture2D" uid="uid://c3olm6ormnx3b" path="res://assets/textures/annotation_tool/annotation_tool_rect_icon_texture.png" id="22_t3o0b"]
+[ext_resource type="Texture2D" uid="uid://c50j0vcid4twm" path="res://assets/textures/annotation_tool/annotation_tool_circle_icon_texture.png" id="23_iygyk"]
+[ext_resource type="Texture2D" uid="uid://cyp5wjr4scyor" path="res://assets/textures/annotation_tool/annotation_tool_eraser_icon_texture.png" id="24_8pd7l"]
 
 [sub_resource type="Resource" id="Resource_pn3ws"]
 script = ExtResource("3_x37g7")
@@ -107,8 +112,38 @@ TextureKey = 9
 Texture = ExtResource("19_1y7ah")
 metadata/_custom_type_script = "uid://ls8nkxn3gipd"
 
+[sub_resource type="Resource" id="Resource_iygyk"]
+script = ExtResource("14_hjx06")
+TextureKey = 10
+Texture = ExtResource("20_gktnk")
+metadata/_custom_type_script = "uid://ls8nkxn3gipd"
+
+[sub_resource type="Resource" id="Resource_8pd7l"]
+script = ExtResource("14_hjx06")
+TextureKey = 11
+Texture = ExtResource("21_cia4t")
+metadata/_custom_type_script = "uid://ls8nkxn3gipd"
+
+[sub_resource type="Resource" id="Resource_cqeab"]
+script = ExtResource("14_hjx06")
+TextureKey = 12
+Texture = ExtResource("22_t3o0b")
+metadata/_custom_type_script = "uid://ls8nkxn3gipd"
+
+[sub_resource type="Resource" id="Resource_kcrt4"]
+script = ExtResource("14_hjx06")
+TextureKey = 13
+Texture = ExtResource("23_iygyk")
+metadata/_custom_type_script = "uid://ls8nkxn3gipd"
+
+[sub_resource type="Resource" id="Resource_3tdmm"]
+script = ExtResource("14_hjx06")
+TextureKey = 14
+Texture = ExtResource("24_8pd7l")
+metadata/_custom_type_script = "uid://ls8nkxn3gipd"
+
 [node name="GameEntryPoint" type="Node" unique_id=729277825]
 script = ExtResource("1_a14y6")
 UiPageConfigs = Array[Object]([SubResource("Resource_pn3ws"), SubResource("Resource_f22d5"), SubResource("Resource_inr81"), SubResource("Resource_1yddw")])
 GameSceneConfigs = Array[Object]([SubResource("Resource_iumd8")])
-TextureConfigs = Array[Object]([SubResource("Resource_gktnk"), SubResource("Resource_cia4t"), SubResource("Resource_fgqit"), SubResource("Resource_d4hg6"), SubResource("Resource_k055p"), SubResource("Resource_qdo7l"), SubResource("Resource_1y7ah"), SubResource("Resource_nxcnk"), SubResource("Resource_ncbsq"), SubResource("Resource_t3o0b")])
+TextureConfigs = Array[Object]([SubResource("Resource_gktnk"), SubResource("Resource_cia4t"), SubResource("Resource_fgqit"), SubResource("Resource_d4hg6"), SubResource("Resource_k055p"), SubResource("Resource_qdo7l"), SubResource("Resource_1y7ah"), SubResource("Resource_nxcnk"), SubResource("Resource_ncbsq"), SubResource("Resource_t3o0b"), SubResource("Resource_iygyk"), SubResource("Resource_8pd7l"), SubResource("Resource_cqeab"), SubResource("Resource_kcrt4"), SubResource("Resource_3tdmm")])

@@ -7,17 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://c50j0vcid4twm" path="res://assets/textures/annotation_tool/annotation_tool_circle_icon_texture.png" id="5_88t7s"]
 [ext_resource type="Texture2D" uid="uid://cyp5wjr4scyor" path="res://assets/textures/annotation_tool/annotation_tool_eraser_icon_texture.png" id="6_dbltu"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_88t7s"]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dbltu"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3rxw4"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fkvi2"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_apqxd"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y6tgp"]
 
 [node name="AnnotationTool" type="Control" unique_id=966395094]
 layout_mode = 3
@@ -27,7 +19,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_203hp")
-Enabled = true
 
 [node name="ToolRect" type="TextureRect" parent="." unique_id=195106567]
 unique_name_in_owner = true
@@ -35,10 +26,10 @@ layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.59300005
 anchor_right = 0.26700002
-anchor_bottom = 0.88900006
+anchor_bottom = 0.859
 offset_top = -0.22003174
 offset_right = -0.32000732
-offset_bottom = -0.060028076
+offset_bottom = 0.13998413
 
 [node name="MarginContainer" type="MarginContainer" parent="ToolRect" unique_id=1944493377]
 layout_mode = 1
@@ -134,20 +125,10 @@ unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("6_dbltu")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ToolRect/MarginContainer/VBoxContainer" unique_id=763495188]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="StrokeWidthSlider" type="HSlider" parent="ToolRect/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1765406668]
+[node name="ToolWidthSlider" type="HSlider" parent="ToolRect/MarginContainer/VBoxContainer" unique_id=1765406668]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_styles/slider = SubResource("StyleBoxEmpty_88t7s")
 theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_dbltu")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_3rxw4")
-
-[node name="EraserRadiusSlider" type="HSlider" parent="ToolRect/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1449556237]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_styles/slider = SubResource("StyleBoxEmpty_fkvi2")
-theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_apqxd")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_y6tgp")
+min_value = 2.0
+value = 2.0

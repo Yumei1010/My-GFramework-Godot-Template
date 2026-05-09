@@ -13,5 +13,11 @@ public enum TextureKey
     ModeButtonAddTexture,
     ModeButtonSubtractTexture,
     ModeButtonMultiplyTexture,
-    ModeButtonDivideTexture
+    ModeButtonDivideTexture,
+
+    AnnotationToolFreehandIconTexture,
+    AnnotationToolLineIconTexture,
+    AnnotationToolRectIconTexture,
+    AnnotationToolCircleIconTexture,
+    AnnotationToolEraserIconTexture,
 }

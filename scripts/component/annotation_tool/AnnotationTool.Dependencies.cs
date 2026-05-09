@@ -1,5 +1,7 @@
+using GFramework.Core.extensions;
 using Godot;
 using TimeToTwentyfour.global;
+using TimeToTwentyfour.scripts.model.annotation_tool;
 
 namespace TimeToTwentyfour.scripts.component.annotation_tool;
 
@@ -14,11 +16,12 @@ public partial class AnnotationTool
     private TextureButton RectToolButton => GetNode<TextureButton>("%RectToolButton");
     private TextureButton CircleToolButton => GetNode<TextureButton>("%CircleToolButton");
     private TextureButton EraserToolButton => GetNode<TextureButton>("%EraserToolButton");
-    private HSlider StrokeWidthSlider => GetNode<HSlider>("%StrokeWidthSlider");
-    private HSlider EraserRadiusSlider => GetNode<HSlider>("%EraserRadiusSlider");
+    private HSlider ToolWidthSlider => GetNode<HSlider>("%ToolWidthSlider");
 
     private async Task ReadyAsync()
     {
         await GameEntryPoint.Architecture.WaitUntilReadyAsync().ConfigureAwait(false);
+
+        Model = this.GetModel<AnnotationToolModel>();
     }
 }

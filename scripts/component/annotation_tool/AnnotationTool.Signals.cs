@@ -1,5 +1,7 @@
+using GFramework.Core.extensions;
 using Godot;
 using TimeToTwentyfour.scripts.enums.annotation_tool;
+using TimeToTwentyfour.scripts.model.annotation_tool;
 
 namespace TimeToTwentyfour.scripts.component.annotation_tool;
 
@@ -15,8 +17,7 @@ public partial class AnnotationTool
         RectToolButton.ButtonDown += OnButtonDownRectToolButton;
         CircleToolButton.ButtonDown += OnButtonDownCircleToolButton;
         EraserToolButton.ButtonDown += OnButtonDownEraserToolButton;
-        StrokeWidthSlider.ValueChanged += OnValueChangedStrokeWidthSlider;
-        EraserRadiusSlider.ValueChanged += OnValueChangedEraserRadiusSlider;
+        ToolWidthSlider.ValueChanged += OnValueChangedToolWidthSlider;
     }
 
     private void OnButtonDownFreehandToolButton()
@@ -59,13 +60,8 @@ public partial class AnnotationTool
         _color = Colors.White;
     }
 
-    private void OnValueChangedStrokeWidthSlider(double value)
+    private void OnValueChangedToolWidthSlider(double value)
     {
-        StrokeWidth = (float)value;
-    }
-
-    private void OnValueChangedEraserRadiusSlider(double value)
-    {
-        EraserRadius = (float)value;
+        Model.ToolWidth = (float)value;
     }
 }

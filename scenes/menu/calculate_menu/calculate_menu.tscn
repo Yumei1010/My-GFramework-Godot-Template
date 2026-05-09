@@ -32,6 +32,9 @@ mouse_filter = 2
 color = Color(0.101960786, 0.12156863, 0.18039216, 1)
 metadata/_edit_lock_ = true
 
+[node name="AnnotationTool" parent="." unique_id=966395094 instance=ExtResource("5_gybbb")]
+layout_mode = 1
+
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1530911694]
 layout_mode = 1
 anchors_preset = -1
@@ -98,9 +101,6 @@ unique_name_in_owner = true
 
 [node name="PokerFactory" parent="." unique_id=1042755059 instance=ExtResource("2_liykc")]
 unique_name_in_owner = true
-
-[node name="AnnotationTool" parent="." unique_id=966395094 instance=ExtResource("5_gybbb")]
-layout_mode = 1
 
 [node name="TimeBar" parent="." unique_id=297301655 instance=ExtResource("19_tta4o")]
 unique_name_in_owner = true
