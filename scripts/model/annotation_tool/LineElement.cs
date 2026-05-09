@@ -6,4 +6,6 @@ public sealed class LineElement
 {
     public Vector2 Start { get; set; }
     public Vector2 End { get; set; }
+    public Color Color { get; set; }
+    public float Width { get; set; }
 }

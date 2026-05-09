@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bpbtaiebu5bsb" path="res://scenes/component/Selector/selector.tscn" id="2_7p84b"]
 [ext_resource type="PackedScene" uid="uid://cva1w4wvphhmi" path="res://scenes/component/poker_factory/poker_factory.tscn" id="2_liykc"]
 [ext_resource type="PackedScene" uid="uid://cp6rsci2mqjsr" path="res://scenes/component/calculator/calculator.tscn" id="3_pjsn5"]
+[ext_resource type="PackedScene" uid="uid://bq1pllyyqmpqf" path="res://scenes/component/annotation_tool/annotation_tool.tscn" id="5_gybbb"]
 [ext_resource type="PackedScene" uid="uid://n8yddofofmd1" path="res://scenes/component/mode_bar/mode_bar.tscn" id="7_2eq3e"]
 [ext_resource type="PackedScene" uid="uid://dt7yo04xxynhw" path="res://scenes/component/deck/deck.tscn" id="18_piecu"]
 [ext_resource type="PackedScene" uid="uid://cgyg3mfyhrryj" path="res://scenes/component/time_bar/time_bar.tscn" id="19_tta4o"]
@@ -97,6 +98,9 @@ unique_name_in_owner = true
 
 [node name="PokerFactory" parent="." unique_id=1042755059 instance=ExtResource("2_liykc")]
 unique_name_in_owner = true
+
+[node name="AnnotationTool" parent="." unique_id=966395094 instance=ExtResource("5_gybbb")]
+layout_mode = 1
 
 [node name="TimeBar" parent="." unique_id=297301655 instance=ExtResource("19_tta4o")]
 unique_name_in_owner = true
