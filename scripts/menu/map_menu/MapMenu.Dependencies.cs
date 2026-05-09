@@ -4,7 +4,7 @@ using TimeToTwentyfour.global;
 namespace TimeToTwentyfour.scripts.menu.map_menu;
 
 /// <summary>
-///     <see cref="MapMenu"/> 的属性和字段定义文件。
+///     <see cref="MapMenu"/> 的 Godot 依赖注入文件。
 /// </summary>
 public partial class MapMenu
 {
