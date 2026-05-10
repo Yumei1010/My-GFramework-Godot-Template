@@ -13,7 +13,5 @@ public partial class Selector
         set => _selection.Capacity = value;
     }
 
-    public bool Enable { get; set; } = true;
-
     private readonly SelectionList _selection = new();
 }

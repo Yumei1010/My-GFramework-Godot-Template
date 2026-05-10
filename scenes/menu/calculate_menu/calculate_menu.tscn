@@ -33,10 +33,8 @@ color = Color(0.101960786, 0.12156863, 0.18039216, 1)
 metadata/_edit_lock_ = true
 
 [node name="Selector" parent="." unique_id=509807042 instance=ExtResource("2_7p84b")]
-unique_name_in_owner = true
 
 [node name="Calculator" parent="." unique_id=36915116 instance=ExtResource("3_pjsn5")]
-unique_name_in_owner = true
 
 [node name="PokerFactory" parent="." unique_id=1042755059 instance=ExtResource("2_liykc")]
 unique_name_in_owner = true
@@ -71,36 +69,6 @@ custom_minimum_size = Vector2(96, 32)
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
 text = "出牌"
-
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer" unique_id=432289245]
-layout_mode = 2
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer" unique_id=131478732]
-layout_mode = 2
-theme_override_constants/separation = 32
-
-[node name="SortBySuitButton" type="Button" parent="HBoxContainer/MarginContainer/HBoxContainer" unique_id=1522249950]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(64, 24)
-layout_mode = 2
-theme_override_font_sizes/font_size = 16
-text = "花色"
-
-[node name="SortByRankButton" type="Button" parent="HBoxContainer/MarginContainer/HBoxContainer" unique_id=2026114897]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(64, 24)
-layout_mode = 2
-theme_override_font_sizes/font_size = 16
-text = "点数"
-
-[node name="DiscardButton" type="Button" parent="HBoxContainer" unique_id=254605519]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(96, 32)
-layout_mode = 2
-theme_override_font_sizes/font_size = 16
-text = "弃牌"
 
 [node name="TimeBar" parent="." unique_id=297301655 instance=ExtResource("19_tta4o")]
 unique_name_in_owner = true

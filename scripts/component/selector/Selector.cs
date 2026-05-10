@@ -4,6 +4,7 @@ using GFramework.SourceGenerators.Abstractions.rule;
 using Godot;
 using TimeToTwentyfour.scripts.cqrs.selector.@event;
 using TimeToTwentyfour.scripts.entities.poker;
+using TimeToTwentyfour.scripts.model.selector;
 
 namespace TimeToTwentyfour.scripts.component.selector;
 
@@ -15,6 +16,8 @@ namespace TimeToTwentyfour.scripts.component.selector;
 [ContextAware]
 public partial class Selector : Node, ISelector
 {
+    private SelectorModel Model => this.GetModel<SelectorModel>();
+
     public override void _Ready()
     {
         _selection.Evicted += poker =>
@@ -28,7 +31,7 @@ public partial class Selector : Node, ISelector
     /// <summary>LIFO 弹出最近选中的牌；选择器未启用或无选中项时返回 null。</summary>
     public IPoker Pop()
     {
-        if (!Enable) return null!;
+        if (!Model.Enable) return null!;
         return _selection.Pop()!;
     }
 }

@@ -14,18 +14,10 @@ namespace TimeToTwentyfour.scripts.menu.calculate_menu;
 
 public partial class CalculateMenu
 {
-    private ICalculator Calculator => GetNode<ICalculator>("%Calculator");
-    private ISelector Selector => GetNode<ISelector>("%Selector");
     private IPokerFactory PokerFactory => GetNode<IPokerFactory>("%PokerFactory");
     private ITimeBar TimeBar => GetNode<ITimeBar>("%TimeBar");
     private IDeck Deck => GetNode<IDeck>("%Deck");
-    private Button SelectButton => GetNode<Button>("%SelectButton");
-    private Button CheckButton => GetNode<Button>("%CheckButton");
-    private Button DiscardButton => GetNode<Button>("%DiscardButton");
-    private Button SortBySuitButton => GetNode<Button>("%SortBySuitButton");
-    private Button SortByRankButton => GetNode<Button>("%SortByRankButton");
 
-    /// <summary>等待框架就绪后进入临时测试发牌流程（TODO: 替换为 IRunManager 正式发牌）。</summary>
     private async Task ReadyAsync()
     {
         await GameEntryPoint.Architecture.WaitUntilReadyAsync().ConfigureAwait(false);

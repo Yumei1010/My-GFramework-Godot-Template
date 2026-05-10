@@ -2,6 +2,7 @@
 using GFramework.Godot.extensions;
 using TimeToTwentyfour.scripts.cqrs.calculator.@event;
 using TimeToTwentyfour.scripts.cqrs.deck.@event;
+using TimeToTwentyfour.scripts.cqrs.modeButton.@event;
 using TimeToTwentyfour.scripts.component.calculator.mode;
 using TimeToTwentyfour.scripts.entities.poker;
 
@@ -14,6 +15,11 @@ public partial class Calculator
 {
     private void RegisterEvent()
     {
+        this.RegisterEvent<ModeButtonClickedEvent>(e =>
+        {
+            ChangeTo(e.ModeType);
+        }).UnRegisterWhenNodeExitTree(this);
+
         this.RegisterEvent<DeckHandCheckedEvent>(e =>
         {
             OnDeckHandCheckedEvent(e.Hands);

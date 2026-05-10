@@ -6,9 +6,11 @@ using GFramework.Game.setting;
 using GFramework.Godot.setting;
 using GFramework.Godot.setting.data;
 using TimeToTwentyfour.scripts.model.annotation_tool;
+using TimeToTwentyfour.scripts.model.calculator;
 using TimeToTwentyfour.scripts.model.color;
 using TimeToTwentyfour.scripts.model.pileModel;
 using TimeToTwentyfour.scripts.model.player;
+using TimeToTwentyfour.scripts.model.selector;
 using TimeToTwentyfour.scripts.setting;
 
 namespace TimeToTwentyfour.scripts.module;
@@ -59,5 +61,11 @@ public class ModelModule : AbstractModule
 
         // 注册弃牌堆模型
         architecture.RegisterModel(new DiscardPileModel());
+
+        // 注册选择器模型
+        architecture.RegisterModel(new SelectorModel());
+
+        // 注册计算器模型
+        architecture.RegisterModel(new CalculatorModel());
     }
 }
