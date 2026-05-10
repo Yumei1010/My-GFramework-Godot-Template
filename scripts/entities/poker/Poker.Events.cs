@@ -29,7 +29,7 @@ public partial class Poker
         }).UnRegisterWhenNodeExitTree(this);
 
         // 注册对卡牌模型数据变更事件的监听
-        this.RegisterEvent<CardChangedEvent>(e =>
+        this.RegisterEvent<PokerCardChangedEvent>(e =>
         {
             OnCardChangedEvent(e.Id, e.SuitType, e.NumValue, e.NumType);
         }).UnRegisterWhenNodeExitTree(this);

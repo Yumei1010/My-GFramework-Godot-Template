@@ -7,6 +7,7 @@ using TimeToTwentyfour.scripts.component.calculator;
 using TimeToTwentyfour.scripts.component.deck;
 using TimeToTwentyfour.scripts.component.selector;
 using TimeToTwentyfour.scripts.component.timeBar;
+using TimeToTwentyfour.scripts.cqrs.pile.command;
 using TimeToTwentyfour.scripts.model.pileModel;
 
 namespace TimeToTwentyfour.scripts.menu.calculate_menu;
@@ -39,14 +40,12 @@ public partial class CalculateMenu
         TimeBar.Start(120f);
         TimeBar.TimeScale = 1f;
 
-        var drawPile = this.GetModel<DrawPileModel>();
         var handPile = this.GetModel<HandPileModel>();
 
         for (int i = 0; i < 4; i++)
         {
-            var card = drawPile.GetRandomCard();
-            drawPile.RemoveCard(card);
-            handPile.AddCard(card);
+            this.SendCommand(new DrawPileDrawToHandCommand());
+            var card = handPile.Pile.Last();
             Deck.Add(PokerFactory.Product(card));
         }
     }

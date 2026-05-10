@@ -37,7 +37,7 @@ public sealed class PokerChangeCardValueCommand : AbstractCommand
             pile.RemoveCard(card);
             pile.AddCard(card with { NumValue = NumValue, NumType = numType });
 
-            this.SendEvent(new CardChangedEvent
+            this.SendEvent(new PokerCardChangedEvent
             {
                 Id = Id,
                 SuitType = card.SuitType,

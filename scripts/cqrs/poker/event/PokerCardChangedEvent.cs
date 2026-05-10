@@ -6,7 +6,7 @@ namespace TimeToTwentyfour.scripts.cqrs.poker.@event;
 ///     牌面数据变更事件
 ///     当模型中 <see cref="Cards"/> 被修改时触发，Poker 视图通过 Id 匹配来同步自身。
 /// </summary>
-public sealed class CardChangedEvent
+public sealed class PokerCardChangedEvent
 {
     public required Guid Id { get; init; }
     public required SuitType SuitType { get; init; }
