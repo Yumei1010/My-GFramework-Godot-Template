@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dgomet07s0x3k" path="res://scripts/entities/poker/Poker.cs" id="1_4exqo"]
 [ext_resource type="PackedScene" uid="uid://b5l602h2anmqe" path="res://scenes/entities/poker/stateMachine/poker_stateMachine.tscn" id="2_qu4bk"]
-[ext_resource type="Texture2D" uid="uid://b2omrygf3f37" path="res://assets/textures/poker/spade_mask_texture.png" id="5_w1ohw"]
+[ext_resource type="Texture2D" uid="uid://bno6chga3mr4n" path="res://assets/textures/poker/heart_mask_texture.png" id="5_w1ohw"]
 [ext_resource type="Shader" uid="uid://nuhgfc63t5ri" path="res://assets/shader/poker/fake_3D.gdshader" id="8_o2w1w"]
 [ext_resource type="Texture2D" uid="uid://bq8e5q4wdtjbj" path="res://assets/textures/poker/shadow_texture.png" id="10_pa15o"]
 
@@ -15,6 +15,7 @@ shader_parameter/cull_back = true
 shader_parameter/y_rot = 0.0
 shader_parameter/x_rot = 0.0
 shader_parameter/inset = 0.0
+shader_parameter/modulate_color = Color(0.9411765, 0.15294118, 0.36862746, 1)
 
 [node name="Poker" type="Button" unique_id=351593249]
 self_modulate = Color(1, 1, 1, 0)
@@ -50,17 +51,23 @@ texture = ExtResource("10_pa15o")
 metadata/_edit_lock_ = true
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=963317803]
-visible = false
+use_parent_material = true
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = 0.083000004
+anchor_top = 0.056
+anchor_right = 0.91700006
+anchor_bottom = 0.94400007
+offset_left = 0.031999588
+offset_top = -0.06400013
+offset_right = -0.03200531
+offset_bottom = 0.06399536
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="SurfaceRect" type="TextureRect" parent="." unique_id=341902432]
 unique_name_in_owner = true
-visible = false
 material = SubResource("ShaderMaterial_pa15o")
 custom_minimum_size = Vector2(96, 144)
 layout_mode = 1
@@ -78,13 +85,12 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 24)
 layout_mode = 0
 offset_left = 8.0
-offset_top = 8.0
+offset_top = 4.0
 offset_right = 56.0
-offset_bottom = 32.0
+offset_bottom = 28.0
 pivot_offset = Vector2(24, 12)
 theme_override_font_sizes/font_size = 18
 text = "ZERO"
-horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
 

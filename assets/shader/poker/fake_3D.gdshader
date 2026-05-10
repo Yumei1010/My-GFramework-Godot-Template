@@ -7,6 +7,7 @@ uniform bool cull_back = true;
 uniform float y_rot : hint_range(-360.0, 360.0) = 0.0;
 uniform float x_rot : hint_range(-360.0, 360.0) = 0.0;
 uniform float inset : hint_range(0, 1) = 0.0;
+uniform vec4 modulate_color : source_color = vec4(1.0);
 
 varying flat vec2 o;
 varying vec3 p;
@@ -42,6 +43,6 @@ void vertex(){
 void fragment(){
 	if (cull_back && p.z <= 0.0) discard;
 	vec2 uv = (p.xy / p.z).xy - o;
-    COLOR = texture(TEXTURE, uv + 0.5);
+    COLOR = texture(TEXTURE, uv + 0.5) * modulate_color;
 	COLOR.a *= step(max(abs(uv.x), abs(uv.y)), 0.5);
 }

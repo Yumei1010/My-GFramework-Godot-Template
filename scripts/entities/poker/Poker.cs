@@ -3,6 +3,7 @@ using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
 using TimeToTwentyfour.scripts.enums.poker;
 using TimeToTwentyfour.scripts.enums.resources;
+using TimeToTwentyfour.scripts.model.color;
 using Godot;
 
 namespace TimeToTwentyfour.scripts.entities.poker;
@@ -133,5 +134,6 @@ public partial class Poker : Button, IPoker, IController
             SuitType.Club => _textureRegistry.Get(nameof(TextureKey.PokerSurfaceClubMaskTexture)) as Texture2D,
             _ => throw new InvalidOperationException("didn't have this SuitType")
         };
+        _material.SetShaderParameter("modulate_color", SuitColorConfig.GetPrimary(SuitType));
     }
 }
