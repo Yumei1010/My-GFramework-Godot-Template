@@ -15,22 +15,6 @@ public partial class CalculateMenu
 {
     private void RegisterEvent()
     {
-        this.RegisterEvent<ModeButtonClickedEvent>(e =>
-        {
-            var selectorModel = this.GetModel<SelectorModel>();
-            var calculateModel = this.GetModel<CalculatorModel>();
-
-            if (selectorModel.Enable && calculateModel.Mode == e.ModeType)
-            {
-                // 再次点击同一模式按钮 → 禁用选择器
-                this.SendCommand(new SelectorChangeEnableCommand { Enable = false });
-            }
-            else
-            {
-                // 首次点击或切换模式 → 启用选择器
-                this.SendCommand(new SelectorChangeEnableCommand { Enable = true });
-                this.SendCommand(new CalculatorChangeModeCommand { mode = e.ModeType });
-            }
-        }).UnRegisterWhenNodeExitTree(this);
+       
     }
 }

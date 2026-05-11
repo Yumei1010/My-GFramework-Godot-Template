@@ -56,13 +56,6 @@ offset_bottom = 7.2599792
 theme_override_constants/separation = 32
 alignment = 1
 
-[node name="SelectButton" type="Button" parent="HBoxContainer" unique_id=1540813314]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(96, 32)
-layout_mode = 2
-theme_override_font_sizes/font_size = 16
-text = "选牌"
-
 [node name="CheckButton" type="Button" parent="HBoxContainer" unique_id=304058779]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(96, 32)

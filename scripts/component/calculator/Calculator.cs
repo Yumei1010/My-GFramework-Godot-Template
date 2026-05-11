@@ -31,6 +31,13 @@ public partial class Calculator : Node, ICalculator
         CurrentMode = Modes[modeType];
     }
     
-    public string Calculate(IPoker pokerA, IPoker pokerB) => CurrentMode.Calculate(pokerA, pokerB);
-    public string Calculate(IPoker poker) => CurrentMode.Calculate(poker);
+    public string Calculate(IPoker pokerA, IPoker pokerB)
+    {
+        return CurrentMode.Calculate(pokerA, pokerB);
+    }
+    
+    public string Calculate(IPoker poker)
+    {
+        return CurrentMode.Calculate(poker);
+    }
 }

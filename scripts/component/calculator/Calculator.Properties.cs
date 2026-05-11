@@ -8,7 +8,7 @@ namespace TimeToTwentyfour.scripts.component.calculator;
 /// </summary>
 public partial class Calculator
 {
-    public ModeType? CurrentModeType => CurrentMode?.ModeType;
+    public ModeType CurrentModeType => CurrentMode.ModeType;
     internal IMode? PreviousMode { get; set; }
 
     private Dictionary<ModeType, IMode> Modes { get; } = new();

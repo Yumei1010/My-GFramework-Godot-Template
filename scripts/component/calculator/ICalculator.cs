@@ -32,5 +32,5 @@ public interface ICalculator
     /// <summary>
     ///     当前运算模式类型。未设置时为 <see langword="null"/>。
     /// </summary>
-    ModeType? CurrentModeType { get; }
+    ModeType CurrentModeType { get; }
 }
