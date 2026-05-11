@@ -58,11 +58,6 @@
         <Content Include="scripts\data\model\README.md" />
     </ItemGroup>
     <ItemGroup>
-        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
-            <_Parameter1>Time-To-Twenty-four.Tests</_Parameter1>
-        </AssemblyAttribute>
-    </ItemGroup>
-    <ItemGroup>
       <Folder Include="scripts\cqrs\calculator\command\" />
       <Folder Include="scripts\cqrs\pile\event\" />
       <Folder Include="scripts\menu\map_menu\" />
