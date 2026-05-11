@@ -9,7 +9,7 @@ namespace TimeToTwentyfour.scripts.model.poker;
 public interface IPokerData
 {
     /// <summary>唯一标识符。</summary>
-    Guid Id { get; }
+    Guid Id { get; set; }
 
     /// <summary>花色类型。</summary>
     SuitType SuitType { get; set; }
@@ -19,7 +19,4 @@ public interface IPokerData
 
     /// <summary>点数类型。</summary>
     NumType NumType { get; set; }
-
-    /// <summary>当前 <see cref="NumValue"/> 是否与 <see cref="NumType"/> 匹配，可被正确解析。</summary>
-    bool IsValid { get; }
 }

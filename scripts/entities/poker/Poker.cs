@@ -15,6 +15,7 @@ namespace TimeToTwentyfour.scripts.entities.poker;
 [ContextAware]
 public partial class Poker : Button, IPoker, IController
 {
+    // TODO 审查重构后的Poker
     public override void _Ready()
     {
         _ = ReadyAsync();

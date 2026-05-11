@@ -1,12 +1,16 @@
 using System;
 using TimeToTwentyfour.scripts.enums.poker;
+using TimeToTwentyfour.scripts.model.poker;
 
 namespace TimeToTwentyfour.scripts.model.pile;
 
-public sealed record Card(Guid Id, SuitType SuitType, string NumValue, NumType NumType)
+/// <summary>
+///     扑克牌面纯数据记录，实现 <see cref="IPokerData"/> 以统一数据契约。
+/// </summary>
+public sealed record Card(Guid Id, SuitType SuitType, string NumValue, NumType NumType) : IPokerData
 {
-    public Guid Id { get; init; } = Id;
-    public SuitType SuitType { get; init; } = SuitType;
-    public string NumValue { get; init; } = NumValue;
-    public NumType NumType { get; init; } = NumType;
+    public Guid Id { get; set; } = Id;
+    public SuitType SuitType { get; set; } = SuitType;
+    public string NumValue { get; set; } = NumValue;
+    public NumType NumType { get; set; } = NumType;
 }
