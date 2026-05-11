@@ -1,10 +1,11 @@
+using Godot;
 using TimeToTwentyfour.scripts.enums.calculator;
 
 namespace TimeToTwentyfour.scripts.component.mode_button;
 
 public interface IModeButton
 {
-    String Name { get; set; }
+    StringName Name { get; set; }
 
-    ModeType ModeType { get; set; }
+    ModeType Mode { get; set; }
 }

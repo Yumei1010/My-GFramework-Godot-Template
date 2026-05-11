@@ -20,7 +20,7 @@ public partial class ModeButton
 
         this.SendCommand(new CalculatorChangeModeCommand()
         {
-            mode = ModeType
+            Mode = Mode
         });
     }
 }

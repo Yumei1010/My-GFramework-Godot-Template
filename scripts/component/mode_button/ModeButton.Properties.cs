@@ -7,5 +7,5 @@ public partial class ModeButton
 {
     public required new StringName Name { get; set; }
 
-    public ModeType ModeType { get; set; }
+    public ModeType Mode { get; set; }
 }

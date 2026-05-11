@@ -19,22 +19,6 @@ public partial class Calculator
         {
             ChangeTo(e.ModeType);
         }).UnRegisterWhenNodeExitTree(this);
-
-        this.RegisterEvent<DeckHandCheckedEvent>(e =>
-        {
-            OnDeckHandCheckedEvent(e.Hands);
-        }).UnRegisterWhenNodeExitTree(this);
-    }
-
-    private void OnDeckHandCheckedEvent(IReadOnlyList<IPoker> hands)
-    {
-        string result = Evaluate(CurrentMode, hands);
-        this.SendEvent(new CalculatorResultEvent
-        {
-            Result = result,
-            Hands = hands,
-            ModeType = CurrentMode?.ModeType
-        });
     }
 
     /// <summary>

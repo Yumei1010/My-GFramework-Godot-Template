@@ -18,7 +18,7 @@ public partial class ModeButton : TextureButton, IModeButton
 
     private void UpdateTexture()
     {
-        TextureNormal = ModeType switch
+        TextureNormal = Mode switch
         {
             ModeType.Add => _textureRegistry.Get(nameof(TextureKey.ModeButtonAddTexture)) as Texture2D,
             ModeType.Divide => _textureRegistry.Get(nameof(TextureKey.ModeButtonDivideTexture)) as Texture2D,

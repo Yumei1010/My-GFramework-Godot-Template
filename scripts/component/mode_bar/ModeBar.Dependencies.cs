@@ -19,7 +19,7 @@ public partial class ModeBar
         {
             IModeButton button = (IModeButton)_buttonScene.Instantiate<TextureButton>();
             button.Name = $"{modeType}Button";
-            button.ModeType = modeType;
+            button.Mode = modeType;
             ModeButtons[modeType] = button;
             AddChild(button as Node);
         }
