@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bq8e5q4wdtjbj" path="res://assets/textures/poker/shadow_texture.png" id="14_d4hg6"]
 [ext_resource type="Texture2D" uid="uid://chf4gp4w7j2u5" path="res://assets/textures/poker/club_mask_texture.png" id="14_fgqit"]
 [ext_resource type="Script" uid="uid://ls8nkxn3gipd" path="res://scripts/core/resource/TextureConfig.cs" id="14_hjx06"]
-[ext_resource type="Texture2D" uid="uid://dkgyscpa6f15" path="res://assets/textures/timeBar/progress_blank_texture.png" id="15_d4hg6"]
+[ext_resource type="Texture2D" uid="uid://dkgyscpa6f15" path="res://assets/textures/time_bar/progress_blank_texture.png" id="15_d4hg6"]
 [ext_resource type="Texture2D" uid="uid://bno6chga3mr4n" path="res://assets/textures/poker/heart_mask_texture.png" id="15_hjx06"]
 [ext_resource type="Texture2D" uid="uid://cseuaypinj2s0" path="res://assets/textures/poker/diamond_mask_texture.png" id="16_d4hg6"]
 [ext_resource type="Texture2D" uid="uid://dwg8e2aurpr6o" path="res://assets/textures/mode_button/add.png" id="16_k055p"]

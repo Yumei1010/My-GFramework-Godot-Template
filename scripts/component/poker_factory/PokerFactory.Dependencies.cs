@@ -7,5 +7,5 @@ namespace TimeToTwentyfour.scripts.component.pokerFactory;
 /// </summary>
 public partial class PokerFactory
 {
-    [Export] private PackedScene _pokerScene = GD.Load<PackedScene>("res://scenes/entities/poker/poker.tscn");
+    [Export] private PackedScene _pokerScene = GD.Load<PackedScene>("res://scenes/component/poker_view/poker_view.tscn");
 }

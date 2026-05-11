@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cgyg3mfyhrryj"]
 
-[ext_resource type="Script" uid="uid://cnh2ucqq7i0he" path="res://scripts/component/timeBar/TimeBar.cs" id="1_as047"]
-[ext_resource type="Texture2D" uid="uid://dkgyscpa6f15" path="res://assets/textures/timeBar/progress_blank_texture.png" id="2_0t41j"]
+[ext_resource type="Script" uid="uid://cnh2ucqq7i0he" path="res://scripts/component/time_bar/TimeBar.cs" id="1_as047"]
+[ext_resource type="Texture2D" uid="uid://dkgyscpa6f15" path="res://assets/textures/time_bar/progress_blank_texture.png" id="2_0t41j"]
 
 [node name="TimeBar" type="Control" unique_id=297301655]
 custom_minimum_size = Vector2(832, 64)

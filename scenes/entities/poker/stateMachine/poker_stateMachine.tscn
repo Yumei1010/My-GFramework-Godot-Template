@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://b5l602h2anmqe"]
-
-[ext_resource type="Script" uid="uid://ddwck8cwbdhqf" path="res://scripts/entities/poker/stateMachine/PokerStateMachine.cs" id="1_35y0w"]
-
-[node name="PokerStateMachine" type="Node" unique_id=2088555945]
-script = ExtResource("1_35y0w")
