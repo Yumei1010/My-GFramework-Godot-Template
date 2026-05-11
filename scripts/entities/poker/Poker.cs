@@ -25,7 +25,7 @@ public partial class Poker : Button, IPoker, IController
 
     public override void _ExitTree()
     {
-        _pokerRegistry.Unregister(Id);
+        _pokerViewRegistry.Unregister(Id);
     }
 
     public override void _Process(double delta)

@@ -67,7 +67,7 @@ public partial class Poker
     [Export] public float ResetRotation { get; set; }
 
     private IGodotTextureRegistry _textureRegistry = null!;
-    private IPokerViewRegistry _pokerRegistry = null!;
+    private IPokerViewRegistry _pokerViewRegistry = null!;
     private ShaderMaterial _material = null!;
     private Tween _tweenPos = null!;
     private Tween _tweenRot = null!;
@@ -79,7 +79,7 @@ public partial class Poker
 
         // 依赖注入
         _textureRegistry = this.GetUtility<IGodotTextureRegistry>()!;
-        _pokerRegistry = this.GetUtility<IPokerViewRegistry>()!;
+        _pokerViewRegistry = this.GetUtility<IPokerViewRegistry>()!;
         _material = (ShaderMaterial)SurfaceRect.Material;
 
         // 初始化状态机（状态在 StateMachine.Init 内部以纯 C# 类注册）
@@ -96,6 +96,6 @@ public partial class Poker
         UpdateSurfaceRect();
 
         // 注册到查找表
-        _pokerRegistry.Register(Id, this);
+        _pokerViewRegistry.Register(Id, this);
     }
 }
