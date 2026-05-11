@@ -1,3 +1,4 @@
+using GFramework.Godot.pool;
 using TimeToTwentyfour.scripts.model.poker;
 
 namespace TimeToTwentyfour.scripts.entities.poker;
