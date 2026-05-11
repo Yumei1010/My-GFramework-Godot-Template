@@ -30,7 +30,7 @@ public sealed partial class OnSelectState : PokerState
     {
         this.SendEvent(new SelectorSelectChangedEvent
         {
-            Poker = Poker,
+            PokerId = Poker.Id,
             IsSelected = false
         });
 

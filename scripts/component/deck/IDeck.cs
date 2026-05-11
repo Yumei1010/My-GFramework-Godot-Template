@@ -19,19 +19,19 @@ public interface IDeck
     /// <summary>
     ///     当前持有的扑克牌列表，顺序即为从左到右的显示顺序。
     /// </summary>
-    IList<IPoker> Pokers { get; }
+    IList<IPokerView> Pokers { get; }
 
     /// <summary>
     ///     增加一张手牌到牌桌。
     /// </summary>
     /// <param name="poker">要添加的扑克牌实例。</param>
-    void Add(IPoker poker);
+    void Add(IPokerView poker);
 
     /// <summary>
     ///     从牌桌移除一张手牌。
     /// </summary>
     /// <param name="poker">要移除的扑克牌实例。</param>
-    void Remove(IPoker poker);
+    void Remove(IPokerView poker);
 
     /// <summary>
     ///     按花色自动排序（♠ &gt; ♥ &gt; ♣ &gt; ♦，同花色按点数升序）。

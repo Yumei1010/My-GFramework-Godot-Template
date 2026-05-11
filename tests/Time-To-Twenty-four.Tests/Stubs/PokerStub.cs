@@ -5,7 +5,7 @@ namespace TimeToTwentyfour.Tests.Stubs;
 
 internal class PokerStub : IPoker
 {
-    public Guid Id { get; } = Guid.NewGuid();
+    public Guid Id { get; set; } = Guid.NewGuid();
     public SuitType SuitType { get; set; }
     public string NumValue { get; set; } = string.Empty;
     public NumType NumType { get; set; }

@@ -1,4 +1,3 @@
-using System;
 using GFramework.Core.command;
 using GFramework.Core.extensions;
 using TimeToTwentyfour.scripts.cqrs.calculator.@event;

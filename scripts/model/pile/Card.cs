@@ -1,7 +1,7 @@
 using System;
 using TimeToTwentyfour.scripts.enums.poker;
 
-namespace TimeToTwentyfour.scripts.model.pileModel;
+namespace TimeToTwentyfour.scripts.model.pile;
 
 public sealed record Card(Guid Id, SuitType SuitType, string NumValue, NumType NumType)
 {

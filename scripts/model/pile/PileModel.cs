@@ -2,7 +2,7 @@ using GFramework.Core.model;
 using TimeToTwentyfour.scripts.entities.poker;
 using TimeToTwentyfour.scripts.enums.poker;
 
-namespace TimeToTwentyfour.scripts.model.pileModel;
+namespace TimeToTwentyfour.scripts.model.pile;
 
 /// <summary>
 ///     牌堆模型基类

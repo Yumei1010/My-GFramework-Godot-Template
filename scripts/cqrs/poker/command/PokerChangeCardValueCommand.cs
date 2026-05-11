@@ -2,7 +2,7 @@ using GFramework.Core.command;
 using GFramework.Core.extensions;
 using TimeToTwentyfour.scripts.cqrs.poker.@event;
 using TimeToTwentyfour.scripts.enums.poker;
-using TimeToTwentyfour.scripts.model.pileModel;
+using TimeToTwentyfour.scripts.model.pile;
 
 namespace TimeToTwentyfour.scripts.cqrs.poker.command;
 

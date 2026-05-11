@@ -1,10 +1,8 @@
-﻿using TimeToTwentyfour.scripts.entities.poker;
-
-namespace TimeToTwentyfour.scripts.cqrs.poker.@event;
+﻿namespace TimeToTwentyfour.scripts.cqrs.poker.@event;
 
 /// <summary>
 ///     扑克预览运算结果变更事件类
-///     用于表示扑克预览运算结果发生变化的事件 
+///     用于表示扑克预览运算结果发生变化的事件
 /// </summary>
 public sealed class PokerReserveResultChangedEvent
 {
@@ -12,14 +10,14 @@ public sealed class PokerReserveResultChangedEvent
     ///     点数数值 <see cref="string"/>
     /// </summary>
     public required string NumValue { get; init; }
-    
+
     /// <summary>
     ///     是否被隐藏 <see cref="bool"/>
     /// </summary>
     public required bool IsHidden { get; init; }
 
     /// <summary>
-    ///     响应事件的poker实例 <see cref="IPoker"/>
+    ///     响应事件的扑克 Id。
     /// </summary>
-    public required IPoker Poker { get; init; }
+    public required Guid PokerId { get; init; }
 }

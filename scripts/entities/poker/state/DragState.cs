@@ -21,7 +21,7 @@ public sealed partial class DragState : PokerState
     {
         this.SendEvent(new PokerDragStartedEvent
         {
-            Poker = Poker
+            PokerId = Poker.Id
         });
 
         Input.SetMouseMode(Input.MouseModeEnum.ConfinedHidden);
@@ -33,7 +33,7 @@ public sealed partial class DragState : PokerState
     {
         this.SendEvent(new PokerDragFinishedEvent
         {
-            Poker = Poker
+            PokerId = Poker.Id
         });
 
         Input.SetMouseMode(Input.MouseModeEnum.Visible);

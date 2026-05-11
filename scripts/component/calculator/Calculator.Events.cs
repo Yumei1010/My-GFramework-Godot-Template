@@ -4,7 +4,7 @@ using TimeToTwentyfour.scripts.cqrs.calculator.@event;
 using TimeToTwentyfour.scripts.cqrs.deck.@event;
 using TimeToTwentyfour.scripts.cqrs.modeButton.@event;
 using TimeToTwentyfour.scripts.component.calculator.mode;
-using TimeToTwentyfour.scripts.entities.poker;
+using TimeToTwentyfour.scripts.model.poker;
 
 namespace TimeToTwentyfour.scripts.component.calculator;
 
@@ -25,7 +25,7 @@ public partial class Calculator
     ///     根据当前模式和手牌列表执行计算验证与分发。
     /// </summary>
     /// <returns>计算结果字符串，或错误码。</returns>
-    internal static string Evaluate(IMode? mode, IReadOnlyList<IPoker> hands)
+    internal static string Evaluate(IMode? mode, IReadOnlyList<IPokerData> hands)
     {
         if (mode == null!)
             return "ERROR:NoModeSelected";

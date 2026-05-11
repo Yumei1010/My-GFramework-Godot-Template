@@ -1,6 +1,6 @@
 using System;
 
-namespace TimeToTwentyfour.scripts.model.pileModel;
+namespace TimeToTwentyfour.scripts.model.pile;
 
 public class HandPileModel : PileModel
 {

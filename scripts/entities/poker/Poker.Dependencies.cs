@@ -92,5 +92,8 @@ public partial class Poker
 
         // 更新纹理显示
         UpdateSurfaceRect();
+
+        // 注册到查找表
+        PokerRegistry.Register(Id, this);
     }
 }

@@ -19,13 +19,13 @@ public partial class Poker
         // 注册对选择变更事件的监听
         this.RegisterEvent<SelectorSelectChangedEvent>(e =>
         {
-            OnSelectorSelectChangedEvent(e.IsSelected, e.Poker);
+            OnSelectorSelectChangedEvent(e.IsSelected, e.PokerId);
         }).UnRegisterWhenNodeExitTree(this);
 
         // 注册对预览运算结果变更事件的监听
         this.RegisterEvent<PokerReserveResultChangedEvent>(e =>
         {
-            OnReserveResultChangedEvent(e.NumValue, e.IsHidden, e.Poker);
+            OnReserveResultChangedEvent(e.NumValue, e.IsHidden, e.PokerId);
         }).UnRegisterWhenNodeExitTree(this);
 
         // 注册对卡牌模型数据变更事件的监听
@@ -40,16 +40,15 @@ public partial class Poker
         ChangeTo(enable ? StateType.UnSelect : StateType.Idle);
     }
 
-    private void OnSelectorSelectChangedEvent(bool isSelected, IPoker poker)
+    private void OnSelectorSelectChangedEvent(bool isSelected, Guid pokerId)
     {
-        if (poker != this) return;
+        if (pokerId != Id) return;
         ChangeTo(isSelected ? StateType.OnSelect : StateType.UnSelect);
     }
 
-    private void OnReserveResultChangedEvent(String numValue,bool visible,IPoker poker)
+    private void OnReserveResultChangedEvent(String numValue, bool visible, Guid pokerId)
     {
-        // 如果不是触发事件的poker，返回
-        if (poker != this) return;
+        if (pokerId != Id) return;
 
         ReserveResultRect.Visible = visible;
         ReserveResultLabel.Text = numValue;

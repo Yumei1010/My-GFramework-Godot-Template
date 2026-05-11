@@ -38,7 +38,7 @@ public interface IPokerState : IState
     ///     本状态所代理的扑克牌实例。
     ///     状态对象通过此引用读写牌的坐标、外观、动画等属性。
     /// </summary>
-    IPoker Poker { get; set; }
+    IPokerView Poker { get; set; }
 
     /// <summary>
     ///     GUI 输入事件入口（由 Godot 的 <c>_GuiInput</c> 传递）。

@@ -1,6 +1,4 @@
-﻿using TimeToTwentyfour.scripts.entities.poker;
-
-namespace TimeToTwentyfour.scripts.cqrs.selector.@event;
+﻿namespace TimeToTwentyfour.scripts.cqrs.selector.@event;
 
 /// <summary>
 ///     扑克选择器预览变更事件类
@@ -12,9 +10,9 @@ public sealed class PokerSelectorReservesChangedEvent
     ///     是否被选择 <see cref="bool"/>
     /// </summary>
     public required bool IsSelected { get; init; }
-    
+
     /// <summary>
-    ///     响应事件的poker实例 <see cref="IPoker"/>
+    ///     响应事件的扑克 Id。
     /// </summary>
-    public required IPoker Poker { get; init; }
+    public required Guid PokerId { get; init; }
 }

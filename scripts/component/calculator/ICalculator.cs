@@ -1,5 +1,5 @@
-using TimeToTwentyfour.scripts.entities.poker;
 using TimeToTwentyfour.scripts.enums.calculator;
+using TimeToTwentyfour.scripts.model.poker;
 
 namespace TimeToTwentyfour.scripts.component.calculator;
 
@@ -17,17 +17,17 @@ public interface ICalculator
     /// <summary>
     ///     使用当前模式执行二元运算。
     /// </summary>
-    /// <param name="pokerA">手牌 A <see cref="IPoker"/></param>
-    /// <param name="pokerB">手牌 B <see cref="IPoker"/></param>
+    /// <param name="pokerA">手牌 A <see cref="IPokerData"/></param>
+    /// <param name="pokerB">手牌 B <see cref="IPokerData"/></param>
     /// <returns>计算结果字符串</returns>
-    string Calculate(IPoker pokerA, IPoker pokerB);
+    string Calculate(IPokerData pokerA, IPokerData pokerB);
 
     /// <summary>
     ///     使用当前模式执行一元运算。
     /// </summary>
-    /// <param name="poker">手牌 <see cref="IPoker"/></param>
+    /// <param name="poker">手牌 <see cref="IPokerData"/></param>
     /// <returns>计算结果字符串</returns>
-    string Calculate(IPoker poker);
+    string Calculate(IPokerData poker);
 
     /// <summary>
     ///     当前运算模式类型。未设置时为 <see langword="null"/>。

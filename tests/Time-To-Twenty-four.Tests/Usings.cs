@@ -1,6 +1,7 @@
 global using Xunit;
 global using TimeToTwentyfour.scripts.component.deck;
 global using TimeToTwentyfour.scripts.component.selector;
+global using TimeToTwentyfour.scripts.model.selector;
 global using TimeToTwentyfour.scripts.component.timeBar;
 global using TimeToTwentyfour.scripts.entities.poker;
 global using TimeToTwentyfour.scripts.enums.poker;

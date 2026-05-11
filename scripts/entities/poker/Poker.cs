@@ -21,7 +21,12 @@ public partial class Poker : Button, IPoker, IController
         ConnectSignal();
         RegisterEvent();
     }
-    
+
+    public override void _ExitTree()
+    {
+        PokerRegistry.Unregister(Id);
+    }
+
     public override void _Process(double delta)
     {
         if (Shadow)

@@ -38,8 +38,8 @@ public interface IPokerStateMachine : IStateMachine
     ///     状态机会将该引用注入到每一个 <see cref="IPokerState.Poker"/> 中，
     ///     使各状态能读写牌的坐标、外观、动画等属性。
     /// </param>
-    void Init(IPoker poker);
-    
+    void Init(IPokerView poker);
+
     /// <summary>
     ///     切换当前活跃状态到指定目标状态。
     /// </summary>

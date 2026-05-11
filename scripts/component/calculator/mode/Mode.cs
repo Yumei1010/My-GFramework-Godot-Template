@@ -1,8 +1,8 @@
 using System.Globalization;
-using TimeToTwentyfour.scripts.entities.poker;
 using TimeToTwentyfour.scripts.enums.calculator;
 using TimeToTwentyfour.scripts.enums.poker;
 using TimeToTwentyfour.scripts.model.calculator;
+using TimeToTwentyfour.scripts.model.poker;
 
 namespace TimeToTwentyfour.scripts.component.calculator.mode;
 
@@ -21,13 +21,13 @@ public abstract class Mode : IMode
     /// <summary>
     ///     二元运算。非二元模式默认抛出 <see cref="NotSupportedException"/>。
     /// </summary>
-    public virtual string Calculate(IPoker pokerA, IPoker pokerB) =>
+    public virtual string Calculate(IPokerData pokerA, IPokerData pokerB) =>
         throw new NotSupportedException($"{GetType().Name} 不支持二元运算");
 
     /// <summary>
     ///     一元运算。非一元模式默认抛出 <see cref="NotSupportedException"/>。
     /// </summary>
-    public virtual string Calculate(IPoker poker) =>
+    public virtual string Calculate(IPokerData poker) =>
         throw new NotSupportedException($"{GetType().Name} 不支持一元运算");
 
     /// <summary>
@@ -57,7 +57,7 @@ public abstract class Mode : IMode
     /// <summary>
     ///     将手牌数值解析为 <see cref="Fraction"/>，根据 <see cref="NumType"/> 选择解析策略。
     /// </summary>
-    private protected static Fraction ParseToFraction(IPoker poker)
+    private protected static Fraction ParseToFraction(IPokerData poker)
     {
         string raw = poker.NumValue.Trim();
         return poker.NumType switch

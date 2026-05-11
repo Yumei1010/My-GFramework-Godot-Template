@@ -15,7 +15,7 @@ public sealed partial class UnSelectState : PokerState
     {
         this.SendEvent(new SelectorSelectChangedEvent
         {
-            Poker = Poker,
+            PokerId = Poker.Id,
             IsSelected = true
         });
 
@@ -26,7 +26,7 @@ public sealed partial class UnSelectState : PokerState
     {
         this.SendEvent(new PokerSelectorReservesChangedEvent
         {
-            Poker = Poker,
+            PokerId = Poker.Id,
             IsSelected = true
         });
     }
@@ -35,7 +35,7 @@ public sealed partial class UnSelectState : PokerState
     {
         this.SendEvent(new PokerSelectorReservesChangedEvent
         {
-            Poker = Poker,
+            PokerId = Poker.Id,
             IsSelected = false
         });
     }

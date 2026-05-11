@@ -1,15 +1,13 @@
-﻿using TimeToTwentyfour.scripts.entities.poker;
-
-namespace TimeToTwentyfour.scripts.cqrs.poker.@event;
+﻿namespace TimeToTwentyfour.scripts.cqrs.poker.@event;
 
 /// <summary>
 ///     扑克拖拽结束事件类
-///     用于表示扑克拖拽结束的事件 
+///     用于表示扑克拖拽结束的事件
 /// </summary>
 public sealed class PokerDragFinishedEvent
 {
     /// <summary>
-    ///     响应事件的poker实例 <see cref="IPoker"/>
+    ///     响应事件的扑克 Id。
     /// </summary>
-    public required IPoker Poker { get; init; }
+    public required Guid PokerId { get; init; }
 }

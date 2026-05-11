@@ -1,4 +1,4 @@
-using TimeToTwentyfour.scripts.entities.poker;
+using TimeToTwentyfour.scripts.model.poker;
 using TimeToTwentyfour.scripts.enums.calculator;
 
 namespace TimeToTwentyfour.scripts.component.calculator.mode;
@@ -11,7 +11,7 @@ public sealed class FloorMode : Mode
     public override ModeType ModeType => ModeType.Floor;
     public override bool IsBinary => false;
 
-    public override string Calculate(IPoker poker)
+    public override string Calculate(IPokerData poker)
     {
         double val = ParseToFraction(poker).ToDouble();
         return FormatFractionResult(Math.Floor(val));

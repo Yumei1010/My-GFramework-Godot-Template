@@ -1,7 +1,7 @@
 using System;
 using GFramework.Core.command;
 using GFramework.Core.extensions;
-using TimeToTwentyfour.scripts.model.pileModel;
+using TimeToTwentyfour.scripts.model.pile;
 
 namespace TimeToTwentyfour.scripts.cqrs.pile.command;
 

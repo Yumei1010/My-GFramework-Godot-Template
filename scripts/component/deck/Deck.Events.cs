@@ -11,12 +11,14 @@ public partial class Deck
     {
         ContextAwareExtensions.RegisterEvent<PokerDragFinishedEvent>(this, e =>
         {
-            OnPokerDragFinishedEvent(e.Poker);
+            OnPokerDragFinishedEvent(e.PokerId);
         }).UnRegisterWhenNodeExitTree(this);
     }
 
-    private void OnPokerDragFinishedEvent(IPoker poker)
+    private void OnPokerDragFinishedEvent(Guid pokerId)
     {
+        var poker = PokerRegistry.Find(pokerId);
+        if (poker == null) return;
         float pokerCenterX = poker.GlobalPosition.X - poker.Size.X / 2f;
         InsertPokerAtNearestSlot(poker, pokerCenterX);
     }

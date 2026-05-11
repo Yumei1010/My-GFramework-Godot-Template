@@ -34,7 +34,7 @@ public abstract class PokerState : IPokerState
     ///     本状态所代理的扑克牌实例。
     ///     初始化时由状态机注入。
     /// </summary>
-    public IPoker Poker { get; set; } = null!;
+    public IPokerView Poker { get; set; } = null!;
 
     /// <summary>
     ///     请求切换到另一个状态，直接委托给 <see cref="IPoker.ChangeTo"/> → <see cref="IPokerStateMachine.ChangeTo"/>。

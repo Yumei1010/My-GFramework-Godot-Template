@@ -4,7 +4,7 @@ using TimeToTwentyfour.scripts.component.pokerFactory;
 using TimeToTwentyfour.scripts.component.deck;
 using TimeToTwentyfour.scripts.component.timeBar;
 using TimeToTwentyfour.scripts.cqrs.pile.command;
-using TimeToTwentyfour.scripts.model.pileModel;
+using TimeToTwentyfour.scripts.model.pile;
 
 namespace TimeToTwentyfour.scripts.menu.calculate_menu;
 

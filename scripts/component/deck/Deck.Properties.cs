@@ -5,7 +5,7 @@ namespace TimeToTwentyfour.scripts.component.deck;
 
 public partial class Deck
 {
-    private Dictionary<Panel, IPoker> Mapping { get; set; } = new();
+    private Dictionary<Panel, IPokerView> Mapping { get; set; } = new();
     
     private SortMode CurrentSortMode { get; set; } = SortMode.Manual;
 

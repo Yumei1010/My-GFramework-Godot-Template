@@ -15,10 +15,10 @@ public partial class MainMenu
     private IMainMenuOptionButton SettingButton => GetNode<IMainMenuOptionButton>("%SettingButton");
     private IMainMenuOptionButton CreditsButton => GetNode<IMainMenuOptionButton>("%CreditsButton");
     private IMainMenuOptionButton ExitButton => GetNode<IMainMenuOptionButton>("%ExitButton");
-    private IPoker PokerA => GetNode<IPoker>("%PokerA");
-    private IPoker PokerB => GetNode<IPoker>("%PokerB");
-    private IPoker PokerC => GetNode<IPoker>("%PokerC");
-    private IPoker PokerD => GetNode<IPoker>("%PokerD");
+    private IPokerView PokerA => GetNode<IPokerView>("%PokerA");
+    private IPokerView PokerB => GetNode<IPokerView>("%PokerB");
+    private IPokerView PokerC => GetNode<IPokerView>("%PokerC");
+    private IPokerView PokerD => GetNode<IPokerView>("%PokerD");
     
     private IStateMachineSystem _stateMachineSystem = null!;
     

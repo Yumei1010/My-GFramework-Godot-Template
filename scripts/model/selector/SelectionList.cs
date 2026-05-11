@@ -1,15 +1,17 @@
-using TimeToTwentyfour.scripts.entities.poker;
-
-namespace TimeToTwentyfour.scripts.component.selector;
+namespace TimeToTwentyfour.scripts.model.selector;
 
 /// <summary>
 ///     选择列表 —— 管理扑克选中状态的纯 C# 集合，不依赖 Godot/GFramework。
 ///     入队采用 FIFO（队首淘汰），弹出采用 LIFO（队尾提取）。
+///     存储元素为扑克 <see cref="Guid"/>，与视图层彻底解耦。
 /// </summary>
 public class SelectionList
 {
+    /// <summary>驱逐通知 —— 当 Id 因容量限制被移出列表时触发。</summary>
+    public event Action<Guid>? Evicted;
+
     /// <summary>当前选中列表（只读），顺序为选中先后。</summary>
-    public IReadOnlyList<IPoker> Items => _items;
+    public IReadOnlyList<Guid> Items => _items;
 
     /// <summary>当前选中数量。</summary>
     public int Count => _items.Count;
@@ -27,61 +29,65 @@ public class SelectionList
         }
     }
 
-    /// <summary>检查指定牌是否在列表中。</summary>
-    public bool Contains(IPoker poker)
+    /// <summary>检查指定 Id 是否在列表中。</summary>
+    public bool Contains(Guid pokerId)
     {
-        return _items.Contains(poker);
+        return _items.Contains(pokerId);
     }
 
     /// <summary>
-    ///     将牌加入队尾。去重：已在列表中则忽略。若容量超限则驱逐队首。
+    ///     将 Id 加入队尾。去重：已在列表中则忽略。若容量超限则驱逐队首。
     /// </summary>
     /// <returns>是否实际添加（去重导致忽略时返回 <c>false</c>）。</returns>
-    public bool Add(IPoker poker)
+    public bool Add(Guid pokerId)
     {
-        if (_items.Contains(poker)) return false;
+        if (_items.Contains(pokerId)) return false;
 
         if (_capacity > 0 && _items.Count >= _capacity)
         {
+            var evicted = _items[0];
             _items.RemoveAt(0);
+            Evicted?.Invoke(evicted);
         }
 
-        _items.Add(poker);
+        _items.Add(pokerId);
         return true;
     }
 
-    /// <summary>从列表中移除指定牌。</summary>
-    /// <returns>是否成功移除（牌不在列表中时返回 <c>false</c>）。</returns>
-    public bool Remove(IPoker poker)
+    /// <summary>从列表中移除指定 Id。</summary>
+    /// <returns>是否成功移除（Id 不在列表中时返回 <c>false</c>）。</returns>
+    public bool Remove(Guid pokerId)
     {
-        return _items.Remove(poker);
+        return _items.Remove(pokerId);
     }
 
     /// <summary>
-    ///     LIFO 弹出最近加入的牌。列表为空时返回 <c>null</c>。
+    ///     LIFO 弹出最近加入的 Id。列表为空时返回 <c>Guid.Empty</c>。
     /// </summary>
-    public IPoker Pop()
+    public Guid Pop()
     {
-        if (_items.Count == 0) return null!;
+        if (_items.Count == 0) return Guid.Empty;
 
         var lastIndex = _items.Count - 1;
-        var poker = _items[lastIndex];
+        var pokerId = _items[lastIndex];
         _items.RemoveAt(lastIndex);
-        return poker;
+        return pokerId;
     }
 
     /// <summary>
-    ///     容量缩小后，从队首淘汰超出上限的牌。
+    ///     容量缩小后，从队首淘汰超出上限的 Id。
     /// </summary>
     public void TrimExcess()
     {
         while (_capacity > 0 && _items.Count > _capacity)
         {
+            var evicted = _items[0];
             _items.RemoveAt(0);
+            Evicted?.Invoke(evicted);
         }
     }
 
-    private readonly List<IPoker> _items = [];
+    private readonly List<Guid> _items = [];
 
     private int _capacity;
 }

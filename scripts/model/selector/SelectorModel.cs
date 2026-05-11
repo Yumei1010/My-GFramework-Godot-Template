@@ -1,7 +1,4 @@
 using GFramework.Core.model;
-using TimeToTwentyfour.scripts.component.selector;
-using TimeToTwentyfour.scripts.entities.poker;
-
 namespace TimeToTwentyfour.scripts.model.selector;
 
 public class SelectorModel : AbstractModel

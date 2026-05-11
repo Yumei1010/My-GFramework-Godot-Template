@@ -6,7 +6,7 @@ namespace TimeToTwentyfour.scripts.entities.poker.stateMachine;
 
 public partial class PokerStateMachine : Node, IPokerStateMachine
 {
-    public void Init(IPoker poker)
+    public void Init(IPokerView poker)
     {
         var states = new Dictionary<StateType, IPokerState>
         {

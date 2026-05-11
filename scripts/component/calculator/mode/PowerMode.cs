@@ -1,4 +1,4 @@
-using TimeToTwentyfour.scripts.entities.poker;
+using TimeToTwentyfour.scripts.model.poker;
 using TimeToTwentyfour.scripts.enums.calculator;
 
 namespace TimeToTwentyfour.scripts.component.calculator.mode;
@@ -11,7 +11,7 @@ public sealed class PowerMode : Mode
     public override ModeType ModeType => ModeType.Power;
     public override bool IsBinary => true;
 
-    public override string Calculate(IPoker pokerA, IPoker pokerB)
+    public override string Calculate(IPokerData pokerA, IPokerData pokerB)
     {
         var fa = ParseToFraction(pokerA);
         var fb = ParseToFraction(pokerB);
