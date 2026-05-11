@@ -1,7 +1,6 @@
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
 using Godot;
-using TimeToTwentyfour.scripts.entities.poker;
 
 namespace TimeToTwentyfour.scripts.component.selector;
 
@@ -16,18 +15,5 @@ public partial class Selector : Node, ISelector
     public override void _Ready()
     {
         _ = ReadyAsync();
-        ConnectSignal();
-        RegisterEvent();
-    }
-
-    public bool IsSelected(IPoker poker)
-    {
-        return  _selection.Contains(poker);
-    }
-
-    public IPoker Pop()
-    {
-        if (!_model.Enable) return null!;
-        return _selection.Pop()!;
     }
 }

@@ -13,7 +13,6 @@ public partial class ModeButton : TextureButton, IModeButton
     public override void _Ready()
     {
         _ = ReadyAsync();
-        ConnectSignal();
     }
 
     private void UpdateTexture()

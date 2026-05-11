@@ -8,13 +8,6 @@ namespace TimeToTwentyfour.scripts.component.selector;
 /// </summary>
 public class SelectionList
 {
-    private readonly List<IPoker> _items = [];
-
-    /// <summary>
-    ///     驱逐通知 —— 当牌因容量限制被移出列表时触发。
-    /// </summary>
-    public event Action<IPoker>? Evicted;
-
     /// <summary>当前选中列表（只读），顺序为选中先后。</summary>
     public IReadOnlyList<IPoker> Items => _items;
 
@@ -34,10 +27,11 @@ public class SelectionList
         }
     }
 
-    private int _capacity;
-
     /// <summary>检查指定牌是否在列表中。</summary>
-    public bool Contains(IPoker poker) => _items.Contains(poker);
+    public bool Contains(IPoker poker)
+    {
+        return _items.Contains(poker);
+    }
 
     /// <summary>
     ///     将牌加入队尾。去重：已在列表中则忽略。若容量超限则驱逐队首。
@@ -49,9 +43,7 @@ public class SelectionList
 
         if (_capacity > 0 && _items.Count >= _capacity)
         {
-            var evicted = _items[0];
             _items.RemoveAt(0);
-            Evicted?.Invoke(evicted);
         }
 
         _items.Add(poker);
@@ -60,14 +52,17 @@ public class SelectionList
 
     /// <summary>从列表中移除指定牌。</summary>
     /// <returns>是否成功移除（牌不在列表中时返回 <c>false</c>）。</returns>
-    public bool Remove(IPoker poker) => _items.Remove(poker);
+    public bool Remove(IPoker poker)
+    {
+        return _items.Remove(poker);
+    }
 
     /// <summary>
     ///     LIFO 弹出最近加入的牌。列表为空时返回 <c>null</c>。
     /// </summary>
-    public IPoker? Pop()
+    public IPoker Pop()
     {
-        if (_items.Count == 0) return null;
+        if (_items.Count == 0) return null!;
 
         var lastIndex = _items.Count - 1;
         var poker = _items[lastIndex];
@@ -82,9 +77,11 @@ public class SelectionList
     {
         while (_capacity > 0 && _items.Count > _capacity)
         {
-            var evicted = _items[0];
             _items.RemoveAt(0);
-            Evicted?.Invoke(evicted);
         }
     }
+
+    private readonly List<IPoker> _items = [];
+
+    private int _capacity;
 }
