@@ -17,7 +17,7 @@ public partial class Deck
 
     private void OnPokerDragFinishedEvent(Guid pokerId)
     {
-        var poker = this.GetUtility<IPokerRegistry>()!.Find(pokerId);
+        var poker = this.GetUtility<IPokerViewRegistry>()!.Find(pokerId);
         if (poker == null) return;
         float pokerCenterX = poker.GlobalPosition.X - poker.Size.X / 2f;
         InsertPokerAtNearestSlot(poker, pokerCenterX);

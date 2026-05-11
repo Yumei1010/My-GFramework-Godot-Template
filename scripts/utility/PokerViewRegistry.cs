@@ -5,7 +5,7 @@ namespace TimeToTwentyfour.scripts.utility;
 /// <summary>
 ///     Guid ↔ <see cref="IPokerView"/> 查找表实现。
 /// </summary>
-public class PokerRegistry : IPokerRegistry
+public class PokerViewRegistry : IPokerViewRegistry
 {
     private readonly Dictionary<Guid, IPokerView> _map = new();
 

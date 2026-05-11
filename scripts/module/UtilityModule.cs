@@ -46,6 +46,6 @@ public class UtilityModule : AbstractModule
         
         architecture.RegisterUtility(new SaveStorageUtility());
 
-        architecture.RegisterUtility(new PokerRegistry());
+        architecture.RegisterUtility(new PokerViewRegistry());
     }
 }

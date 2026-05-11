@@ -6,7 +6,7 @@ namespace TimeToTwentyfour.scripts.utility;
 /// <summary>
 ///     Guid ↔ <see cref="IPokerView"/> 查找表契约，供 CQRS 事件层通过 Id 查找视图节点。
 /// </summary>
-public interface IPokerRegistry : IUtility
+public interface IPokerViewRegistry : IUtility
 {
     /// <summary>注册扑克视图节点到查找表。</summary>
     void Register(Guid id, IPokerView poker);
