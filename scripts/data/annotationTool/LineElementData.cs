@@ -1,8 +1,9 @@
+using GFramework.Game.Abstractions.data;
 using Godot;
 
 namespace TimeToTwentyfour.scripts.data.annotationTool;
 
-public sealed class LineElementData
+public sealed class LineElementData : IData
 {
     public Vector2 Start { get; set; }
     public Vector2 End { get; set; }

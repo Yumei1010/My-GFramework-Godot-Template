@@ -1,8 +1,9 @@
+using GFramework.Game.Abstractions.data;
 using Godot;
 
 namespace TimeToTwentyfour.scripts.data.annotationTool;
 
-public sealed class RectElementData
+public sealed class RectElementData : IData
 {
     public Vector2 TopLeft { get; set; }
     public Vector2 BottomRight { get; set; }
