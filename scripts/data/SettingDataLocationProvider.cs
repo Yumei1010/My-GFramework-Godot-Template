@@ -1,5 +1,4 @@
 ﻿using GFramework.Game.Abstractions.data;
-using TimeToTwentyfour.scripts.data.model;
 
 namespace TimeToTwentyfour.scripts.data;
 

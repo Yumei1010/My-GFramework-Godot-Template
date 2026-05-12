@@ -3,7 +3,7 @@ using GFramework.Core.Abstractions.storage;
 using GFramework.Core.extensions;
 using GFramework.Core.utility;
 using GFramework.Game.storage;
-using TimeToTwentyfour.scripts.data.model;
+using TimeToTwentyfour.scripts.data;
 using Godot;
 
 namespace TimeToTwentyfour.scripts.utility;

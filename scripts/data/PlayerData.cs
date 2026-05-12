@@ -1,6 +1,6 @@
 using GFramework.Game.Abstractions.data;
 
-namespace TimeToTwentyfour.scripts.data.model;
+namespace TimeToTwentyfour.scripts.data;
 
 /// <summary>
 ///     玩家可持久化数据，存储玩家进度与统计信息。

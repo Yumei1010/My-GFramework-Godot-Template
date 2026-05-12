@@ -1,4 +1,4 @@
-﻿using TimeToTwentyfour.scripts.data.model;
+﻿using TimeToTwentyfour.scripts.data;
 
 namespace TimeToTwentyfour.scripts.utility;
 
