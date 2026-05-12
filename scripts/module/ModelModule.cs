@@ -11,7 +11,7 @@ using TimeToTwentyfour.scripts.model.color;
 using TimeToTwentyfour.scripts.model.pile;
 using TimeToTwentyfour.scripts.model.player;
 using TimeToTwentyfour.scripts.model.selector;
-using TimeToTwentyfour.scripts.setting;
+using TimeToTwentyfour.scripts.data;
 
 namespace TimeToTwentyfour.scripts.module;
 

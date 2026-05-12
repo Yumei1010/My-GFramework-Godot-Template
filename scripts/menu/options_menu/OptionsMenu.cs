@@ -18,7 +18,7 @@ using TimeToTwentyfour.scripts.component;
 using TimeToTwentyfour.scripts.core.state.impls;
 using TimeToTwentyfour.scripts.core.ui;
 using TimeToTwentyfour.scripts.enums.ui;
-using TimeToTwentyfour.scripts.setting.query;
+using TimeToTwentyfour.scripts.cqrs.setting.query;
 using TimeToTwentyfour.global;
 using TimeToTwentyfour.scripts.cqrs.audio.command;
 using TimeToTwentyfour.scripts.cqrs.audio.command.input;
