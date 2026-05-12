@@ -8,7 +8,7 @@ using TimeToTwentyfour.scripts.model.pile;
 namespace TimeToTwentyfour.global;
 
 /// <summary>
-///     扑克场景注册表全局单例，统一管理扑克视图实例的创建与 Id 查找。
+///     全局扑克场景注册表，统一管理扑克视图实例的创建与 Id 查找。
 /// </summary>
 [Log]
 [ContextAware]
