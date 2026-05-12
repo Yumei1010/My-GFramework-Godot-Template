@@ -1,16 +1,16 @@
-using TimeToTwentyfour.scripts.enums.annotationTool;
 using GFramework.Core.model;
-using TimeToTwentyfour.scripts.data.annotationTool;
 using Godot;
+using TimeToTwentyfour.scripts.enums.annotationTool;
+using TimeToTwentyfour.scripts.data.annotationTool;
 
 namespace TimeToTwentyfour.scripts.model.annotationTool;
 
 public class AnnotationToolModel : AbstractModel
 {
-    public bool Enabled { get; set; }
+    public bool Enabled { get; set; } = false;
     public float ToolWidth { get; set; } = 2.0f;
-    public AnnotationToolType CurrentTool { get; set; }
-    public Color CurrentColor { get; set; }
+    public AnnotationToolType CurrentTool { get; set; } = AnnotationToolType.Freehand;
+    public Color CurrentColor { get; set; } = Colors.Red;
 
     protected override void OnInit()
     {

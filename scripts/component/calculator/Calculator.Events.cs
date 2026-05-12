@@ -1,7 +1,5 @@
 ﻿using GFramework.Core.extensions;
 using GFramework.Godot.extensions;
-using TimeToTwentyfour.scripts.cqrs.calculator.@event;
-using TimeToTwentyfour.scripts.cqrs.deck.@event;
 using TimeToTwentyfour.scripts.cqrs.modeButton.@event;
 using TimeToTwentyfour.scripts.component.calculator.mode;
 using TimeToTwentyfour.scripts.model.poker;

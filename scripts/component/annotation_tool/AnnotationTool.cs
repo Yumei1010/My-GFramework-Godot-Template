@@ -1,8 +1,10 @@
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
+using GFramework.Core.extensions;
 using Godot;
 using TimeToTwentyfour.scripts.enums.annotationTool;
 using TimeToTwentyfour.scripts.data.annotationTool;
+using TimeToTwentyfour.scripts.cqrs.annotationTool.command;
 
 namespace TimeToTwentyfour.scripts.component.annotationTool;
 
@@ -22,7 +24,7 @@ public partial class AnnotationTool : Control, IAnnotationTool
 
     public void ChangeTo(AnnotationToolType tool)
     {
-        _model.CurrentTool = tool;
+        this.SendCommand(new AnnotationToolChangeToolCommand { Tool = tool });
     }
 
     public override void _Draw()
@@ -45,7 +47,7 @@ public partial class AnnotationTool : Control, IAnnotationTool
 
     public override void _Input(InputEvent @event)
     {
-        if (!_model.Enabled)
+        if (!_enabled)
         {
             _drawing = false;
             return;
@@ -75,42 +77,42 @@ public partial class AnnotationTool : Control, IAnnotationTool
 
     private void DrawCursorIndicator()
     {
-        if (!_model.Enabled || _mousePos == Vector2.Zero)
+        if (!_enabled || _mousePos == Vector2.Zero)
             return;
 
-        if (_model.CurrentTool == AnnotationToolType.Eraser)
-            DrawCircle(_mousePos, _model.ToolWidth, new Color(1, 1, 1, 0.3f), false, 1.0f);
+        if (_currentTool == AnnotationToolType.Eraser)
+            DrawCircle(_mousePos, _toolWidth, new Color(1, 1, 1, 0.3f), false, 1.0f);
         else
-            DrawCircle(_mousePos, _model.ToolWidth / 2.0f, new Color(_color, 0.4f));
+            DrawCircle(_mousePos, _toolWidth / 2.0f, new Color(_color, 0.4f));
     }
 
     private void OnDrawStart(Vector2 p)
     {
-        switch (_model.CurrentTool)
+        switch (_currentTool)
         {
             case AnnotationToolType.Line:
-                var line = new LineElementData { Start = p, End = p, Color = _color, Width = _model.ToolWidth };
+                var line = new LineElementData { Start = p, End = p, Color = _color, Width = _toolWidth };
                 _lines.Add(line);
                 _currentElement = line;
                 break;
             case AnnotationToolType.Circle:
-                var circle = new CircleElementData { Center = p, Radius = 0.0f, Color = _color, Width = _model.ToolWidth };
+                var circle = new CircleElementData { Center = p, Radius = 0.0f, Color = _color, Width = _toolWidth };
                 _circles.Add(circle);
                 _currentElement = circle;
                 break;
             case AnnotationToolType.Rect:
-                var rect = new RectElementData { TopLeft = p, BottomRight = p, Color = _color, Width = _model.ToolWidth };
+                var rect = new RectElementData { TopLeft = p, BottomRight = p, Color = _color, Width = _toolWidth };
                 _rects.Add(rect);
                 _currentElement = rect;
                 break;
             case AnnotationToolType.Freehand:
-                var freehand = new FreehandLineData { Color = _color, Width = _model.ToolWidth };
+                var freehand = new FreehandLineData { Color = _color, Width = _toolWidth };
                 freehand.Points.Add(p);
                 _freehandLines.Add(freehand);
                 _currentElement = freehand;
                 break;
             case AnnotationToolType.Eraser:
-                _currentElement = null;
+                _currentElement = null!;
                 Erase(p);
                 break;
         }
@@ -136,7 +138,7 @@ public partial class AnnotationTool : Control, IAnnotationTool
                 freehand.Points.Add(p);
                 QueueRedraw();
                 break;
-            case null when _model.CurrentTool == AnnotationToolType.Eraser:
+            case null when _currentTool == AnnotationToolType.Eraser:
                 Erase(p);
                 break;
         }
@@ -144,7 +146,7 @@ public partial class AnnotationTool : Control, IAnnotationTool
 
     private void Erase(Vector2 mousePos)
     {
-        var r = _model.ToolWidth;
+        var r = _toolWidth;
 
         for (int i = _lines.Count - 1; i >= 0; i--)
         {

@@ -1,7 +1,8 @@
 using GFramework.Core.extensions;
 using Godot;
-using TimeToTwentyfour.scripts.component.calculator.mode;
+using TimeToTwentyfour.scripts.cqrs.annotationTool.command;
 using TimeToTwentyfour.scripts.enums.annotationTool;
+
 namespace TimeToTwentyfour.scripts.component.annotationTool;
 
 public partial class AnnotationTool
@@ -22,47 +23,47 @@ public partial class AnnotationTool
 
     private void OnButtonDownFreehandToolButton()
     {
-        ChangeTo(AnnotationToolType.Freehand);
+        this.SendCommand(new AnnotationToolChangeToolCommand { Tool = AnnotationToolType.Freehand });
     }
 
     private void OnButtonDownLineToolButton()
     {
-        ChangeTo(AnnotationToolType.Line);
+        this.SendCommand(new AnnotationToolChangeToolCommand { Tool = AnnotationToolType.Line });
     }
 
     private void OnButtonDownRectToolButton()
     {
-        ChangeTo(AnnotationToolType.Rect);
+        this.SendCommand(new AnnotationToolChangeToolCommand { Tool = AnnotationToolType.Rect });
     }
 
     private void OnButtonDownCircleToolButton()
     {
-        ChangeTo(AnnotationToolType.Circle);
+        this.SendCommand(new AnnotationToolChangeToolCommand { Tool = AnnotationToolType.Circle });
     }
 
     private void OnButtonDownEraserToolButton()
     {
-        ChangeTo(AnnotationToolType.Eraser);
+        this.SendCommand(new AnnotationToolChangeToolCommand { Tool = AnnotationToolType.Eraser });
     }
 
     private void OnButtonDownRedButton()
     {
-        _color = Colors.Red;
+        this.SendCommand(new AnnotationToolChangeColorCommand { Color = Colors.Red });
     }
 
     private void OnButtonDownBlueButton()
     {
-        _color = Colors.Blue;
+        this.SendCommand(new AnnotationToolChangeColorCommand { Color = Colors.Blue });
     }
 
     private void OnButtonDownWhiteButton()
     {
-        _color = Colors.White;
+        this.SendCommand(new AnnotationToolChangeColorCommand { Color = Colors.White });
     }
 
     private void OnValueChangedToolWidthSlider(double value)
     {
-        _model.ToolWidth = (float)value;
+        this.SendCommand(new AnnotationToolChangeToolWidthCommand { ToolWidth = (float)value });
     }
 
     private void OnButtonDownPanelButton()
@@ -75,7 +76,7 @@ public partial class AnnotationTool
                 _tween.TweenProperty( ToolRect, "position", new Vector2(-256,64), 0.5f);
 
             _opening = false;
-            _model.Enabled = false;
+            this.SendCommand(new AnnotationToolChangeEnableCommand { Enabled = false });
             _mousePos = Vector2.Zero;
             QueueRedraw();
         }
@@ -87,7 +88,7 @@ public partial class AnnotationTool
                 _tween.TweenProperty( ToolRect, "position", new Vector2(0,64), 0.5f);
 
             _opening = true;
-            _model.Enabled = true;
+            this.SendCommand(new AnnotationToolChangeEnableCommand { Enabled = true });
         }
     }
 }

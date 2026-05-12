@@ -6,10 +6,10 @@ namespace TimeToTwentyfour.scripts.data.annotationTool;
 
 public class AnnotationToolData : IData
 {
-    public bool Enabled { get; set; } = false;
-    public float ToolWidth { get; set; } = 2.0f;
-    public AnnotationToolType CurrentTool { get; set; } = AnnotationToolType.Freehand;
-    public Color CurrentColor { get; set; } = new Color(1, 0, 0);
+    public bool Enabled { get; set; }
+    public float ToolWidth { get; set; }
+    public AnnotationToolType CurrentTool { get; set; }
+    public Color CurrentColor { get; set; }
 
     public void Reset()
     {
