@@ -1,3 +1,5 @@
+using GFramework.Core.Abstractions.enums;
+using GFramework.Core.Abstractions.system;
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
 using Godot;
@@ -12,7 +14,7 @@ namespace TimeToTwentyfour.global;
 /// </summary>
 [Log]
 [ContextAware]
-public partial class PokerSceneRegistry : Node
+public partial class PokerSceneRegistry : Node ,ISystem
 {
     [Export] private PackedScene _pokerScene = GD.Load<PackedScene>("res://scenes/component/poker_view/poker_view.tscn");
 
@@ -47,4 +49,20 @@ public partial class PokerSceneRegistry : Node
     public void Unregister(Guid id) => _map.Remove(id);
 
     public IPokerView? Find(Guid id) => _map.GetValueOrDefault(id);
+
+    public void OnArchitecturePhase(ArchitecturePhase phase)
+    {
+        
+    }
+
+    public void Init()
+    {
+        
+    }
+
+    public void Destroy()
+    {
+        
+    }
+
 }
