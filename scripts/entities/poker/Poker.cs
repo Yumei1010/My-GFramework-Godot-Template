@@ -1,6 +1,7 @@
 ﻿using GFramework.Core.Abstractions.controller;
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
+using TimeToTwentyfour.global;
 using TimeToTwentyfour.scripts.enums.poker;
 using TimeToTwentyfour.scripts.enums.resources;
 using TimeToTwentyfour.scripts.model.color;
@@ -25,7 +26,7 @@ public partial class Poker : Button, IPoker, IController
 
     public override void _ExitTree()
     {
-        _pokerViewRegistry.Unregister(Id);
+        GetNode<PokerSceneRegistry>("/root/PokerSceneRegistry").Unregister(Id);
     }
 
     public override void _Process(double delta)

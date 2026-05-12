@@ -1,6 +1,5 @@
 using GFramework.Core.extensions;
 using TimeToTwentyfour.global;
-using TimeToTwentyfour.scripts.component.pokerFactory;
 using TimeToTwentyfour.scripts.component.deck;
 using TimeToTwentyfour.scripts.component.timeBar;
 using TimeToTwentyfour.scripts.cqrs.pile.command;
@@ -10,7 +9,7 @@ namespace TimeToTwentyfour.scripts.menu.calculate_menu;
 
 public partial class CalculateMenu
 {
-    private IPokerFactory PokerFactory => GetNode<IPokerFactory>("%PokerFactory");
+    private PokerSceneRegistry PokerFactory => GetNode<PokerSceneRegistry>("/root/PokerSceneRegistry");
     private ITimeBar TimeBar => GetNode<ITimeBar>("%TimeBar");
     private IDeck Deck => GetNode<IDeck>("%Deck");
 

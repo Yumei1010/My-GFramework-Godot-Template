@@ -1,24 +1,28 @@
-﻿using GFramework.SourceGenerators.Abstractions.rule;
+using GFramework.SourceGenerators.Abstractions.logging;
+using GFramework.SourceGenerators.Abstractions.rule;
 using Godot;
 using TimeToTwentyfour.scripts.entities.poker;
 using TimeToTwentyfour.scripts.enums.poker;
 using TimeToTwentyfour.scripts.model.pile;
 
-namespace TimeToTwentyfour.scripts.component.pokerFactory;
+namespace TimeToTwentyfour.global;
 
 /// <summary>
-///     扑克工厂类，负责根据定义创建扑克视图实例
+///     扑克场景注册表全局单例，统一管理扑克视图实例的创建与 Id 查找。
 /// </summary>
+[Log]
 [ContextAware]
-public partial class PokerFactory : Node, IPokerFactory
+public partial class PokerSceneRegistry : Node
 {
-    /// <summary>创建一个新的扑克实例。</summary>
+    [Export] private PackedScene _pokerScene = GD.Load<PackedScene>("res://scenes/component/poker_view/poker_view.tscn");
+
+    private readonly Dictionary<Guid, IPokerView> _map = new();
+
     public IPoker Product()
     {
         return _pokerScene.Instantiate<IPoker>();
     }
 
-    /// <summary>创建扑克实例并直接设置花色、数值与数值类型。</summary>
     public IPoker Product(SuitType suitType, string numValue, NumType numType = NumType.Integer)
     {
         var poker = Product();
@@ -28,7 +32,6 @@ public partial class PokerFactory : Node, IPokerFactory
         return poker;
     }
 
-    /// <summary>从牌面数据创建扑克实例，自动关联 Id 以支持模型同步。</summary>
     public IPoker Product(Card card)
     {
         var poker = Product();
@@ -38,4 +41,10 @@ public partial class PokerFactory : Node, IPokerFactory
         poker.NumType = card.NumType;
         return poker;
     }
+
+    public void Register(Guid id, IPokerView poker) => _map[id] = poker;
+
+    public void Unregister(Guid id) => _map.Remove(id);
+
+    public IPokerView? Find(Guid id) => _map.GetValueOrDefault(id);
 }
