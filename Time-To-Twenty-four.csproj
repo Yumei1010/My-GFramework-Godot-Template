@@ -56,6 +56,7 @@
         <Content Include="global\README.md" />
     </ItemGroup>
     <ItemGroup>
+      <Folder Include="scripts\cqrs\annotationTool\event\" />
       <Folder Include="scripts\cqrs\calculator\command\" />
       <Folder Include="scripts\cqrs\pile\event\" />
       <Folder Include="scripts\menu\map_menu\" />
