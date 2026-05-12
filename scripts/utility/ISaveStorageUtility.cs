@@ -1,6 +1,6 @@
 ﻿using TimeToTwentyfour.scripts.data.model;
 
-namespace TimeToTwentyfour.scripts.data.interfaces;
+namespace TimeToTwentyfour.scripts.utility;
 
 /// <summary>
 ///     定义游戏存档存储工具的接口，提供存档的基本操作功能

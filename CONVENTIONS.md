@@ -47,8 +47,9 @@ scripts/cqrs/<domain>/event/    → TimeToTwentyfour.scripts.cqrs.<domain>.@even
 | `scripts/core/` | 架构核心（状态机、路由、UI 工厂） | GameArchitecture、UiRouter |
 | `scripts/module/` | GFramework 模块安装 | ModelModule、SystemModule |
 | `scripts/constants/` | 游戏常量 | GameConstants、UiLayers |
-| `scripts/data/` | 持久化接口、模型与数据位置提供者 | ISaveStorageUtility、GameSaveData、SettingDataLocationProvider |
-| `scripts/utility/` | 通用工具 | GodotTextureRegistry |
+| `scripts/data/model/` | 可持久化数据类（IData 实现） | PlayerData、GameSaveData、LocalDataLocation |
+| `scripts/data/` | 数据位置提供者 | SettingDataLocationProvider |
+| `scripts/utility/` | 通用工具与存储接口 | GodotTextureRegistry、ISaveStorageUtility、SaveStorageUtility |
 | `global/` | Godot 自动加载单例 | GameEntryPoint、AudioManager |
 | `tests/` | xUnit 单元测试 | CalculateHelperBinaryTests |
 

@@ -6,7 +6,7 @@ using GFramework.Game.storage;
 using TimeToTwentyfour.scripts.data.model;
 using Godot;
 
-namespace TimeToTwentyfour.scripts.data.interfaces;
+namespace TimeToTwentyfour.scripts.utility;
 
 /// <summary>
 ///     存档存储工具类，负责管理游戏存档的保存、加载、删除等操作
