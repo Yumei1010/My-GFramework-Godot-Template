@@ -1,4 +1,4 @@
-namespace TimeToTwentyfour.scripts.component.annotation_tool;
+namespace TimeToTwentyfour.scripts.component.annotationTool;
 
 public partial class AnnotationTool
 {

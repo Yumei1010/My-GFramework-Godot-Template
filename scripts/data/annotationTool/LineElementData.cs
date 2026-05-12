@@ -1,8 +1,8 @@
 using Godot;
 
-namespace TimeToTwentyfour.scripts.model.annotation_tool;
+namespace TimeToTwentyfour.scripts.data.annotationTool;
 
-public sealed class LineElement
+public sealed class LineElementData
 {
     public Vector2 Start { get; set; }
     public Vector2 End { get; set; }

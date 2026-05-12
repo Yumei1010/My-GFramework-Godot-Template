@@ -1,8 +1,8 @@
 using Godot;
 
-namespace TimeToTwentyfour.scripts.model.annotation_tool;
+namespace TimeToTwentyfour.scripts.data.annotationTool;
 
-public sealed class RectElement
+public sealed class RectElementData
 {
     public Vector2 TopLeft { get; set; }
     public Vector2 BottomRight { get; set; }

@@ -1,12 +1,13 @@
 using GFramework.Core.extensions;
 using Godot;
 using TimeToTwentyfour.global;
-using TimeToTwentyfour.scripts.enums.annotation_tool;
+using TimeToTwentyfour.scripts.enums.annotationTool;
 using TimeToTwentyfour.scripts.enums.resources;
-using TimeToTwentyfour.scripts.model.annotation_tool;
+using TimeToTwentyfour.scripts.data.annotationTool;
+using TimeToTwentyfour.scripts.model.annotationTool;
 using TimeToTwentyfour.scripts.utility;
 
-namespace TimeToTwentyfour.scripts.component.annotation_tool;
+namespace TimeToTwentyfour.scripts.component.annotationTool;
 
 public partial class AnnotationTool
 {
@@ -22,10 +23,10 @@ public partial class AnnotationTool
     private HSlider ToolWidthSlider => GetNode<HSlider>("%ToolWidthSlider");
     private TextureButton PanelButton => GetNode<TextureButton>("%PanelButton");
 
-    private readonly List<LineElement> _lines = [];
-    private readonly List<CircleElement> _circles = [];
-    private readonly List<RectElement> _rects = [];
-    private readonly List<FreehandLine> _freehandLines = [];
+    private readonly List<LineElementData> _lines = [];
+    private readonly List<CircleElementData> _circles = [];
+    private readonly List<RectElementData> _rects = [];
+    private readonly List<FreehandLineData> _freehandLines = [];
     private IGodotTextureRegistry _textureRegistry = null!;
     private AnnotationToolModel _model = null!;
     private Tween _tween = null!;

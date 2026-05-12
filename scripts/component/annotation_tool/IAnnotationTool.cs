@@ -1,6 +1,6 @@
-using TimeToTwentyfour.scripts.enums.annotation_tool;
+using TimeToTwentyfour.scripts.enums.annotationTool;
 
-namespace TimeToTwentyfour.scripts.component.annotation_tool;
+namespace TimeToTwentyfour.scripts.component.annotationTool;
 
 /// <summary>
 ///     标注工具契约

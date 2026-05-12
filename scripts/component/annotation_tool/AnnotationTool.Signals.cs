@@ -1,10 +1,8 @@
 using GFramework.Core.extensions;
 using Godot;
 using TimeToTwentyfour.scripts.component.calculator.mode;
-using TimeToTwentyfour.scripts.enums.annotation_tool;
-using TimeToTwentyfour.scripts.model.annotation_tool;
-
-namespace TimeToTwentyfour.scripts.component.annotation_tool;
+using TimeToTwentyfour.scripts.enums.annotationTool;
+namespace TimeToTwentyfour.scripts.component.annotationTool;
 
 public partial class AnnotationTool
 {

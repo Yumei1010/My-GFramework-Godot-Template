@@ -1,10 +1,10 @@
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
 using Godot;
-using TimeToTwentyfour.scripts.enums.annotation_tool;
-using TimeToTwentyfour.scripts.model.annotation_tool;
+using TimeToTwentyfour.scripts.enums.annotationTool;
+using TimeToTwentyfour.scripts.data.annotationTool;
 
-namespace TimeToTwentyfour.scripts.component.annotation_tool;
+namespace TimeToTwentyfour.scripts.component.annotationTool;
 
 /// <summary>
 ///     标注工具契约实现类
@@ -89,22 +89,22 @@ public partial class AnnotationTool : Control, IAnnotationTool
         switch (_model.CurrentTool)
         {
             case AnnotationToolType.Line:
-                var line = new LineElement { Start = p, End = p, Color = _color, Width = _model.ToolWidth };
+                var line = new LineElementData { Start = p, End = p, Color = _color, Width = _model.ToolWidth };
                 _lines.Add(line);
                 _currentElement = line;
                 break;
             case AnnotationToolType.Circle:
-                var circle = new CircleElement { Center = p, Radius = 0.0f, Color = _color, Width = _model.ToolWidth };
+                var circle = new CircleElementData { Center = p, Radius = 0.0f, Color = _color, Width = _model.ToolWidth };
                 _circles.Add(circle);
                 _currentElement = circle;
                 break;
             case AnnotationToolType.Rect:
-                var rect = new RectElement { TopLeft = p, BottomRight = p, Color = _color, Width = _model.ToolWidth };
+                var rect = new RectElementData { TopLeft = p, BottomRight = p, Color = _color, Width = _model.ToolWidth };
                 _rects.Add(rect);
                 _currentElement = rect;
                 break;
             case AnnotationToolType.Freehand:
-                var freehand = new FreehandLine { Color = _color, Width = _model.ToolWidth };
+                var freehand = new FreehandLineData { Color = _color, Width = _model.ToolWidth };
                 freehand.Points.Add(p);
                 _freehandLines.Add(freehand);
                 _currentElement = freehand;
@@ -120,19 +120,19 @@ public partial class AnnotationTool : Control, IAnnotationTool
     {
         switch (_currentElement)
         {
-            case LineElement line:
+            case LineElementData line:
                 line.End = p;
                 QueueRedraw();
                 break;
-            case CircleElement circle:
+            case CircleElementData circle:
                 circle.Radius = p.DistanceTo(circle.Center);
                 QueueRedraw();
                 break;
-            case RectElement rect:
+            case RectElementData rect:
                 rect.BottomRight = p;
                 QueueRedraw();
                 break;
-            case FreehandLine freehand:
+            case FreehandLineData freehand:
                 freehand.Points.Add(p);
                 QueueRedraw();
                 break;
@@ -203,9 +203,9 @@ public partial class AnnotationTool : Control, IAnnotationTool
         QueueRedraw();
     }
 
-    private static List<FreehandLine> SplitContiguousSegments(List<Vector2> pts, bool[] keep, Color color, float width)
+    private static List<FreehandLineData> SplitContiguousSegments(List<Vector2> pts, bool[] keep, Color color, float width)
     {
-        var result = new List<FreehandLine>();
+        var result = new List<FreehandLineData>();
         var current = new List<Vector2>();
         for (int j = 0; j < pts.Count; j++)
         {
@@ -216,12 +216,12 @@ public partial class AnnotationTool : Control, IAnnotationTool
             else
             {
                 if (current.Count >= 2)
-                    result.Add(new FreehandLine { Points = current, Color = color, Width = width });
+                    result.Add(new FreehandLineData { Points = current, Color = color, Width = width });
                 current = [];
             }
         }
         if (current.Count >= 2)
-            result.Add(new FreehandLine { Points = current, Color = color, Width = width });
+            result.Add(new FreehandLineData { Points = current, Color = color, Width = width });
         return result;
     }
 

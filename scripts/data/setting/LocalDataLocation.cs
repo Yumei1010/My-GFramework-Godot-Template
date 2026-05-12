@@ -1,7 +1,7 @@
-﻿using GFramework.Game.Abstractions.data;
+using GFramework.Game.Abstractions.data;
 using GFramework.Game.Abstractions.enums;
 
-namespace TimeToTwentyfour.scripts.data;
+namespace TimeToTwentyfour.scripts.data.setting;
 
 /// <summary>
 ///     表示本地数据位置的实现类，实现了IDataLocation接口

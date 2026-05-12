@@ -1,6 +1,6 @@
 using GFramework.Core.command;
 using GFramework.Core.extensions;
-using TimeToTwentyfour.scripts.model.annotation_tool;
+using TimeToTwentyfour.scripts.model.annotationTool;
 
 namespace TimeToTwentyfour.scripts.cqrs.annotationTool.command;
 

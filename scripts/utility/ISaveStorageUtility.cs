@@ -1,4 +1,4 @@
-﻿using TimeToTwentyfour.scripts.data;
+﻿using TimeToTwentyfour.scripts.data.game;
 
 namespace TimeToTwentyfour.scripts.utility;
 
