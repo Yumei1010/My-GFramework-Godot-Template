@@ -1,7 +1,7 @@
-using TimeToTwentyfour.scripts.enums.annotation_tool;
+using TimeToTwentyfour.scripts.enums.annotationTool;
 using GFramework.Core.model;
 
-namespace TimeToTwentyfour.scripts.model.annotation_tool;
+namespace TimeToTwentyfour.scripts.model.annotationTool;
 
 public class AnnotationToolModel : AbstractModel
 {
@@ -11,6 +11,6 @@ public class AnnotationToolModel : AbstractModel
 
     protected override void OnInit()
     {
-
+        
     }
 }

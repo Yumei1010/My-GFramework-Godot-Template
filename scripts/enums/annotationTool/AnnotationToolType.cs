@@ -1,4 +1,4 @@
-namespace TimeToTwentyfour.scripts.enums.annotation_tool;
+namespace TimeToTwentyfour.scripts.enums.annotationTool;
 
 /// <summary>
 ///     标注工具类型
