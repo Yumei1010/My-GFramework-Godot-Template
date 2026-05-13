@@ -10,16 +10,10 @@ using TimeToTwentyfour.scripts.model.pile;
 
 namespace TimeToTwentyfour.global;
 
-/// <summary>
-///     全局扑克管理器，统一管理所有扑克实例的创建、Id 查找与状态切换。
-///     合并了原 <c>PokerSceneRegistry</c> 与 <c>PokerStateMachine</c> 的职责。
-/// </summary>
 [Log]
 [ContextAware]
 public partial class PokerManager : Node, ISystem
 {
-    // ==================== Factory ====================
-
     [Export] private PackedScene _pokerScene = GD.Load<PackedScene>("res://scenes/component/poker_view/poker_view.tscn");
 
     public IPoker Product()
@@ -46,8 +40,6 @@ public partial class PokerManager : Node, ISystem
         return poker;
     }
 
-    // ==================== Registry ====================
-
     private readonly Dictionary<Guid, IPokerView> _map = new();
 
     public void Register(Guid id, IPokerView poker) => _map[id] = poker;
@@ -55,8 +47,6 @@ public partial class PokerManager : Node, ISystem
     public void Unregister(Guid id) => _map.Remove(id);
 
     public IPokerView? Find(Guid id) => _map.GetValueOrDefault(id);
-
-    // ==================== State Machine ====================
 
     private readonly Dictionary<Guid, StateBundle> _bundles = new();
 
@@ -119,19 +109,38 @@ public partial class PokerManager : Node, ISystem
         _bundles[id].CurrentState.GuiInput(inputEvent);
     }
 
-    public void MouseDown(Guid id) => _bundles[id].CurrentState.MouseDown();
+    public void MouseDown(Guid id)
+    {
+        _bundles[id].CurrentState.MouseDown();
+    }
 
-    public void MouseUp(Guid id) => _bundles[id].CurrentState.MouseUp();
+    public void MouseUp(Guid id)
+    {
+        _bundles[id].CurrentState.MouseUp();
+    }
 
-    public void MouseEnter(Guid id) => _bundles[id].CurrentState.MouseEnter();
+    public void MouseEnter(Guid id)
+    {
+        _bundles[id].CurrentState.MouseEnter();
+    }
 
-    public void MouseExit(Guid id) => _bundles[id].CurrentState.MouseExit();
+    public void MouseExit(Guid id)
+    {
+        _bundles[id].CurrentState.MouseExit();
+    }
 
-    // ==================== ISystem ====================
+    public void OnArchitecturePhase(ArchitecturePhase phase)
+    {
+        
+    }
 
-    public void OnArchitecturePhase(ArchitecturePhase phase) { }
+    public void Init()
+    {
+        
+    }
 
-    public void Init() { }
-
-    public void Destroy() { }
+    public void Destroy()
+    {
+        
+    }
 }
