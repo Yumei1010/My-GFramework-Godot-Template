@@ -27,14 +27,14 @@ public partial class TimeBar : Control, ITimeBar, IController
         if (!IsRunning) return;
 
         // 按时间倍率扣减
-        Remaining -= (float)delta * TimeScale;
+        _remaining -= (float)delta * TimeScale;
 
         // 更新时间显示
         UpdateTimeDisplay();
 
         // 如果倒计时未归零，返回，否则，结束记时
-        if (!(Remaining <= 0f)) return;
-        Remaining = 0f;
+        if (!(_remaining <= 0f)) return;
+        _remaining = 0f;
         _totalDuration = 0f;
         Paused = false;
         
@@ -45,7 +45,7 @@ public partial class TimeBar : Control, ITimeBar, IController
     {
         Stop();
         _totalDuration = duration;
-        Remaining = duration;
+        _remaining = duration;
         Paused = false;
         UpdateTimeDisplay();
     }
@@ -54,27 +54,24 @@ public partial class TimeBar : Control, ITimeBar, IController
     {
         if (_totalDuration <= 0f) return;
         Stop();
-        Remaining = _totalDuration;
+        _remaining = _totalDuration;
         Paused = false;
         UpdateTimeDisplay();
     }
 
     public void Pause()
     {
-        if (!IsRunning) return;
-        Paused = true;
+        this.SendCommand(new TimeBarPauseCommand());
     }
 
     public void Resume()
     {
-        if (!Paused) return;
-        Paused = false;
+        this.SendCommand(new TimeBarResumeCommand());
     }
 
     public void Stop()
     {
-        Paused = false;
-        Remaining = 0f;
+        this.SendCommand(new TimeBarStopCommand());
 
         UpdateTimeDisplay();
     }
@@ -86,11 +83,11 @@ public partial class TimeBar : Control, ITimeBar, IController
     
     private void UpdateTimeDisplay()
     {
-        TimeLabel.Text = FormatTime(Remaining);
+        TimeLabel.Text = FormatTime(_remaining);
 
         if (_totalDuration > 0f)
         {
-            TimeProgressBar.Value = Remaining / TotalDuration * 100f;
+            TimeProgressBar.Value = _remaining / _totalDuration * 100f;
         }
         else
         {

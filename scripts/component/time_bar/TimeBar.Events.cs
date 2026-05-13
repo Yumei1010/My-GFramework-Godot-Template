@@ -22,6 +22,21 @@ public partial class TimeBar
         {
             OnTimeAdjustedEvent(e.Time);
         }).UnRegisterWhenNodeExitTree(this);
+
+        this.RegisterEvent<TimeBarPausedEvent>(e =>
+        {
+            OnPausedEvent();
+        }).UnRegisterWhenNodeExitTree(this);
+
+        this.RegisterEvent<TimeBarResumedEvent>(e =>
+        {
+            OnResumedEvent();
+        }).UnRegisterWhenNodeExitTree(this);
+
+        this.RegisterEvent<TimeBarStopedEvent>(e =>
+        {
+            OnStopedEvent();
+        }).UnRegisterWhenNodeExitTree(this);
     }
 
     private void OnTotalDurationChangedEvent(float totalDuration)
@@ -36,22 +51,40 @@ public partial class TimeBar
 
     private void OnTimeAdjustedEvent(float time)
     {
-        if (Remaining <= 0f && !Paused) return;
+        if (_remaining <= 0f && !Paused) return;
 
-            Remaining += time;
+            _remaining += time;
 
-            if (Remaining <= 0f)
+            if (_remaining <= 0f)
             {
-                Remaining = 0f;
+                _remaining = 0f;
                 _totalDuration = 0f;
                 Paused = false;
                 UpdateTimeDisplay();
                 return;
             }
 
-            if (Remaining > _totalDuration)
-                _totalDuration = Remaining;
+            if (_remaining > _totalDuration)
+                _totalDuration = _remaining;
 
             UpdateTimeDisplay();
+    }
+
+    private void OnPausedEvent()
+    {
+        if (!IsRunning) return;
+        Paused = true;
+    }
+
+    private void OnResumedEvent()
+    {
+        if (!Paused) return;
+        Paused = false;
+    }
+
+    private void OnStopedEvent()
+    {
+        Paused = false;
+        _remaining = 0f;
     }
 }
