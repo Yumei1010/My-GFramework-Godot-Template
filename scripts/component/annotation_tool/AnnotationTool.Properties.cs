@@ -7,6 +7,11 @@ namespace TimeToTwentyfour.scripts.component.annotationTool;
 
 public partial class AnnotationTool
 {
+    public Color Color => _color;
+    public AnnotationToolType CurrentTool => _currentTool;
+    public bool Enabled => _enabled;
+    public float ToolWidth => _toolWidth;
+
     private readonly List<LineElementData> _lines = [];
     private readonly List<CircleElementData> _circles = [];
     private readonly List<RectElementData> _rects = [];

@@ -1,4 +1,5 @@
 using TimeToTwentyfour.scripts.enums.annotationTool;
+using Godot;
 
 namespace TimeToTwentyfour.scripts.component.annotationTool;
 
@@ -8,10 +9,13 @@ namespace TimeToTwentyfour.scripts.component.annotationTool;
 /// </summary>
 public partial interface IAnnotationTool
 {
+    Color Color { get; }
+
+    AnnotationToolType CurrentTool { get; }
+
+    bool Enabled { get; }
+
+    float ToolWidth { get; }
     
-    /// <summary>
-    ///     切换当前绘制工具
-    /// </summary> 
-    /// <param name="tool">要切换到的工具类型 <see cref="AnnotationToolType"/></param>
     void ChangeTo(AnnotationToolType tool);
 }
