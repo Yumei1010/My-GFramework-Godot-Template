@@ -1,5 +1,8 @@
-﻿using global::TimeToTwentyfour.global;
+﻿using CQRS.TimeBar.Query.Result;
+using GFramework.Core.extensions;
 using Godot;
+using TimeToTwentyfour.global;
+using TimeToTwentyfour.scripts.cqrs.timeBar.query;
 
 namespace TimeToTwentyfour.scripts.component.timeBar;
 
@@ -13,12 +16,11 @@ public partial class TimeBar
     
     private async Task ReadyAsync()
     {
-        // 等待框架加载完成
         await GameEntryPoint.Architecture.WaitUntilReadyAsync().ConfigureAwait(false);
         
-        // TimeScale = 1f;
-        // Start(10);
-        // await ToSignal(GetTree().CreateTimer(5f), "timeout");
-        // AdjustTime(35);
+        TimeBarView config = ContextAwareExtensions.SendQuery(this, new GetCurrentTimeBarSettingQuery());
+
+        _totalDuration = config.TimeBar.TotalDuration;
+        _timeScale = config.TimeBar.TimeScale;
     }
 }

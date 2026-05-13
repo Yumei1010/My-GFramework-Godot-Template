@@ -3,6 +3,7 @@ using GFramework.Core.extensions;
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
 using Godot;
+using TimeToTwentyfour.scripts.cqrs.timeBar.command;
 using TimeToTwentyfour.scripts.cqrs.timeBar.@event;
 
 namespace TimeToTwentyfour.scripts.component.timeBar;
@@ -17,6 +18,7 @@ public partial class TimeBar : Control, ITimeBar, IController
     public override void _Ready()
     {
         _ = ReadyAsync();
+        RegisterEvent();
     }
     
     public override void _Process(double delta)
@@ -33,77 +35,60 @@ public partial class TimeBar : Control, ITimeBar, IController
         // 如果倒计时未归零，返回，否则，结束记时
         if (!(Remaining <= 0f)) return;
         Remaining = 0f;
-        TotalDuration = 0f;
+        _totalDuration = 0f;
         Paused = false;
         
-        ContextAwareExtensions.SendEvent(this, new TimeBarTimeoutedEvent());
+        this.SendEvent(new TimeBarTimeoutedEvent());
     }
 
-    /// <summary>启动指定秒数的倒计时。</summary>
     public void Start(float duration)
     {
         Stop();
-        TotalDuration = duration;
+        _totalDuration = duration;
         Remaining = duration;
         Paused = false;
         UpdateTimeDisplay();
     }
 
-    /// <summary>暂停倒计时。</summary>
+    public void Start()
+    {
+        if (_totalDuration <= 0f) return;
+        Stop();
+        Remaining = _totalDuration;
+        Paused = false;
+        UpdateTimeDisplay();
+    }
+
     public void Pause()
     {
         if (!IsRunning) return;
         Paused = true;
     }
 
-    /// <summary>恢复倒计时。</summary>
     public void Resume()
     {
         if (!Paused) return;
         Paused = false;
     }
 
-    /// <summary>停止倒计时并归零。</summary>
     public void Stop()
     {
         Paused = false;
         Remaining = 0f;
-        TotalDuration = 0f;
-        
+
         UpdateTimeDisplay();
     }
     
-    /// <summary>调整剩余时间（正值增加，负值减少）。</summary>
     public void AdjustTime(float delta)
     {
-        if (Remaining <= 0f && !Paused) return;
-
-        Remaining += delta;
-
-        if (Remaining <= 0f)
-        {
-            Remaining = 0f;
-            TotalDuration = 0f;
-            Paused = false;
-            UpdateTimeDisplay();
-            return;
-        }
-        
-        if (Remaining > TotalDuration)
-        {
-            TotalDuration = Remaining;
-        }
-
-        UpdateTimeDisplay();
+        this.SendCommand(new TimeBarAdjustTimeCommand { Time = delta });
     }
     
     private void UpdateTimeDisplay()
     {
-        // 更新文本
         TimeLabel.Text = FormatTime(Remaining);
 
-        // 更新进度条
-        if (TotalDuration > 0f)
+        if (_totalDuration > 0f)
         {
             TimeProgressBar.Value = Remaining / TotalDuration * 100f;
         }

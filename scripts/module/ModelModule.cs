@@ -12,6 +12,7 @@ using TimeToTwentyfour.scripts.model.pile;
 using TimeToTwentyfour.scripts.model.player;
 using TimeToTwentyfour.scripts.model.selector;
 using TimeToTwentyfour.scripts.data.setting;
+using TimeToTwentyfour.scripts.model.timeBar;
 
 namespace TimeToTwentyfour.scripts.module;
 
@@ -67,5 +68,8 @@ public class ModelModule : AbstractModule
 
         // 注册计算器模型
         architecture.RegisterModel(new CalculatorModel());
+
+        // 注册计时器模型
+        architecture.RegisterModel(new TimeBarModel());
     }
 }

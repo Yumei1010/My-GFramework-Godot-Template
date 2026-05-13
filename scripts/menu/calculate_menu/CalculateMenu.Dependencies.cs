@@ -24,9 +24,6 @@ public partial class CalculateMenu
     /// <summary>简易发牌测试：从抽牌堆随机取 4 张牌并加入牌桌。</summary>
     private void DealTest()
     {
-        TimeBar.Start(120f);
-        TimeBar.TimeScale = 1f;
-
         var handPile = this.GetModel<HandPileModel>();
 
         for (int i = 0; i < 4; i++)
