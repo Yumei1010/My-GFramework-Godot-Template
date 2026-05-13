@@ -1,4 +1,6 @@
-﻿using Godot;
+﻿using GFramework.Core.extensions;
+using Godot;
+using TimeToTwentyfour.scripts.cqrs.poker.command;
 
 namespace TimeToTwentyfour.scripts.entities.poker;
 
@@ -14,17 +16,17 @@ public partial class Poker
     
     private void OnButtonDown()
     {
-        _manager.MouseDown(Id);
+        this.SendCommand(new PokerPickUpCommand { PokerId = Id });
     }
 
     private void OnButtonUp()
     {
-        _manager.MouseUp(Id);
+        this.SendCommand(new PokerPutDownCommand { PokerId = Id });
     }
 
     private void OnMouseEntered()
     {
-        _manager.MouseEnter(Id);
+        this.SendCommand(new PokerGainFocusCommand { PokerId = Id });
     }
 
     private void OnMouseExited()
@@ -39,6 +41,6 @@ public partial class Poker
             _tweenRot.TweenProperty(_material, "shader_parameter/y_rot", 0.0f, AnimateTime);
         }
 
-        _manager.MouseExit(Id);
+        this.SendCommand(new PokerLoseFocusCommand { PokerId = Id });
     }
 }

@@ -10,22 +10,14 @@ public partial class Poker
 {
     private void RegisterEvent()
     {
-        // 注册对扑克选择器可用性变更事件的监听
         this.RegisterEvent<SelectorEnableChangedEvent>(e =>
         {
             OnSelectorEnableChangedEvent(e.Enable);
         }).UnRegisterWhenNodeExitTree(this);
 
-        // 注册对选择变更事件的监听
         this.RegisterEvent<SelectorSelectChangedEvent>(e =>
         {
             OnSelectorSelectChangedEvent(e.IsSelected, e.PokerId);
-        }).UnRegisterWhenNodeExitTree(this);
-
-        // 注册对预览运算结果变更事件的监听
-        this.RegisterEvent<PokerReserveResultChangedEvent>(e =>
-        {
-            OnReserveResultChangedEvent(e.NumValue, e.IsHidden, e.PokerId);
         }).UnRegisterWhenNodeExitTree(this);
 
         // 注册对卡牌模型数据变更事件的监听
@@ -44,14 +36,6 @@ public partial class Poker
     {
         if (pokerId != Id) return;
         ChangeTo(isSelected ? StateType.OnSelect : StateType.UnSelect);
-    }
-
-    private void OnReserveResultChangedEvent(String numValue, bool visible, Guid pokerId)
-    {
-        if (pokerId != Id) return;
-
-        ReserveResultRect.Visible = visible;
-        ReserveResultLabel.Text = numValue;
     }
 
     private void OnCardChangedEvent(Guid id ,SuitType suitType, String numValue, NumType numType)

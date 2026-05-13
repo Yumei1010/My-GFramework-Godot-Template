@@ -11,8 +11,6 @@ public partial class Poker
     private TextureRect ShadowRect => GetNode<TextureRect>("%ShadowRect");
     private TextureRect SurfaceRect => GetNode<TextureRect>("%SurfaceRect");
     private Label NumLabel => GetNode<Label>("%NumLabel");
-    private TextureRect ReserveResultRect => GetNode<TextureRect>("%ReserveResultRect");
-    private Label ReserveResultLabel => GetNode<Label>("%ReserveResultLabel");
 
     [ExportGroup("Style")]
     [ExportSubgroup("Suit")]
@@ -83,9 +81,6 @@ public partial class Poker
         // 初始化状态（状态在 PokerManager.InitStates 内部以纯 C# 类注册）
         _manager.InitStates(this);
         _manager.ChangeTo(Id, StateType.Idle);
-
-        // 隐藏预览运算结果悬浮框
-        ReserveResultRect.Hide();
 
         // 更新点数文本显示
         UpdateNumValueLabel();
