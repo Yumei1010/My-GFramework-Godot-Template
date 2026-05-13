@@ -43,19 +43,17 @@ public partial class TimeBar : Control, ITimeBar, IController
 
     public void Start(float duration)
     {
-        Stop();
         _totalDuration = duration;
-        _remaining = duration;
-        Paused = false;
+        this.SendCommand(new TimeBarStartCommand());
+
         UpdateTimeDisplay();
     }
 
     public void Start()
     {
         if (_totalDuration <= 0f) return;
-        Stop();
-        _remaining = _totalDuration;
-        Paused = false;
+        this.SendCommand(new TimeBarStartCommand());
+        
         UpdateTimeDisplay();
     }
 

@@ -23,6 +23,11 @@ public partial class TimeBar
             OnTimeAdjustedEvent(e.Time);
         }).UnRegisterWhenNodeExitTree(this);
 
+        this.RegisterEvent<TimeBarStartedEvent>(e =>
+        {
+            OnStartedEvent();
+        }).UnRegisterWhenNodeExitTree(this);
+
         this.RegisterEvent<TimeBarPausedEvent>(e =>
         {
             OnPausedEvent();
@@ -68,6 +73,13 @@ public partial class TimeBar
                 _totalDuration = _remaining;
 
             UpdateTimeDisplay();
+    }
+
+    private void OnStartedEvent()
+    {
+        if (_totalDuration <= 0f) return;
+        Paused = false;
+        _remaining = _totalDuration;
     }
 
     private void OnPausedEvent()
