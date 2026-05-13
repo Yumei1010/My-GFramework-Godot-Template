@@ -1,5 +1,4 @@
 using Godot;
-using TimeToTwentyfour.scripts.entities.poker.stateMachine;
 using TimeToTwentyfour.scripts.enums.poker;
 
 namespace TimeToTwentyfour.scripts.entities.poker.state;

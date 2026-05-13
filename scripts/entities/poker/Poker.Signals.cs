@@ -14,17 +14,17 @@ public partial class Poker
     
     private void OnButtonDown()
     {
-        StateMachine.MouseDown();
+        _manager.MouseDown(Id);
     }
-    
+
     private void OnButtonUp()
     {
-        StateMachine.MouseUp();
+        _manager.MouseUp(Id);
     }
 
     private void OnMouseEntered()
     {
-        StateMachine.MouseEnter();
+        _manager.MouseEnter(Id);
     }
 
     private void OnMouseExited()
@@ -33,12 +33,12 @@ public partial class Poker
         {
             // 如果正在播放动画，使其终止
             if (!_tweenRot.IsNull() && _tweenRot.IsRunning()) _tweenRot.Kill();
-            
+
             _tweenRot = CreateTween().SetParallel().SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Back);
             _tweenRot.TweenProperty(_material, "shader_parameter/x_rot", 0.0f, AnimateTime);
             _tweenRot.TweenProperty(_material, "shader_parameter/y_rot", 0.0f, AnimateTime);
         }
-        
-        StateMachine.MouseExit();
+
+        _manager.MouseExit(Id);
     }
 }

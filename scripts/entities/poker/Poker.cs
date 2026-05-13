@@ -26,7 +26,8 @@ public partial class Poker : Button, IPoker, IController
 
     public override void _ExitTree()
     {
-        GetNode<PokerSceneRegistry>("/root/PokerSceneRegistry").Unregister(Id);
+        _manager.RemoveBundle(Id);
+        _manager.Unregister(Id);
     }
 
     public override void _Process(double delta)
@@ -34,7 +35,7 @@ public partial class Poker : Button, IPoker, IController
         if (Shadow)
         {
             ShadowRect.Show();
-            
+
             Vector2 shadowPos = ShadowRect.Position;
             shadowPos.X = Mathf.Lerp(0f, -Mathf.Sign(GetGlobalPosition().X - (GetViewportRect().Size / 2f).X) * 20f, Mathf.Abs((GetGlobalPosition().X - (GetViewportRect().Size / 2f).X) / (GetViewportRect().Size / 2f).X));
             ShadowRect.Position = shadowPos;
@@ -43,8 +44,8 @@ public partial class Poker : Button, IPoker, IController
         {
             ShadowRect.Hide();
         }
-        
-        StateMachine.Process(delta);
+
+        _manager.Process(Id, delta);
     }
 
     public override void _GuiInput(InputEvent @event)
@@ -57,17 +58,17 @@ public partial class Poker : Button, IPoker, IController
             _material.SetShaderParameter("y_rot", rotY);
         }
 
-        StateMachine.GuiInput(@event);
+        _manager.GuiInput(Id, @event);
     }
 
     public void Reparent(Node parent)
     {
         base.Reparent(parent);
     }
-    
+
     public void ChangeTo(StateType state)
     {
-        StateMachine.ChangeTo(state);
+        _manager.ChangeTo(Id, state);
     }
 
     public void SpawnTo(Vector2 position)

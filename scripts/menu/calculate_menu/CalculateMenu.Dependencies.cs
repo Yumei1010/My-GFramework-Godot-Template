@@ -9,7 +9,7 @@ namespace TimeToTwentyfour.scripts.menu.calculate_menu;
 
 public partial class CalculateMenu
 {
-    private PokerSceneRegistry PokerFactory => GetNode<PokerSceneRegistry>("/root/PokerSceneRegistry");
+    private PokerManager PokerFactory => GetNode<PokerManager>("/root/PokerManager");
     private ITimeBar TimeBar => GetNode<ITimeBar>("%TimeBar");
     private IDeck Deck => GetNode<IDeck>("%Deck");
 

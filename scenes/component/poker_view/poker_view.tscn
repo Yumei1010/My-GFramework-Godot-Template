@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://cfuvnryxlpn4b"]
 
 [ext_resource type="Script" uid="uid://dgomet07s0x3k" path="res://scripts/entities/poker/Poker.cs" id="1_xy1ni"]
-[ext_resource type="Script" uid="uid://ddwck8cwbdhqf" path="res://scripts/entities/poker/stateMachine/PokerStateMachine.cs" id="2_ocbvq"]
 [ext_resource type="Texture2D" uid="uid://bq8e5q4wdtjbj" path="res://assets/textures/poker/shadow_texture.png" id="3_8veip"]
 [ext_resource type="Shader" uid="uid://nuhgfc63t5ri" path="res://assets/shader/poker/fake_3D.gdshader" id="4_gev65"]
 [ext_resource type="Texture2D" uid="uid://bno6chga3mr4n" path="res://assets/textures/poker/heart_mask_texture.png" id="5_wfsoj"]
@@ -28,10 +27,6 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(48, 72)
 script = ExtResource("1_xy1ni")
-
-[node name="StateMachine" type="Node" parent="." unique_id=929307564]
-unique_name_in_owner = true
-script = ExtResource("2_ocbvq")
 
 [node name="ShadowRect" type="TextureRect" parent="." unique_id=1157468359]
 unique_name_in_owner = true

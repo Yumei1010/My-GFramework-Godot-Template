@@ -3,13 +3,11 @@ using TimeToTwentyfour.scripts.enums.poker;
 using TimeToTwentyfour.scripts.utility;
 using TimeToTwentyfour.global;
 using Godot;
-using TimeToTwentyfour.scripts.entities.poker.stateMachine;
 
 namespace TimeToTwentyfour.scripts.entities.poker;
 
 public partial class Poker
 {
-    private IPokerStateMachine StateMachine => GetNode<PokerStateMachine>("%StateMachine");
     private TextureRect ShadowRect => GetNode<TextureRect>("%ShadowRect");
     private TextureRect SurfaceRect => GetNode<TextureRect>("%SurfaceRect");
     private Label NumLabel => GetNode<Label>("%NumLabel");
@@ -70,6 +68,7 @@ public partial class Poker
     private ShaderMaterial _material = null!;
     private Tween _tweenPos = null!;
     private Tween _tweenRot = null!;
+    private PokerManager _manager = null!;
 
     private async Task ReadyAsync()
     {
@@ -79,10 +78,11 @@ public partial class Poker
         // 依赖注入
         _textureRegistry = this.GetUtility<IGodotTextureRegistry>()!;
         _material = (ShaderMaterial)SurfaceRect.Material;
+        _manager = GetNode<PokerManager>("/root/PokerManager");
 
-        // 初始化状态机（状态在 StateMachine.Init 内部以纯 C# 类注册）
-        StateMachine.Init(this);
-        StateMachine.ChangeTo(StateType.Idle);
+        // 初始化状态（状态在 PokerManager.InitStates 内部以纯 C# 类注册）
+        _manager.InitStates(this);
+        _manager.ChangeTo(Id, StateType.Idle);
 
         // 隐藏预览运算结果悬浮框
         ReserveResultRect.Hide();
@@ -94,6 +94,6 @@ public partial class Poker
         UpdateSurfaceRect();
 
         // 注册到查找表
-        GetNode<PokerSceneRegistry>("/root/PokerSceneRegistry").Register(Id, this);
+        _manager.Register(Id, this);
     }
 }
