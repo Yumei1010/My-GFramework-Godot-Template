@@ -1,6 +1,6 @@
 using TimeToTwentyfour.scripts.enums.poker;
 
-namespace TimeToTwentyfour.scripts.model.poker;
+namespace TimeToTwentyfour.scripts.entities.poker;
 
 /// <summary>
 ///     扑克牌纯数据契约

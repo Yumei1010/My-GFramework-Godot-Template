@@ -5,7 +5,7 @@ using GFramework.SourceGenerators.Abstractions.rule;
 using Godot;
 using TimeToTwentyfour.scripts.cqrs.deck.@event;
 using TimeToTwentyfour.scripts.entities.poker;
-using TimeToTwentyfour.scripts.model.poker;
+using TimeToTwentyfour.scripts.entities.poker;
 
 namespace TimeToTwentyfour.scripts.component.deck;
 

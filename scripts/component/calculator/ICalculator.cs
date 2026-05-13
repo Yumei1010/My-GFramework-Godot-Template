@@ -1,5 +1,5 @@
 using TimeToTwentyfour.scripts.enums.calculator;
-using TimeToTwentyfour.scripts.model.poker;
+using TimeToTwentyfour.scripts.entities.poker;
 
 namespace TimeToTwentyfour.scripts.component.calculator;
 

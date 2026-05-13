@@ -2,7 +2,7 @@
 using GFramework.Godot.extensions;
 using TimeToTwentyfour.scripts.cqrs.modeButton.@event;
 using TimeToTwentyfour.scripts.component.calculator.mode;
-using TimeToTwentyfour.scripts.model.poker;
+using TimeToTwentyfour.scripts.entities.poker;
 
 namespace TimeToTwentyfour.scripts.component.calculator;
 
