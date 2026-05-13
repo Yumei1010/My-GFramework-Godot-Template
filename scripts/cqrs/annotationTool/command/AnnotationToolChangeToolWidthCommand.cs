@@ -13,7 +13,8 @@ public sealed class AnnotationToolChangeToolWidthCommand : AbstractCommand
     {
         this.GetModel<AnnotationToolModel>().ToolWidth = ToolWidth;
 
-        this.SendEvent(new AnnotationToolToolWidthChangedEvent { 
+        this.SendEvent(new AnnotationToolToolWidthChangedEvent 
+        { 
             ToolWidth = ToolWidth 
         });
     }

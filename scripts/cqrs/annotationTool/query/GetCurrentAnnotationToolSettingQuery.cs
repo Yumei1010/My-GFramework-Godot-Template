@@ -6,7 +6,7 @@ using TimeToTwentyfour.scripts.model.annotationTool;
 
 namespace TimeToTwentyfour.scripts.cqrs.annotationTool.query;
 
-public class GetCurrentAnnotationToolSettingQuery : AbstractQuery<AnnotationToolView>
+public sealed class GetCurrentAnnotationToolSettingQuery : AbstractQuery<AnnotationToolView>
 {
     protected override AnnotationToolView OnDo()
     {
