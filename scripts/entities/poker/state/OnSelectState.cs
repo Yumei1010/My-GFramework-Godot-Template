@@ -28,12 +28,6 @@ public sealed partial class OnSelectState : PokerState
 
     public override void MouseDown()
     {
-        this.SendEvent(new SelectorSelectChangedEvent
-        {
-            PokerId = Poker.Id,
-            IsSelected = false
-        });
-
         ChangeTo(StateType.UnSelect);
     }
 }
