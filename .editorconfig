@@ -9,5 +9,7 @@ dotnet_diagnostic.CS8601.severity = none
 dotnet_diagnostic.CS8602.severity = none
 # MA0011: 使用带有 IFormatProvider 参数的 ToString 重载。
 dotnet_diagnostic.MA0011.severity = none
+# MA0007: 在最后一个值后添加逗号。
+dotnet_diagnostic.MA0007.severity = none
 # MA0016: 优先使用集合抽象而非具体实现。
 dotnet_diagnostic.MA0016.severity = none
