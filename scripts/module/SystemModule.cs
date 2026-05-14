@@ -4,7 +4,7 @@ using GFramework.Game.setting;
 using TimeToTwentyfour.global;
 using TimeToTwentyfour.scripts.core.scene;
 using TimeToTwentyfour.scripts.core.ui;
-using TimeToTwentyfour.scripts.entities.poker;
+using TimeToTwentyfour.scripts.system.Poker;
 
 namespace TimeToTwentyfour.scripts.module;
 
@@ -27,5 +27,11 @@ public class SystemModule : AbstractModule
         architecture.RegisterSystem(new SettingsSystem());
 
         architecture.RegisterSystem(new PokerManager());
+
+        architecture.RegisterSystem(new PokerStateSystem());
+
+        architecture.RegisterSystem(new PokerAnimationSystem());
+
+        architecture.RegisterSystem(new PokerSuitEffectSystem());
     }
 }

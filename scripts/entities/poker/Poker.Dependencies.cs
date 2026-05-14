@@ -3,6 +3,7 @@ using TimeToTwentyfour.scripts.enums.poker;
 using TimeToTwentyfour.scripts.utility;
 using TimeToTwentyfour.global;
 using Godot;
+using TimeToTwentyfour.scripts.system.Poker;
 
 namespace TimeToTwentyfour.scripts.entities.poker;
 
@@ -66,7 +67,7 @@ public partial class Poker
     private ShaderMaterial _material = null!;
     private Tween _tweenPos = null!;
     private Tween _tweenRot = null!;
-    private PokerManager _manager = null!;
+    private PokerStateSystem _manager = null!;
 
     private async Task ReadyAsync()
     {
@@ -76,9 +77,8 @@ public partial class Poker
         // 依赖注入
         _textureRegistry = this.GetUtility<IGodotTextureRegistry>()!;
         _material = (ShaderMaterial)SurfaceRect.Material;
-        _manager = GetNode<PokerManager>("/root/PokerManager");
 
-        // 初始化状态（状态在 PokerManager.InitStates 内部以纯 C# 类注册）
+        _manager = this.GetSystem<PokerStateSystem>();
         _manager.InitStates(this);
         _manager.ChangeTo(Id, StateType.Idle);
 
@@ -87,8 +87,5 @@ public partial class Poker
 
         // 更新纹理显示
         UpdateSurfaceRect();
-
-        // 注册到查找表
-        _manager.Register(Id, this);
     }
 }

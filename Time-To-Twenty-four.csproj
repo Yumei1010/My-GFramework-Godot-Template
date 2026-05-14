@@ -63,5 +63,7 @@
       <Folder Include="scripts\menu\map_menu\" />
       <Folder Include="scripts\model\pile\" />
       <Folder Include="scripts\model\timeBar\" />
+      <Folder Include="scripts\system\" />
+      <Folder Include="scripts\system\Poker\" />
     </ItemGroup>
 </Project>
