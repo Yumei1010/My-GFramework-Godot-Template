@@ -1,11 +1,12 @@
 ﻿using GFramework.Core.Abstractions.controller;
+using GFramework.Core.extensions;
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
-using TimeToTwentyfour.global;
+using Godot;
+using TimeToTwentyfour.scripts.cqrs.poker.command;
 using TimeToTwentyfour.scripts.enums.poker;
 using TimeToTwentyfour.scripts.enums.resources;
 using TimeToTwentyfour.scripts.model.color;
-using Godot;
 
 namespace TimeToTwentyfour.scripts.entities.poker;
 
@@ -27,7 +28,6 @@ public partial class Poker : Button, IPoker, IController
     public override void _ExitTree()
     {
         _manager.RemoveBundle(Id);
-        _manager.Unregister(Id);
     }
 
     public override void _Process(double delta)
@@ -68,7 +68,7 @@ public partial class Poker : Button, IPoker, IController
 
     public void ChangeTo(StateType state)
     {
-        _manager.ChangeTo(Id, state);
+        this.SendCommand(new PokerChangeStateCommand{ PokerId = Id, State = state });
     }
 
     public void SpawnTo(Vector2 position)
@@ -80,7 +80,6 @@ public partial class Poker : Button, IPoker, IController
     {
         if (Animate)
         {
-            // 如果正在播放动画，使其终止
             if (!_tweenPos.IsNull() && _tweenPos.IsRunning()) _tweenPos.Kill();
             
             _tweenPos = CreateTween().SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Elastic);
@@ -99,7 +98,6 @@ public partial class Poker : Button, IPoker, IController
             case "Position":
                 if (Animate)
                 {
-                    // 如果正在播放动画，使其终止
                     if (!_tweenPos.IsNull() && _tweenPos.IsRunning()) _tweenPos.Kill();
             
                     _tweenPos = CreateTween().SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Elastic);
@@ -113,7 +111,6 @@ public partial class Poker : Button, IPoker, IController
             case "Rotation":
                 if (Animate)
                 {
-                    // 如果正在播放动画，使其终止
                     if (!_tweenRot.IsNull() && _tweenRot.IsRunning()) _tweenRot.Kill();
             
                     _tweenRot = CreateTween().SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Elastic);

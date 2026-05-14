@@ -1,6 +1,6 @@
 using GFramework.Core.command;
 using GFramework.Core.extensions;
-using TimeToTwentyfour.global;
+using TimeToTwentyfour.scripts.system.Poker;
 
 namespace TimeToTwentyfour.scripts.cqrs.poker.command;
 
@@ -10,6 +10,6 @@ public sealed class PokerPickUpCommand : AbstractCommand
 
     protected override void OnExecute()
     {
-        this.GetSystem<PokerManager>().MouseDown(PokerId);
+        this.GetSystem<PokerStateSystem>().MouseDown(PokerId);
     }
 }
