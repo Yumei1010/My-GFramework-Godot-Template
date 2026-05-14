@@ -34,7 +34,7 @@ public interface IPokerView
     Vector2 GlobalPosition { get; set; }
 
     /// <summary>旋转弧度。</summary>
-    float Rotation { get; }
+    float Rotation { get; set; }
 
     /// <summary>重置位置锚点。</summary>
     Vector2 ResetPosition { get; set; }

@@ -56,10 +56,13 @@
         <Content Include="global\README.md" />
     </ItemGroup>
     <ItemGroup>
+      <Folder Include="scripts\component\theme\" />
       <Folder Include="scripts\cqrs\annotationTool\event\" />
       <Folder Include="scripts\cqrs\calculator\command\" />
       <Folder Include="scripts\cqrs\pile\event\" />
       <Folder Include="scripts\data\timeBar\" />
+      <Folder Include="scripts\entities\poker\animation\" />
+      <Folder Include="scripts\entities\poker\theme\" />
       <Folder Include="scripts\menu\map_menu\" />
       <Folder Include="scripts\model\pile\" />
       <Folder Include="scripts\model\timeBar\" />
