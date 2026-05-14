@@ -20,7 +20,7 @@ public partial class PokerStateSystem : ISystem
         public IPokerState PreviousState;
     }
 
-    private Dictionary<Guid, StateBundle> _bundles = new();
+    private Dictionary<Guid, StateBundle> Bundles = [];
 
     public void OnArchitecturePhase(ArchitecturePhase phase)
     {
@@ -53,20 +53,20 @@ public partial class PokerStateSystem : ISystem
             state.Poker = poker;
         }
 
-        _bundles[poker.Id] = new StateBundle { States = states };
+        Bundles[poker.Id] = new StateBundle { States = states };
     }
 
-    public void RemoveBundle(Guid id) => _bundles.Remove(id);
+    public void RemoveBundle(Guid id) => Bundles.Remove(id);
 
     public void ChangeTo(Guid id, StateType state)
     {
-        var b = _bundles[id];
+        var b = Bundles[id];
 
         if (b.CurrentState == null!)
         {
             b.CurrentState = b.States[state];
             b.CurrentState.Enter();
-            _bundles[id] = b;
+            Bundles[id] = b;
             return;
         }
 
@@ -76,36 +76,36 @@ public partial class PokerStateSystem : ISystem
         b.PreviousState = b.CurrentState;
         b.CurrentState = b.States[state];
         b.CurrentState.Enter();
-        _bundles[id] = b;
+        Bundles[id] = b;
     }
 
     public void Process(Guid id, double delta)
     {
-        _bundles[id].CurrentState.Process(delta);
+        Bundles[id].CurrentState.Process(delta);
     }
 
     public void GuiInput(Guid id, InputEvent inputEvent)
     {
-        _bundles[id].CurrentState.GuiInput(inputEvent);
+        Bundles[id].CurrentState.GuiInput(inputEvent);
     }
 
     public void MouseDown(Guid id)
     {
-        _bundles[id].CurrentState.MouseDown();
+        Bundles[id].CurrentState.MouseDown();
     }
 
     public void MouseUp(Guid id)
     {
-        _bundles[id].CurrentState.MouseUp();
+        Bundles[id].CurrentState.MouseUp();
     }
 
     public void MouseEnter(Guid id)
     {
-        _bundles[id].CurrentState.MouseEnter();
+        Bundles[id].CurrentState.MouseEnter();
     }
 
     public void MouseExit(Guid id)
     {
-        _bundles[id].CurrentState.MouseExit();
+        Bundles[id].CurrentState.MouseExit();
     }
 }

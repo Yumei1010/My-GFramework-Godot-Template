@@ -27,7 +27,7 @@ public partial class Poker : Button, IPoker, IController
 
     public override void _ExitTree()
     {
-        _manager.RemoveBundle(Id);
+        this.SendCommand(new PokerRemoveStateBundleCommand { PokerId = Id });
     }
 
     public override void _Process(double delta)
@@ -45,7 +45,7 @@ public partial class Poker : Button, IPoker, IController
             ShadowRect.Hide();
         }
 
-        _manager.Process(Id, delta);
+        this.SendCommand(new PokerProcessUpdateCommand { PokerId = Id, Delta = delta });
     }
 
     public override void _GuiInput(InputEvent @event)
@@ -58,7 +58,7 @@ public partial class Poker : Button, IPoker, IController
             _material.SetShaderParameter("y_rot", rotY);
         }
 
-        _manager.GuiInput(Id, @event);
+        this.SendCommand(new PokerGuiInputCommand { PokerId = Id, InputEvent = @event });
     }
 
     public void Reparent(Node parent)

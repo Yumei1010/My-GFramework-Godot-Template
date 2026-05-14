@@ -1,9 +1,9 @@
 using GFramework.Core.extensions;
+using Godot;
 using TimeToTwentyfour.scripts.enums.poker;
 using TimeToTwentyfour.scripts.utility;
 using TimeToTwentyfour.global;
-using Godot;
-using TimeToTwentyfour.scripts.system.Poker;
+using TimeToTwentyfour.scripts.cqrs.poker.command;
 
 namespace TimeToTwentyfour.scripts.entities.poker;
 
@@ -67,25 +67,19 @@ public partial class Poker
     private ShaderMaterial _material = null!;
     private Tween _tweenPos = null!;
     private Tween _tweenRot = null!;
-    private PokerStateSystem _manager = null!;
 
     private async Task ReadyAsync()
     {
-        // 等待框架加载完成
         await GameEntryPoint.Architecture.WaitUntilReadyAsync().ConfigureAwait(false);
 
-        // 依赖注入
         _textureRegistry = this.GetUtility<IGodotTextureRegistry>()!;
         _material = (ShaderMaterial)SurfaceRect.Material;
+        
+        this.SendCommand(new PokerInitStateBundleCommand { Poker = this });
 
-        _manager = this.GetSystem<PokerStateSystem>();
-        _manager.InitStates(this);
-        _manager.ChangeTo(Id, StateType.Idle);
+        ChangeTo(StateType.Idle);
 
-        // 更新点数文本显示
         UpdateNumValueLabel();
-
-        // 更新纹理显示
         UpdateSurfaceRect();
     }
 }
