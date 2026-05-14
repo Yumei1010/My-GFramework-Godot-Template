@@ -4,6 +4,7 @@ using TimeToTwentyfour.scripts.enums.poker;
 using TimeToTwentyfour.scripts.utility;
 using TimeToTwentyfour.global;
 using TimeToTwentyfour.scripts.cqrs.poker.command;
+using TimeToTwentyfour.scripts.system.Poker;
 
 namespace TimeToTwentyfour.scripts.entities.poker;
 
@@ -65,8 +66,7 @@ public partial class Poker
 
     private IGodotTextureRegistry _textureRegistry = null!;
     private ShaderMaterial _material = null!;
-    private Tween _tweenPos = null!;
-    private Tween _tweenRot = null!;
+    private PokerAnimationSystem _animationSystem = null!;
 
     private async Task ReadyAsync()
     {
@@ -74,8 +74,14 @@ public partial class Poker
 
         _textureRegistry = this.GetUtility<IGodotTextureRegistry>()!;
         _material = (ShaderMaterial)SurfaceRect.Material;
-        
-        this.SendCommand(new PokerInitStateBundleCommand { Poker = this });
+        _animationSystem = this.GetSystem<PokerAnimationSystem>();
+
+        this.SendCommand(new PokerInitStateBundleCommand
+        {
+            Poker = this,
+            Material = _material,
+            ShadowRect = ShadowRect,
+        });
 
         ChangeTo(StateType.Idle);
 

@@ -11,5 +11,6 @@ public sealed class PokerRemoveStateBundleCommand : AbstractCommand
     protected override void OnExecute()
     {
         this.GetSystem<PokerStateSystem>().RemoveBundle(PokerId);
+        this.GetSystem<PokerAnimationSystem>().RemoveBundle(PokerId);
     }
 }

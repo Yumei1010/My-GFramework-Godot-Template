@@ -32,32 +32,13 @@ public partial class Poker : Button, IPoker, IController
 
     public override void _Process(double delta)
     {
-        if (Shadow)
-        {
-            ShadowRect.Show();
-
-            Vector2 shadowPos = ShadowRect.Position;
-            shadowPos.X = Mathf.Lerp(0f, -Mathf.Sign(GetGlobalPosition().X - (GetViewportRect().Size / 2f).X) * 20f, Mathf.Abs((GetGlobalPosition().X - (GetViewportRect().Size / 2f).X) / (GetViewportRect().Size / 2f).X));
-            ShadowRect.Position = shadowPos;
-        }
-        else
-        {
-            ShadowRect.Hide();
-        }
-
+        _animationSystem.ProcessShadow(Id);
         this.SendCommand(new PokerProcessUpdateCommand { PokerId = Id, Delta = delta });
     }
 
     public override void _GuiInput(InputEvent @event)
     {
-        if (Fake3D)
-        {
-            float rotX = Mathf.RadToDeg(Mathf.LerpAngle(Mathf.DegToRad(-5f), Mathf.DegToRad(5f), Mathf.Clamp(GetLocalMousePosition().X / GetSize().X, 0f, 1f)));
-            float rotY = Mathf.RadToDeg(Mathf.LerpAngle(Mathf.DegToRad(5f), Mathf.DegToRad(-5f), Mathf.Clamp(GetLocalMousePosition().Y / GetSize().Y, 0f, 1f)));
-            _material.SetShaderParameter("x_rot", rotX);
-            _material.SetShaderParameter("y_rot", rotY);
-        }
-
+        _animationSystem.ApplyFake3DRotation(Id);
         this.SendCommand(new PokerGuiInputCommand { PokerId = Id, InputEvent = @event });
     }
 
@@ -78,50 +59,12 @@ public partial class Poker : Button, IPoker, IController
     
     public void MoveTo(Vector2 position)
     {
-        if (Animate)
-        {
-            if (!_tweenPos.IsNull() && _tweenPos.IsRunning()) _tweenPos.Kill();
-            
-            _tweenPos = CreateTween().SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Elastic);
-            _tweenPos.TweenProperty( this, "global_position", position, AnimateTime);
-        }
-        else
-        {
-            GlobalPosition = position;
-        }
+        _animationSystem.DoMoveTo(Id, position);
     }
 
     public void Reset(string attributeName)
     {
-        switch (attributeName)
-        {
-            case "Position":
-                if (Animate)
-                {
-                    if (!_tweenPos.IsNull() && _tweenPos.IsRunning()) _tweenPos.Kill();
-            
-                    _tweenPos = CreateTween().SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Elastic);
-                    _tweenPos.TweenProperty( this, "global_position", ResetPosition, AnimateTime);
-                }
-                else
-                {
-                    GlobalPosition = ResetPosition;
-                }
-                break;
-            case "Rotation":
-                if (Animate)
-                {
-                    if (!_tweenRot.IsNull() && _tweenRot.IsRunning()) _tweenRot.Kill();
-            
-                    _tweenRot = CreateTween().SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Elastic);
-                    _tweenRot.TweenProperty( this, "rotation", ResetRotation, AnimateTime);
-                }
-                else
-                {
-                    GlobalPosition = ResetPosition;
-                }
-                break;
-        }
+        _animationSystem.DoReset(Id, attributeName, ResetPosition, ResetRotation);
     }
 
     private void UpdateNumValueLabel()
