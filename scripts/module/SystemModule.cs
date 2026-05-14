@@ -30,6 +30,8 @@ public class SystemModule : AbstractModule
 
         architecture.RegisterSystem(new PokerStateSystem());
 
+        architecture.RegisterSystem(new PokerThemeSystem());
+
         architecture.RegisterSystem(new PokerAnimationSystem());
 
         architecture.RegisterSystem(new PokerSuitEffectSystem());
