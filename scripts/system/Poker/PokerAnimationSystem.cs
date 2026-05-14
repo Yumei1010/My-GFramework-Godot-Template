@@ -20,17 +20,26 @@ public partial class PokerAnimationSystem : ISystem
         public Tween TweenRot;
     }
 
-    private readonly Dictionary<Guid, AnimationBundle> _bundles = [];
+    private readonly Dictionary<Guid, AnimationBundle> Bundles = [];
 
-    public void OnArchitecturePhase(ArchitecturePhase phase) { }
-
-    public void Init() { }
-
-    public void Destroy() { }
-
-    public void InitBundle(IPokerView poker, ShaderMaterial material, TextureRect shadowRect)
+    public void OnArchitecturePhase(ArchitecturePhase phase)
     {
-        _bundles[poker.Id] = new AnimationBundle
+        _log.Debug("System initialized: PokerAnimationSystem");
+    }
+
+    public void Init()
+    {
+        
+    }
+
+    public void Destroy()
+    {
+        
+    }
+
+    public void InitAnimations(IPokerView poker, ShaderMaterial material, TextureRect shadowRect)
+    {
+        Bundles[poker.Id] = new AnimationBundle
         {
             Poker = poker,
             Material = material,
@@ -38,11 +47,11 @@ public partial class PokerAnimationSystem : ISystem
         };
     }
 
-    public void RemoveBundle(Guid id) => _bundles.Remove(id);
+    public void RemoveBundle(Guid id) => Bundles.Remove(id);
 
     public void ProcessShadow(Guid id)
     {
-        if (!_bundles.TryGetValue(id, out var b)) return;
+        if (!Bundles.TryGetValue(id, out var b)) return;
         var node = (Control)b.Poker;
 
         if (!b.Poker.Shadow)
@@ -62,7 +71,7 @@ public partial class PokerAnimationSystem : ISystem
 
     public void ApplyFake3DRotation(Guid id)
     {
-        if (!_bundles.TryGetValue(id, out var b) || !b.Poker.Fake3D) return;
+        if (!Bundles.TryGetValue(id, out var b) || !b.Poker.Fake3D) return;
         var node = (Control)b.Poker;
 
         var localMouse = node.GetLocalMousePosition();
@@ -75,7 +84,7 @@ public partial class PokerAnimationSystem : ISystem
 
     public void ResetFake3DRotation(Guid id)
     {
-        if (!_bundles.TryGetValue(id, out var b) || !b.Poker.Fake3D) return;
+        if (!Bundles.TryGetValue(id, out var b) || !b.Poker.Fake3D) return;
         var node = (Control)b.Poker;
 
         if (!b.TweenRot.IsNull() && b.TweenRot.IsRunning())
@@ -88,7 +97,7 @@ public partial class PokerAnimationSystem : ISystem
 
     public void DoMoveTo(Guid id, Vector2 position)
     {
-        if (!_bundles.TryGetValue(id, out var b)) return;
+        if (!Bundles.TryGetValue(id, out var b)) return;
         var node = (Control)b.Poker;
 
         if (!b.Poker.Animate)
@@ -106,7 +115,7 @@ public partial class PokerAnimationSystem : ISystem
 
     public void DoReset(Guid id, string attributeName, Vector2 resetPosition, float resetRotation)
     {
-        if (!_bundles.TryGetValue(id, out var b)) return;
+        if (!Bundles.TryGetValue(id, out var b)) return;
         var node = (Control)b.Poker;
 
         switch (attributeName)

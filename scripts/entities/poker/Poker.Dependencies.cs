@@ -76,15 +76,10 @@ public partial class Poker
         _material = (ShaderMaterial)SurfaceRect.Material;
         _animationSystem = this.GetSystem<PokerAnimationSystem>();
 
-        this.SendCommand(new PokerInitStateBundleCommand
-        {
-            Poker = this,
-            Material = _material,
-            ShadowRect = ShadowRect,
-        });
+        this.SendCommand(new PokerInitStateBundleCommand{ Poker = this });
+        this.SendCommand(new PokerInitAnimationBundleCommand{ Poker = this, Material = _material, ShadowRect = ShadowRect });
 
         ChangeTo(StateType.Idle);
-
         UpdateNumValueLabel();
         UpdateSurfaceRect();
     }

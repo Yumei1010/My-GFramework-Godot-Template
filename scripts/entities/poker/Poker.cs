@@ -28,6 +28,7 @@ public partial class Poker : Button, IPoker, IController
     public override void _ExitTree()
     {
         this.SendCommand(new PokerRemoveStateBundleCommand { PokerId = Id });
+        this.SendCommand(new PokerRemoveAnimationBundleCommand { PokerId = Id });
     }
 
     public override void _Process(double delta)
