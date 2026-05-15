@@ -30,7 +30,7 @@ public partial class Poker
 
     private void OnMouseExited()
     {
-        _animationSystem.ResetFake3DRotation(Id);
+        this.SendCommand(new PokerResetFake3DRotationCommand { PokerId = Id });
         this.SendCommand(new PokerLoseFocusCommand { PokerId = Id });
     }
 }

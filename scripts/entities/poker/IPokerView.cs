@@ -51,12 +51,6 @@ public interface IPokerView
     /// <summary>更换父节点。</summary>
     void Reparent(Node parent);
 
-    /// <summary>放置到指定位置（无动画）。</summary>
-    void SpawnTo(Vector2 position);
-
-    /// <summary>移动到指定位置（根据 <see cref="Animate"/> 决定动画）。</summary>
-    void MoveTo(Vector2 position);
-
     /// <summary>重置指定属性到锚点值。</summary>
     void Reset(string attributeName);
 

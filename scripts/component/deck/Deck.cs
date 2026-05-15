@@ -184,7 +184,7 @@ public partial class Deck : Control, IDeck, IController
             Vector2 targetPos = holder.GlobalPosition + holder.Size / 2f;
             poker.ResetPosition = targetPos - poker.Size / 2f;
             poker.ResetRotation = 0f;
-            poker.MoveTo(poker.ResetPosition);
+            // poker.MoveTo(poker.ResetPosition);
         }
 
         this.SendEvent(new DeckSortFinishedEvent());

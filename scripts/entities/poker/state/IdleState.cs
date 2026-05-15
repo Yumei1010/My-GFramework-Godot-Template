@@ -9,7 +9,7 @@ public sealed class IdleState : PokerState
 {
     public override void Enter()
     {
-        Poker.Reset("Position");
+        Poker.Reset("position");
     }
 
     public override void MouseDown()

@@ -49,7 +49,59 @@ public partial class PokerAnimationSystem : ISystem
 
     public void RemoveBundle(Guid id) => Bundles.Remove(id);
 
-    public void ProcessShadow(Guid id)
+    public void UpdateViewPosition(Guid id, Vector2 targetPosition)
+    {
+        if (!Bundles.TryGetValue(id, out var b)) return;
+        var node = (Control)b.Poker;
+
+        node.GlobalPosition = targetPosition;
+    }
+
+    public void ResetViewPosition(Guid id, Vector2 resetPosition)
+    {
+        if (!Bundles.TryGetValue(id, out var b)) return;
+        var node = (Control)b.Poker;
+
+        if (!b.Poker.Animate)
+        {
+            node.GlobalPosition = resetPosition;
+            return;
+        }
+
+        if (!b.TweenPos.IsNull() && b.TweenPos.IsRunning())
+            b.TweenPos.Kill();
+
+        var tp = b.TweenPos = node.CreateTween().SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Elastic);
+        tp.TweenProperty(node, "global_position", resetPosition, b.Poker.AnimateTime);
+    }
+
+    public void UpdateViewRotation(Guid id, float targetRotation)
+    {
+        if (!Bundles.TryGetValue(id, out var b)) return;
+        var node = (Control)b.Poker;
+
+        node.Rotation = targetRotation;
+    }
+
+    public void ResetViewRotation(Guid id, float resetRotation)
+    {
+        if (!Bundles.TryGetValue(id, out var b)) return;
+        var node = (Control)b.Poker;
+
+        if (!b.Poker.Animate)
+        {
+            node.Rotation = resetRotation;
+            return;
+        }
+
+        if (!b.TweenRot.IsNull() && b.TweenRot.IsRunning())
+            b.TweenRot.Kill();
+
+        var tr = b.TweenRot = node.CreateTween().SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Elastic);
+        tr.TweenProperty(node, "rotation", resetRotation, b.Poker.AnimateTime);
+    }
+
+    public void UpdateShadowPosition(Guid id)
     {
         if (!Bundles.TryGetValue(id, out var b)) return;
         var node = (Control)b.Poker;
@@ -69,7 +121,7 @@ public partial class PokerAnimationSystem : ISystem
         b.ShadowRect.Position = shadowPos;
     }
 
-    public void ApplyFake3DRotation(Guid id)
+    public void UpdateFake3DRotation(Guid id)
     {
         if (!Bundles.TryGetValue(id, out var b) || !b.Poker.Fake3D) return;
         var node = (Control)b.Poker;
@@ -93,60 +145,5 @@ public partial class PokerAnimationSystem : ISystem
         var t = b.TweenRot = node.CreateTween().SetParallel().SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Back);
         t.TweenProperty(b.Material, "shader_parameter/x_rot", 0.0f, b.Poker.AnimateTime);
         t.TweenProperty(b.Material, "shader_parameter/y_rot", 0.0f, b.Poker.AnimateTime);
-    }
-
-    public void DoMoveTo(Guid id, Vector2 position)
-    {
-        if (!Bundles.TryGetValue(id, out var b)) return;
-        var node = (Control)b.Poker;
-
-        if (!b.Poker.Animate)
-        {
-            node.GlobalPosition = position;
-            return;
-        }
-
-        if (!b.TweenPos.IsNull() && b.TweenPos.IsRunning())
-            b.TweenPos.Kill();
-
-        var t = b.TweenPos = node.CreateTween().SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Elastic);
-        t.TweenProperty(node, "global_position", position, b.Poker.AnimateTime);
-    }
-
-    public void DoReset(Guid id, string attributeName, Vector2 resetPosition, float resetRotation)
-    {
-        if (!Bundles.TryGetValue(id, out var b)) return;
-        var node = (Control)b.Poker;
-
-        switch (attributeName)
-        {
-            case "Position":
-                if (!b.Poker.Animate)
-                {
-                    node.GlobalPosition = resetPosition;
-                    return;
-                }
-
-                if (!b.TweenPos.IsNull() && b.TweenPos.IsRunning())
-                    b.TweenPos.Kill();
-
-                var tp = b.TweenPos = node.CreateTween().SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Elastic);
-                tp.TweenProperty(node, "global_position", resetPosition, b.Poker.AnimateTime);
-                break;
-
-            case "Rotation":
-                if (!b.Poker.Animate)
-                {
-                    node.Rotation = resetRotation;
-                    return;
-                }
-
-                if (!b.TweenRot.IsNull() && b.TweenRot.IsRunning())
-                    b.TweenRot.Kill();
-
-                var tr = b.TweenRot = node.CreateTween().SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Elastic);
-                tr.TweenProperty(node, "rotation", resetRotation, b.Poker.AnimateTime);
-                break;
-        }
     }
 }
