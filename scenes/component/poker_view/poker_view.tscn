@@ -27,6 +27,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(48, 72)
 script = ExtResource("1_xy1ni")
+SuitType = 2
 ResetPosition = Vector2(200, 200)
 
 [node name="ShadowRect" type="TextureRect" parent="." unique_id=1157468359]
@@ -77,7 +78,7 @@ mouse_filter = 2
 texture = ExtResource("5_wfsoj")
 metadata/_edit_lock_ = true
 
-[node name="NumLabel" type="Label" parent="." unique_id=358447265]
+[node name="NumLabel" type="Label" parent="SurfaceRect" unique_id=358447265]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 24)
 layout_mode = 0
