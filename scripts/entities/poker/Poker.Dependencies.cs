@@ -1,10 +1,8 @@
 using GFramework.Core.extensions;
 using Godot;
 using TimeToTwentyfour.scripts.enums.poker;
-using TimeToTwentyfour.scripts.utility;
 using TimeToTwentyfour.global;
 using TimeToTwentyfour.scripts.cqrs.poker.command;
-using TimeToTwentyfour.scripts.system.Poker;
 
 namespace TimeToTwentyfour.scripts.entities.poker;
 
@@ -14,73 +12,14 @@ public partial class Poker
     private TextureRect SurfaceRect => GetNode<TextureRect>("%SurfaceRect");
     private Label NumLabel => GetNode<Label>("%NumLabel");
 
-    [ExportGroup("Style")]
-    [ExportSubgroup("Suit")]
-    private SuitType _suitType = SuitType.Heart;
-    [Export] public SuitType SuitType
-    {
-        get => _suitType;
-        set
-        {
-            _suitType = value;
-            if (IsNodeReady())
-                UpdateSurfaceRect();
-        }
-    }
-
-    [ExportSubgroup("Value")]
-    private string _numValue = "24";
-    [Export] public string NumValue
-    {
-        get => _numValue;
-        set
-        {
-            _numValue = value;
-            NumType = DetectNumType(value);
-            if (IsNodeReady())
-                UpdateNumValueLabel();
-        }
-    }
-    [Export] public NumType NumType { get; set; } = NumType.Integer;
-
-    /// <summary>根据数值字符串自动推断 <see cref="NumType"/>：含 "/" → Fraction，含 "." → Decimal，其余 → Integer。</summary>
-    private static NumType DetectNumType(string value)
-    {
-        if (string.IsNullOrWhiteSpace(value)) return NumType.Integer;
-        var trimmed = value.Trim();
-        if (trimmed.Contains('/')) return NumType.Fraction;
-        if (trimmed.Contains('.')) return NumType.Decimal;
-        return NumType.Integer;
-    }
-
-    [ExportGroup("Animation")]
-    [Export] public bool Shadow { get; set; } = true;
-    [Export] public bool Animate { get; set; } = true;
-    [Export] public float AnimateTime { get; set; } = 0.25f;
-    [Export] public bool Fake3D { get; set; } = true;
-
-    [ExportGroup("Debug")]
-    [Export] public Vector2 ResetPosition { get; set; } = new (0, 0);
-
-    [Export] public float ResetRotation { get; set; }
-
-    private IGodotTextureRegistry _textureRegistry = null!;
-    private ShaderMaterial _material = null!;
-    private PokerAnimationSystem _animationSystem = null!;
-
     private async Task ReadyAsync()
     {
         await GameEntryPoint.Architecture.WaitUntilReadyAsync().ConfigureAwait(false);
 
-        _textureRegistry = this.GetUtility<IGodotTextureRegistry>()!;
-        _material = (ShaderMaterial)SurfaceRect.Material;
-        _animationSystem = this.GetSystem<PokerAnimationSystem>();
-
         this.SendCommand(new PokerInitStateBundleCommand{ Poker = this });
-        this.SendCommand(new PokerInitAnimationBundleCommand{ Poker = this, Material = _material, ShadowRect = ShadowRect });
+        this.SendCommand(new PokerInitAnimationBundleCommand{ Poker = this, Material = (ShaderMaterial)SurfaceRect.Material, ShadowRect = ShadowRect });
+        this.SendCommand(new PokerInitThemeBundleCommand{ PokerId = Id, Material = (ShaderMaterial)SurfaceRect.Material, SurfaceRect = SurfaceRect, NumLabel = NumLabel, SuitType = SuitType, NumValue = NumValue });
 
         ChangeTo(StateType.Idle);
-        UpdateNumValueLabel();
-        UpdateSurfaceRect();
     }
 }
