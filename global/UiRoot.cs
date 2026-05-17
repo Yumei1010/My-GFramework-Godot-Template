@@ -142,5 +142,5 @@ public partial class UiRoot : CanvasLayer, IUiRoot
     }
 
 
-    public struct UiRootReadyEvent;
+    public sealed class UiRootReadyEvent;
 }

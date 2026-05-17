@@ -11,5 +11,5 @@ public sealed class BgmChangedEvent
     /// <summary>
     /// 获取背景音乐类型
     /// </summary>
-    public BgmType BgmType { get; init; }
+    public required BgmType BgmType { get; init; }
 }

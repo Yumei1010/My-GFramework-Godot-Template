@@ -45,5 +45,5 @@ public partial class SceneRoot : Node2D, ISceneRoot
         this.SendEvent<SceneRootReadyEvent>();
     }
 
-    public struct SceneRootReadyEvent;
+    public sealed class SceneRootReadyEvent;
 }

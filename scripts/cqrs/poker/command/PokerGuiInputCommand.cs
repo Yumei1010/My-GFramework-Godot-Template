@@ -7,8 +7,8 @@ namespace TimeToTwentyfour.scripts.cqrs.poker.command;
 
 public sealed class PokerGuiInputCommand : AbstractCommand
 {
-    public Guid PokerId {get; init; }
-    public InputEvent InputEvent {get; init; }
+    public required Guid PokerId {get; init; }
+    public required InputEvent InputEvent {get; init; }
 
     protected override void OnExecute()
     {

@@ -7,7 +7,7 @@ namespace TimeToTwentyfour.scripts.cqrs.annotation_tool.command;
 
 public sealed class AnnotationToolChangeEnableCommand : AbstractCommand
 {
-    public bool Enabled { get; init;}
+    public required bool Enabled { get; init;}
 
     protected override void OnExecute()
     {

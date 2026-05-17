@@ -4,5 +4,5 @@ namespace TimeToTwentyfour.scripts.cqrs.mode_button.@event;
 
 public sealed class ModeButtonClickedEvent
 {
-    public ModeType ModeType { get; init; }
+    public required ModeType ModeType { get; init; }
 }

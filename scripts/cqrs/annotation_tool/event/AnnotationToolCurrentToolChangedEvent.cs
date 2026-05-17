@@ -4,5 +4,5 @@ namespace TimeToTwentyfour.scripts.cqrs.annotation_tool.@event;
 
 public sealed class AnnotationToolCurrentToolChangedEvent
 {
-    public AnnotationToolType CurrentTool { get; init; }
+    public required AnnotationToolType CurrentTool { get; init; }
 }

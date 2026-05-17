@@ -4,9 +4,9 @@ using TimeToTwentyfour.scripts.model.player;
 
 namespace TimeToTwentyfour.scripts.cqrs.player.command;
 
-public class PlayerDecreaseCurrentTotalTimeCommand : AbstractCommand
+public sealed class PlayerDecreaseCurrentTotalTimeCommand : AbstractCommand
 {
-    public double TimeToDecrease { get; init; }
+    public required double TimeToDecrease { get; init; }
     
     protected override void OnExecute()
     {

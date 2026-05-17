@@ -6,9 +6,9 @@ using TimeToTwentyfour.scripts.model.annotation_tool;
 
 namespace TimeToTwentyfour.scripts.cqrs.annotation_tool.command;
 
-public class AnnotationToolChangeColorCommand : AbstractCommand
+public sealed class AnnotationToolChangeColorCommand : AbstractCommand
 {
-    public Color Color { get; init; }
+    public required Color Color { get; init; }
 
     protected override void OnExecute()
     {

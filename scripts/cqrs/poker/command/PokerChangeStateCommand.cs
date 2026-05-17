@@ -7,8 +7,8 @@ namespace TimeToTwentyfour.scripts.cqrs.poker.command;
 
 public sealed class PokerChangeStateCommand : AbstractCommand
 {
-    public Guid PokerId {get; init; }
-    public PokerStateType State {get; init; }
+    public required Guid PokerId {get; init; }
+    public required PokerStateType State {get; init; }
 
     protected override void OnExecute()
     {

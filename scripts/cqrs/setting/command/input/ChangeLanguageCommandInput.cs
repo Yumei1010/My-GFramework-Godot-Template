@@ -11,5 +11,5 @@ public sealed class ChangeLanguageCommandInput : ICommandInput
     /// <summary>
     ///     获取或设置要更改的新语言
     /// </summary>
-    public string Language { get; init; } = null!;
+    public string Language { get; set; } = null!;
 }

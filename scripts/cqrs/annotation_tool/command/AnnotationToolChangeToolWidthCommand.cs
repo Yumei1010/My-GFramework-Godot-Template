@@ -7,7 +7,7 @@ namespace TimeToTwentyfour.scripts.cqrs.annotation_tool.command;
 
 public sealed class AnnotationToolChangeToolWidthCommand : AbstractCommand
 {
-    public float ToolWidth { get; init; }
+    public required float ToolWidth { get; init; }
 
     protected override void OnExecute()
     {

@@ -6,11 +6,11 @@ using TimeToTwentyfour.scripts.system.poker;
 
 namespace TimeToTwentyfour.scripts.cqrs.poker.command;
 
-public class PokerInitAnimationBundleCommand : AbstractCommand
+public sealed class PokerInitAnimationBundleCommand : AbstractCommand
 {
-    public IPokerView Poker {get; init; }
-    public ShaderMaterial Material {get; init; }
-    public TextureRect ShadowRect {get; init; }
+    public required IPokerView Poker {get; init; }
+    public required ShaderMaterial Material {get; init; }
+    public required TextureRect ShadowRect {get; init; }
 
     protected override void OnExecute()
     {
