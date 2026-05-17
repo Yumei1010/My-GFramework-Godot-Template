@@ -4,8 +4,6 @@ using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
 using Godot;
 using TimeToTwentyfour.scripts.entities.poker;
-using TimeToTwentyfour.scripts.entities.poker.state;
-using TimeToTwentyfour.scripts.enums.poker;
 using TimeToTwentyfour.scripts.model.pile;
 
 namespace TimeToTwentyfour.global;
@@ -14,7 +12,7 @@ namespace TimeToTwentyfour.global;
 [ContextAware]
 public partial class PokerManager : Node, ISystem
 {
-    [Export] private PackedScene _pokerScene = GD.Load<PackedScene>("res://scenes/component/poker_view/poker_view.tscn");
+    [Export] private PackedScene _pokerScene = GD.Load<PackedScene>("res://scenes/entities/poker/poker.tscn");
 
     public void OnArchitecturePhase(ArchitecturePhase phase)
     {

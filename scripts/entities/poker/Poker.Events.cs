@@ -1,7 +1,5 @@
 ﻿using GFramework.Core.extensions;
 using GFramework.Godot.extensions;
-using TimeToTwentyfour.scripts.cqrs.poker.command;
-using TimeToTwentyfour.scripts.cqrs.poker.@event;
 using TimeToTwentyfour.scripts.cqrs.selector.@event;
 using TimeToTwentyfour.scripts.enums.poker;
 
@@ -20,11 +18,6 @@ public partial class Poker
         {
             OnSelectorSelectChangedEvent(e.IsSelected, e.PokerId);
         }).UnRegisterWhenNodeExitTree(this);
-
-        this.RegisterEvent<PokerCardChangedEvent>(e =>
-        {
-            OnCardChangedEvent(e.Id, e.SuitType, e.NumValue, e.NumType);
-        }).UnRegisterWhenNodeExitTree(this);
     }
 
     private void OnSelectorEnableChangedEvent(bool enable)
@@ -36,14 +29,5 @@ public partial class Poker
     {
         if (pokerId != Id) return;
         ChangeTo(isSelected ? StateType.OnSelect : StateType.UnSelect);
-    }
-
-    private void OnCardChangedEvent(Guid id, SuitType suitType, string numValue, NumType numType)
-    {
-        if (id != Id) return;
-        SuitType = suitType;
-        NumValue = numValue;
-        NumType = numType;
-        this.SendCommand(new PokerUpdateThemeCommand { PokerId = Id, SuitType = suitType, NumValue = numValue });
     }
 }
