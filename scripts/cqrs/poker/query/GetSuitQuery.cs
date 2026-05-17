@@ -1,10 +1,10 @@
-using cqrs.poker.query.result;
+using TimeToTwentyfour.scripts.cqrs.poker.query.result;
 using GFramework.Core.extensions;
 using GFramework.Core.query;
 using TimeToTwentyfour.global;
 using TimeToTwentyfour.scripts.enums.poker;
 
-namespace cqrs.poker.query;
+namespace TimeToTwentyfour.scripts.cqrs.poker.query;
 
 public sealed class GetSuitQuery : AbstractQuery<PokerView>
 {

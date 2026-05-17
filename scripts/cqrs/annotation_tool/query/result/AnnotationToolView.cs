@@ -1,6 +1,6 @@
 using TimeToTwentyfour.scripts.data.annotation_tool;
 
-namespace cqrs.poker.query.result;
+namespace TimeToTwentyfour.scripts.cqrs.annotation_tool.query.result;
 
 public sealed class AnnotationToolView
 {

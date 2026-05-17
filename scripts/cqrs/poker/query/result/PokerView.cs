@@ -1,6 +1,6 @@
 using TimeToTwentyfour.scripts.data.poker;
 
-namespace cqrs.poker.query.result;
+namespace TimeToTwentyfour.scripts.cqrs.poker.query.result;
 
 public sealed class PokerView
 {

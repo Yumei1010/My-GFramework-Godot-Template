@@ -1,4 +1,4 @@
-using cqrs.poker.query.result;
+using TimeToTwentyfour.scripts.cqrs.annotation_tool.query.result;
 using GFramework.Core.extensions;
 using Godot;
 using TimeToTwentyfour.global;
