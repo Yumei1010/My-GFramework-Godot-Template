@@ -38,8 +38,8 @@ scripts/cqrs/<domain>/event/    → TimeToTwentyfour.scripts.cqrs.<domain>.@even
 
 | 目录 | 用途 | 示例 |
 |---|---|---|
-| `scripts/component/` | 可复用游戏组件（含接口和实现） | Calculator、Deck、Selector、TimeBar |
-| `scripts/entities/` | 领域实体（含状态、状态机） | Poker |
+| `scripts/component/` | 可复用游戏组件（含接口和实现） | ModeButton、StateMachine、VolumeContainer |
+| `scripts/entities/` | 领域实体与核心游戏组件 | Poker、Calculator、Deck、Selector、TimeBar、AnnotationTool、ModeBar |
 | `scripts/menu/` | UI 页面（被 UiRouter 管理） | MainMenu、CalculateMenu、OptionsMenu |
 | `scripts/cqrs/` | CQRS 命令、事件、命令输入 | 见第 4 节 |
 | `scripts/enums/` | 枚举定义（按域分子目录） | ModeType、PokerSuitType、PokerStateType |
