@@ -5,7 +5,7 @@ using GFramework.SourceGenerators.Abstractions.rule;
 using Godot;
 using TimeToTwentyfour.scripts.entities.poker;
 
-namespace TimeToTwentyfour.scripts.system.Poker;
+namespace TimeToTwentyfour.scripts.system.poker;
 
 [Log]
 [ContextAware]

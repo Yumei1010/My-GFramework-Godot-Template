@@ -3,7 +3,7 @@ using GFramework.Core.Abstractions.system;
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
 
-namespace TimeToTwentyfour.scripts.system.Poker;
+namespace TimeToTwentyfour.scripts.system.poker;
 
 [Log]
 [ContextAware]

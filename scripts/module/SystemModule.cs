@@ -4,7 +4,7 @@ using GFramework.Game.setting;
 using TimeToTwentyfour.global;
 using TimeToTwentyfour.scripts.core.scene;
 using TimeToTwentyfour.scripts.core.ui;
-using TimeToTwentyfour.scripts.system.Poker;
+using TimeToTwentyfour.scripts.system.poker;
 
 namespace TimeToTwentyfour.scripts.module;
 

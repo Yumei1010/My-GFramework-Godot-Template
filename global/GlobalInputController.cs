@@ -5,7 +5,7 @@ using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
 using TimeToTwentyfour.scripts.core.controller;
 using TimeToTwentyfour.scripts.core.state.impls;
-using TimeToTwentyfour.scripts.enums;
+using TimeToTwentyfour.scripts.enums.input;
 using Godot;
 
 namespace TimeToTwentyfour.global;

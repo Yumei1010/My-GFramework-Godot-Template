@@ -8,7 +8,7 @@ using TimeToTwentyfour.scripts.entities.poker.theme;
 using TimeToTwentyfour.scripts.enums.poker;
 using TimeToTwentyfour.scripts.utility;
 
-namespace TimeToTwentyfour.scripts.system.Poker;
+namespace TimeToTwentyfour.scripts.system.poker;
 
 [Log]
 [ContextAware]

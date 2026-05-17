@@ -2,7 +2,7 @@ using GFramework.Core.command;
 using GFramework.Core.extensions;
 using Godot;
 using TimeToTwentyfour.scripts.enums.poker;
-using TimeToTwentyfour.scripts.system.Poker;
+using TimeToTwentyfour.scripts.system.poker;
 
 namespace TimeToTwentyfour.scripts.cqrs.poker.command;
 

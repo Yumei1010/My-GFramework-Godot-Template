@@ -7,7 +7,7 @@ using TimeToTwentyfour.scripts.entities.poker;
 using TimeToTwentyfour.scripts.entities.poker.state;
 using TimeToTwentyfour.scripts.enums.poker;
 
-namespace TimeToTwentyfour.scripts.system.Poker;
+namespace TimeToTwentyfour.scripts.system.poker;
 
 [Log]
 [ContextAware]
