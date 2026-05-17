@@ -1,7 +1,7 @@
 ﻿using TimeToTwentyfour.global;
 using Godot;
 
-namespace TimeToTwentyfour.scripts.core.utils;
+namespace TimeToTwentyfour.scripts.utility;
 
 /// <summary>
 ///     提供游戏相关的工具方法。

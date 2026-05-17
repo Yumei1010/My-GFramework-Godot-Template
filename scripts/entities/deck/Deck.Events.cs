@@ -1,6 +1,6 @@
 ﻿using GFramework.Core.extensions;
 using GFramework.Godot.extensions;
-using TimeToTwentyfour.global;
+using TimeToTwentyfour.scripts.system.poker;
 using TimeToTwentyfour.scripts.cqrs.poker.@event;
 
 namespace TimeToTwentyfour.scripts.entities.deck;

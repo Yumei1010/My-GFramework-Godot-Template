@@ -2,7 +2,7 @@
 using GFramework.Core.command;
 using GFramework.Core.extensions;
 using TimeToTwentyfour.scripts.core.state.impls;
-using TimeToTwentyfour.scripts.core.utils;
+using TimeToTwentyfour.scripts.utility;
 
 namespace TimeToTwentyfour.scripts.cqrs.game.command;
 

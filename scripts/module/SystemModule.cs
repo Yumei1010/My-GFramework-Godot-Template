@@ -1,7 +1,6 @@
 ﻿using GFramework.Core.Abstractions.architecture;
 using GFramework.Game.architecture;
 using GFramework.Game.setting;
-using TimeToTwentyfour.global;
 using TimeToTwentyfour.scripts.core.scene;
 using TimeToTwentyfour.scripts.core.ui;
 using TimeToTwentyfour.scripts.system.poker;

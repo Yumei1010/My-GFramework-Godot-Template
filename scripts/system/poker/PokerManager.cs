@@ -6,7 +6,7 @@ using Godot;
 using TimeToTwentyfour.scripts.entities.poker;
 using TimeToTwentyfour.scripts.model.pile;
 
-namespace TimeToTwentyfour.global;
+namespace TimeToTwentyfour.scripts.system.poker;
 
 [Log]
 [ContextAware]

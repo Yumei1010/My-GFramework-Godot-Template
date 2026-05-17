@@ -1,5 +1,5 @@
 ﻿using GFramework.Core.command;
-using TimeToTwentyfour.scripts.core.utils;
+using TimeToTwentyfour.scripts.utility;
 
 namespace TimeToTwentyfour.scripts.cqrs.game.command;
 
