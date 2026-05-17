@@ -2,7 +2,7 @@
 using GFramework.Godot.extensions;
 using TimeToTwentyfour.scripts.core.state.impls;
 using TimeToTwentyfour.scripts.cqrs.game.command;
-using TimeToTwentyfour.scripts.cqrs.menu.mainMenu.@event;
+using TimeToTwentyfour.scripts.cqrs.menu.main_menu.@event;
 
 namespace TimeToTwentyfour.scripts.menu.main_menu;
 

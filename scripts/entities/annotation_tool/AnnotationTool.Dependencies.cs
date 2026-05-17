@@ -2,11 +2,11 @@ using cqrs.poker.query.result;
 using GFramework.Core.extensions;
 using Godot;
 using TimeToTwentyfour.global;
-using TimeToTwentyfour.scripts.cqrs.annotationTool.query;
+using TimeToTwentyfour.scripts.cqrs.annotation_tool.query;
 using TimeToTwentyfour.scripts.enums.resources;
 using TimeToTwentyfour.scripts.utility;
 
-namespace TimeToTwentyfour.scripts.entities.annotationTool;
+namespace TimeToTwentyfour.scripts.entities.annotation_tool;
 
 public partial class AnnotationTool
 {

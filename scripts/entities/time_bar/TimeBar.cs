@@ -3,10 +3,10 @@ using GFramework.Core.extensions;
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
 using Godot;
-using TimeToTwentyfour.scripts.cqrs.timeBar.command;
-using TimeToTwentyfour.scripts.cqrs.timeBar.@event;
+using TimeToTwentyfour.scripts.cqrs.time_bar.command;
+using TimeToTwentyfour.scripts.cqrs.time_bar.@event;
 
-namespace TimeToTwentyfour.scripts.entities.timeBar;
+namespace TimeToTwentyfour.scripts.entities.time_bar;
 
 /// <summary>
 ///     时间轴契约实现类

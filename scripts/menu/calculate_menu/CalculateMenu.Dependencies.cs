@@ -1,7 +1,7 @@
 using GFramework.Core.extensions;
 using TimeToTwentyfour.global;
 using TimeToTwentyfour.scripts.entities.deck;
-using TimeToTwentyfour.scripts.entities.timeBar;
+using TimeToTwentyfour.scripts.entities.time_bar;
 using TimeToTwentyfour.scripts.cqrs.pile.command;
 using TimeToTwentyfour.scripts.model.pile;
 

@@ -1,4 +1,4 @@
-﻿namespace TimeToTwentyfour.scripts.entities.timeBar;
+﻿namespace TimeToTwentyfour.scripts.entities.time_bar;
 
 /// <summary>
 ///     <see cref="TimeBar"/> 的属性和字段定义文件。

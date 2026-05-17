@@ -1,7 +1,7 @@
-using TimeToTwentyfour.scripts.enums.annotationTool;
+using TimeToTwentyfour.scripts.enums.annotation_tool;
 using Godot;
 
-namespace TimeToTwentyfour.scripts.entities.annotationTool;
+namespace TimeToTwentyfour.scripts.entities.annotation_tool;
 
 /// <summary>
 ///     标注工具契约

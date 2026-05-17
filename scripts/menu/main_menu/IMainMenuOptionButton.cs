@@ -1,5 +1,5 @@
 ﻿using Godot;
-using TimeToTwentyfour.scripts.component.optionButton;
+using TimeToTwentyfour.scripts.component.option_button;
 
 namespace TimeToTwentyfour.scripts.menu.main_menu;
 

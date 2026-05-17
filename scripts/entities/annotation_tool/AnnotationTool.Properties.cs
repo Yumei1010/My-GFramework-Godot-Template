@@ -1,9 +1,9 @@
 using GFramework.Game.Abstractions.data;
 using Godot;
-using TimeToTwentyfour.scripts.data.annotationTool;
-using TimeToTwentyfour.scripts.enums.annotationTool;
+using TimeToTwentyfour.scripts.data.annotation_tool;
+using TimeToTwentyfour.scripts.enums.annotation_tool;
 
-namespace TimeToTwentyfour.scripts.entities.annotationTool;
+namespace TimeToTwentyfour.scripts.entities.annotation_tool;
 
 public partial class AnnotationTool
 {

@@ -2,9 +2,9 @@
 using GFramework.Core.extensions;
 using Godot;
 using TimeToTwentyfour.global;
-using TimeToTwentyfour.scripts.cqrs.timeBar.query;
+using TimeToTwentyfour.scripts.cqrs.time_bar.query;
 
-namespace TimeToTwentyfour.scripts.entities.timeBar;
+namespace TimeToTwentyfour.scripts.entities.time_bar;
 
 /// <summary>
 ///     <see cref="TimeBar"/> 的 Godot 依赖注入文件。

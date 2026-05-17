@@ -1,6 +1,6 @@
 ﻿using GFramework.Core.extensions;
 using GFramework.Godot.extensions;
-using TimeToTwentyfour.scripts.cqrs.modeButton.@event;
+using TimeToTwentyfour.scripts.cqrs.mode_button.@event;
 using TimeToTwentyfour.scripts.entities.calculator.mode;
 using TimeToTwentyfour.scripts.entities.poker;
 

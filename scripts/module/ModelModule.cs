@@ -5,14 +5,14 @@ using GFramework.Game.architecture;
 using GFramework.Game.setting;
 using GFramework.Godot.setting;
 using GFramework.Godot.setting.data;
-using TimeToTwentyfour.scripts.model.annotationTool;
+using TimeToTwentyfour.scripts.model.annotation_tool;
 using TimeToTwentyfour.scripts.model.calculator;
 using TimeToTwentyfour.scripts.model.color;
 using TimeToTwentyfour.scripts.model.pile;
 using TimeToTwentyfour.scripts.model.player;
 using TimeToTwentyfour.scripts.model.selector;
 using TimeToTwentyfour.scripts.data.setting;
-using TimeToTwentyfour.scripts.model.timeBar;
+using TimeToTwentyfour.scripts.model.time_bar;
 
 namespace TimeToTwentyfour.scripts.module;
 

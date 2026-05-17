@@ -1,9 +1,9 @@
 using GFramework.Core.extensions;
 using Godot;
-using TimeToTwentyfour.scripts.cqrs.annotationTool.command;
-using TimeToTwentyfour.scripts.enums.annotationTool;
+using TimeToTwentyfour.scripts.cqrs.annotation_tool.command;
+using TimeToTwentyfour.scripts.enums.annotation_tool;
 
-namespace TimeToTwentyfour.scripts.entities.annotationTool;
+namespace TimeToTwentyfour.scripts.entities.annotation_tool;
 
 public partial class AnnotationTool
 {

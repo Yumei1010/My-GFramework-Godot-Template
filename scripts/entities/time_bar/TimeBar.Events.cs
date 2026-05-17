@@ -1,8 +1,8 @@
 using GFramework.Core.extensions;
 using GFramework.Godot.extensions;
-using TimeToTwentyfour.scripts.cqrs.timeBar.@event;
+using TimeToTwentyfour.scripts.cqrs.time_bar.@event;
 
-namespace TimeToTwentyfour.scripts.entities.timeBar;
+namespace TimeToTwentyfour.scripts.entities.time_bar;
 
 public partial class TimeBar
 {

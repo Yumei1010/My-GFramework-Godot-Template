@@ -2,11 +2,11 @@ using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
 using GFramework.Core.extensions;
 using Godot;
-using TimeToTwentyfour.scripts.enums.annotationTool;
-using TimeToTwentyfour.scripts.data.annotationTool;
-using TimeToTwentyfour.scripts.cqrs.annotationTool.command;
+using TimeToTwentyfour.scripts.enums.annotation_tool;
+using TimeToTwentyfour.scripts.data.annotation_tool;
+using TimeToTwentyfour.scripts.cqrs.annotation_tool.command;
 
-namespace TimeToTwentyfour.scripts.entities.annotationTool;
+namespace TimeToTwentyfour.scripts.entities.annotation_tool;
 
 /// <summary>
 ///     标注工具契约实现类
