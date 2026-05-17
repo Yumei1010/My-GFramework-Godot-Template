@@ -13,8 +13,8 @@ namespace TimeToTwentyfour.global;
 /// 场景过渡管理器，负责处理场景之间的平滑过渡效果。
 /// 该类通过Shader材质实现过渡动画，并支持截图、参数设置和协程控制。
 /// </summary>
-[ContextAware]
 [Log]
+[ContextAware]
 public partial class SceneTransitionManager : Node, IController
 {
     /// <summary>

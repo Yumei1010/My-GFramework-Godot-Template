@@ -8,10 +8,10 @@ namespace TimeToTwentyfour.scripts.cqrs.poker.command;
 public sealed class PokerResetViewPositionCommand : AbstractCommand
 {
     public Guid PokerId { get; init; }
-    public Vector2 resetPosition { get; init; }
+    public Vector2 ResetPosition { get; init; }
 
     protected override void OnExecute()
     {
-        this.GetSystem<PokerAnimationSystem>().ResetViewPosition(PokerId, resetPosition);
+        this.GetSystem<PokerAnimationSystem>().ResetViewPosition(PokerId, ResetPosition);
     }
 }

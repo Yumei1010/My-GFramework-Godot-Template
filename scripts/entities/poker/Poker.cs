@@ -53,7 +53,7 @@ public partial class Poker : Button, IPoker, IController
         switch (attributeName)
         {
             case "position":
-                this.SendCommand(new PokerResetViewPositionCommand{ PokerId = Id , resetPosition = ResetPosition });
+                this.SendCommand(new PokerResetViewPositionCommand{ PokerId = Id , ResetPosition = ResetPosition });
                 break;
             case "rotation":
 

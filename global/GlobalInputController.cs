@@ -14,8 +14,8 @@ namespace TimeToTwentyfour.global;
 ///     全局输入控制器类，继承自 GameInputController。
 ///     负责处理游戏中的全局输入事件，包括暂停和恢复游戏的功能。
 /// </summary>
-[ContextAware]
 [Log]
+[ContextAware]
 public partial class GlobalInputController : GameInputController
 {
     private UiHandle? _pauseMenuUiHandle;

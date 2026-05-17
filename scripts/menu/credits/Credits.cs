@@ -16,8 +16,8 @@ using TimeToTwentyfour.scripts.menu.main_menu;
 
 namespace TimeToTwentyfour.scripts.menu.credits;
 
-[ContextAware]
 [Log]
+[ContextAware]
 public partial class Credits : Control, IController, IUiPageBehaviorProvider, ISimpleUiPage
 {
     private Button BackButton => GetNode<Button>("%BackButton");

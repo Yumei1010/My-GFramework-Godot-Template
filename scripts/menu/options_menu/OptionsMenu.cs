@@ -14,7 +14,7 @@ using GFramework.Godot.extensions.signal;
 using GFramework.Godot.ui;
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
-using TimeToTwentyfour.scripts.component;
+using TimeToTwentyfour.scripts.component.volume_container;
 using TimeToTwentyfour.scripts.core.state.impls;
 using TimeToTwentyfour.scripts.core.ui;
 using TimeToTwentyfour.scripts.enums.ui;
@@ -33,8 +33,8 @@ namespace TimeToTwentyfour.scripts.menu.options_menu;
 ///     选项设置界面控制器
 ///     负责处理游戏设置界面的UI逻辑，包括音量控制、分辨率和全屏模式设置
 /// </summary>
-[ContextAware]
 [Log]
+[ContextAware]
 public partial class OptionsMenu : Control, IController, IUiPageBehaviorProvider, ISimpleUiPage
 {
     private VolumeContainer MasterVolume => GetNode<VolumeContainer>("%MasterVolumeContainer");
@@ -207,7 +207,7 @@ public partial class OptionsMenu : Control, IController, IUiPageBehaviorProvider
         var resolution = _resolutions[index];
         await ContextAwareExtensions.SendCommandAsync(this, new ChangeResolutionCommand(new ChangeResolutionCommandInput
             { Width = resolution.X, Height = resolution.Y })).ConfigureAwait(false);
-        options_menu.OptionsMenu._log.Debug($"分辨率更改为: {resolution.X}x{resolution.Y}");
+        _log.Debug($"分辨率更改为: {resolution.X}x{resolution.Y}");
     }
 
     /// <summary>
@@ -221,7 +221,7 @@ public partial class OptionsMenu : Control, IController, IUiPageBehaviorProvider
             { Fullscreen = fullscreen })).ConfigureAwait(false);
         // 禁用 / 启用分辨率选择
         ResolutionOptionButton.Disabled = fullscreen;
-        options_menu.OptionsMenu._log.Debug($"全屏模式切换为: {fullscreen}");
+        _log.Debug($"全屏模式切换为: {fullscreen}");
     }
 
     /// <summary>
@@ -248,16 +248,16 @@ public partial class OptionsMenu : Control, IController, IUiPageBehaviorProvider
     private IEnumerator<IYieldInstruction> SaveCommandCoroutine()
     {
         return CommandCoroutineExtensions.SendCommandCoroutineWithErrorHandler(this, new SaveSettingsCommand(),
-                e => options_menu.OptionsMenu._log.Error((string)"保存失败！", (Exception)e)
+                e => _log.Error((string)"保存失败！", (Exception)e)
             )
             .Then(() =>
             {
-                options_menu.OptionsMenu._log.Info("设置已保存");
+                _log.Info("设置已保存");
                 var handle = GetPage().Handle;
                 if (handle.HasValue)
                     _uiRouter.Hide(handle.Value, UiLayer.Modal, true);
                 else
-                    options_menu.OptionsMenu._log.Warn("页面句柄为空，无法隐藏页面");
+                    _log.Warn("页面句柄为空，无法隐藏页面");
             });
     }
 }

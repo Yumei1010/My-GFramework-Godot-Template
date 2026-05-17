@@ -10,8 +10,8 @@ using Godot;
 
 namespace TimeToTwentyfour.global;
 
-[ContextAware]
 [Log]
+[ContextAware]
 public partial class AudioManager : Node, IController
 {
     private readonly List<AudioStreamPlayer> _sfxPlayers = new();

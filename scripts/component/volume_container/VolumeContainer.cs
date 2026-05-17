@@ -3,13 +3,13 @@ using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
 using Godot;
 
-namespace TimeToTwentyfour.scripts.component;
+namespace TimeToTwentyfour.scripts.component.volume_container;
 
 /// <summary>
 ///     音量控制容器抽象类，提供音量滑块、标签和数值显示功能
 /// </summary>
-[ContextAware]
 [Log]
+[ContextAware]
 public partial class VolumeContainer : HBoxContainer, IController
 {
     /// <summary>
