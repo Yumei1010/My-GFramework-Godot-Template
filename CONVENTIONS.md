@@ -16,6 +16,7 @@
 global/ 目录                    → TimeToTwentyfour.global;
 scripts/component/<name>/       → TimeToTwentyfour.scripts.component.<name>;
 scripts/entities/<name>/        → TimeToTwentyfour.scripts.entities.<name>;
+scripts/system/<name>/          → TimeToTwentyfour.scripts.system.<name>;
 scripts/enums/<domain>/         → TimeToTwentyfour.scripts.enums.<domain>;
 scripts/menu/<name>/            → TimeToTwentyfour.scripts.menu.<name>;
 scripts/core/<dir>/             → TimeToTwentyfour.scripts.core.<dir>;
@@ -38,19 +39,26 @@ scripts/cqrs/<domain>/event/    → TimeToTwentyfour.scripts.cqrs.<domain>.@even
 
 | 目录 | 用途 | 示例 |
 |---|---|---|
-| `scripts/component/` | 可复用游戏组件（含接口和实现） | ModeButton、StateMachine、VolumeContainer |
-| `scripts/entities/` | 领域实体与核心游戏组件 | Poker、Calculator、Deck、Selector、TimeBar、AnnotationTool、ModeBar |
+| `scripts/component/` | 可复用游戏组件（含接口和实现） | ModeButton、VolumeContainer、CircleContainer |
+| `scripts/entities/` | 领域实体与核心游戏组件 | Poker、Calculator、Deck、Selector、TimeBar、AnnotationTool、ModeBar、Pile |
+| `scripts/system/` | GFramework ISystem 实现 | PokerStateSystem、PokerThemeSystem、PokerAnimationSystem、PokerManager |
 | `scripts/menu/` | UI 页面（被 UiRouter 管理） | MainMenu、CalculateMenu、OptionsMenu |
 | `scripts/cqrs/` | CQRS 命令、事件、命令输入 | 见第 4 节 |
-| `scripts/enums/` | 枚举定义（按域分子目录） | ModeType、PokerSuitType、PokerStateType |
+| `scripts/enums/` | 枚举定义（按域分子目录，蛇形命名） | ModeType、PokerStateType、PokerSuitType |
 | `scripts/model/` | 领域模型（纯数据结构） | Fraction |
 | `scripts/core/` | 架构核心（状态机、路由、UI 工厂） | GameArchitecture、UiRouter |
 | `scripts/module/` | GFramework 模块安装 | ModelModule、SystemModule |
 | `scripts/constants/` | 游戏常量 | GameConstants、UiLayers |
 | `scripts/data/` | 可持久化数据类与提供者 | PlayerData、GameSaveData、SettingDataLocationProvider |
-| `scripts/utility/` | 通用工具与存储接口 | GodotTextureRegistry、ISaveStorageUtility、SaveStorageUtility |
+| `scripts/utility/` | 通用工具与存储接口 | GameUtil、GodotTextureRegistry、ISaveStorageUtility |
 | `global/` | Godot 自动加载单例 | GameEntryPoint、AudioManager |
 | `tests/` | xUnit 单元测试 | CalculateHelperBinaryTests |
+
+### 目录命名规范
+
+- **文件夹名全部小写**，单词间用下划线分隔（snake_case）
+- 例：`annotation_tool`、`mode_bar`、`time_bar`
+- 禁止驼峰命名（如 ~~`annotationTool`~~、~~`TimeBar`~~）
 
 ### Godot .uid 文件
 
@@ -161,6 +169,25 @@ public sealed class SimpleCommand : AbstractCommand
     }
 }
 ```
+
+**带属性的命令**（同步，无输入类）：
+```csharp
+public sealed class SomeCommand : AbstractCommand
+{
+    public required Guid TargetId { get; set; }
+    public required float Value { get; set; }
+
+    protected override void OnExecute()
+    {
+        // 使用 this.TargetId、this.Value
+    }
+}
+```
+
+**命令属性强制约束：**
+- 所有属性使用 `{ get; set; }`（可写，命令执行前设置）
+- 所有属性使用 `required` 修饰符
+- 禁止使用 `{ get; init; }`（命令需要可变性）
 
 ### 命令输入规范
 
@@ -355,7 +382,7 @@ using GFramework.Godot.extensions;
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
 using Godot;
-using TimeToTwentyfour.scripts.component.calculator;
+using TimeToTwentyfour.scripts.entities.calculator;
 using TimeToTwentyfour.scripts.cqrs.deck.@event;
 using TimeToTwentyfour.scripts.entities.poker;
 ```
@@ -409,7 +436,8 @@ fix(Calculator): 修复二元模式下单手牌数组越界问题
 - [ ] 文件名符合 `{ClassName}.{Suffix}.cs` 格式
 - [ ] 事件/命令标记为 `sealed`
 - [ ] 事件属性使用 `{ get; init; }` 且带 `required`
-- [ ] 命令输入为 `sealed class`（非 `struct`）
+- [ ] 命令属性使用 `{ get; set; }` 且带 `required`
+- [ ] 命令输入为 `sealed class`（非 `struct`），属性使用 `{ get; set; }`
 - [ ] 接口有完整的 XML 文档注释
 - [ ] 公开方法有 `<summary>` 注释
 - [ ] Godot 节点引用使用 `%` 唯一名称
@@ -421,8 +449,10 @@ fix(Calculator): 修复二元模式下单手牌数组越界问题
 
 - ❌ 传统花括号命名空间 `namespace X { }`
 - ❌ 事件的 `{ get; set; }` 可变属性
+- ❌ 命令的 `{ get; init; }` 不可变属性
 - ❌ 命令输入使用 `struct`
 - ❌ 事件/命令不加 `sealed`
+- ❌ 驼峰命名的目录名（全部使用 snake_case）
 - ❌ 在 `GlobalUsings.cs` 中添加 Godot/GFramework 引用
 - ❌ UI 页面提取 `I*` 接口
 - ❌ 在 `_Ready()` 中直接编写业务逻辑（应委托给 `ReadyAsync`/`ConnectSignal`/`RegisterEvent`）
