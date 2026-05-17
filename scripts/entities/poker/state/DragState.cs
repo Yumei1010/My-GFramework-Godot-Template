@@ -43,6 +43,6 @@ public sealed partial class DragState : PokerState
 
     public override void MouseUp()
     {
-        ChangeTo(StateType.Idle);
+        ChangeTo(PokerStateType.Idle);
     }
 }

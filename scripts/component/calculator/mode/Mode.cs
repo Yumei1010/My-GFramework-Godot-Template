@@ -31,19 +31,19 @@ public abstract class Mode : IMode
         throw new NotSupportedException($"{GetType().Name} 不支持一元运算");
 
     /// <summary>
-    ///     验证手牌数值格式是否与声明的 <see cref="NumType"/> 匹配。
+    ///     验证手牌数值格式是否与声明的 <see cref="PokerNumType"/> 匹配。
     /// </summary>
     /// <param name="value">待验证的数值字符串</param>
     /// <param name="numType">声明的数值类型</param>
     /// <returns>格式有效则为 <c>true</c>，否则为 <c>false</c></returns>
-    public static bool IsValidNumValue(string value, NumType numType)
+    public static bool IsValidNumValue(string value, PokerNumType numType)
     {
         try
         {
             _ = numType switch
             {
-                NumType.Fraction => ParseFractionString(value.Trim()),
-                NumType.Decimal or NumType.Integer => ParseDecimalString(value.Trim()),
+                PokerNumType.Fraction => ParseFractionString(value.Trim()),
+                PokerNumType.Decimal or PokerNumType.Integer => ParseDecimalString(value.Trim()),
                 _ => throw new NotSupportedException($"未知数值类型: {numType}")
             };
             return true;
@@ -55,16 +55,16 @@ public abstract class Mode : IMode
     }
 
     /// <summary>
-    ///     将手牌数值解析为 <see cref="Fraction"/>，根据 <see cref="NumType"/> 选择解析策略。
+    ///     将手牌数值解析为 <see cref="Fraction"/>，根据 <see cref="PokerNumType"/> 选择解析策略。
     /// </summary>
     private protected static Fraction ParseToFraction(IPokerData poker)
     {
         string raw = poker.NumValue.Trim();
-        return poker.NumType switch
+        return poker.PokerNumType switch
         {
-            NumType.Fraction => ParseFractionString(raw),
-            NumType.Decimal or NumType.Integer => ParseDecimalString(raw),
-            _ => throw new NotSupportedException($"未知数值类型: {poker.NumType}")
+            PokerNumType.Fraction => ParseFractionString(raw),
+            PokerNumType.Decimal or PokerNumType.Integer => ParseDecimalString(raw),
+            _ => throw new NotSupportedException($"未知数值类型: {poker.PokerNumType}")
         };
     }
 

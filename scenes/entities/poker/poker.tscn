@@ -27,7 +27,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(48, 72)
 script = ExtResource("1_tgpin")
-SuitType = 2
+PokerSuitType = 2
 ResetPosition = Vector2(200, 200)
 
 [node name="ShadowRect" type="TextureRect" parent="." unique_id=1157468359]

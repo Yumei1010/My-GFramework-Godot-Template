@@ -22,12 +22,12 @@ public partial class Poker
 
     private void OnSelectorEnableChangedEvent(bool enable)
     {
-        ChangeTo(enable ? StateType.UnSelect : StateType.Idle);
+        ChangeTo(enable ? PokerStateType.UnSelect : PokerStateType.Idle);
     }
 
     private void OnSelectorSelectChangedEvent(bool isSelected, Guid pokerId)
     {
         if (pokerId != Id) return;
-        ChangeTo(isSelected ? StateType.OnSelect : StateType.UnSelect);
+        ChangeTo(isSelected ? PokerStateType.OnSelect : PokerStateType.UnSelect);
     }
 }

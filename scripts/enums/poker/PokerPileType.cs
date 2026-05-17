@@ -1,6 +1,6 @@
 namespace TimeToTwentyfour.scripts.enums.poker;
 
-public enum PileType
+public enum PokerPileType
 {
     /// <summary>
     ///     手牌堆

@@ -4,7 +4,7 @@
 ///     定义卡牌花色类型的键值枚举
 ///     用于标识和管理不同的卡牌花色类型
 /// </summary>
-public enum SuitType
+public enum PokerSuitType
 {
     /// <summary>
     ///     红桃

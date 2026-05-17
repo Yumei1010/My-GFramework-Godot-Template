@@ -12,13 +12,13 @@ public sealed class PokerInitThemeBundleCommand : AbstractCommand
     public required ShaderMaterial Material { get; init; }
     public required TextureRect SurfaceRect { get; init; }
     public required Label NumLabel { get; init; }
-    public required SuitType SuitType { get; init; }
+    public required PokerSuitType PokerSuitType { get; init; }
     public required string NumValue { get; init; }
 
     protected override void OnExecute()
     {
         var system = this.GetSystem<PokerThemeSystem>();
         system.Register(PokerId, Material, SurfaceRect, NumLabel);
-        system.UpdateTheme(PokerId, SuitType, NumValue);
+        system.UpdateTheme(PokerId, PokerSuitType, NumValue);
     }
 }

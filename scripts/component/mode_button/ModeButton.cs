@@ -24,7 +24,7 @@ public partial class ModeButton : TextureButton, IModeButton
             ModeType.Divide => _textureRegistry.Get(nameof(TextureKey.ModeButtonDivideTexture)) as Texture2D,
             ModeType.Multiply => _textureRegistry.Get(nameof(TextureKey.ModeButtonMultiplyTexture)) as Texture2D,
             ModeType.Subtract => _textureRegistry.Get(nameof(TextureKey.ModeButtonSubtractTexture)) as Texture2D,
-            _ => throw new InvalidOperationException("didn't have this SuitType")
+            _ => throw new InvalidOperationException("didn't have this PokerSuitType")
         };
     }
 

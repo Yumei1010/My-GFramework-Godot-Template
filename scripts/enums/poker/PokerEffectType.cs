@@ -4,7 +4,7 @@
 ///     定义花色特效类型的键值枚举
 ///     用于标识和管理不同的花色特效类型
 /// </summary>
-public enum EffectType
+public enum PokerEffectType
 {
     /// <summary>
     ///     红桃

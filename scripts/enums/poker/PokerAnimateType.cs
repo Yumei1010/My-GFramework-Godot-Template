@@ -1,6 +1,6 @@
 namespace TimeToTwentyfour.scripts.enums.poker;
 
-public enum AnimateType
+public enum PokerAnimateType
 {
     PickUp,
 

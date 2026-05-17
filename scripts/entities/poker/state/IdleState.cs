@@ -14,6 +14,6 @@ public sealed class IdleState : PokerState
 
     public override void MouseDown()
     {
-        ChangeTo(StateType.Drag);
+        ChangeTo(PokerStateType.Drag);
     }
 }

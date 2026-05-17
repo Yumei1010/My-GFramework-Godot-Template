@@ -6,14 +6,14 @@ public partial class Poker
 {
     public Guid Id { get; set; } = Guid.NewGuid();
 
-    private SuitType _suitType = SuitType.Heart;
+    private PokerSuitType _suitType = PokerSuitType.Heart;
     private string _numValue = "24";
-    private static NumType DetectNumType(string value)
+    private static PokerNumType DetectNumType(string value)
     {
-        if (string.IsNullOrWhiteSpace(value)) return NumType.Integer;
+        if (string.IsNullOrWhiteSpace(value)) return PokerNumType.Integer;
         var trimmed = value.Trim();
-        if (trimmed.Contains('/')) return NumType.Fraction;
-        if (trimmed.Contains('.')) return NumType.Decimal;
-        return NumType.Integer;
+        if (trimmed.Contains('/')) return PokerNumType.Fraction;
+        if (trimmed.Contains('.')) return PokerNumType.Decimal;
+        return PokerNumType.Integer;
     }
 }

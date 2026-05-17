@@ -9,20 +9,20 @@ namespace TimeToTwentyfour.scripts.component.deck;
 public static class DeckComparer
 {
     /// <summary>
-    ///     按花色降序排列（♣ > ♠ > ♦ > ♥），同花色按 <see cref="NumType"/> 升序。
+    ///     按花色降序排列（♣ > ♠ > ♦ > ♥），同花色按 <see cref="PokerNumType"/> 升序。
     /// </summary>
     public static int CompareBySuit(IPokerData a, IPokerData b)
     {
-        int suitCmp = b.SuitType.CompareTo(a.SuitType);
-        return suitCmp != 0 ? suitCmp : a.NumType.CompareTo(b.NumType);
+        int suitCmp = b.PokerSuitType.CompareTo(a.PokerSuitType);
+        return suitCmp != 0 ? suitCmp : a.PokerNumType.CompareTo(b.PokerNumType);
     }
 
     /// <summary>
-    ///     按 <see cref="NumType"/> 升序排列，同点数按花色降序。
+    ///     按 <see cref="PokerNumType"/> 升序排列，同点数按花色降序。
     /// </summary>
     public static int CompareByRank(IPokerData a, IPokerData b)
     {
-        int rankCmp = a.NumType.CompareTo(b.NumType);
-        return rankCmp != 0 ? rankCmp : b.SuitType.CompareTo(a.SuitType);
+        int rankCmp = a.PokerNumType.CompareTo(b.PokerNumType);
+        return rankCmp != 0 ? rankCmp : b.PokerSuitType.CompareTo(a.PokerSuitType);
     }
 }

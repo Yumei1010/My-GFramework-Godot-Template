@@ -9,6 +9,6 @@ public sealed partial class UnSelectState : PokerState
 {
     public override void MouseDown()
     {
-        ChangeTo(StateType.OnSelect);
+        ChangeTo(PokerStateType.OnSelect);
     }
 }

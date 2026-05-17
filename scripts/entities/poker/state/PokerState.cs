@@ -17,7 +17,7 @@ namespace TimeToTwentyfour.scripts.entities.poker.state;
 ///             public override void MouseDown()
 ///             {
 ///                 // 选中 → 切换到 OnSelect 状态
-///                 ChangeTo(StateType.OnSelect);
+///                 ChangeTo(PokerStateType.OnSelect);
 ///             }
 ///         }
 ///     </code>
@@ -25,9 +25,9 @@ namespace TimeToTwentyfour.scripts.entities.poker.state;
 public abstract class PokerState : IPokerState
 {
     /// <summary>
-    ///     本状态对应的 <see cref="StateType"/> 枚举值。
+    ///     本状态对应的 <see cref="PokerStateType"/> 枚举值。
     /// </summary>
-    public StateType StateType { get; set; }
+    public PokerStateType PokerStateType { get; set; }
 
     /// <summary>
     ///     本状态所代理的扑克牌实例。
@@ -39,7 +39,7 @@ public abstract class PokerState : IPokerState
     ///     请求切换到另一个状态，直接委托给 <see cref="IPoker.ChangeTo"/> → <see cref="IPokerStateMachine.ChangeTo"/>。
     /// </summary>
     /// <param name="state">目标状态类型。</param>
-    protected void ChangeTo(StateType state)
+    protected void ChangeTo(PokerStateType state)
     {
         Poker.ChangeTo(state);
     }

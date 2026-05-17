@@ -18,8 +18,8 @@ public partial class Poker
 
         this.SendCommand(new PokerInitStateBundleCommand{ Poker = this });
         this.SendCommand(new PokerInitAnimationBundleCommand{ Poker = this, Material = (ShaderMaterial)SurfaceRect.Material, ShadowRect = ShadowRect });
-        this.SendCommand(new PokerInitThemeBundleCommand{ PokerId = Id, Material = (ShaderMaterial)SurfaceRect.Material, SurfaceRect = SurfaceRect, NumLabel = NumLabel, SuitType = SuitType, NumValue = NumValue });
+        this.SendCommand(new PokerInitThemeBundleCommand{ PokerId = Id, Material = (ShaderMaterial)SurfaceRect.Material, SurfaceRect = SurfaceRect, NumLabel = NumLabel, PokerSuitType = PokerSuitType, NumValue = NumValue });
 
-        ChangeTo(StateType.Idle);
+        ChangeTo(PokerStateType.Idle);
     }
 }

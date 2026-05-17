@@ -7,7 +7,7 @@ public partial class Poker
 {
     [ExportGroup("Style")]
     [ExportSubgroup("Suit")]
-    [Export] public SuitType SuitType
+    [Export] public PokerSuitType PokerSuitType
     {
         get => _suitType;
         set => _suitType = value;
@@ -20,10 +20,10 @@ public partial class Poker
         set
         {
             _numValue = value;
-            NumType = DetectNumType(value);
+            PokerNumType = DetectNumType(value);
         }
     }
-    [Export] public NumType NumType { get; set; } = NumType.Integer;
+    [Export] public PokerNumType PokerNumType { get; set; } = PokerNumType.Integer;
 
     [ExportGroup("Animation")]
     [Export] public bool Shadow { get; set; } = true;

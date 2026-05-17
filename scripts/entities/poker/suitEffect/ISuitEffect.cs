@@ -6,9 +6,9 @@ public interface ISuitEffect
 {
     /// <summary>
     ///     本花色特效对应的花色特效类型枚举。
-    ///     每个 <see cref="ISuitEffect"/> 实现类对应唯一一个 <see cref="EffectType"/>。
+    ///     每个 <see cref="ISuitEffect"/> 实现类对应唯一一个 <see cref="PokerEffectType"/>。
     /// </summary>
-    EffectType EffectType { get; set; }
+    PokerEffectType PokerEffectType { get; set; }
     
     /// <summary>
     ///     抽牌回调。

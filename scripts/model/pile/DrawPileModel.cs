@@ -23,11 +23,11 @@ public class DrawPileModel : PileModel
     protected override void OnInit()
     {
         var pile = new List<Card>(52);
-        foreach (SuitType suit in Enum.GetValues<SuitType>())
+        foreach (PokerSuitType suit in Enum.GetValues<PokerSuitType>())
         {
             for (int i = 1; i <= 13; i++)
             {
-                pile.Add(new Card(Guid.NewGuid(), suit, i.ToString(), NumType.Integer));
+                pile.Add(new Card(Guid.NewGuid(), suit, i.ToString(), PokerNumType.Integer));
             }
         }
         Pile = pile;

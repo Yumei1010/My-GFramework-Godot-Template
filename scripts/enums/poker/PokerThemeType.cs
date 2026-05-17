@@ -1,6 +1,6 @@
 namespace TimeToTwentyfour.scripts.enums.poker;
 
-public enum ThemeType
+public enum PokerThemeType
 {
     /// <summary>
     ///     红桃

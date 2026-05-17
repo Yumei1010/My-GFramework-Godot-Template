@@ -43,7 +43,7 @@ public partial class Poker : Button, IPoker, IController
         base.Reparent(parent);
     }
 
-    public void ChangeTo(StateType state)
+    public void ChangeTo(PokerStateType state)
     {
         this.SendCommand(new PokerChangeStateCommand{ PokerId = Id, State = state });
     }

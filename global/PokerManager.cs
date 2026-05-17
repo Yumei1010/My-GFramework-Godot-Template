@@ -33,9 +33,9 @@ public partial class PokerManager : Node, ISystem
     {
         var poker = _pokerScene.Instantiate<IPoker>();
         ((IPokerView)poker).Id = card.Id;
-        poker.SuitType = card.SuitType;
+        poker.PokerSuitType = card.PokerSuitType;
         poker.NumValue = card.NumValue;
-        poker.NumType = card.NumType;
+        poker.PokerNumType = card.PokerNumType;
         return poker;
     }
 

@@ -6,8 +6,8 @@ namespace TimeToTwentyfour.scripts.entities.poker.theme;
 
 public abstract class PokerTheme : IPokerTheme
 {
-    public abstract ThemeType Theme { get; }
-    public abstract SuitType Suit { get; }
+    public abstract PokerThemeType Theme { get; }
+    public abstract PokerSuitType Suit { get; }
     public abstract Color SuitColor { get; }
     public abstract Color TextColor { get; }
     public abstract TextureKey SurfaceMaskTextureKey { get; }

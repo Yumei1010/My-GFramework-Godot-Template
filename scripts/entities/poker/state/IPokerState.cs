@@ -6,7 +6,7 @@ namespace TimeToTwentyfour.scripts.entities.poker.state;
 
 /// <summary>
 ///     扑克状态契约
-///     定义一张扑克在特定 <see cref="StateType"/> 下的交互行为与生命周期。
+///     定义一张扑克在特定 <see cref="PokerStateType"/> 下的交互行为与生命周期。
 ///     继承 <see cref="IState"/>，可被 <see cref="IPokerStateMachine"/> 统一管理。
 /// </summary>
 /// <remarks>
@@ -15,10 +15,10 @@ namespace TimeToTwentyfour.scripts.entities.poker.state;
 ///     </para>
 ///     <list type="table">
 ///         <listheader><term>状态</term><description>说明</description></listheader>
-///         <item><term><see cref="StateType.Idle"/></term><description>闲置</description></item>
-///         <item><term><see cref="StateType.Drag"/></term><description>拖动</description></item>
-///         <item><term><see cref="StateType.UnSelect"/></term><description>未选中</description></item>
-///         <item><term><see cref="StateType.OnSelect"/></term><description>被选中</description></item>
+///         <item><term><see cref="PokerStateType.Idle"/></term><description>闲置</description></item>
+///         <item><term><see cref="PokerStateType.Drag"/></term><description>拖动</description></item>
+///         <item><term><see cref="PokerStateType.UnSelect"/></term><description>未选中</description></item>
+///         <item><term><see cref="PokerStateType.OnSelect"/></term><description>被选中</description></item>
 ///     </list>
 ///     <para>
 ///         状态切换由 <see cref="PokerState.ChangeTo"/> 直接委托给 <see cref="IPoker.ChangeTo"/>
@@ -29,9 +29,9 @@ public interface IPokerState : IState
 {
     /// <summary>
     ///     本状态对应的状态类型枚举。
-    ///     每个 <see cref="IPokerState"/> 实现类对应唯一一个 <see cref="StateType"/>。
+    ///     每个 <see cref="IPokerState"/> 实现类对应唯一一个 <see cref="PokerStateType"/>。
     /// </summary>
-    StateType StateType { get; set; }
+    PokerStateType PokerStateType { get; set; }
 
     /// <summary>
     ///     本状态所代理的扑克牌实例。

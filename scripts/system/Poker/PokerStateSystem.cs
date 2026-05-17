@@ -15,7 +15,7 @@ public partial class PokerStateSystem : ISystem
 {
     private struct StateBundle
     {
-        public Dictionary<StateType, IPokerState> States;
+        public Dictionary<PokerStateType, IPokerState> States;
         public IPokerState CurrentState;
         public IPokerState PreviousState;
     }
@@ -39,17 +39,17 @@ public partial class PokerStateSystem : ISystem
 
     public void InitStates(IPokerView poker)
     {
-        var states = new Dictionary<StateType, IPokerState>
+        var states = new Dictionary<PokerStateType, IPokerState>
         {
-            { StateType.Idle, new IdleState() },
-            { StateType.Drag, new DragState() },
-            { StateType.OnSelect, new OnSelectState() },
-            { StateType.UnSelect, new UnSelectState() },
+            { PokerStateType.Idle, new IdleState() },
+            { PokerStateType.Drag, new DragState() },
+            { PokerStateType.OnSelect, new OnSelectState() },
+            { PokerStateType.UnSelect, new UnSelectState() },
         };
 
         foreach (var (type, state) in states)
         {
-            state.StateType = type;
+            state.PokerStateType = type;
             state.Poker = poker;
         }
 
@@ -58,7 +58,7 @@ public partial class PokerStateSystem : ISystem
 
     public void RemoveBundle(Guid id) => Bundles.Remove(id);
 
-    public void ChangeTo(Guid id, StateType state)
+    public void ChangeTo(Guid id, PokerStateType state)
     {
         var b = Bundles[id];
 

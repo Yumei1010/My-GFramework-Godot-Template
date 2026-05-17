@@ -42,7 +42,7 @@ scripts/cqrs/<domain>/event/    → TimeToTwentyfour.scripts.cqrs.<domain>.@even
 | `scripts/entities/` | 领域实体（含状态、状态机） | Poker |
 | `scripts/menu/` | UI 页面（被 UiRouter 管理） | MainMenu、CalculateMenu、OptionsMenu |
 | `scripts/cqrs/` | CQRS 命令、事件、命令输入 | 见第 4 节 |
-| `scripts/enums/` | 枚举定义（按域分子目录） | ModeType、SuitType、StateType |
+| `scripts/enums/` | 枚举定义（按域分子目录） | ModeType、PokerSuitType、PokerStateType |
 | `scripts/model/` | 领域模型（纯数据结构） | Fraction |
 | `scripts/core/` | 架构核心（状态机、路由、UI 工厂） | GameArchitecture、UiRouter |
 | `scripts/module/` | GFramework 模块安装 | ModelModule、SystemModule |

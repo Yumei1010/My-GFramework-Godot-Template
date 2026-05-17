@@ -5,9 +5,9 @@ namespace TimeToTwentyfour.scripts.entities.poker.suitEffect;
 public abstract class SuitEffect : ISuitEffect
 {
     /// <summary>
-    ///     本特效对应的 <see cref="EffectType"/> 枚举值。
+    ///     本特效对应的 <see cref="PokerEffectType"/> 枚举值。
     /// </summary>
-    public EffectType EffectType { get; set; }
+    public PokerEffectType PokerEffectType { get; set; }
     
     /// <inheritdoc />
     public virtual void Drawn() { }

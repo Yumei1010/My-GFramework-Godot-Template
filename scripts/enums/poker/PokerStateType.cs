@@ -4,7 +4,7 @@
 ///     定义卡牌状态类型的键值枚举
 ///     用于标识和管理不同的卡牌状态类型
 /// </summary>
-public enum StateType
+public enum PokerStateType
 {
     /// <summary>
     ///     选择中

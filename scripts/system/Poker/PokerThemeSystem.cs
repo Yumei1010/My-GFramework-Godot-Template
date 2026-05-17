@@ -14,7 +14,7 @@ namespace TimeToTwentyfour.scripts.system.Poker;
 [ContextAware]
 public partial class PokerThemeSystem : ISystem
 {
-    private Dictionary<ThemeType, IPokerTheme> _themeRegistry = [];
+    private Dictionary<PokerThemeType, IPokerTheme> _themeRegistry = [];
     private IGodotTextureRegistry _textureRegistry = null!;
 
     private struct ThemeBundle
@@ -37,10 +37,10 @@ public partial class PokerThemeSystem : ISystem
 
         _themeRegistry = new()
         {
-            { ThemeType.Heart, new HeartTheme() },
-            { ThemeType.Diamond, new DiamondTheme() },
-            { ThemeType.Spade, new SpadeTheme() },
-            { ThemeType.Club, new ClubTheme() },
+            { PokerThemeType.Heart, new HeartTheme() },
+            { PokerThemeType.Diamond, new DiamondTheme() },
+            { PokerThemeType.Spade, new SpadeTheme() },
+            { PokerThemeType.Club, new ClubTheme() },
         };
     }
 
@@ -61,7 +61,7 @@ public partial class PokerThemeSystem : ISystem
 
     public void RemoveBundle(Guid id) => Bundles.Remove(id);
 
-    public void UpdateSurface(Guid id, SuitType suit)
+    public void UpdateSurface(Guid id, PokerSuitType suit)
     {
         if (!Bundles.TryGetValue(id, out var bundle)) return;
 
@@ -81,18 +81,18 @@ public partial class PokerThemeSystem : ISystem
             bundle.NumLabel.Text = numValue;
     }
 
-    public void UpdateTheme(Guid id, SuitType suit, string numValue)
+    public void UpdateTheme(Guid id, PokerSuitType suit, string numValue)
     {
         UpdateSurface(id, suit);
         UpdateText(id, numValue);
     }
 
-    private static ThemeType MapSuitToTheme(SuitType suit) => suit switch
+    private static PokerThemeType MapSuitToTheme(PokerSuitType suit) => suit switch
     {
-        SuitType.Heart => ThemeType.Heart,
-        SuitType.Diamond => ThemeType.Diamond,
-        SuitType.Spade => ThemeType.Spade,
-        SuitType.Club => ThemeType.Club,
-        _ => ThemeType.Heart
+        PokerSuitType.Heart => PokerThemeType.Heart,
+        PokerSuitType.Diamond => PokerThemeType.Diamond,
+        PokerSuitType.Spade => PokerThemeType.Spade,
+        PokerSuitType.Club => PokerThemeType.Club,
+        _ => PokerThemeType.Heart
     };
 }

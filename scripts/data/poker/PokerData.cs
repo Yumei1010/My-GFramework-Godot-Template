@@ -8,17 +8,17 @@ namespace TimeToTwentyfour.scripts.data.poker;
 public class PokerData : IData
 {
     public Guid Id { get; set; } = Guid.Empty;
-    public SuitType SuitType { get; set; } = SuitType.Heart;
+    public PokerSuitType PokerSuitType { get; set; } = PokerSuitType.Heart;
     public string NumValue { get; set; } = "1";
-    public NumType NumType { get; set; } = NumType.Integer;
-    public PileType Pile { get; set; } = PileType.Draw;
+    public PokerNumType PokerNumType { get; set; } = PokerNumType.Integer;
+    public PokerPileType Pile { get; set; } = PokerPileType.Draw;
 
     public void Reset()
     {
         Id = Guid.Empty;
-        SuitType = SuitType.Heart;
+        PokerSuitType = PokerSuitType.Heart;
         NumValue = "1";
-        NumType = NumType.Integer;
-        Pile = PileType.Draw;
+        PokerNumType = PokerNumType.Integer;
+        Pile = PokerPileType.Draw;
     }
 }

@@ -55,5 +55,5 @@ public interface IPokerView
     void Reset(string attributeName);
 
     /// <summary>变更到指定状态。</summary>
-    void ChangeTo(StateType state);
+    void ChangeTo(PokerStateType state);
 }

@@ -12,11 +12,11 @@ public interface IPokerData
     Guid Id { get; set; }
 
     /// <summary>花色类型。</summary>
-    SuitType SuitType { get; set; }
+    PokerSuitType PokerSuitType { get; set; }
 
     /// <summary>点数数值。</summary>
     string NumValue { get; set; }
 
     /// <summary>点数类型。</summary>
-    NumType NumType { get; set; }
+    PokerNumType PokerNumType { get; set; }
 }
