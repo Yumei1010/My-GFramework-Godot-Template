@@ -13,6 +13,7 @@ using TimeToTwentyfour.scripts.model.player;
 using TimeToTwentyfour.scripts.model.selector;
 using TimeToTwentyfour.scripts.data.setting;
 using TimeToTwentyfour.scripts.model.time_bar;
+using TimeToTwentyfour.scripts.model.deck;
 
 namespace TimeToTwentyfour.scripts.module;
 
@@ -71,5 +72,8 @@ public class ModelModule : AbstractModule
 
         // 注册计时器模型
         architecture.RegisterModel(new TimeBarModel());
+
+        // 注册牌桌模型
+        architecture.RegisterModel(new DeckModel());
     }
 }

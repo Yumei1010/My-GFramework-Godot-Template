@@ -1,18 +1,12 @@
 ﻿using Godot;
 using TimeToTwentyfour.scripts.entities.poker;
+using TimeToTwentyfour.scripts.enums.deck;
 
 namespace TimeToTwentyfour.scripts.entities.deck;
 
 public partial class Deck
 {
-    private Dictionary<Panel, IPokerView> Mapping { get; set; } = new();
+    private Dictionary<Panel, IPokerView> Mapping { get; set; } = [];
     
-    private SortMode CurrentSortMode { get; set; } = SortMode.Manual;
-
-    private enum SortMode
-    {
-        Manual,
-        BySuit,
-        ByRank
-    }
+    private DeckSortMode CurrentSortMode { get; set; }
 }

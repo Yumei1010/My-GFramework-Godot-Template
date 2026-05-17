@@ -5,6 +5,7 @@ using GFramework.SourceGenerators.Abstractions.rule;
 using Godot;
 using TimeToTwentyfour.scripts.cqrs.deck.@event;
 using TimeToTwentyfour.scripts.entities.poker;
+using TimeToTwentyfour.scripts.enums.deck;
 
 namespace TimeToTwentyfour.scripts.entities.deck;
 
@@ -19,7 +20,6 @@ public partial class Deck : Control, IDeck, IController
         RegisterEvent();
     }
 
-    /// <summary>获取牌桌上当前所有牌的列表（每次访问遍历子节点构建新列表）。</summary>
     public IList<IPokerView> Pokers
     {
         get
@@ -34,7 +34,6 @@ public partial class Deck : Control, IDeck, IController
         }
     }
 
-    /// <summary>向牌桌添加一张牌，为其创建透明的 holder 占位面板并维护映射关系。</summary>
     public void Add(IPokerView poker)
     {
         var holder = new Panel();
@@ -47,7 +46,6 @@ public partial class Deck : Control, IDeck, IController
         Mapping[holder] = poker;
     }
 
-    /// <summary>从牌桌移除一张牌，释放其 holder 并触发布局重排。</summary>
     public void Remove(IPokerView poker)
     {
         Panel holder = null!;
@@ -69,13 +67,13 @@ public partial class Deck : Control, IDeck, IController
 
     public void SortBySuit()
     {
-        CurrentSortMode = SortMode.BySuit;
+        CurrentSortMode = DeckSortMode.Suit;
         ReorderChildren(SuitComparer);
     }
 
     public void SortByRank()
     {
-        CurrentSortMode = SortMode.ByRank;
+        CurrentSortMode = DeckSortMode.Value;
         ReorderChildren(RankComparer);
     }
 
@@ -112,7 +110,6 @@ public partial class Deck : Control, IDeck, IController
         ReLayout();
     }
     
-    /// <summary>将拖拽结束的牌插入到离其横坐标最近的卡槽位置。</summary>
     private void InsertPokerAtNearestSlot(IPokerView poker, float globalX)
     {
         int count = HolderContainer.GetChildCount();
@@ -148,7 +145,7 @@ public partial class Deck : Control, IDeck, IController
         if (currentIndex < 0 || currentIndex == targetIndex) return;
 
         HolderContainer.MoveChild(currentHolder, targetIndex);
-        CurrentSortMode = SortMode.Manual;
+        CurrentSortMode = DeckSortMode.Manual;
 
         ReLayout();
     }

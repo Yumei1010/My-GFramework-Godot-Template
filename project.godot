@@ -38,7 +38,6 @@ GlobalInputController="*res://global/GlobalInputController.cs"
 AudioManager="*res://global/audio_manager.tscn"
 SceneTransitionManager="*uid://c5sxf7tcun6yq"
 PlayerManager="*uid://bfhwd7rswssa0"
-PokerManager="*uid://cv4gv5b4u1a08"
 
 [display]
 
