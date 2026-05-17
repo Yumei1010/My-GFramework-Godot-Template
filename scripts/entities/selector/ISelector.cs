@@ -18,5 +18,5 @@ namespace TimeToTwentyfour.scripts.entities.selector;
 /// </remarks>
 public interface ISelector
 {
-    
+    // TODO: 补充方法声明 —— IsSelected(IPoker)、Pop()、Count
 }
