@@ -29,5 +29,8 @@ addons/*
 !addons/.editorconfig
 .addons/*
 
+# IDE cache
+*.lscache
+
 # Claude Code
 .claude/settings.local.json
