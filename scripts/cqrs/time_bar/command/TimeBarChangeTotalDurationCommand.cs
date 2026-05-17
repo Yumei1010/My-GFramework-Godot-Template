@@ -7,7 +7,7 @@ namespace TimeToTwentyfour.scripts.cqrs.time_bar.command;
 
 public sealed class TimeBarChangeTotalDurationCommand : AbstractCommand
 {
-    public required float TotalDuration { get; init; }
+    public required float TotalDuration { get; set; }
 
     protected override void OnExecute()
     {

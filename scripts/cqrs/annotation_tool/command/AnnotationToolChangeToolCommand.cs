@@ -8,7 +8,7 @@ namespace TimeToTwentyfour.scripts.cqrs.annotation_tool.command;
 
 public sealed class AnnotationToolChangeToolCommand : AbstractCommand
 {
-    public required AnnotationToolType Tool { get; init; }
+    public required AnnotationToolType Tool { get; set; }
 
     protected override void OnExecute()
     {

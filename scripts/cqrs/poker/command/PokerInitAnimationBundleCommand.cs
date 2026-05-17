@@ -8,9 +8,9 @@ namespace TimeToTwentyfour.scripts.cqrs.poker.command;
 
 public sealed class PokerInitAnimationBundleCommand : AbstractCommand
 {
-    public required IPokerView Poker {get; init; }
-    public required ShaderMaterial Material {get; init; }
-    public required TextureRect ShadowRect {get; init; }
+    public required IPokerView Poker {get; set; }
+    public required ShaderMaterial Material {get; set; }
+    public required TextureRect ShadowRect {get; set; }
 
     protected override void OnExecute()
     {

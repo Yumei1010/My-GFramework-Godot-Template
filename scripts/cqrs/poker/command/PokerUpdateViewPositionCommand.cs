@@ -7,8 +7,8 @@ namespace TimeToTwentyfour.scripts.cqrs.poker.command;
 
 public sealed class PokerUpdateViewPositionCommand : AbstractCommand
 {
-    public required Guid PokerId { get; init; }
-    public required Vector2 TargetPosition { get; init; }
+    public required Guid PokerId { get; set; }
+    public required Vector2 TargetPosition { get; set; }
 
     protected override void OnExecute()
     {

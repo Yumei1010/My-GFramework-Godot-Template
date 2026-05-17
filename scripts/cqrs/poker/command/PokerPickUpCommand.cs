@@ -6,7 +6,7 @@ namespace TimeToTwentyfour.scripts.cqrs.poker.command;
 
 public sealed class PokerPickUpCommand : AbstractCommand
 {
-    public required Guid PokerId {get; init; }
+    public required Guid PokerId {get; set; }
 
     protected override void OnExecute()
     {

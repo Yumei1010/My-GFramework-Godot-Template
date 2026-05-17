@@ -6,8 +6,8 @@ namespace TimeToTwentyfour.scripts.cqrs.poker.command;
 
 public sealed class PokerProcessUpdateCommand : AbstractCommand
 {
-    public required Guid PokerId {get; init; }
-    public required double Delta {get; init; }
+    public required Guid PokerId {get; set; }
+    public required double Delta {get; set; }
 
     protected override void OnExecute()
     {

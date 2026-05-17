@@ -7,7 +7,7 @@ namespace TimeToTwentyfour.scripts.cqrs.time_bar.command;
 
 public sealed class TimeBarChangeTimeScaleCommand : AbstractCommand
 {
-    public required float TimeScale { get; init; }
+    public required float TimeScale { get; set; }
 
     protected override void OnExecute()
     {

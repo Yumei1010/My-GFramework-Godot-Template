@@ -8,7 +8,7 @@ namespace TimeToTwentyfour.scripts.cqrs.calculator.command;
 
 public sealed class CalculatorChangeModeCommand : AbstractCommand
 {
-    public required ModeType Mode {get; init; }
+    public required ModeType Mode {get; set; }
 
     protected override void OnExecute()
     {

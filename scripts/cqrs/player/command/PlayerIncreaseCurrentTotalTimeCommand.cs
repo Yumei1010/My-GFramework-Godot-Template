@@ -6,7 +6,7 @@ namespace TimeToTwentyfour.scripts.cqrs.player.command;
 
 public sealed class PlayerIncreaseCurrentTotalTimeCommand : AbstractCommand
 {
-    public required double TimeToIncrease { get; init; }
+    public required double TimeToIncrease { get; set; }
     
     protected override void OnExecute()
     {

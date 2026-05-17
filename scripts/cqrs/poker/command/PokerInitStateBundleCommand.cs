@@ -7,7 +7,7 @@ namespace TimeToTwentyfour.scripts.cqrs.poker.command;
 
 public sealed class PokerInitStateBundleCommand : AbstractCommand
 {
-    public required IPokerView Poker {get; init; }
+    public required IPokerView Poker {get; set; }
 
     protected override void OnExecute()
     {

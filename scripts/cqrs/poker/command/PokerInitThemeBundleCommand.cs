@@ -8,12 +8,12 @@ namespace TimeToTwentyfour.scripts.cqrs.poker.command;
 
 public sealed class PokerInitThemeBundleCommand : AbstractCommand
 {
-    public required Guid PokerId { get; init; }
-    public required ShaderMaterial Material { get; init; }
-    public required TextureRect SurfaceRect { get; init; }
-    public required Label NumLabel { get; init; }
-    public required PokerSuitType PokerSuitType { get; init; }
-    public required string NumValue { get; init; }
+    public required Guid PokerId { get; set; }
+    public required ShaderMaterial Material { get; set; }
+    public required TextureRect SurfaceRect { get; set; }
+    public required Label NumLabel { get; set; }
+    public required PokerSuitType PokerSuitType { get; set; }
+    public required string NumValue { get; set; }
 
     protected override void OnExecute()
     {

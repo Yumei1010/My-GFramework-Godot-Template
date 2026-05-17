@@ -8,7 +8,7 @@ namespace TimeToTwentyfour.scripts.cqrs.annotation_tool.command;
 
 public sealed class AnnotationToolChangeColorCommand : AbstractCommand
 {
-    public required Color Color { get; init; }
+    public required Color Color { get; set; }
 
     protected override void OnExecute()
     {

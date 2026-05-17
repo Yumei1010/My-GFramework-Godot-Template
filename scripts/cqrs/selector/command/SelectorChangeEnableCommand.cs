@@ -12,7 +12,7 @@ namespace TimeToTwentyfour.scripts.cqrs.selector.command;
 /// </summary>
 public sealed class SelectorChangeEnableCommand : AbstractCommand
 {
-    public required bool Enable { get; init; }
+    public required bool Enable { get; set; }
 
     protected override void OnExecute()
     {
