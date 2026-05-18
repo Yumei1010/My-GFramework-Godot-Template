@@ -17,7 +17,7 @@ public partial class Poker
         await GameEntryPoint.Architecture.WaitUntilReadyAsync().ConfigureAwait(false);
 
         this.SendCommand(new PokerInitStateBundleCommand{ Poker = this });
-        this.SendCommand(new PokerInitAnimationBundleCommand{ Poker = this, Material = (ShaderMaterial)SurfaceRect.Material, ShadowRect = ShadowRect });
+        this.SendCommand(new PokerInitAnimationBundleCommand{ Poker = this, Material = (ShaderMaterial)SurfaceRect.Material, ShadowRect = ShadowRect, SurfaceRect = SurfaceRect, NumLabel = NumLabel });
         this.SendCommand(new PokerInitThemeBundleCommand{ PokerId = Id, Material = (ShaderMaterial)SurfaceRect.Material, SurfaceRect = SurfaceRect, NumLabel = NumLabel, PokerSuitType = PokerSuitType, NumValue = NumValue });
 
         ChangeTo(PokerStateType.Idle);

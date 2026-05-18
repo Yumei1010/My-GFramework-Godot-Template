@@ -16,8 +16,12 @@ public partial class PokerAnimationSystem : ISystem
         public IPokerView Poker;
         public ShaderMaterial Material;
         public TextureRect ShadowRect;
+        public TextureRect SurfaceRect;
+        public Label NumLabel;
         public Tween TweenPos;
         public Tween TweenRot;
+        public Tween TweenScale;
+        public Tween TweenText;
     }
 
     private readonly Dictionary<Guid, AnimationBundle> Bundles = [];
@@ -37,13 +41,15 @@ public partial class PokerAnimationSystem : ISystem
         
     }
 
-    public void InitAnimations(IPokerView poker, ShaderMaterial material, TextureRect shadowRect)
+    public void InitAnimations(IPokerView poker, ShaderMaterial material, TextureRect shadowRect, TextureRect surfaceRect, Label numLabel)
     {
         Bundles[poker.Id] = new AnimationBundle
         {
             Poker = poker,
             Material = material,
             ShadowRect = shadowRect,
+            SurfaceRect = surfaceRect,
+            NumLabel = numLabel
         };
     }
 
@@ -145,5 +151,23 @@ public partial class PokerAnimationSystem : ISystem
         var t = b.TweenRot = node.CreateTween().SetParallel().SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Back);
         t.TweenProperty(b.Material, "shader_parameter/x_rot", 0.0f, b.Poker.AnimateTime);
         t.TweenProperty(b.Material, "shader_parameter/y_rot", 0.0f, b.Poker.AnimateTime);
+    }
+
+    public void UpdateViewScale(Guid id, Vector2 targetScale)
+    {
+        if (!Bundles.TryGetValue(id, out var b)) return;
+        var node = (Control)b.SurfaceRect;
+
+        var t = b.TweenScale = node.CreateTween().SetParallel().SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Elastic);
+        t.TweenProperty(node, "scale", targetScale, b.Poker.AnimateTime / 2);
+    }
+
+    public void ResetViewScale(Guid id)
+    {
+        if (!Bundles.TryGetValue(id, out var b)) return;
+        var node = (Control)b.SurfaceRect;
+
+        var t = b.TweenScale = node.CreateTween().SetParallel().SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Elastic);
+        t.TweenProperty(node, "scale", Vector2.One, b.Poker.AnimateTime / 2);
     }
 }
