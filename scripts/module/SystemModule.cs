@@ -26,7 +26,7 @@ public class SystemModule : AbstractModule
         
         architecture.RegisterSystem(new SettingsSystem());
 
-        architecture.RegisterSystem(new PokerManager());
+        architecture.RegisterSystem(new PokerSystem());
 
         architecture.RegisterSystem(new PokerStateSystem());
 
@@ -37,5 +37,7 @@ public class SystemModule : AbstractModule
         architecture.RegisterSystem(new PokerSuitEffectSystem());
 
         architecture.RegisterSystem(new DeckSystem());
+
+        architecture.RegisterSystem(new DeckSortSystem());
     }
 }

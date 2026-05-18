@@ -9,6 +9,6 @@ public partial class Deck
 
     private void OnHolderContainerSortChildren()
     {
-        ReLayout();
+        
     }
 }

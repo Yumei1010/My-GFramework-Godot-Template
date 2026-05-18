@@ -41,7 +41,7 @@ scripts/cqrs/<domain>/event/    → TimeToTwentyfour.scripts.cqrs.<domain>.@even
 |---|---|---|
 | `scripts/component/` | 可复用游戏组件（含接口和实现） | ModeButton、VolumeContainer、CircleContainer |
 | `scripts/entities/` | 领域实体与核心游戏组件 | Poker、Calculator、Deck、Selector、TimeBar、AnnotationTool、ModeBar、Pile |
-| `scripts/system/` | GFramework ISystem 实现 | PokerStateSystem、PokerThemeSystem、PokerAnimationSystem、PokerManager |
+| `scripts/system/` | GFramework ISystem 实现 | PokerStateSystem、PokerThemeSystem、PokerAnimationSystem、PokerSystem |
 | `scripts/menu/` | UI 页面（被 UiRouter 管理） | MainMenu、CalculateMenu、OptionsMenu |
 | `scripts/cqrs/` | CQRS 命令、事件、命令输入 | 见第 4 节 |
 | `scripts/enums/` | 枚举定义（按域分子目录，蛇形命名） | ModeType、PokerStateType、PokerSuitType |

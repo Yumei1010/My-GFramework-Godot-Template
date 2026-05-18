@@ -34,11 +34,13 @@ public partial class Deck : Control, IDeck, IController
         }
     }
 
-    public void Add(IPokerView poker)
+    private void Add(IPokerView poker)
     {
-        var holder = new Panel();
-        holder.Modulate = new Color("ffffff00");
-        holder.SizeFlagsHorizontal = SizeFlags.ExpandFill;
+        var holder = new Panel
+        {
+            Modulate = new Color("ffffff00"),
+            SizeFlagsHorizontal = SizeFlags.ExpandFill
+        };
 
         HolderContainer.AddChild(holder);
         PokerContainer.AddChild(poker as Node);
@@ -46,7 +48,7 @@ public partial class Deck : Control, IDeck, IController
         Mapping[holder] = poker;
     }
 
-    public void Remove(IPokerView poker)
+    private void Remove(IPokerView poker)
     {
         Panel holder = null!;
         foreach (var kvp in Mapping)
@@ -65,13 +67,13 @@ public partial class Deck : Control, IDeck, IController
         ReLayout();
     }
 
-    public void SortBySuit()
+    private void SortBySuit()
     {
         CurrentSortMode = DeckSortMode.Suit;
         ReorderChildren(SuitComparer);
     }
 
-    public void SortByRank()
+    private void SortByValue()
     {
         CurrentSortMode = DeckSortMode.Value;
         ReorderChildren(RankComparer);
@@ -181,7 +183,6 @@ public partial class Deck : Control, IDeck, IController
             Vector2 targetPos = holder.GlobalPosition + holder.Size / 2f;
             poker.ResetPosition = targetPos - poker.Size / 2f;
             poker.ResetRotation = 0f;
-            // poker.MoveTo(poker.ResetPosition);
         }
 
         this.SendEvent(new DeckSortFinishedEvent());
