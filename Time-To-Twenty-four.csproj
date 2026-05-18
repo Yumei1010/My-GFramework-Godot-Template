@@ -13,25 +13,13 @@
         <Compile Remove="script_templates\**" />
         <Compile Remove="scripts\core\ui\UiFactory.cs" />
         <Compile Remove="scenes\**" />
-        <Compile Remove="scripts\tests\**" />
-        <Compile Remove="scripts\extensions\**" />
         <Compile Remove="tests\**" />
         <Compile Remove="scripts\enums\poker\TagType.cs" />
-        <Compile Remove="scripts\main_menu\**" />
-        <Compile Remove="scripts\options_menu\**" />
-        <Compile Remove="scripts\calculate_menu\**" />
-        <Compile Remove="scripts\credits\**" />
     </ItemGroup>
     <ItemGroup>
         <EmbeddedResource Remove="script_templates\**" />
         <EmbeddedResource Remove="scenes\**" />
-        <EmbeddedResource Remove="scripts\tests\**" />
-        <EmbeddedResource Remove="scripts\extensions\**" />
         <EmbeddedResource Remove="tests\**" />
-        <EmbeddedResource Remove="scripts\main_menu\**" />
-        <EmbeddedResource Remove="scripts\options_menu\**" />
-        <EmbeddedResource Remove="scripts\calculate_menu\**" />
-        <EmbeddedResource Remove="scripts\credits\**" />
     </ItemGroup>
     <ItemGroup>
         <PackageReference Update="Meziantou.Analyzer" Version="2.0.298">
@@ -57,17 +45,35 @@
         <Content Include="global\README.md" />
     </ItemGroup>
     <ItemGroup>
-      <Folder Include="scripts\component\theme\" />
-      <Folder Include="scripts\cqrs\annotationTool\event\" />
+      <Folder Include="scripts\component\" />
+      <Folder Include="scripts\cqrs\annotation_tool\event\" />
       <Folder Include="scripts\cqrs\calculator\command\" />
+      <Folder Include="scripts\cqrs\deck\command\" />
+      <Folder Include="scripts\cqrs\deck\event\" />
+      <Folder Include="scripts\cqrs\pile\command\" />
       <Folder Include="scripts\cqrs\pile\event\" />
-      <Folder Include="scripts\data\timeBar\" />
-      <Folder Include="scripts\entities\poker\animation\" />
+      <Folder Include="scripts\cqrs\poker\command\" />
+      <Folder Include="scripts\cqrs\poker\event\" />
+      <Folder Include="scripts\cqrs\selector\command\" />
+      <Folder Include="scripts\enums\deck\" />
+      <Folder Include="scripts\enums\input\" />
+      <Folder Include="scripts\enums\poker\" />
+      <Folder Include="scripts\entities\annotation_tool\" />
+      <Folder Include="scripts\entities\calculator\mode\" />
+      <Folder Include="scripts\entities\deck\" />
+      <Folder Include="scripts\entities\mode_bar\" />
+      <Folder Include="scripts\entities\pile\" />
+      <Folder Include="scripts\entities\poker\state\" />
       <Folder Include="scripts\entities\poker\theme\" />
-      <Folder Include="scripts\menu\map_menu\" />
+      <Folder Include="scripts\entities\selector\" />
+      <Folder Include="scripts\entities\time_bar\" />
+      <Folder Include="scripts\menu\calculate_menu\" />
+      <Folder Include="scripts\menu\main_menu\" />
+      <Folder Include="scripts\model\deck\" />
       <Folder Include="scripts\model\pile\" />
-      <Folder Include="scripts\model\timeBar\" />
-      <Folder Include="scripts\system\" />
-      <Folder Include="scripts\system\Poker\" />
+      <Folder Include="scripts\model\selector\" />
+      <Folder Include="scripts\model\time_bar\" />
+      <Folder Include="scripts\system\deck\" />
+      <Folder Include="scripts\system\poker\" />
     </ItemGroup>
 </Project>

@@ -8,7 +8,6 @@ public class DeckModel : AbstractModel
 {
     public List<Guid> Pokers { get; set; } = [];
     public DeckSortMode CurrentSortMode { get; set; } = DeckSortMode.Value;
-    public Dictionary<Panel, IPokerView> Mapping { get; set; } = [];
 
     protected override void OnInit()
     {

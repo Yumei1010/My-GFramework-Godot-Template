@@ -53,7 +53,10 @@ public partial class PokerAnimationSystem : ISystem
         };
     }
 
-    public void RemoveBundle(Guid id) => Bundles.Remove(id);
+    public void RemoveBundle(Guid id)
+    {
+        Bundles.Remove(id);
+    }
 
     public void UpdateViewPosition(Guid id, Vector2 targetPosition)
     {

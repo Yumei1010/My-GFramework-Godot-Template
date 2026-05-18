@@ -2,6 +2,7 @@ using GFramework.Core.Abstractions.enums;
 using GFramework.Core.Abstractions.system;
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
+using Godot;
 using TimeToTwentyfour.scripts.entities.poker;
 
 namespace TimeToTwentyfour.scripts.system.deck;
@@ -10,6 +11,12 @@ namespace TimeToTwentyfour.scripts.system.deck;
 [ContextAware]
 public partial class DeckSortSystem : ISystem
 {
+    private struct MappingBundle
+    {
+        public IPokerView Poker { get; set; }
+        public Panel Holder { get; set; }
+    }
+
     private struct Comparer
     {
         /// <summary>
@@ -31,6 +38,8 @@ public partial class DeckSortSystem : ISystem
         }
     }
 
+    private Dictionary<Guid, MappingBundle> Bundles = [];
+
     public void OnArchitecturePhase(ArchitecturePhase phase)
     {
         _log.Debug("System initialized: DeckSystem");
@@ -44,6 +53,20 @@ public partial class DeckSortSystem : ISystem
     public void Destroy()
     {
         
+    }
+
+    public void InitMappings(IPokerView poker, Panel holder)
+    {
+        Bundles[poker.Id] = new MappingBundle
+        {
+            Poker = poker,
+            Holder = holder
+        };
+    }
+
+    public void RemoveBundle(Guid id)
+    {
+        Bundles.Remove(id);
     }
 
     public void Sort()
