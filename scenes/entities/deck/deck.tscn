@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dt7yo04xxynhw"]
 
-[ext_resource type="Script" uid="uid://ctl38v2txns8u" path="res://scripts/component/deck/Deck.cs" id="1_y416j"]
+[ext_resource type="Script" uid="uid://ctl38v2txns8u" path="res://scripts/entities/deck/Deck.cs" id="1_y416j"]
 
 [node name="Deck" type="Control" unique_id=1635477496]
 custom_minimum_size = Vector2(640, 160)

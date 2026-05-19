@@ -4,6 +4,7 @@ using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
 using Godot;
 using TimeToTwentyfour.scripts.cqrs.deck.@event;
+using TimeToTwentyfour.scripts.cqrs.poker.command;
 using TimeToTwentyfour.scripts.entities.poker;
 using TimeToTwentyfour.scripts.enums.deck;
 using TimeToTwentyfour.scripts.model.deck;
@@ -46,6 +47,8 @@ public partial class Deck : Control, IDeck, IController
 
         HolderContainer.AddChild(holder);
         PokerContainer.AddChild(poker as Node);
+        if (poker is Control ctrl)
+            ctrl.SetAnchorsPreset(Control.LayoutPreset.TopLeft);
 
         Mapping[holder] = poker;
         this.GetSystem<DeckSortSystem>().InitMapping(poker, holder);
@@ -161,6 +164,7 @@ public partial class Deck : Control, IDeck, IController
             Vector2 targetPos = holder.GlobalPosition + holder.Size / 2f;
             poker.ResetPosition = targetPos - poker.Size / 2f;
             poker.ResetRotation = 0f;
+            this.SendCommand(new PokerUpdateViewPositionCommand{ PokerId = poker.Id, TargetPosition = poker.ResetPosition});
         }
 
         this.SendEvent(new DeckSortFinishedEvent());

@@ -29,6 +29,7 @@ pivot_offset = Vector2(48, 72)
 script = ExtResource("1_tgpin")
 PokerSuitType = 2
 ResetPosition = Vector2(200, 200)
+metadata/_edit_lock_ = true
 
 [node name="ShadowRect" type="TextureRect" parent="." unique_id=1157468359]
 unique_name_in_owner = true

@@ -1,6 +1,5 @@
 ﻿using Godot;
 using TimeToTwentyfour.scripts.entities.poker;
-using TimeToTwentyfour.scripts.enums.deck;
 
 namespace TimeToTwentyfour.scripts.entities.deck;
 
