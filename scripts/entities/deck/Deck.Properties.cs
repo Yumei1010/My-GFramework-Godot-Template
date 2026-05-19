@@ -7,6 +7,4 @@ namespace TimeToTwentyfour.scripts.entities.deck;
 public partial class Deck
 {
     private Dictionary<Panel, IPokerView> Mapping { get; set; } = [];
-    
-    private DeckSortMode CurrentSortMode { get; set; }
 }

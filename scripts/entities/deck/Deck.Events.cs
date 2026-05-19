@@ -29,11 +29,6 @@ public partial class Deck
         {
             OnSortStartedEvent();
         }).UnRegisterWhenNodeExitTree(this);
-
-        this.RegisterEvent<DeckSortFinishedEvent>(_ =>
-        {
-            OnSortFinishedEvent();
-        }).UnRegisterWhenNodeExitTree(this);
     }
 
     private void OnPokerDragFinishedEvent(Guid pokerId)
@@ -62,9 +57,5 @@ public partial class Deck
     private void OnSortStartedEvent()
     {
         ReorderChildrenToMatchModel();
-    }
-
-    private void OnSortFinishedEvent()
-    {
     }
 }

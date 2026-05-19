@@ -7,6 +7,7 @@ using TimeToTwentyfour.scripts.cqrs.deck.@event;
 using TimeToTwentyfour.scripts.entities.poker;
 using TimeToTwentyfour.scripts.enums.deck;
 using TimeToTwentyfour.scripts.model.deck;
+using TimeToTwentyfour.scripts.system.deck;
 
 namespace TimeToTwentyfour.scripts.entities.deck;
 
@@ -47,6 +48,7 @@ public partial class Deck : Control, IDeck, IController
         PokerContainer.AddChild(poker as Node);
 
         Mapping[holder] = poker;
+        this.GetSystem<DeckSortSystem>().InitMapping(poker, holder);
     }
 
     private void Remove(IPokerView poker)
@@ -63,6 +65,7 @@ public partial class Deck : Control, IDeck, IController
         if (holder == null!) return;
 
         Mapping.Remove(holder);
+        this.GetSystem<DeckSortSystem>().RemoveBundle(poker.Id);
         holder.QueueFree();
 
         ReLayout();
@@ -122,7 +125,7 @@ public partial class Deck : Control, IDeck, IController
         if (currentIndex < 0 || currentIndex == targetIndex) return;
 
         HolderContainer.MoveChild(currentHolder, targetIndex);
-        CurrentSortMode = DeckSortMode.Manual;
+        this.GetModel<DeckModel>().CurrentSortMode = DeckSortMode.Manual;
 
         ReLayout();
     }
