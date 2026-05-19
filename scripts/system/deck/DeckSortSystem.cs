@@ -57,6 +57,12 @@ public partial class DeckSortSystem : ISystem
         Bundles.Remove(id);
     }
 
+    public Panel? FindHolder(Guid id) => Bundles.TryGetValue(id, out var b) ? b.Holder : null;
+
+    public IPokerView? FindPoker(Guid id) => Bundles.TryGetValue(id, out var b) ? b.Poker : null;
+
+    public IEnumerable<MappingBundle> AllBundles => Bundles.Values;
+
     public void Sort()
     {
         var model = this.GetModel<DeckModel>();

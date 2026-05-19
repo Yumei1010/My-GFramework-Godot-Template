@@ -20,8 +20,6 @@ shader_parameter/modulate_color = Color(0.9411765, 0.15294118, 0.36862746, 1)
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(96, 144)
 anchors_preset = -1
-anchor_right = 0.1
-anchor_bottom = 0.26700002
 offset_bottom = -0.18000793
 grow_horizontal = 2
 grow_vertical = 2
@@ -29,7 +27,6 @@ pivot_offset = Vector2(48, 72)
 script = ExtResource("1_tgpin")
 PokerSuitType = 2
 ResetPosition = Vector2(200, 200)
-metadata/_edit_lock_ = true
 
 [node name="ShadowRect" type="TextureRect" parent="." unique_id=1157468359]
 unique_name_in_owner = true

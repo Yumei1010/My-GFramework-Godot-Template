@@ -1,4 +1,4 @@
-﻿using GFramework.Core.Abstractions.controller;
+using GFramework.Core.Abstractions.controller;
 using GFramework.Core.extensions;
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
@@ -16,6 +16,8 @@ namespace TimeToTwentyfour.scripts.entities.deck;
 [ContextAware]
 public partial class Deck : Control, IDeck, IController
 {
+    private DeckSortSystem SortSystem => this.GetSystem<DeckSortSystem>();
+
     public override void _Ready()
     {
         _ = ReadyAsync();
@@ -47,45 +49,28 @@ public partial class Deck : Control, IDeck, IController
 
         HolderContainer.AddChild(holder);
         PokerContainer.AddChild(poker as Node);
-        if (poker is Control ctrl)
-            ctrl.SetAnchorsPreset(Control.LayoutPreset.TopLeft);
 
-        Mapping[holder] = poker;
-        this.GetSystem<DeckSortSystem>().InitMapping(poker, holder);
+        SortSystem.InitMapping(poker, holder);
     }
 
     private void Remove(IPokerView poker)
     {
-        Panel holder = null!;
-        foreach (var kvp in Mapping)
-        {
-            if (kvp.Value == poker)
-            {
-                holder = kvp.Key;
-                break;
-            }
-        }
-        if (holder == null!) return;
+        var holder = SortSystem.FindHolder(poker.Id);
+        if (holder == null) return;
 
-        Mapping.Remove(holder);
-        this.GetSystem<DeckSortSystem>().RemoveBundle(poker.Id);
+        SortSystem.RemoveBundle(poker.Id);
         holder.QueueFree();
-
         ReLayout();
     }
 
     private void ReorderChildrenToMatchModel()
     {
-        var model = this.GetModel<DeckModel>();
-        var sortedIds = model.Pokers;
-
-        var pokerToHolder = new Dictionary<Guid, Panel>();
-        foreach (var (holder, poker) in Mapping)
-            pokerToHolder[poker.Id] = holder;
+        var sortedIds = this.GetModel<DeckModel>().Pokers;
 
         for (int i = 0; i < sortedIds.Count; i++)
         {
-            if (pokerToHolder.TryGetValue(sortedIds[i], out var holder))
+            var holder = SortSystem.FindHolder(sortedIds[i]);
+            if (holder != null)
                 HolderContainer.MoveChild(holder, i);
         }
 
@@ -113,16 +98,8 @@ public partial class Deck : Control, IDeck, IController
             }
         }
 
-        Panel currentHolder = null!;
-        foreach (var kvp in Mapping)
-        {
-            if (kvp.Value == poker)
-            {
-                currentHolder = kvp.Key;
-                break;
-            }
-        }
-        if (currentHolder == null!) return;
+        var currentHolder = SortSystem.FindHolder(poker.Id);
+        if (currentHolder == null) return;
 
         int currentIndex = currentHolder.GetIndex();
         if (currentIndex < 0 || currentIndex == targetIndex) return;
@@ -135,36 +112,29 @@ public partial class Deck : Control, IDeck, IController
 
     private void SynchronizePokerOrder()
     {
-        var holders = HolderContainer.GetChildren();
-        var targetPokerList = new List<IPokerView>();
-        foreach (var child in holders)
-        {
-            if (child is Panel panel && Mapping.TryGetValue(panel, out var poker))
-                targetPokerList.Add(poker);
-        }
+        var bundles = SortSystem.AllBundles
+            .OrderBy(b => b.Holder.GetIndex())
+            .ToList();
 
-        for (int i = 0; i < targetPokerList.Count; i++)
+        for (int i = 0; i < bundles.Count; i++)
         {
-            if (targetPokerList[i] is Node node && node.GetParent() == PokerContainer)
+            if (bundles[i].Poker is Node node && node.GetParent() == PokerContainer)
                 PokerContainer.MoveChild(node, i);
         }
     }
-    
+
     private void ReLayout()
     {
         SynchronizePokerOrder();
 
-        int count = Mathf.Min(PokerContainer.GetChildCount(), HolderContainer.GetChildCount());
-        for (int i = 0; i < count; i++)
+        foreach (var bundle in SortSystem.AllBundles)
         {
-            if (HolderContainer.GetChild(i) is not Control holder) continue;
-            if (PokerContainer.GetChild(i) is not IPokerView poker) continue;
-            if (!Mapping.ContainsKey((holder as Panel)!)) continue;
-
+            var holder = bundle.Holder;
+            var poker = bundle.Poker;
             Vector2 targetPos = holder.GlobalPosition + holder.Size / 2f;
             poker.ResetPosition = targetPos - poker.Size / 2f;
             poker.ResetRotation = 0f;
-            this.SendCommand(new PokerUpdateViewPositionCommand{ PokerId = poker.Id, TargetPosition = poker.ResetPosition});
+            this.SendCommand(new PokerUpdateViewPositionCommand { PokerId = poker.Id, TargetPosition = poker.ResetPosition });
         }
 
         this.SendEvent(new DeckSortFinishedEvent());
