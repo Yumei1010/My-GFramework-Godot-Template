@@ -13,6 +13,6 @@ public sealed class DeckInitMappingBundleCommand : AbstractCommand
 
     protected override void OnExecute()
     {
-        this.GetSystem<DeckSortSystem>().InitMappings(PokerView, Holder);
+        this.GetSystem<DeckSortSystem>().InitMapping(PokerView, Holder);
     }
 }

@@ -6,6 +6,7 @@ using Godot;
 using TimeToTwentyfour.scripts.cqrs.deck.@event;
 using TimeToTwentyfour.scripts.entities.poker;
 using TimeToTwentyfour.scripts.enums.deck;
+using TimeToTwentyfour.scripts.model.deck;
 
 namespace TimeToTwentyfour.scripts.entities.deck;
 
@@ -67,51 +68,25 @@ public partial class Deck : Control, IDeck, IController
         ReLayout();
     }
 
-    private void SortBySuit()
+    private void ReorderChildrenToMatchModel()
     {
-        CurrentSortMode = DeckSortMode.Suit;
-        ReorderChildren(SuitComparer);
-    }
+        var model = this.GetModel<DeckModel>();
+        var sortedIds = model.Pokers;
 
-    private void SortByValue()
-    {
-        CurrentSortMode = DeckSortMode.Value;
-        ReorderChildren(RankComparer);
-    }
+        var pokerToHolder = new Dictionary<Guid, Panel>();
+        foreach (var (holder, poker) in Mapping)
+            pokerToHolder[poker.Id] = holder;
 
-    private static int SuitComparer(Node a, Node b)
-    {
-        if (a is not IPokerData pa || b is not IPokerData pb) return 0;
-        return DeckComparer.CompareBySuit(pa, pb);
-    }
-
-    private static int RankComparer(Node a, Node b)
-    {
-        if (a is not IPokerData pa || b is not IPokerData pb) return 0;
-        return DeckComparer.CompareByRank(pa, pb);
-    }
-
-    private void ReorderChildren(Comparison<Node> comparison)
-    {
-        int count = PokerContainer.GetChildCount();
-        var pairs = new List<(Node holder, Node poker)>();
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < sortedIds.Count; i++)
         {
-            pairs.Add((HolderContainer.GetChild(i), PokerContainer.GetChild(i)));
+            if (pokerToHolder.TryGetValue(sortedIds[i], out var holder))
+                HolderContainer.MoveChild(holder, i);
         }
 
-        pairs.Sort((a, b) => comparison(a.poker, b.poker));
-
-        for (int i = 0; i < count; i++)
-        {
-            var (holder, poker) = pairs[i];
-            HolderContainer.MoveChild(holder, i);
-            PokerContainer.MoveChild(poker, i);
-        }
-
+        SynchronizePokerOrder();
         ReLayout();
     }
-    
+
     private void InsertPokerAtNearestSlot(IPokerView poker, float globalX)
     {
         int count = HolderContainer.GetChildCount();

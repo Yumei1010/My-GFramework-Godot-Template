@@ -12,9 +12,6 @@ public sealed class DeckSortBySuitCommand : AbstractCommand
     protected override void OnExecute()
     {
         this.GetModel<DeckModel>().CurrentSortMode = DeckSortMode.Suit;
-
         this.GetSystem<DeckSortSystem>().Sort();
-
-        this.SendEvent(new DeckSortStartedEvent()); 
     }
 }

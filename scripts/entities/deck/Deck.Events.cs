@@ -2,8 +2,6 @@ using GFramework.Core.extensions;
 using GFramework.Godot.extensions;
 using TimeToTwentyfour.scripts.cqrs.deck.@event;
 using TimeToTwentyfour.scripts.cqrs.poker.@event;
-using TimeToTwentyfour.scripts.enums.deck;
-using TimeToTwentyfour.scripts.model.deck;
 using TimeToTwentyfour.scripts.system.poker;
 
 namespace TimeToTwentyfour.scripts.entities.deck;
@@ -63,29 +61,10 @@ public partial class Deck
 
     private void OnSortStartedEvent()
     {
-        var model = this.GetModel<DeckModel>();
-        switch (model.CurrentSortMode)
-        {
-            case DeckSortMode.Suit:
-                SortBySuit();
-                break;
-            case DeckSortMode.Value:
-                SortByValue();
-                break;
-        }
+        ReorderChildrenToMatchModel();
     }
 
     private void OnSortFinishedEvent()
     {
-        var model = this.GetModel<DeckModel>();
-        switch (model.CurrentSortMode)
-        {
-            case DeckSortMode.Suit:
-                SortBySuit();
-                break;
-            case DeckSortMode.Value:
-                SortByValue();
-                break;
-        }
     }
 }
