@@ -1,7 +1,9 @@
 using GFramework.Core.extensions;
 using GFramework.Godot.extensions;
+using Godot;
 using TimeToTwentyfour.scripts.cqrs.deck.@event;
 using TimeToTwentyfour.scripts.cqrs.poker.@event;
+using TimeToTwentyfour.scripts.system.deck;
 using TimeToTwentyfour.scripts.system.poker;
 
 namespace TimeToTwentyfour.scripts.entities.deck;
@@ -43,7 +45,17 @@ public partial class Deck
     {
         var poker = this.GetSystem<PokerSystem>().Find(pokerId);
         if (poker == null) return;
-        Add(poker);
+
+        var holder = new Panel
+        {
+            Modulate = new Color("ffffff00"),
+            SizeFlagsHorizontal = SizeFlags.ExpandFill
+        };
+
+        HolderContainer.AddChild(holder);
+        PokerContainer.AddChild(poker as Node);
+
+        this.GetSystem<DeckSortSystem>().InitMapping(poker, holder);
         ReLayout();
     }
 
@@ -51,7 +63,13 @@ public partial class Deck
     {
         var poker = this.GetSystem<PokerSystem>().Find(pokerId);
         if (poker == null) return;
-        Remove(poker);
+        
+        var holder = this.GetSystem<DeckSortSystem>().FindHolder(poker.Id);
+        if (holder == null) return;
+
+        this.GetSystem<DeckSortSystem>().RemoveBundle(poker.Id);
+        holder.QueueFree();
+        ReLayout();
     }
 
     private void OnSortStartedEvent()

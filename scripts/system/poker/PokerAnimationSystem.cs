@@ -58,12 +58,22 @@ public partial class PokerAnimationSystem : ISystem
         Bundles.Remove(id);
     }
 
-    public void UpdateViewPosition(Guid id, Vector2 targetPosition)
+    public void UpdateViewPosition(Guid id, Vector2 targetPosition, bool animated = false)
     {
         if (!Bundles.TryGetValue(id, out var b)) return;
         var node = (Control)b.Poker;
 
-        node.GlobalPosition = targetPosition;
+        if (!animated)
+        {
+            node.GlobalPosition = targetPosition;
+            return;
+        }
+
+        if (!b.TweenPos.IsNull() && b.TweenPos.IsRunning())
+            b.TweenPos.Kill();
+
+        var tp = b.TweenPos = node.CreateTween().SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Elastic);
+        tp.TweenProperty(node, "global_position", targetPosition, b.Poker.AnimateTime);
     }
 
     public void ResetViewPosition(Guid id, Vector2 resetPosition)

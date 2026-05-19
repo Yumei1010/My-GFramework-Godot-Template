@@ -9,9 +9,10 @@ public sealed class PokerUpdateViewPositionCommand : AbstractCommand
 {
     public required Guid PokerId { get; set; }
     public required Vector2 TargetPosition { get; set; }
+    public required bool Animated { get; set; }
 
     protected override void OnExecute()
     {
-        this.GetSystem<PokerAnimationSystem>().UpdateViewPosition(PokerId, TargetPosition);
+        this.GetSystem<PokerAnimationSystem>().UpdateViewPosition(PokerId, TargetPosition, Animated);
     }
 }
