@@ -22,7 +22,7 @@
         <EmbeddedResource Remove="tests\**" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Update="Meziantou.Analyzer" Version="2.0.298">
+        <PackageReference Update="Meziantou.Analyzer" Version="2.0.302">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
         </PackageReference>
