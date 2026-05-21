@@ -40,14 +40,16 @@ jobs:
           REPO: ${{ github.repository }}
           NEW_TAG: ${{ steps.get_next_version.outputs.new_tag }}
         run: |
+          if [ -z "$PAT" ]; then
+            echo "PAT_TOKEN not configured — skipping tag creation."
+            echo "Next version would be: $NEW_TAG"
+            exit 0
+          fi
           set -e
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           echo "Creating annotated tag $NEW_TAG"
           git tag -a "$NEW_TAG" -m "Auto-generated tag: $NEW_TAG"
           git push "https://x-access-token:${PAT}@github.com/${REPO}.git" "refs/tags/${NEW_TAG}"
-
-      - name: Print version info
-        run: |
           echo "Previous tag: ${{ steps.get_next_version.outputs.latest_tag }}"
-          echo "New tag:     ${{ steps.get_next_version.outputs.new_tag }}"
+          echo "New tag:     $NEW_TAG"
