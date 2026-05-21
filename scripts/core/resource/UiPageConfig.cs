@@ -1,8 +1,8 @@
 ﻿using GFramework.Core.Abstractions.bases;
-using TimeToTwentyfour.scripts.enums.ui;
+using GFrameworkTemplate.scripts.enums.ui;
 using Godot;
 
-namespace TimeToTwentyfour.scripts.core.resource;
+namespace GFrameworkTemplate.scripts.core.resource;
 
 /// <summary>
 ///     UI场景配置资源类，用于存储UI界面的键值和对应的场景资源

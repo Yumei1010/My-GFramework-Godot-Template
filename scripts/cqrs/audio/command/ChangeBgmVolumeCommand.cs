@@ -3,9 +3,9 @@ using GFramework.Core.extensions;
 using GFramework.Game.Abstractions.setting;
 using GFramework.Game.Abstractions.setting.data;
 using GFramework.Godot.setting;
-using TimeToTwentyfour.scripts.cqrs.audio.command.input;
+using GFrameworkTemplate.scripts.cqrs.audio.command.input;
 
-namespace TimeToTwentyfour.scripts.cqrs.audio.command;
+namespace GFrameworkTemplate.scripts.cqrs.audio.command;
 
 /// <summary>
 ///     更改背景音乐音量命令类，用于处理BGM音量更改操作

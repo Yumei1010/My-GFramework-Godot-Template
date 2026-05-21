@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-namespace TimeToTwentyfour.global;
+namespace GFrameworkTemplate.global;
 
 public partial class PlayerManager : Node
 {

@@ -1,9 +1,9 @@
 ﻿using GFramework.Core.Abstractions.architecture;
 using GFramework.Core.Abstractions.environment;
 using GFramework.Godot.architecture;
-using TimeToTwentyfour.scripts.module;
+using GFrameworkTemplate.scripts.module;
 
-namespace TimeToTwentyfour.scripts.core;
+namespace GFrameworkTemplate.scripts.core;
 
 /// <summary>
 ///     游戏架构类，负责安装和管理游戏所需的各种模块

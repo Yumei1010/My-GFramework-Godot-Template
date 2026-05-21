@@ -1,40 +1,18 @@
-﻿using GFramework.Core.Abstractions.state;
-using GFramework.Core.extensions;
-using GFramework.Game.Abstractions.ui;
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
-using TimeToTwentyfour.scripts.core.controller;
-using TimeToTwentyfour.scripts.core.state.impls;
-using TimeToTwentyfour.scripts.enums.input;
+using GFrameworkTemplate.scripts.core.controller;
+using GFrameworkTemplate.scripts.enums.input;
 using Godot;
 
-namespace TimeToTwentyfour.global;
+namespace GFrameworkTemplate.global;
 
 /// <summary>
-///     全局输入控制器类，继承自 GameInputController。
-///     负责处理游戏中的全局输入事件，包括暂停和恢复游戏的功能。
+///     全局输入控制器，负责处理全局输入事件
 /// </summary>
 [Log]
 [ContextAware]
 public partial class GlobalInputController : GameInputController
 {
-    private UiHandle? _pauseMenuUiHandle;
-    private UiHandle? _mapMenuUiHandle;
-    
-    /// <summary>
-    ///     状态机系统实例，用于管理游戏状态。
-    /// </summary>
-    private IStateMachineSystem _stateMachineSystem = null!;
-
-    /// <summary>
-    ///     初始化方法，在节点准备就绪时调用。
-    ///     获取并初始化状态机系统实例。
-    /// </summary>
-    public override void _Ready()
-    {
-        _stateMachineSystem = this.GetSystem<IStateMachineSystem>()!;
-    }
-
     protected override bool AcceptPhase(InputPhase phase)
     {
         return phase is InputPhase.Global or InputPhase.Paused;
@@ -42,10 +20,9 @@ public partial class GlobalInputController : GameInputController
 
     protected override void Handle(InputPhase phase, InputEvent @event)
     {
-        // 检查是否按下了取消操作（通常是 ESC 键）
         if (!@event.IsActionPressed("ui_cancel"))
             return;
-        
+
         GetViewport().SetInputAsHandled();
     }
 }

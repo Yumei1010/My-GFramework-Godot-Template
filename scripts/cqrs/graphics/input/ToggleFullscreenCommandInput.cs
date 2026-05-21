@@ -1,6 +1,6 @@
 ﻿using GFramework.Core.Abstractions.command;
 
-namespace TimeToTwentyfour.scripts.cqrs.graphics.input;
+namespace GFrameworkTemplate.scripts.cqrs.graphics.input;
 
 /// <summary>
 ///     切换全屏命令输入类

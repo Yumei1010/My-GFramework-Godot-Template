@@ -1,7 +1,7 @@
 ﻿using GFramework.Core.Abstractions.registries;
 using Godot;
 
-namespace TimeToTwentyfour.scripts.utility;
+namespace GFrameworkTemplate.scripts.utility;
 
 /// <summary>
 /// GodotTextureRegistry 类继承自 KeyValueRegistryBase 并实现 IGodotTextureRegistry 接口。

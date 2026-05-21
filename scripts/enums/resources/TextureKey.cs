@@ -1,23 +1,12 @@
-﻿namespace TimeToTwentyfour.scripts.enums.resources;
+namespace GFrameworkTemplate.scripts.enums.resources;
 
+/// <summary>
+///     纹理资源键值枚举，用于注册和查找纹理
+/// </summary>
 public enum TextureKey
 {
-    PokerSurfaceHeartMaskTexture,
-    PokerSurfaceDiamondMaskTexture,
-    PokerSurfaceSpadeMaskTexture,
-    PokerSurfaceClubMaskTexture,
-    PokerShadowTexture,
-    
-    TimeBarProgressBlankTexture,
-
-    ModeButtonAddTexture,
-    ModeButtonSubtractTexture,
-    ModeButtonMultiplyTexture,
-    ModeButtonDivideTexture,
-
-    AnnotationToolFreehandIconTexture,
-    AnnotationToolLineIconTexture,
-    AnnotationToolRectIconTexture,
-    AnnotationToolCircleIconTexture,
-    AnnotationToolEraserIconTexture,
+    /// <summary>
+    ///     示例纹理
+    /// </summary>
+    ExampleTexture,
 }

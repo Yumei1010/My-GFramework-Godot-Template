@@ -1,6 +1,6 @@
 # 项目约束规范
 
-本文档定义 Time-To-Twenty-four 项目的编码规范、架构约束和命名约定。所有贡献者必须遵守。
+本文档定义基于本框架模板的项目的编码规范、架构约束和命名约定。所有贡献者必须遵守。
 
 ---
 
@@ -11,24 +11,24 @@
 命名空间与目录层次一一对应，使用文件范围声明（`namespace X.Y.Z;`，带分号无大括号）。
 
 ```
-根命名空间: TimeToTwentyfour
+根命名空间: GFrameworkTemplate
 
-global/ 目录                    → TimeToTwentyfour.global;
-scripts/component/<name>/       → TimeToTwentyfour.scripts.component.<name>;
-scripts/entities/<name>/        → TimeToTwentyfour.scripts.entities.<name>;
-scripts/system/<name>/          → TimeToTwentyfour.scripts.system.<name>;
-scripts/enums/<domain>/         → TimeToTwentyfour.scripts.enums.<domain>;
-scripts/menu/<name>/            → TimeToTwentyfour.scripts.menu.<name>;
-scripts/core/<dir>/             → TimeToTwentyfour.scripts.core.<dir>;
-scripts/cqrs/<domain>/command/  → TimeToTwentyfour.scripts.cqrs.<domain>.command;
-scripts/cqrs/<domain>/command/input/ → TimeToTwentyfour.scripts.cqrs.<domain>.command.input;
-scripts/cqrs/<domain>/event/    → TimeToTwentyfour.scripts.cqrs.<domain>.@event;
+global/ 目录                    → GFrameworkTemplate.global;
+scripts/component/<name>/       → GFrameworkTemplate.scripts.component.<name>;
+scripts/entities/<name>/        → GFrameworkTemplate.scripts.entities.<name>;
+scripts/system/<name>/          → GFrameworkTemplate.scripts.system.<name>;
+scripts/enums/<domain>/         → GFrameworkTemplate.scripts.enums.<domain>;
+scripts/menu/<name>/            → GFrameworkTemplate.scripts.menu.<name>;
+scripts/core/<dir>/             → GFrameworkTemplate.scripts.core.<dir>;
+scripts/cqrs/<domain>/command/  → GFrameworkTemplate.scripts.cqrs.<domain>.command;
+scripts/cqrs/<domain>/command/input/ → GFrameworkTemplate.scripts.cqrs.<domain>.command.input;
+scripts/cqrs/<domain>/event/    → GFrameworkTemplate.scripts.cqrs.<domain>.@event;
 ```
 
 ### 注意事项
 
 - C# 关键字 `event` 在命名空间中转义为 `@event`
-- `global/` 使用 `TimeToTwentyfour.global`（不含 `scripts.` 前缀）
+- `global/` 使用 `GFrameworkTemplate.global`（不含 `scripts.` 前缀）
 - 禁止使用传统的花括号命名空间 `namespace X { }` 语法
 
 ---
@@ -39,20 +39,20 @@ scripts/cqrs/<domain>/event/    → TimeToTwentyfour.scripts.cqrs.<domain>.@even
 
 | 目录 | 用途 | 示例 |
 |---|---|---|
-| `scripts/component/` | 可复用游戏组件（含接口和实现） | ModeButton、VolumeContainer、CircleContainer |
-| `scripts/entities/` | 领域实体与核心游戏组件 | Poker、Calculator、Deck、Selector、TimeBar、AnnotationTool、ModeBar、Pile |
-| `scripts/system/` | GFramework ISystem 实现 | PokerStateSystem、PokerThemeSystem、PokerAnimationSystem、PokerSystem |
-| `scripts/menu/` | UI 页面（被 UiRouter 管理） | MainMenu、CalculateMenu、OptionsMenu |
+| `scripts/component/` | 可复用组件（含接口和实现） | VolumeContainer |
+| `scripts/entities/` | 领域实体与核心组件 | 按业务域自定义 |
+| `scripts/system/` | GFramework ISystem 实现 | 按业务域自定义 |
+| `scripts/menu/` | UI 页面（被 UiRouter 管理） | 按业务域自定义 |
 | `scripts/cqrs/` | CQRS 命令、事件、命令输入 | 见第 4 节 |
-| `scripts/enums/` | 枚举定义（按域分子目录，蛇形命名） | ModeType、PokerStateType、PokerSuitType |
-| `scripts/model/` | 领域模型（纯数据结构） | Fraction |
+| `scripts/enums/` | 枚举定义（按域分子目录） | UiKey、SceneKey、TextureKey |
+| `scripts/model/` | 领域模型（纯数据结构） | 按业务域自定义 |
 | `scripts/core/` | 架构核心（状态机、路由、UI 工厂） | GameArchitecture、UiRouter |
 | `scripts/module/` | GFramework 模块安装 | ModelModule、SystemModule |
-| `scripts/constants/` | 游戏常量 | GameConstants、UiLayers |
-| `scripts/data/` | 可持久化数据类与提供者 | PlayerData、GameSaveData、SettingDataLocationProvider |
-| `scripts/utility/` | 通用工具与存储接口 | GameUtil、GodotTextureRegistry、ISaveStorageUtility |
-| `global/` | Godot 自动加载单例 | GameEntryPoint、AudioManager |
-| `tests/` | xUnit 单元测试 | CalculateHelperBinaryTests |
+| `scripts/constants/` | 全局常量 | GameConstants、UiLayers |
+| `scripts/data/` | 可持久化数据类与提供者 | SettingDataLocationProvider |
+| `scripts/utility/` | 通用工具与存储接口 | GameUtil、GodotTextureRegistry |
+| `global/` | Godot 自动加载单例 | GameEntryPoint、UiRoot、SceneRoot |
+| `tests/` | xUnit 单元测试 | 按模块自定义 |
 
 ### 目录命名规范
 
@@ -83,10 +83,10 @@ Godot 节点类使用 partial class 拆分，每种职责一个文件：
 ### 示例
 
 ```
-Calculator.cs
-Calculator.Dependencies.cs
-Calculator.Events.cs
-Calculator.Properties.cs
+MyPage.cs
+MyPage.Dependencies.cs
+MyPage.Events.cs
+MyPage.Properties.cs
 ```
 
 ### 命名规则
@@ -117,18 +117,18 @@ scripts/cqrs/<domain>/
 
 **数据事件**（携带属性）— 使用完整类体：
 ```csharp
-namespace TimeToTwentyfour.scripts.cqrs.<domain>.@event;
+namespace GFrameworkTemplate.scripts.cqrs.<domain>.@event;
 
 public sealed class SomeEvent
 {
     public required string Prop1 { get; init; }
-    public required IPoker Prop2 { get; init; }
+    public required int Prop2 { get; init; }
 }
 ```
 
 **标记事件**（无数据）— 使用文件范围类型声明：
 ```csharp
-namespace TimeToTwentyfour.scripts.cqrs.<domain>.@event;
+namespace GFrameworkTemplate.scripts.cqrs.<domain>.@event;
 
 /// <summary>
 ///     某某事件类，用于表示某某事件
@@ -147,7 +147,7 @@ public sealed class SomeEvent;
 
 **带输入的命令**（异步）— 使用主构造函数：
 ```csharp
-namespace TimeToTwentyfour.scripts.cqrs.<domain>.command;
+namespace GFrameworkTemplate.scripts.cqrs.<domain>.command;
 
 public sealed class SomeCommand(SomeCommandInput input)
     : AbstractAsyncCommand<SomeCommandInput>(input)
@@ -194,7 +194,7 @@ public sealed class SomeCommand : AbstractCommand
 **所有命令输入必须是 `public sealed class`，实现 `ICommandInput`：**
 
 ```csharp
-namespace TimeToTwentyfour.scripts.cqrs.<domain>.command.input;
+namespace GFrameworkTemplate.scripts.cqrs.<domain>.command.input;
 
 public sealed class SomeCommandInput : ICommandInput
 {
@@ -382,9 +382,8 @@ using GFramework.Godot.extensions;
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
 using Godot;
-using TimeToTwentyfour.scripts.entities.calculator;
-using TimeToTwentyfour.scripts.cqrs.deck.@event;
-using TimeToTwentyfour.scripts.entities.poker;
+using GFrameworkTemplate.scripts.entities.my_entity;
+using GFrameworkTemplate.scripts.cqrs.my_domain.@event;
 ```
 
 ---
@@ -419,11 +418,11 @@ using TimeToTwentyfour.scripts.entities.poker;
 ### 示例
 
 ```
-feat(Selector): 添加启用/禁用功能，通过SelectorEnableChangedEvent控制
+feat(MyComponent): 添加新组件，通过事件驱动控制
 
-refactor(CalculateMenu): 数据驱动方式重构按钮连接，消除 12×3 重复代码
+refactor(MyMenu): 数据驱动方式重构按钮连接
 
-fix(Calculator): 修复二元模式下单手牌数组越界问题
+fix(MyModel): 修复边界条件校验问题
 ```
 
 ---

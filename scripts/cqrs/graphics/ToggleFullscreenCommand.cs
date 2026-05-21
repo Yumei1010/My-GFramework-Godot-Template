@@ -3,9 +3,9 @@ using GFramework.Core.extensions;
 using GFramework.Game.Abstractions.setting;
 using GFramework.Game.Abstractions.setting.data;
 using GFramework.Godot.setting;
-using TimeToTwentyfour.scripts.cqrs.graphics.input;
+using GFrameworkTemplate.scripts.cqrs.graphics.input;
 
-namespace TimeToTwentyfour.scripts.cqrs.graphics.command;
+namespace GFrameworkTemplate.scripts.cqrs.graphics.command;
 
 /// <summary>
 ///     切换全屏模式命令类

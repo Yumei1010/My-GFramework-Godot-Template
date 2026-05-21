@@ -1,6 +1,6 @@
 ﻿using GFramework.Game.Abstractions.ui;
 using Godot;
 
-namespace TimeToTwentyfour.scripts.utility;
+namespace GFrameworkTemplate.scripts.utility;
 
 public interface IGodotTextureRegistry : IAssetRegistry<Texture>;

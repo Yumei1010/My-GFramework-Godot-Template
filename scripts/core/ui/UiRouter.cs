@@ -2,7 +2,7 @@
 using GFramework.Game.ui.handler;
 using GFramework.SourceGenerators.Abstractions.logging;
 
-namespace TimeToTwentyfour.scripts.core.ui;
+namespace GFrameworkTemplate.scripts.core.ui;
 
 /// <summary>
 ///     UI路由类，提供页面栈管理功能

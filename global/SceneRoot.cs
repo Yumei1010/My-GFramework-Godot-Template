@@ -6,7 +6,7 @@ using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
 using Godot;
 
-namespace TimeToTwentyfour.global;
+namespace GFrameworkTemplate.global;
 
 [Log]
 [ContextAware]

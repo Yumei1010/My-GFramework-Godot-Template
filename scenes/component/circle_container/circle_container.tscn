@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://7s002k1wmlca"]
-
-[ext_resource type="Script" uid="uid://3e3bfc00rlu6" path="res://scripts/component/circle_container/CircleContainer.gd" id="1_wl6pt"]
-
-[node name="CircleContainer" type="Container" unique_id=1801676345]
-script = ExtResource("1_wl6pt")

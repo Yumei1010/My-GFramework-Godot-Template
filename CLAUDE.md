@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-本文档为 Claude Code (claude.ai/code) 在本仓库中工作时提供指导。
+本文档为 Claude Code (claude.ai/code) 在基于本框架模板构建的项目中工作时提供指导。
 
 项目编码规范详见 [CONVENTIONS.md](CONVENTIONS.md)，涵盖命名空间、文件结构、CQRS 约定、XML 注释标准、修饰符规范等。以下为关键要点速查与架构概览。
 
@@ -12,15 +12,9 @@ dotnet build
 
 # 运行全部测试
 dotnet test
-
-# 运行单个测试类
-dotnet test --filter "FullyQualifiedName~CalculateHelperBinaryTests"
-
-# 运行单个测试方法
-dotnet test --filter "FullyQualifiedName~CalculateHelperBinaryTests.Add_TwoIntegers"
 ```
 
-测试使用 xUnit，位于 `tests/Time-To-Twenty-four.Tests/`。测试项目直接引用主项目——纯 C# 逻辑（Mode 计算类）的单元测试无需 Godot 运行时。
+测试使用 xUnit，测试项目位于 `tests/` 目录下。
 
 ## 关键约束速查
 
@@ -47,12 +41,15 @@ dotnet test --filter "FullyQualifiedName~CalculateHelperBinaryTests.Add_TwoInteg
 **技术栈：** Godot 4.6 + C# (.NET 10) + GFramework (0.0.177) — NuGet 上的 CQRS/ECS 框架。
 
 **DI 引导：** `global/GameEntryPoint`（自动加载单例）创建 `GameArchitecture`，安装 4 个模块：
-- `ModelModule` — 设置模型及其应用器（音频/图形/本地化）
-- `SystemModule` — UiRouter、SceneRouter、SettingsSystem
-- `UtilityModule` — 注册表、存储、序列化、工厂
-- `StateModule` — `GameStateMachineSystem`（含 5 个状态）
 
-**状态 → UI 映射：** 每个状态（MainMenuState、CalculateMenuState、OptionsMenuState、CreditsState、GameOverState）在进入时清除之前的 UI/场景，并通过 `UiRouter.Push()` 推入自己的 UI 页面。
+| 模块 | 职责 |
+|---|---|
+| `ModelModule` | 注册设置模型及其应用器（音频/图形/本地化） |
+| `SystemModule` | 注册 UiRouter、SceneRouter、SettingsSystem |
+| `UtilityModule` | 注册工具：UI/场景/纹理注册表、存储、序列化、工厂 |
+| `StateModule` | 注册 `GameStateMachineSystem` 及状态 |
+
+**状态 → UI 映射：** 每个状态实现 `ContextAwareStateBase`，在 `OnEnter` 中清除之前的 UI/场景，并通过 `UiRouter.Push()` 推入对应的 UI 页面。参见 `AppState` 作为模板示例。
 
 **UI 页面** 继承 `Control`，实现 `IUiPageBehaviorProvider` + `ISimpleUiPage`。采用 partial class 模式：
 
@@ -76,51 +73,41 @@ dotnet test --filter "FullyQualifiedName~CalculateHelperBinaryTests.Add_TwoInteg
 - 命令位于 `scripts/cqrs/<domain>/command/`，命令输入位于 `scripts/cqrs/<domain>/command/input/`
 - 命令发送：`this.SendCommand(new SomeCommand(input))`
 
-### 组件分类
-
-| 目录 | 职责 | 有无 I* 接口 |
-|---|---|---|
-| `scripts/component/` | 可复用游戏组件（Calculator、Deck、Selector、TimeBar 等） | 有 |
-| `scripts/entities/` | 领域实体（Poker 及其状态、状态机） | 有 |
-| `scripts/menu/` | UI 页面（MainMenu、CalculateMenu、OptionsMenu、Credits） | 无（由 UiRouter 管理） |
-
-### 扑克状态机
-每张牌运行 4 状态 FSM：`Idle` ↔ `UnSelect` ↔ `OnSelect`，外加 `Drag`（鼠标按下时从 Idle 进入，鼠标释放时退出到 Idle）。状态采用纯 C# 策略模式——各状态持有 `Poker` 引用，通过 `ChangeTo()` → `Poker.ChangeTo()` → `StateMachine.ChangeTo()` 调用链直接切换，不经过 CQRS 事件层。
-
-### 选择器
-FIFO 队列，有容量限制。队列满时淘汰最早选中的牌。`Pop()` 为 LIFO（撤销最近一次选择）。通过 `SelectorEnableChangedEvent` 控制启用/禁用。响应 `SelectorSelectChangedEvent`。
-
 ### 日志与上下文
 - `[Log]` 特性通过 GFramework 源代码生成器自动生成静态 `Log` 属性
 - `[ContextAware]` 特性自动注入 GFramework 架构上下文
 - 两者**成对使用**，`[Log]` 在前
 
-## 核心游戏逻辑
+## 框架模块清单
 
-**计算器组件** (`scripts/component/calculator/`) — `Calculator` 管理 12 种运算模式，每种模式实现 `IMode` 接口。
+| 模块 | 文件 | 注册内容 |
+|---|---|---|
+| ModelModule | `scripts/module/ModelModule.cs` | `SettingsModel` + Audio/Graphics/Localization 应用器 |
+| SystemModule | `scripts/module/SystemModule.cs` | `UiRouter`、`SceneRouter`、`SettingsSystem` |
+| UtilityModule | `scripts/module/UtilityModule.cs` | UI/场景/纹理注册表、存储、JSON 序列化、设置仓储 |
+| StateModule | `scripts/module/StateModule.cs` | `GameStateMachineSystem` + `AppState` |
 
-- **Fraction** (`scripts/model/calculator/Fraction.cs`) — 精确有理数结构体（GCD 约分、连分数转换 double）
-- **Mode 抽象基类** (`scripts/component/calculator/mode/Mode.cs`) — 共享 Fraction 解析与数值格式化工具
-- **二元 Mode（7 种）：** Add、Subtract、Multiply、Divide、Modulo、Power、NthRoot
-- **一元 Mode（5 种）：** AbsoluteValue、Factorial、SquareRoot、Ceil、Floor
-- **输入：** `IPoker` 对象（读取 `NumValue` 字符串 + `NumType` 枚举）
-- **输出：** 字符串 — 数字或 `"ERROR:DivByZero"` / `"ERROR:ZeroRootIndex"` / `"ERROR:InvalidSqrt"` / `"ERROR:NoModeSelected"` / `"ERROR:InsufficientHands"`
+## 示例 CQRS 域
 
-## 当前开发状态
+框架保留了以下通用 CQRS 域作为参考：
 
-项目遵循 Plan.md 的 5 阶段路线图。**阶段三（核心游戏循环）** 是当前活跃阶段：
+- `scripts/cqrs/audio/command/` — 音量控制命令（Master/Bgm/Sfx）
+- `scripts/cqrs/graphics/` — 分辨率和全屏切换命令
+- `scripts/cqrs/setting/` — 设置保存/重置/查询命令
+- `scripts/cqrs/game/command/ExitGameCommand.cs` — 退出游戏命令
 
-### 已完成
-- `CalculateMenu` 12 个运算符按钮全部接入 `Calculator.ChangeTo(modeType)`，通过数据驱动循环绑定（`foreach Enum.GetValues<ModeType>()`）
-- `Calculator` 已监听 `DeckHandCheckedEvent`，根据当前 Mode 的类型（二元/一元）执行计算并发送 `CalculatorResultEvent`（含错误状态码）
-- `Selector` 具备启用/禁用功能，通过 `SelectorEnableChangedEvent` 控制
-- `Deck` 支持按花色/点数排序和拖拽插入卡槽
-- CalculateMenu 含临时测试脚手架：`CreateTest()` 创建 4 张测试牌（20、4、6、8）+ 120 秒计时器（标注 TODO）
-- CQRS 层已统一编码规范：全部事件/命令 `sealed`，属性 `init` + `required`，命名空间一致
+## 目录结构约定
 
-### 待完成
-- 核心循环"选牌 → 选择运算 → 计算 → **验证结果(=24?) → 结算**"中，验证与结算环节**尚未接通**
-- `DeckDiscardCheckedEvent` 暂无订阅者
-- 测试脚手架 `CreateTest()` 需替换为正式的 `IRunManager` 关卡管理器
-- 阶段一（牌组预设系统）尚未启动，`SuitType` 仅有 4 种基础花色
-- 阶段二、四、五尚未开始
+```
+scripts/
+├── component/       # 可复用组件（VolumeContainer 等）
+├── constants/       # 全局常量
+├── core/            # 框架核心（架构、路由、状态、UI 基类）
+├── cqrs/            # CQRS 命令/事件/查询（按域划分）
+├── data/            # 数据层（设置数据位置提供者等）
+├── enums/           # 枚举（UI Key、场景 Key、纹理 Key 等）
+├── model/           # 领域模型（按业务域划分）
+├── module/          # DI 模块
+├── system/          # 系统（按业务域划分）
+└── utility/         # 工具类
+```

@@ -1,4 +1,4 @@
-﻿namespace TimeToTwentyfour.scripts.enums.scene;
+﻿namespace GFrameworkTemplate.scripts.enums.scene;
 
 /// <summary>
 ///     定义游戏场景的键值枚举

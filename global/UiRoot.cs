@@ -4,10 +4,10 @@ using GFramework.Game.Abstractions.ui;
 using GFramework.Godot.extensions;
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
-using TimeToTwentyfour.scripts.constants;
+using GFrameworkTemplate.scripts.constants;
 using Godot;
 
-namespace TimeToTwentyfour.global;
+namespace GFrameworkTemplate.global;
 
 /// <summary>
 ///     UI画布层根节点，用于管理UI页面的添加和组织
