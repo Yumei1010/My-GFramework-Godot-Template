@@ -7,14 +7,14 @@ using GFramework.Game.Abstractions.ui;
 using GFramework.Godot.ui;
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
-using TimeToTwentyfour.scripts.constants;
-using TimeToTwentyfour.scripts.core.ui;
-using TimeToTwentyfour.scripts.enums.ui;
-using TimeToTwentyfour.global;
+using GFrameworkTemplate.scripts.constants;
+using GFrameworkTemplate.scripts.core.ui;
+using GFrameworkTemplate.scripts.enums.ui;
+using GFrameworkTemplate.global;
 
 
-[ContextAware]
 [Log]
+[ContextAware]
 public partial class _CLASS_ :_BASE_,IController,IUiPageBehaviorProvider,ISimpleUiPage
 {
 	/// <summary>
