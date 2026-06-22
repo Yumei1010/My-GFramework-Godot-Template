@@ -1,5 +1,6 @@
 ﻿using GFramework.Core.Abstractions.controller;
 using GFramework.SourceGenerators.Abstractions.logging;
+using GFramework.SourceGenerators.Abstractions.rule;
 using GFrameworkTemplate.scripts.enums.input;
 using Godot;
 
@@ -10,6 +11,7 @@ namespace GFrameworkTemplate.scripts.core.controller;
 ///     负责处理游戏中的未处理输入事件
 /// </summary>
 [Log]
+[ContextAware]
 public abstract partial class GameInputController : Node, IController
 {
     /// <summary>

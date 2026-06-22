@@ -10,7 +10,6 @@ namespace GFrameworkTemplate.global;
 ///     全局输入控制器，负责处理全局输入事件
 /// </summary>
 [Log]
-[ContextAware]
 public partial class GlobalInputController : GameInputController
 {
     protected override bool AcceptPhase(InputPhase phase)
