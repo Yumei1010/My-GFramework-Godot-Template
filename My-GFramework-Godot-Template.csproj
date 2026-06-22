@@ -36,7 +36,6 @@
         <PackageReference Include="GeWuYou.GFramework.SourceGenerators" Version="0.0.177" />
     </ItemGroup>
     <ItemGroup>
-        <Content Include=".github\dependabot.yml" />
         <Content Include=".github\workflows\auto-tag.yml" />
         <Content Include=".github\workflows\ci.yml" />
         <Content Include=".github\workflows\codeql.yml" />
