@@ -14,7 +14,6 @@
         <Compile Remove="scripts\core\ui\UiFactory.cs" />
         <Compile Remove="scenes\**" />
         <Compile Remove="tests\**" />
-        <Compile Remove="scripts\enums\poker\TagType.cs" />
     </ItemGroup>
     <ItemGroup>
         <EmbeddedResource Remove="script_templates\**" />

@@ -11,7 +11,7 @@ namespace GFrameworkTemplate.scripts.core;
 /// </summary>
 public sealed class GameArchitecture(IArchitectureConfiguration configuration, IEnvironment environment) : AbstractArchitecture(configuration, environment)
 {
-    public IArchitectureConfiguration Configuration { get; set; } = configuration;
+    public IArchitectureConfiguration Configuration { get; } = configuration;
 
     /// <summary>
     ///     安装游戏所需的各个功能模块

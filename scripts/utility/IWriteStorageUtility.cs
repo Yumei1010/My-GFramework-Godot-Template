@@ -3,7 +3,7 @@
 namespace GFrameworkTemplate.scripts.utility;
 
 /// <summary>
-/// 存储写入工具接口，定义从存储系统读取数据的基本操作
+/// 存储写入工具接口，定义向存储系统写入数据的基本操作
 /// </summary>
 public interface IWriteStorageUtility: IUtility
 {
