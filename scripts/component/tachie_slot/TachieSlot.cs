@@ -1,6 +1,6 @@
 using GFrameworkTemplate.scripts.enums.visualnovel;
 
-namespace GFrameworkTemplate.scripts.cqrs.visualnovel.command.input;
+namespace GFrameworkTemplate.scripts.component.tachie_slot;
 
 /// <summary>
 ///     单个立绘槽位配置

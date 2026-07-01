@@ -1,4 +1,4 @@
-namespace GFrameworkTemplate.scripts.cqrs.visualnovel.command.input;
+namespace GFrameworkTemplate.scripts.component.branch_option;
 
 /// <summary>
 ///     分支选项

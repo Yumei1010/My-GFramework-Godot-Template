@@ -1,4 +1,4 @@
-using GFrameworkTemplate.scripts.cqrs.visualnovel.command.input;
+using GFrameworkTemplate.scripts.component.tachie_slot;
 
 namespace GFrameworkTemplate.scripts.cqrs.visualnovel.@event;
 

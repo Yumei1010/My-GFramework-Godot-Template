@@ -1,6 +1,6 @@
 using System.Text.Json;
 using GFrameworkTemplate.scripts.core.story;
-using GFrameworkTemplate.scripts.cqrs.visualnovel.command.input;
+using GFrameworkTemplate.scripts.component.tachie_slot;
 using GFrameworkTemplate.scripts.enums.visualnovel;
 
 namespace GFrameworkTemplate.scripts.cqrs.visualnovel.command;
