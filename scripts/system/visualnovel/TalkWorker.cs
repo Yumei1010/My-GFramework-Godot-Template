@@ -24,6 +24,6 @@ public sealed class TalkWorker : IStoryCommandWorker
             TotalChars = talk.TalkContent.Length
         });
 
-        await EngineAwait.Advance(talk.TalkContent.Length * ctx.WordSpeed, ctx);
+        await ctx.AdvanceAsync(talk.TalkContent.Length * ctx.WordSpeed);
     }
 }

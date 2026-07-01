@@ -22,4 +22,19 @@ public sealed class EngineContext
     public void SendEvent<T>() where T : class, new() => _owner.SendEvent<T>();
     public void SendEvent<T>(T e) where T : class => _owner.SendEvent(e);
     public IUnRegister RegisterEvent<T>(Action<T> handler) => _owner.RegisterEvent(handler);
+
+    /// <summary>等待玩家点击推进或自动播放计时器</summary>
+    public async Task AdvanceAsync(float minDuration)
+    {
+        if (AutoPlayDelay.HasValue)
+        {
+            await Task.Delay(TimeSpan.FromSeconds(Math.Max(minDuration, AutoPlayDelay.Value)));
+        }
+        else
+        {
+            WaitSource = new TaskCompletionSource<bool>();
+            await WaitSource.Task;
+            WaitSource = null;
+        }
+    }
 }

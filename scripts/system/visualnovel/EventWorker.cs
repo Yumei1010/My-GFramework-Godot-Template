@@ -10,6 +10,6 @@ public sealed class EventWorker : IStoryCommandWorker
     {
         var evt = (EventCommand)cmd;
         ctx.SendEvent(new VisualNovelCustomEventTriggeredEvent { EventName = evt.EventName });
-        await EngineAwait.Advance(0.1f, ctx);
+        await ctx.AdvanceAsync(0.1f);
     }
 }

@@ -1,19 +1,10 @@
-using GFrameworkTemplate.scripts.core.story;
 using GFrameworkTemplate.scripts.cqrs.visualnovel.command;
 using GFrameworkTemplate.scripts.cqrs.visualnovel.@event;
 
 namespace GFrameworkTemplate.scripts.system.visualnovel;
 
-public sealed class SoundWorker : IStoryCommandWorker
+public sealed class SoundWorker : FireAndForgetWorker<SoundCommand, VisualNovelSoundTriggeredEvent>
 {
-    public Task ExecuteAsync(StoryCommand cmd, EngineContext ctx)
-    {
-        var sound = (SoundCommand)cmd;
-        ctx.SendEvent(new VisualNovelSoundTriggeredEvent
-        {
-            SoundType = sound.SoundType,
-            FilePath = sound.FilePath ?? string.Empty
-        });
-        return Task.CompletedTask;
-    }
+    protected override VisualNovelSoundTriggeredEvent CreateEvent(SoundCommand cmd) =>
+        new() { SoundType = cmd.SoundType, FilePath = cmd.FilePath ?? string.Empty };
 }

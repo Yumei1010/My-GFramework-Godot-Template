@@ -1,15 +1,10 @@
-using GFrameworkTemplate.scripts.core.story;
 using GFrameworkTemplate.scripts.cqrs.visualnovel.command;
 using GFrameworkTemplate.scripts.cqrs.visualnovel.@event;
 
 namespace GFrameworkTemplate.scripts.system.visualnovel;
 
-public sealed class TachieWorker : IStoryCommandWorker
+public sealed class TachieWorker : FireAndForgetWorker<TachieCommand, VisualNovelTachieTriggeredEvent>
 {
-    public Task ExecuteAsync(StoryCommand cmd, EngineContext ctx)
-    {
-        var tachie = (TachieCommand)cmd;
-        ctx.SendEvent(new VisualNovelTachieTriggeredEvent { Tachies = tachie.Tachies });
-        return Task.CompletedTask;
-    }
+    protected override VisualNovelTachieTriggeredEvent CreateEvent(TachieCommand cmd) =>
+        new() { Tachies = cmd.Tachies };
 }
