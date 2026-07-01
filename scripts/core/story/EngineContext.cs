@@ -2,7 +2,7 @@ using GFramework.Core.Abstractions.events;
 using GFramework.Core.Abstractions.rule;
 using GFramework.Core.extensions;
 
-namespace GFrameworkTemplate.scripts.system.visualnovel;
+namespace GFrameworkTemplate.scripts.core.story;
 
 public sealed class EngineContext
 {

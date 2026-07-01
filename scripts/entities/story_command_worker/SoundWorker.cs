@@ -1,5 +1,4 @@
 using GFrameworkTemplate.scripts.cqrs.visualnovel.command;
-using GFrameworkTemplate.scripts.system.visualnovel;
 using GFrameworkTemplate.scripts.cqrs.visualnovel.@event;
 
 namespace GFrameworkTemplate.scripts.entities.story_command_worker;
