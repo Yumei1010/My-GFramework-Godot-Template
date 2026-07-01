@@ -9,4 +9,9 @@ public enum UiKey
     ///     模板主页面
     /// </summary>
     TemplatePage,
+
+    /// <summary>
+    ///     AVG 对话主页面
+    /// </summary>
+    VnTalkPage,
 }
