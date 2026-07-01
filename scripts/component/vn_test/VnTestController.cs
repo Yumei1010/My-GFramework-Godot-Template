@@ -84,12 +84,14 @@ public partial class VnTestController : Node
     }
 
     private string? _currentBranchId1, _currentBranchId2, _currentBranchId3, _currentBranchId4;
+    private bool _branchButtonsBound;
 
     private void ShowBranchButtons(Dictionary<string, BranchOption> options)
     {
         _choosingBranch = true;
 
-        UnbindBranchButtons();
+        if (_branchButtonsBound)
+            UnbindBranchButtons();
         BranchContainer.Visible = true;
 
         var ids = options.Keys.ToArray();
@@ -117,6 +119,7 @@ public partial class VnTestController : Node
         BranchBtn2.Pressed += OnBranchBtn2Pressed;
         BranchBtn3.Pressed += OnBranchBtn3Pressed;
         BranchBtn4.Pressed += OnBranchBtn4Pressed;
+        _branchButtonsBound = true;
 
         StatusLabel.Text = $"请选择分支 ({ids.Length} 个选项)";
     }
@@ -127,6 +130,7 @@ public partial class VnTestController : Node
         BranchBtn2.Pressed -= OnBranchBtn2Pressed;
         BranchBtn3.Pressed -= OnBranchBtn3Pressed;
         BranchBtn4.Pressed -= OnBranchBtn4Pressed;
+        _branchButtonsBound = false;
     }
 
     private void ChooseAndHide(string? optionId)
