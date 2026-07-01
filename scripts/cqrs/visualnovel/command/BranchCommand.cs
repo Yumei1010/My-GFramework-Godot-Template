@@ -1,6 +1,7 @@
 using System.Text.Json;
 
-namespace GFrameworkTemplate.scripts.core.story;
+using GFrameworkTemplate.scripts.core.story;
+namespace GFrameworkTemplate.scripts.cqrs.visualnovel.command;
 
 /// <summary>
 ///     分支命令——显示选项并等待玩家选择

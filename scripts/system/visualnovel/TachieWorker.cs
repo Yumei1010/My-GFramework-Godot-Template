@@ -1,4 +1,5 @@
 using GFrameworkTemplate.scripts.core.story;
+using GFrameworkTemplate.scripts.cqrs.visualnovel.command;
 using GFrameworkTemplate.scripts.cqrs.visualnovel.@event;
 
 namespace GFrameworkTemplate.scripts.system.visualnovel;

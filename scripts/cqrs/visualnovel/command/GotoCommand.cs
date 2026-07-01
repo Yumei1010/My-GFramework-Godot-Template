@@ -1,6 +1,7 @@
 using System.Text.Json;
 
-namespace GFrameworkTemplate.scripts.core.story;
+using GFrameworkTemplate.scripts.core.story;
+namespace GFrameworkTemplate.scripts.cqrs.visualnovel.command;
 
 /// <summary>
 ///     跳转命令——跳转到另一个 JSON 脚本

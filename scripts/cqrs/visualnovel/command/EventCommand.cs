@@ -1,6 +1,7 @@
 using System.Text.Json;
 
-namespace GFrameworkTemplate.scripts.core.story;
+using GFrameworkTemplate.scripts.core.story;
+namespace GFrameworkTemplate.scripts.cqrs.visualnovel.command;
 
 /// <summary>
 ///     自定义事件命令——触发章节特定逻辑

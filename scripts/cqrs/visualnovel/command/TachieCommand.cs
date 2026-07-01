@@ -1,6 +1,7 @@
 using System.Text.Json;
 
-namespace GFrameworkTemplate.scripts.core.story;
+using GFrameworkTemplate.scripts.core.story;
+namespace GFrameworkTemplate.scripts.cqrs.visualnovel.command;
 
 /// <summary>
 ///     立绘命令——管理角色立绘的显示/切换/隐藏

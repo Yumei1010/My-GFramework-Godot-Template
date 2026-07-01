@@ -1,6 +1,7 @@
 using System.Text.Json;
 
-namespace GFrameworkTemplate.scripts.core.story;
+using GFrameworkTemplate.scripts.core.story;
+namespace GFrameworkTemplate.scripts.cqrs.visualnovel.command;
 
 /// <summary>
 ///     背景命令——切换场景背景

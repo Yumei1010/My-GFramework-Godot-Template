@@ -1,4 +1,5 @@
 using System.Text.Json;
+using GFrameworkTemplate.scripts.cqrs.visualnovel.command;
 
 namespace GFrameworkTemplate.scripts.core.story;
 

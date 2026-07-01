@@ -1,4 +1,4 @@
-namespace GFrameworkTemplate.scripts.core.story;
+namespace GFrameworkTemplate.scripts.cqrs.visualnovel.command;
 
 /// <summary>
 ///     单个立绘槽位配置
