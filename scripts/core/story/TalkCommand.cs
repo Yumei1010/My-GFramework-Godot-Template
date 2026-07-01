@@ -1,0 +1,28 @@
+using System.Text.Json;
+
+namespace GFrameworkTemplate.scripts.core.story;
+
+/// <summary>
+///     对话命令——显示角色对话或旁白
+/// </summary>
+public sealed class TalkCommand : StoryCommand
+{
+    public string? Talker { get; set; }
+    public bool IsCenter { get; set; }
+    public string TalkContent { get; set; } = string.Empty;
+    public string? AvatarPath { get; set; }
+
+    /// <summary>从 JSON 元素构造 TalkCommand</summary>
+    public static TalkCommand FromJson(JsonElement element)
+    {
+        var cmd = new TalkCommand
+        {
+            Talker = GetString(element, "talker"),
+            IsCenter = GetString(element, "is_center") == "1",
+            TalkContent = GetString(element, "talk_content") ?? string.Empty,
+            AvatarPath = GetString(element, "avatar_path")
+        };
+        cmd.FillCommon(element);
+        return cmd;
+    }
+}

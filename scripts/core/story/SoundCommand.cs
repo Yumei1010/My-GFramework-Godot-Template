@@ -1,0 +1,22 @@
+using System.Text.Json;
+
+namespace GFrameworkTemplate.scripts.core.story;
+
+/// <summary>
+///     音频命令——播放音效或音乐
+/// </summary>
+public sealed class SoundCommand : StoryCommand
+{
+    public string SoundType { get; set; } = "oneSound";
+
+    /// <summary>从 JSON 元素构造 SoundCommand</summary>
+    public static SoundCommand FromJson(JsonElement element)
+    {
+        var cmd = new SoundCommand
+        {
+            SoundType = GetString(element, "sound_type") ?? "oneSound"
+        };
+        cmd.FillCommon(element);
+        return cmd;
+    }
+}

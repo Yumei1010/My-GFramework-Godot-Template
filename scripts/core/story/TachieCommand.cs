@@ -1,0 +1,47 @@
+using System.Text.Json;
+
+namespace GFrameworkTemplate.scripts.core.story;
+
+/// <summary>立绘操作类型</summary>
+public enum TachieOperation { Show, Change, Close }
+
+/// <summary>单个立绘槽位配置</summary>
+public sealed class TachieSlot
+{
+    public string FilePath { get; set; } = string.Empty;
+    public TachieOperation Type { get; set; } = TachieOperation.Show;
+}
+
+/// <summary>
+///     立绘命令——管理角色立绘的显示/切换/隐藏
+/// </summary>
+public sealed class TachieCommand : StoryCommand
+{
+    public Dictionary<string, TachieSlot> Tachies { get; set; } = new();
+
+    /// <summary>从 JSON 元素构造 TachieCommand</summary>
+    public static TachieCommand FromJson(JsonElement element)
+    {
+        var tachies = new Dictionary<string, TachieSlot>();
+        if (element.TryGetProperty("tachies", out var t))
+        {
+            foreach (var entry in t.EnumerateObject())
+            {
+                tachies[entry.Name] = new TachieSlot
+                {
+                    FilePath = GetString(entry.Value, "file_path") ?? string.Empty,
+                    Type = GetString(entry.Value, "type") switch
+                    {
+                        "change" => TachieOperation.Change,
+                        "close" => TachieOperation.Close,
+                        _ => TachieOperation.Show
+                    }
+                };
+            }
+        }
+
+        var cmd = new TachieCommand { Tachies = tachies };
+        cmd.FillCommon(element);
+        return cmd;
+    }
+}
