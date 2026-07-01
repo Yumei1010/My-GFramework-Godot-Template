@@ -40,7 +40,7 @@ public partial class VnTestController : Node
         RegisterEvents();
 
         StoryEngineSystem.RegisterJson("FirstDay", "res://resource/story/example/First.json");
-        StoryEngineSystem.RegisterJson("Chapter1_Lesson", "res://resource/story/example/second.json");
+        StoryEngineSystem.RegisterJson("Second.json", "res://resource/story/example/Second.json");
         StatusLabel.Text = "点击屏幕开始测试...";
         _log.Debug("VnTestController 就绪");
     }
