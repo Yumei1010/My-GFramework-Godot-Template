@@ -1,6 +1,7 @@
 using GFrameworkTemplate.scripts.core.story;
+using GFrameworkTemplate.scripts.system.visualnovel;
 
-namespace GFrameworkTemplate.scripts.system.visualnovel;
+namespace GFrameworkTemplate.scripts.entities.story_command_worker;
 
 /// <summary>
 ///     即发即忘型 Worker 基类——发送事件后不等待

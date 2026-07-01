@@ -4,6 +4,7 @@ using GFramework.SourceGenerators.Abstractions.rule;
 using GFrameworkTemplate.scripts.core.story;
 using GFrameworkTemplate.scripts.cqrs.visualnovel.@event;
 using GFrameworkTemplate.scripts.data.story;
+using GFrameworkTemplate.scripts.entities.story_command_worker;
 
 namespace GFrameworkTemplate.scripts.system.visualnovel;
 
