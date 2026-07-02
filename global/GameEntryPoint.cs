@@ -84,9 +84,6 @@ public partial class GameEntryPoint : Node
         foreach (var uiPageConfig in UiPageConfigs) _uiRegistry.Registry(uiPageConfig);
         foreach (var textureConfig in TextureConfigs) _textureRegistry.Registry(textureConfig);
 
-        // 注册 VN 故事脚本路径
-        StoryEngineSystem.RegisterJson("FirstDay", "res://resource/story/example/FirstDay.json");
-
         if (ShouldEnterAppState())
             this.RegisterEvent<UiRoot.UiRootReadyEvent>(_ =>
             {

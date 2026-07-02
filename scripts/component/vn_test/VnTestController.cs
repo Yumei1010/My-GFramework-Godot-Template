@@ -23,8 +23,9 @@ public partial class VnTestController : Node
     {
         _engine = this.GetUtility<StoryEngineSystem>()!;
 
-        StoryEngineSystem.RegisterJson("FirstDay", "res://resource/story/example/First.json");
-        StoryEngineSystem.RegisterJson("Second.json", "res://resource/story/example/Second.json");
+        StoryEngineSystem.RegisterJson("FirstDay", "res://resource/story/chapter1/Chapter1_Prologue.json");
+        StoryEngineSystem.RegisterJson("Chapter2.json", "res://resource/story/chapter2/Chapter2.json");
+        StoryEngineSystem.RegisterJson("Chapter3.json", "res://resource/story/chapter3/Chapter3.json");
 
         this.RegisterEvent<VisualNovelStoryFinishedEvent>(_ =>
             StatusLabel.Text = "故事播放完毕。"
