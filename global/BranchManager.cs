@@ -10,81 +10,95 @@ using Godot;
 namespace GFrameworkTemplate.global;
 
 /// <summary>
-///     分支栏全局单例——自动加载，显示选项按钮并提交选择
+///     分支栏全局单例——根据选项数量动态创建按钮
 /// </summary>
 [Log]
 [ContextAware]
 public partial class BranchManager : CanvasLayer
 {
-    private Control BranchOption1 => GetNode<Control>("BranchBarContainer/VBoxContainer/BranchOption");
-    private Control BranchOption2 => GetNode<Control>("BranchBarContainer/VBoxContainer/BranchOption2");
-    private Control BranchOption3 => GetNode<Control>("BranchBarContainer/VBoxContainer/BranchOption3");
-
-    private RichTextLabel ContentLabel1 => GetNode<RichTextLabel>("%BranchContentLabel");
-    private RichTextLabel ContentLabel2 => GetNode<RichTextLabel>("BranchBarContainer/VBoxContainer/BranchOption2/BranchContentLabel");
-    private RichTextLabel ContentLabel3 => GetNode<RichTextLabel>("BranchBarContainer/VBoxContainer/BranchOption3/BranchContentLabel");
-
-    private Button Button1 => GetNode<Button>("%BranchOptionButton");
-    private Button Button2 => GetNode<Button>("BranchBarContainer/VBoxContainer/BranchOption2/BranchOptionButton");
-    private Button Button3 => GetNode<Button>("BranchBarContainer/VBoxContainer/BranchOption3/BranchOptionButton");
-
+    private VBoxContainer _container = null!;
     private StoryEngineSystem _engine = null!;
-    private string? _id1, _id2, _id3;
-    private bool _b1, _b2, _b3;
+    private readonly List<(Button Button, string OptionId)> _active = new();
 
     public override void _Ready()
     {
         _engine = this.GetUtility<StoryEngineSystem>()!;
+
+        _container = new VBoxContainer
+        {
+            Alignment = BoxContainer.AlignmentMode.End,
+            GrowHorizontal = Control.GrowDirection.Both,
+            GrowVertical = Control.GrowDirection.Both
+        };
+        _container.SetAnchorsAndOffsetsPreset(Control.LayoutPreset.FullRect);
+
+        // 底部留出对话栏空间
+        var margin = new MarginContainer();
+        margin.AddThemeConstantOverride("margin_left", 128);
+        margin.AddThemeConstantOverride("margin_right", 128);
+        margin.AddThemeConstantOverride("margin_bottom", 200);
+        margin.AddThemeConstantOverride("margin_top", 360);
+        margin.GrowHorizontal = Control.GrowDirection.Both;
+        margin.GrowVertical = Control.GrowDirection.Both;
+        margin.SetAnchorsAndOffsetsPreset(Control.LayoutPreset.FullRect);
+        margin.AddChild(_container);
+        AddChild(margin);
+
         Hide();
         this.RegisterEvent<VisualNovelBranchTriggeredEvent>(OnBranch).UnRegisterWhenNodeExitTree(this);
     }
 
     private void OnBranch(VisualNovelBranchTriggeredEvent e)
     {
-        Unbind();
+        ClearButtons();
 
-        _b1 = _b2 = _b3 = false;
-        var ids = e.Options.Keys.ToArray();
-        var slots = new[] { (BranchOption1, ContentLabel1, Button1, ids.Length > 0 ? ids[0] : null),
-                            (BranchOption2, ContentLabel2, Button2, ids.Length > 1 ? ids[1] : null),
-                            (BranchOption3, ContentLabel3, Button3, ids.Length > 2 ? ids[2] : null) };
-
-        for (var i = 0; i < slots.Length; i++)
+        foreach (var (optionId, option) in e.Options)
         {
-            var (ctrl, label, btn, id) = slots[i];
-            if (id == null) { ctrl.Visible = false; continue; }
-            ctrl.Visible = true;
-            label.Text = $"[center]{e.Options[id].Text}[/center]";
-            btn.Pressed += OnOptionPressed;
-            if (i == 0) _b1 = true;
-            if (i == 1) _b2 = true;
-            if (i == 2) _b3 = true;
+            var btn = CreateBranchButton(option.Text);
+            btn.Pressed += () => Choose(optionId);
+            _container.AddChild(btn);
+            _active.Add((btn, optionId));
         }
 
-        (_id1, _id2, _id3) = (slots[0].Item4, slots[1].Item4, slots[2].Item4);
         Show();
     }
 
-    private void OnOptionPressed()
+    private static Button CreateBranchButton(string text)
     {
-        if (Button1.ButtonPressed) { Choose(_id1); return; }
-        if (Button2.ButtonPressed) { Choose(_id2); return; }
-        if (Button3.ButtonPressed) { Choose(_id3); return; }
+        var btn = new Button
+        {
+            CustomMinimumSize = new Vector2(0, 56),
+            SizeFlagsHorizontal = Control.SizeFlags.ExpandFill
+        };
+
+        var label = new RichTextLabel
+        {
+            BbcodeEnabled = true,
+            Text = $"[center]{text}[/center]",
+            ScrollActive = false,
+            FitContent = true
+        };
+        label.AddThemeFontSizeOverride("normal_font_size", 22);
+        label.SetAnchorsAndOffsetsPreset(Control.LayoutPreset.FullRect);
+        label.MouseFilter = Control.MouseFilterEnum.Ignore;
+        btn.AddChild(label);
+
+        return btn;
     }
 
-    private void Choose(string? id)
+    private void Choose(string optionId)
     {
-        if (id == null) return;
-        Unbind();
+        ClearButtons();
         Hide();
-        _engine.ChooseBranch(id);
+        _engine.ChooseBranch(optionId);
     }
 
-    private void Unbind()
+    private void ClearButtons()
     {
-        if (_b1) Button1.Pressed -= OnOptionPressed;
-        if (_b2) Button2.Pressed -= OnOptionPressed;
-        if (_b3) Button3.Pressed -= OnOptionPressed;
-        _b1 = _b2 = _b3 = false;
+        foreach (var (btn, _) in _active)
+        {
+            btn.QueueFree();
+        }
+        _active.Clear();
     }
 }
