@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://d06i0d82dnuj8"]
+
+[ext_resource type="Script" path="res://global/BackgroundManager.cs" id="1_ctrl"]
+
+[node name="BackgroundManager" type="CanvasLayer"]
+script = ExtResource("1_ctrl")
+layer = -10

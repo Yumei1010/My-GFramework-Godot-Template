@@ -19,7 +19,6 @@ public partial class VnTestController : Node
     private Label StatusLabel => GetNode<Label>("%StatusLabel");
 
     private StoryEngineSystem _engine = null!;
-    private TextureRect _bgRect = null!;
 
     public override void _Ready()
     {
@@ -36,27 +35,9 @@ public partial class VnTestController : Node
         StoryResourceMapper.RegisterTexture("bg_underground_city", "res://assets/texture/background/chapter_3.png");
         StoryResourceMapper.RegisterTexture("bg_white_space", "res://assets/texture/background/chapter_3.png");
 
-        // 全屏背景
-        _bgRect = new TextureRect
-        {
-            ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
-            StretchMode = TextureRect.StretchModeEnum.Scale,
-            MouseFilter = Control.MouseFilterEnum.Ignore
-        };
-        AddChild(_bgRect);
-        MoveChild(_bgRect, 0); // 放到最底层
-
         this.RegisterEvent<VisualNovelStoryFinishedEvent>(_ =>
             StatusLabel.Text = "故事播放完毕。"
         ).UnRegisterWhenNodeExitTree(this);
-
-        this.RegisterEvent<VisualNovelBackgroundTriggeredEvent>(e =>
-        {
-            var path = StoryResourceMapper.ResolveTexturePath(e.FilePath);
-            if (!string.IsNullOrEmpty(path))
-                _bgRect.Texture = GD.Load<Texture2D>(path);
-            _log.Debug($"背景切换: {e.FilePath}");
-        }).UnRegisterWhenNodeExitTree(this);
 
         StatusLabel.Text = "点击屏幕开始测试...";
         _log.Debug("VnTestController 就绪");
