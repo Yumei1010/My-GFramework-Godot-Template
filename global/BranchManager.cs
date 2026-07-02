@@ -10,95 +10,60 @@ using Godot;
 namespace GFrameworkTemplate.global;
 
 /// <summary>
-///     分支栏全局单例——根据选项数量动态创建按钮
+///     分支栏全局单例——根据选项数量动态实例化 branch_option.tscn
 /// </summary>
 [Log]
 [ContextAware]
 public partial class BranchManager : CanvasLayer
 {
-    private VBoxContainer _container = null!;
+    private VBoxContainer _buttonList = null!;
     private StoryEngineSystem _engine = null!;
-    private readonly List<(Button Button, string OptionId)> _active = new();
+    private PackedScene _optionScene = null!;
+    private readonly List<Node> _activeOptions = new();
 
     public override void _Ready()
     {
         _engine = this.GetUtility<StoryEngineSystem>()!;
+        _optionScene = GD.Load<PackedScene>("res://scenes/component/branch_option/branch_option.tscn");
 
-        _container = new VBoxContainer
-        {
-            Alignment = BoxContainer.AlignmentMode.End,
-            GrowHorizontal = Control.GrowDirection.Both,
-            GrowVertical = Control.GrowDirection.Both
-        };
-        _container.SetAnchorsAndOffsetsPreset(Control.LayoutPreset.FullRect);
-
-        // 底部留出对话栏空间
-        var margin = new MarginContainer();
-        margin.AddThemeConstantOverride("margin_left", 128);
-        margin.AddThemeConstantOverride("margin_right", 128);
-        margin.AddThemeConstantOverride("margin_bottom", 200);
-        margin.AddThemeConstantOverride("margin_top", 360);
-        margin.GrowHorizontal = Control.GrowDirection.Both;
-        margin.GrowVertical = Control.GrowDirection.Both;
-        margin.SetAnchorsAndOffsetsPreset(Control.LayoutPreset.FullRect);
-        margin.AddChild(_container);
-        AddChild(margin);
-
+        _buttonList = GetNode<VBoxContainer>("%ButtonList");
         Hide();
         this.RegisterEvent<VisualNovelBranchTriggeredEvent>(OnBranch).UnRegisterWhenNodeExitTree(this);
     }
 
     private void OnBranch(VisualNovelBranchTriggeredEvent e)
     {
-        ClearButtons();
+        ClearOptions();
 
         foreach (var (optionId, option) in e.Options)
         {
-            var btn = CreateBranchButton(option.Text);
-            btn.Pressed += () => Choose(optionId);
-            _container.AddChild(btn);
-            _active.Add((btn, optionId));
+            var node = _optionScene.Instantiate();
+            var label = node.GetNode<RichTextLabel>("%BranchContentLabel");
+            var button = node.GetNode<Button>("%BranchOptionButton");
+
+            label.Text = $"[center]{option.Text}[/center]";
+
+            var capturedId = optionId;
+            button.Pressed += () => Choose(capturedId);
+
+            _buttonList.AddChild(node);
+            _activeOptions.Add(node);
         }
 
         Show();
     }
 
-    private static Button CreateBranchButton(string text)
-    {
-        var btn = new Button
-        {
-            CustomMinimumSize = new Vector2(0, 56),
-            SizeFlagsHorizontal = Control.SizeFlags.ExpandFill
-        };
-
-        var label = new RichTextLabel
-        {
-            BbcodeEnabled = true,
-            Text = $"[center]{text}[/center]",
-            ScrollActive = false,
-            FitContent = true
-        };
-        label.AddThemeFontSizeOverride("normal_font_size", 22);
-        label.SetAnchorsAndOffsetsPreset(Control.LayoutPreset.FullRect);
-        label.MouseFilter = Control.MouseFilterEnum.Ignore;
-        btn.AddChild(label);
-
-        return btn;
-    }
-
     private void Choose(string optionId)
     {
-        ClearButtons();
+        ClearOptions();
         Hide();
         _engine.ChooseBranch(optionId);
     }
 
-    private void ClearButtons()
+    private void ClearOptions()
     {
-        foreach (var (btn, _) in _active)
-        {
-            btn.QueueFree();
-        }
-        _active.Clear();
+        foreach (var node in _activeOptions)
+            node.QueueFree();
+        _activeOptions.Clear();
     }
 }
