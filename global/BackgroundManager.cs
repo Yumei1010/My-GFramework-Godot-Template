@@ -21,9 +21,10 @@ public partial class BackgroundManager : CanvasLayer
 
     public override void _Ready()
     {
-        // 创建两个全屏 TextureRect 用于交叉淡入淡出
         _mainBg = CreateBackgroundRect("MainBg");
         _helperBg = CreateBackgroundRect("HelperBg");
+        AddChild(_mainBg);
+        AddChild(_helperBg);
         _helperBg.Modulate = Colors.Transparent;
 
         this.RegisterEvent<VisualNovelBackgroundTriggeredEvent>(OnBackground)
@@ -73,14 +74,18 @@ public partial class BackgroundManager : CanvasLayer
 
     private static TextureRect CreateBackgroundRect(string name)
     {
-        return new TextureRect
+        var rect = new TextureRect
         {
             Name = name,
             ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
             StretchMode = TextureRect.StretchModeEnum.Scale,
             MouseFilter = Control.MouseFilterEnum.Ignore,
             AnchorRight = 1f,
-            AnchorBottom = 1f
+            AnchorBottom = 1f,
+            OffsetRight = 0f,
+            OffsetBottom = 0f
         };
+        rect.SetAnchorsAndOffsetsPreset(Control.LayoutPreset.FullRect);
+        return rect;
     }
 }
