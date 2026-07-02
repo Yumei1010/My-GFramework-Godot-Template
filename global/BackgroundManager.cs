@@ -15,18 +15,13 @@ namespace GFrameworkTemplate.global;
 [ContextAware]
 public partial class BackgroundManager : CanvasLayer
 {
-    private TextureRect _mainBg = null!;
-    private TextureRect _helperBg = null!;
+    private TextureRect MainBg => GetNode<TextureRect>("%MainBg");
+    private TextureRect HelperBg => GetNode<TextureRect>("%HelperBg");
     private Tween? _tween;
 
     public override void _Ready()
     {
-        _mainBg = CreateBackgroundRect("MainBg");
-        _helperBg = CreateBackgroundRect("HelperBg");
-        AddChild(_mainBg);
-        AddChild(_helperBg);
-        _helperBg.Modulate = Colors.Transparent;
-
+        HelperBg.Modulate = Colors.Transparent;
         this.RegisterEvent<VisualNovelBackgroundTriggeredEvent>(OnBackground).UnRegisterWhenNodeExitTree(this);
         _log.Debug("BackgroundManager 就绪");
     }
@@ -50,40 +45,21 @@ public partial class BackgroundManager : CanvasLayer
 
         if (e.WaitTweenEnd)
         {
-            // 交叉淡入淡出：新背景在 helper 上加载 → helper 淡入覆盖 main
-            _helperBg.Texture = texture;
-            _helperBg.Modulate = Colors.Transparent;
+            HelperBg.Texture = texture;
+            HelperBg.Modulate = Colors.Transparent;
 
             _tween = CreateTween();
-            _tween.TweenProperty(_helperBg, "modulate", Colors.White, 0.5f);
+            _tween.TweenProperty(HelperBg, "modulate", Colors.White, 0.5f);
             await ToSignal(_tween, Tween.SignalName.Finished);
 
-            // 交换
-            _mainBg.Texture = texture;
-            _helperBg.Modulate = Colors.Transparent;
+            MainBg.Texture = texture;
+            HelperBg.Modulate = Colors.Transparent;
         }
         else
         {
-            _mainBg.Texture = texture;
+            MainBg.Texture = texture;
         }
 
         _log.Debug($"背景切换: {e.FilePath}");
-    }
-
-    private static TextureRect CreateBackgroundRect(string name)
-    {
-        var rect = new TextureRect
-        {
-            Name = name,
-            ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
-            StretchMode = TextureRect.StretchModeEnum.Scale,
-            MouseFilter = Control.MouseFilterEnum.Ignore,
-            AnchorRight = 1f,
-            AnchorBottom = 1f,
-            OffsetRight = 0f,
-            OffsetBottom = 0f
-        };
-        rect.SetAnchorsAndOffsetsPreset(Control.LayoutPreset.FullRect);
-        return rect;
     }
 }

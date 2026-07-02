@@ -5,3 +5,26 @@
 [node name="BackgroundManager" type="CanvasLayer"]
 script = ExtResource("1_ctrl")
 layer = -10
+
+[node name="MainBg" type="TextureRect" parent="."]
+unique_name_in_owner = true
+expand_mode = 1
+stretch_mode = 2
+mouse_filter = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HelperBg" type="TextureRect" parent="."]
+unique_name_in_owner = true
+expand_mode = 1
+stretch_mode = 2
+mouse_filter = 2
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
