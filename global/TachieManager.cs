@@ -25,6 +25,8 @@ public partial class TachieManager : CanvasLayer
     private readonly Dictionary<string, string> _chars = new();
     /// <summary>当前槽位分配：槽位名 → 角色名</summary>
     private readonly Dictionary<string, string> _slotToChar = new();
+    /// <summary>聚光灯下的角色名（null 表示正常模式）</summary>
+    private string? _spotlightChar;
 
     public override void _Ready()
     {
@@ -40,6 +42,8 @@ public partial class TachieManager : CanvasLayer
                 case TachieOperation.Show:  ShowChar(charName, slot.FilePath); break;
                 case TachieOperation.Change: ChangeChar(charName, slot.FilePath); break;
                 case TachieOperation.Close:  CloseChar(charName); break;
+                case TachieOperation.Spotlight: SpotlightChar(charName, slot.FilePath); break;
+                case TachieOperation.Unspotlight: UnspotlightChar(); break;
             }
         }
     }
@@ -95,30 +99,50 @@ public partial class TachieManager : CanvasLayer
         RepositionAll();
     }
 
+    private void SpotlightChar(string name, string path)
+    {
+        if (!_chars.ContainsKey(name))
+        {
+            _chars[name] = path;
+        }
+        else
+        {
+            _chars[name] = path; // 切换贴图
+        }
+
+        _spotlightChar = name;
+
+        // 隐藏全部，只显示 Center 槽位
+        LeftSlot.Visible = false;
+        RightSlot.Visible = false;
+        _slotToChar.Clear();
+        AssignSlot("Center", name, path);
+    }
+
+    private void UnspotlightChar()
+    {
+        _spotlightChar = null;
+        RepositionAll();
+    }
+
     /// <summary>
-    ///     重新分配槽位：1 人→居中，2 人→左右，移除→重排
+    ///     重新分配槽位：只用左右槽位，中间留给聚光灯专用
     /// </summary>
     private void RepositionAll()
     {
-        // 隐藏所有槽位
         foreach (var r in new[] { LeftSlot, CenterSlot, RightSlot })
             r.Visible = false;
         _slotToChar.Clear();
 
+        if (_spotlightChar != null) return; // 聚光灯模式，不重排
+
         var charList = _chars.ToList();
         var count = charList.Count;
 
-        if (count == 1)
-        {
-            AssignSlot("Center", charList[0].Key, charList[0].Value);
-        }
-        else if (count >= 2)
-        {
+        if (count >= 1)
             AssignSlot("Left", charList[0].Key, charList[0].Value);
+        if (count >= 2)
             AssignSlot("Right", charList[1].Key, charList[1].Value);
-            if (count >= 3)
-                AssignSlot("Center", charList[2].Key, charList[2].Value);
-        }
     }
 
     private void AssignSlot(string slotName, string charName, string filePath)

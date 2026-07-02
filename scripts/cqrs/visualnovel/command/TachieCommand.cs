@@ -26,6 +26,8 @@ public sealed class TachieCommand : StoryCommand
                     {
                         "change" => TachieOperation.Change,
                         "close" => TachieOperation.Close,
+                        "spotlight" => TachieOperation.Spotlight,
+                        "unspotlight" => TachieOperation.Unspotlight,
                         _ => TachieOperation.Show
                     }
                 };
