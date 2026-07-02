@@ -1,7 +1,51 @@
 [gd_scene format=3 uid="uid://d8d61e522lfd"]
 
-[ext_resource type="Script" path="res://global/TachieManager.cs" id="1_ctrl"]
+[ext_resource type="Script" uid="uid://h7m680fxsukf" path="res://global/TachieManager.cs" id="1_ctrl"]
 
-[node name="TachieBar" type="CanvasLayer"]
-script = ExtResource("1_ctrl")
+[node name="TachieManager" type="CanvasLayer"]
 layer = 10
+script = ExtResource("1_ctrl")
+
+[node name="LeftSlot" type="TextureRect" parent="."]
+unique_name_in_owner = true
+visible = false
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+anchors_preset = 0
+offset_left = 80.0
+offset_top = 80.0
+offset_right = 480.0
+offset_bottom = 920.0
+
+[node name="CenterSlot" type="TextureRect" parent="."]
+unique_name_in_owner = true
+visible = false
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+anchors_preset = 0
+offset_left = 480.0
+offset_top = 80.0
+offset_right = 960.0
+offset_bottom = 920.0
+
+[node name="RightSlot" type="TextureRect" parent="."]
+unique_name_in_owner = true
+visible = false
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+anchors_preset = 0
+offset_left = 880.0
+offset_top = 80.0
+offset_right = 1280.0
+offset_bottom = 920.0
+
+[node name="HelperSlot" type="TextureRect" parent="."]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 1, 1, 0)
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
