@@ -1,5 +1,4 @@
-using System;
-using System.Collections.Generic;
+using GFramework.SourceGenerators.Abstractions.logging;
 
 namespace GFrameworkTemplate.scripts.component.behavior_tree;
 
@@ -10,33 +9,25 @@ namespace GFrameworkTemplate.scripts.component.behavior_tree;
 /// </summary>
 /// <example>
 ///     <code>
-///     new SelectorNode(
-///         new ActionNode(AttackTarget),  // 优先：攻击
-///         new ActionNode(ChaseTarget),   // 回退：追目标
-///         new ActionNode(Patrol));       // 兜底：巡逻
+///     // 场景树（或代码 AddChild）：
+///     // SelectorNode
+///     // ├── ActionNode：攻击   （优先）
+///     // ├── ActionNode：追目标 （回退）
+///     // └── ActionNode：巡逻   （兜底）
 ///     </code>
 /// </example>
-public sealed class SelectorNode : BehaviorNode
+[Log]
+public partial class SelectorNode : BehaviorNode
 {
-    private readonly IReadOnlyList<BehaviorNode> _children;
     private int _currentIndex;
-
-    /// <summary>
-    ///     创建一个选择节点。
-    /// </summary>
-    /// <param name="children">按优先级从高到低尝试的子节点</param>
-    public SelectorNode(params BehaviorNode[] children)
-    {
-        _children = children ?? throw new ArgumentNullException(nameof(children));
-    }
 
     /// <inheritdoc />
     public override NodeStatus Execute()
     {
         // 从上次暂停的位置继续
-        while (_currentIndex < _children.Count)
+        while (_currentIndex < ChildNodes.Count)
         {
-            var status = _children[_currentIndex].Execute();
+            var status = ChildNodes[_currentIndex].Execute();
 
             if (status == NodeStatus.Success)
             {

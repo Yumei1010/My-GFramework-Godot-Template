@@ -1,7 +1,6 @@
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
 using GFrameworkTemplate.scripts.component.behavior_tree;
-using GFrameworkTemplate.scripts.component.behavior_tree.bt_node;
 using Godot;
 
 namespace GFrameworkTemplate.scripts.demo.behavior_tree;
@@ -9,7 +8,7 @@ namespace GFrameworkTemplate.scripts.demo.behavior_tree;
 /// <summary>
 ///     行为树可视化演示控制器。
 ///     配合 <c>scenes/behavior_tree_demo.tscn</c> 使用：场景中已用 Godot 节点拼好行为树层级
-///     （BtTree → BtSelector → 子树），本控制器在运行时注入叶子逻辑并打印日志，
+///     （BehaviorTree → SelectorNode → 子树），本控制器在运行时注入叶子逻辑并打印日志，
 ///     运行场景即可看到行为树逐帧执行与行为切换。
 /// </summary>
 [Log]
@@ -35,13 +34,13 @@ public partial class BehaviorTreeDemoController : Node
     private void InjectActions()
     {
         // 条件：有目标？
-        GetNode<BtConditionNode>("%HasTarget").SetCondition(() => _hasTarget);
+        GetNode<ConditionNode>("%HasTarget").SetCondition(() => _hasTarget);
 
         // 条件：有弹药？
-        GetNode<BtConditionNode>("%HasAmmo").SetCondition(() => _hasAmmo);
+        GetNode<ConditionNode>("%HasAmmo").SetCondition(() => _hasAmmo);
 
         // 动作：攻击（模拟多帧，2 帧完成）
-        GetNode<BtActionNode>("%Attack").SetAction(() =>
+        GetNode<ActionNode>("%Attack").SetAction(() =>
         {
             _attackTicks++;
             _log.Info($"攻击第 {_attackTicks} 帧");
@@ -49,7 +48,7 @@ public partial class BehaviorTreeDemoController : Node
         });
 
         // 动作：装弹
-        GetNode<BtActionNode>("%Reload").SetAction(() =>
+        GetNode<ActionNode>("%Reload").SetAction(() =>
         {
             _hasAmmo = true;
             _log.Info("装弹完成");
@@ -57,7 +56,7 @@ public partial class BehaviorTreeDemoController : Node
         });
 
         // 动作：巡逻
-        GetNode<BtActionNode>("%Patrol").SetAction(() =>
+        GetNode<ActionNode>("%Patrol").SetAction(() =>
         {
             _log.Info("巡逻中");
             return NodeStatus.Success;

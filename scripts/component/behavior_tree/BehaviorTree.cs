@@ -1,49 +1,56 @@
+using GFramework.SourceGenerators.Abstractions.logging;
+using Godot;
+
 namespace GFrameworkTemplate.scripts.component.behavior_tree;
 
 /// <summary>
-///     行为树：管理一棵行为树并逐帧驱动其执行。
-///     行为树本身是一个根节点，通常根节点用 <see cref="SelectorNode"/>（选一个策略）或 <see cref="SequenceNode"/>（按步骤做事）。
+///     行为树根节点：挂到场景任意位置，自动每帧驱动整棵子树。
+///     场景树里它下面的所有 <see cref="BehaviorNode"/> 构成一棵行为树，根节点执行结果可通过 <see cref="LastStatus"/> 查询。
 /// </summary>
 /// <example>
 ///     <code>
-///     var tree = new BehaviorTree(
-///         new SelectorNode(
-///             new SequenceNode(
-///                 new ConditionNode(() =&gt; hasTarget),
-///                 new ActionNode(Attack)),
-///             new ActionNode(Patrol)));
-///
-///     tree.Start();
-///     // _Process 里每帧：
-///     tree.Tick();
+///     // 场景树（或代码 AddChild）：
+///     // BehaviorTree (本节点，自动每帧 Tick)
+///     // └── SelectorNode
+///     //     ├── SequenceNode
+///     //     │   ├── ConditionNode (有目标?)
+///     //     │   └── ActionNode (攻击)
+///     //     └── ActionNode (巡逻)
 ///     </code>
 /// </example>
-public sealed class BehaviorTree
+[Log]
+public partial class BehaviorTree : BehaviorNode
 {
-    private readonly BehaviorNode _root;
+    /// <summary>
+    ///     是否自动逐帧驱动（true 时每帧执行一次，false 时可手动调用 <see cref="Tick"/>）。
+    /// </summary>
+    [Export]
+    public bool AutoTick { get; set; } = true;
 
     /// <summary>
-    ///     上一次根节点执行的结果；未执行过时为 null。
+    ///     上一次执行结果；未执行过时为 null。
     /// </summary>
     public NodeStatus? LastStatus { get; private set; }
 
     /// <summary>
-    ///     创建一个行为树。
-    /// </summary>
-    /// <param name="root">根节点（通常为复合节点）</param>
-    public BehaviorTree(BehaviorNode root)
-    {
-        _root = root ?? throw new ArgumentNullException(nameof(root));
-    }
-
-    /// <summary>
-    ///     执行一帧：从根节点开始评估整棵树。
-    ///     应在每帧的更新逻辑中调用。
+    ///     执行一帧：从本节点（根）开始评估整棵子树。
     /// </summary>
     /// <returns>根节点执行结果</returns>
     public NodeStatus Tick()
     {
-        LastStatus = _root.Execute();
+        LastStatus = Execute();
         return LastStatus.Value;
     }
+
+    /// <summary>
+    ///     自动驱动模式下的逐帧更新。
+    /// </summary>
+    public override void _Process(double delta)
+    {
+        if (AutoTick)
+            Tick();
+    }
+
+    /// <inheritdoc />
+    public override NodeStatus Execute() => ChildNodes.FirstOrDefault()?.Execute() ?? NodeStatus.Success;
 }

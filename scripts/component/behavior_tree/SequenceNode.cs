@@ -1,5 +1,4 @@
-using System;
-using System.Collections.Generic;
+using GFramework.SourceGenerators.Abstractions.logging;
 
 namespace GFrameworkTemplate.scripts.component.behavior_tree;
 
@@ -10,33 +9,25 @@ namespace GFrameworkTemplate.scripts.component.behavior_tree;
 /// </summary>
 /// <example>
 ///     <code>
-///     new SequenceNode(
-///         new ConditionNode(() =&gt; hasAmmo),   // 闸门：没弹药整体失败
-///         new ActionNode(Reload),               // 装弹
-///         new ActionNode(Shoot));               // 射击
+///     // 场景树（或代码 AddChild）：
+///     // SequenceNode
+///     // ├── ConditionNode：有弹药？  （闸门：没弹药整体失败）
+///     // ├── ActionNode：装弹
+///     // └── ActionNode：射击
 ///     </code>
 /// </example>
-public sealed class SequenceNode : BehaviorNode
+[Log]
+public partial class SequenceNode : BehaviorNode
 {
-    private readonly IReadOnlyList<BehaviorNode> _children;
     private int _currentIndex;
-
-    /// <summary>
-    ///     创建一个顺序节点。
-    /// </summary>
-    /// <param name="children">按顺序执行的子节点</param>
-    public SequenceNode(params BehaviorNode[] children)
-    {
-        _children = children ?? throw new ArgumentNullException(nameof(children));
-    }
 
     /// <inheritdoc />
     public override NodeStatus Execute()
     {
         // 从上次暂停的位置继续（避免每帧从头重跑已完成/进行中的子节点）
-        while (_currentIndex < _children.Count)
+        while (_currentIndex < ChildNodes.Count)
         {
-            var status = _children[_currentIndex].Execute();
+            var status = ChildNodes[_currentIndex].Execute();
 
             if (status == NodeStatus.Failure)
             {
