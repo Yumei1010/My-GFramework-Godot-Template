@@ -34,3 +34,6 @@ addons/*
 
 # Claude Code
 .claude/settings.local.json
+
+# Pi agent memory
+.pi/
