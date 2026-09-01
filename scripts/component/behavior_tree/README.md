@@ -2,6 +2,10 @@
 
 `scripts/component/behavior_tree/` 下的行为树组件，用于 AI 决策。与 HFSM 互补：**HFSM 管"状态切换"，行为树管"做什么"**。
 
+> 本目录含两套实现：
+> - `behavior_tree/`（根）：纯逻辑版，零 Godot 依赖，可在单元测试中直接使用
+> - `behavior_tree/bt_node/`：**Godot 节点版**（`Bt*` 前缀），每个节点是 Godot `Node`，在编辑器里拖拽拼装成树，可视化程度更高（推荐新手使用）
+
 ## 核心概念
 
 行为树是一棵树：**叶子**是动作/条件，**非叶子**是控制节点。每帧从根节点往下走一遍，每个节点返回一个结果：
@@ -80,3 +84,57 @@ new SelectorNode(
 - 每次整体成功/失败后，位置重置——下一帧从头开始
 - 节点可任意嵌套组合（树没有深度限制）
 - 树节点是**无状态**的（除了复合节点的执行位置），可在多个对象间共享同一棵树定义
+
+---
+
+## Godot 节点版（可视化拼装）
+
+`behavior_tree/bt_node/` 下的 `Bt*` 节点让你在 **Godot 编辑器里拖拽拼装**行为树，层级一目了然：
+
+```
+BehaviorTreeDemo (场景根)
+└── BtTree（根，自动每帧驱动）
+    └── BtSelectorNode（选策略）
+        ├── BtSequenceNode（有目标 → 攻击）
+        │   ├── BtConditionNode：有目标？
+        │   └── BtSelectorNode（弹药选择）
+        │       ├── BtSequenceNode
+        │       │   ├── BtConditionNode：有弹药？
+        │       │   └── BtActionNode：攻击
+        │       └── BtActionNode：装弹（回退）
+        └── BtActionNode：巡逻（兜底）
+```
+
+### 节点类型（`Bt` 前缀 = Godot 节点版）
+
+| 节点 | 对应纯逻辑版 | 作用 |
+|---|---|---|
+| `BtTree` | `BehaviorTree` | 根节点，`_Process` 自动逐帧 `Tick()`（可关 `AutoTick` 手动驱动） |
+| `BtSequenceNode` | `SequenceNode` | 顺序执行子节点 |
+| `BtSelectorNode` | `SelectorNode` | 选择子节点（第一个成功的） |
+| `BtConditionNode` | `ConditionNode` | 条件判断 |
+| `BtActionNode` | `ActionNode` | 动作执行 |
+
+### 叶子节点绑定逻辑（两种方式）
+
+**方式一：编辑器绑定 Callable** — 把 `Action` / `Condition` 属性设为任意节点的某个方法：
+- `BtConditionNode.Condition` → 返回 `bool` 的方法
+- `BtActionNode.Action` → 返回 `int`（0成功/1失败/2运行中）、`bool` 或 `void` 的方法
+
+**方式二：代码注入委托**（更灵活）：
+
+```csharp
+GetNode<BtConditionNode>("%HasAmmo").SetCondition(() => hasAmmo);
+GetNode<BtActionNode>("%Attack").SetAction(() =>
+{
+    attackTicks++;
+    return attackTicks < 2 ? NodeStatus.Running : NodeStatus.Success;
+});
+```
+
+### 运行演示
+
+打开 `scenes/behavior_tree_demo.tscn` 运行，控制台会打印行为树逐帧执行日志，
+完整展示：**攻击（Running 多帧）→ 弹药耗尽装弹（Selector 回退）→ 目标消失巡逻（策略切换）**。
+
+对应演示控制器：`scripts/demo/behavior_tree/BehaviorTreeDemoController.cs`
