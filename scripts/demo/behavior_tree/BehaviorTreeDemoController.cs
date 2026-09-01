@@ -1,6 +1,7 @@
 using GFramework.SourceGenerators.Abstractions.logging;
 using GFramework.SourceGenerators.Abstractions.rule;
 using GFrameworkTemplate.scripts.component.behavior_tree;
+using GFrameworkTemplate.scripts.enums.behavior_tree;
 using Godot;
 
 namespace GFrameworkTemplate.scripts.demo.behavior_tree;

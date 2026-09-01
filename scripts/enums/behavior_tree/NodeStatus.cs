@@ -1,4 +1,4 @@
-namespace GFrameworkTemplate.scripts.component.behavior_tree;
+namespace GFrameworkTemplate.scripts.enums.behavior_tree;
 
 /// <summary>
 ///     行为树节点执行结果。

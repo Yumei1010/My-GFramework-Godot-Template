@@ -1,4 +1,5 @@
 using GFramework.SourceGenerators.Abstractions.logging;
+using GFrameworkTemplate.scripts.enums.behavior_tree;
 
 namespace GFrameworkTemplate.scripts.component.behavior_tree;
 
