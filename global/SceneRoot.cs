@@ -1,49 +1,74 @@
-﻿using GFramework.Core.extensions;
-using GFramework.Game.Abstractions.scene;
-using GFramework.Godot.extensions;
-using GFramework.Godot.scene;
-using GFramework.SourceGenerators.Abstractions.logging;
-using GFramework.SourceGenerators.Abstractions.rule;
+using GFramework.Core.Extensions;
+using GFramework.Game.Abstractions.Scene;
+using GFramework.Godot.Extensions;
+using GFramework.Core.SourceGenerators.Abstractions.Logging;
+using GFramework.Core.SourceGenerators.Abstractions.Rule;
 using Godot;
 
 namespace GFrameworkTemplate.global;
 
+/// <summary>
+///     场景根节点：承载场景行为（ISceneBehavior）的容器。
+///     由 SceneRouter 通过 BindRoot 绑定，场景切换时 AddScene/RemoveScene 被调用。
+/// </summary>
 [Log]
 [ContextAware]
 public partial class SceneRoot : Node2D, ISceneRoot
 {
-    private Node? _current;
-    private IGodotSceneRegistry _registry = null!;
-    public Node? Current => _current;
+    private ISceneBehavior? _current;
 
-    public void Replace(string key)
+    /// <summary>
+    ///     添加场景行为：把其原始节点挂载到本节点下。
+    /// </summary>
+    /// <param name="scene">场景行为实例</param>
+    public void AddScene(ISceneBehavior scene)
     {
-        // 1. 卸载旧场景
-        _current?.QueueFreeX();
-        _current = null;
+        if (scene.Original is not Node node)
+            throw new InvalidOperationException("SceneBehavior.Original must be a Godot Node");
 
-        // 2. 加载新场景
-        var packed = _registry.Get(key);
-        var scene = packed.Instantiate();
-
-        // 3. 挂载
-        AddChild(scene);
+        RemoveSceneInternal();
+        AddChild(node);
         _current = scene;
     }
 
-    public void Unload()
+    /// <summary>
+    ///     移除场景行为：卸载其原始节点。
+    /// </summary>
+    /// <param name="scene">场景行为实例</param>
+    public void RemoveScene(ISceneBehavior scene)
     {
-        _current?.QueueFree();
+        if (scene.Original is not Node node)
+            return;
+
+        node.QueueFreeX();
         _current = null;
     }
 
+    /// <summary>
+    ///     移除当前场景。
+    /// </summary>
+    private void RemoveSceneInternal()
+    {
+        if (_current is null)
+            return;
+
+        if (_current.Original is Node node)
+            node.QueueFreeX();
+        _current = null;
+    }
+
+    /// <summary>
+    ///     节点就绪：获取场景注册表并绑定场景路由。
+    /// </summary>
     public override void _Ready()
     {
-        _registry = this.GetUtility<IGodotSceneRegistry>()!;
         var router = this.GetSystem<ISceneRouter>()!;
         router.BindRoot(this);
         this.SendEvent<SceneRootReadyEvent>();
     }
 
+    /// <summary>
+    ///     场景根就绪事件。
+    /// </summary>
     public sealed class SceneRootReadyEvent;
 }

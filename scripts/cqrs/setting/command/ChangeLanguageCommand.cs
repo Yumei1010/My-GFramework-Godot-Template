@@ -1,8 +1,8 @@
-﻿using GFramework.Core.command;
-using GFramework.Core.extensions;
-using GFramework.Game.Abstractions.setting;
-using GFramework.Game.Abstractions.setting.data;
-using GFramework.Godot.setting;
+﻿using GFramework.Core.Command;
+using GFramework.Core.Extensions;
+using GFramework.Game.Abstractions.Setting;
+using GFramework.Game.Abstractions.Setting.Data;
+using GFramework.Godot.Setting;
 using GFrameworkTemplate.scripts.cqrs.setting.command.input;
 
 namespace GFrameworkTemplate.scripts.cqrs.setting.command;

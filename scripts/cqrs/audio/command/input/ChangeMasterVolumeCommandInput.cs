@@ -1,4 +1,4 @@
-﻿using GFramework.Core.Abstractions.command;
+﻿using GFramework.Cqrs.Abstractions.Cqrs.Command;
 
 namespace GFrameworkTemplate.scripts.cqrs.audio.command.input;
 

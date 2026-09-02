@@ -1,9 +1,9 @@
-﻿using GFramework.Core.extensions;
-using GFramework.Game.Abstractions.enums;
-using GFramework.Game.Abstractions.ui;
-using GFramework.Godot.extensions;
-using GFramework.SourceGenerators.Abstractions.logging;
-using GFramework.SourceGenerators.Abstractions.rule;
+﻿using GFramework.Core.Extensions;
+using GFramework.Game.Abstractions.Enums;
+using GFramework.Game.Abstractions.UI;
+using GFramework.Godot.Extensions;
+using GFramework.Core.SourceGenerators.Abstractions.Logging;
+using GFramework.Core.SourceGenerators.Abstractions.Rule;
 using GFrameworkTemplate.scripts.constants;
 using Godot;
 

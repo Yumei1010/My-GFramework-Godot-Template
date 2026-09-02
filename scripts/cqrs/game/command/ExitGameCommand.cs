@@ -1,4 +1,4 @@
-﻿using GFramework.Core.command;
+﻿using GFramework.Core.Command;
 using GFrameworkTemplate.scripts.utility;
 
 namespace GFrameworkTemplate.scripts.cqrs.game.command;

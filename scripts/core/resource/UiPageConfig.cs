@@ -1,4 +1,4 @@
-﻿using GFramework.Core.Abstractions.bases;
+﻿using GFramework.Core.Abstractions.Bases;
 using GFrameworkTemplate.scripts.enums.ui;
 using Godot;
 

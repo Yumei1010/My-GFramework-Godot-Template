@@ -1,23 +1,24 @@
-using GFramework.Core.Abstractions.architecture;
-using GFramework.Core.Abstractions.logging;
-using GFramework.Core.Abstractions.properties;
-using GFramework.Core.Abstractions.state;
-using GFramework.Core.architecture;
-using GFramework.Core.extensions;
-using GFramework.Game.Abstractions.setting;
-using GFramework.Game.setting.events;
-using GFramework.Godot.coroutine;
-using GFramework.Godot.logging;
-using GFramework.Godot.scene;
-using GFramework.Godot.ui;
-using GFramework.SourceGenerators.Abstractions.logging;
-using GFramework.SourceGenerators.Abstractions.rule;
+using GFramework.Core.Abstractions.Architectures;
+using GFramework.Core.Abstractions.Logging;
+using GFramework.Core.Abstractions.Properties;
+using GFramework.Core.Abstractions.State;
+using GFramework.Core.Architectures;
+using GFramework.Core.Extensions;
+using GFramework.Game.Abstractions.Setting;
+using GFramework.Game.Setting.Events;
+using GFramework.Godot.Coroutine;
+using GFramework.Godot.Logging;
+using GFramework.Godot.Scene;
+using GFramework.Godot.UI;
+using GFramework.Ecs.Arch.Extensions;
+using GFramework.Core.SourceGenerators.Abstractions.Logging;
+using GFramework.Core.SourceGenerators.Abstractions.Rule;
 using GFrameworkTemplate.scripts.core;
 using GFrameworkTemplate.scripts.core.environment;
 using GFrameworkTemplate.scripts.core.resource;
 using GFrameworkTemplate.scripts.core.state.impls;
 using GFrameworkTemplate.scripts.enums.scene;
-using GFrameworkTemplate.scripts.utility;
+using GFrameworkTemplate.scripts.utility.registry;
 using GFrameworkTemplate.scripts.cqrs.setting.command;
 using Godot;
 using Godot.Collections;
@@ -60,20 +61,23 @@ public partial class GameEntryPoint : Node
                     MinLevel = LogLevel.Debug
                 }
             }
-        }, IsDev ? new GameDevEnvironment() : new GameMainEnvironment());
+        }, IsDev ? new GameDevEnvironment() : new GameMainEnvironment())
+        .UseArch(); // 接入 Arch ECS（World 注册进容器，可选：UseArch(options => options.WorldCapacity = 2048)）
         Architecture = arch;
         arch.Initialize();
         try { GameContext.Bind(typeof(GameArchitecture), arch.Context); }
         catch (InvalidOperationException) { /* 上下文已绑定 */ }
         _settingsModel = this.GetModel<ISettingsModel>()!;
-        _ = _settingsModel.InitializeAsync();
 
+        // 先注册事件再初始化设置，避免异步发送错过订阅（0.7.1 时序变化）
         this.RegisterEvent<SettingsInitializedEvent>(e =>
         {
             _settingsSystem = this.GetSystem<ISettingsSystem>()!;
             _ = _settingsSystem.ApplyAll();
             _log.Info("设置已加载");
         });
+
+        _ = _settingsModel.InitializeAsync();
 
         _sceneRegistry = this.GetUtility<IGodotSceneRegistry>()!;
         _uiRegistry = this.GetUtility<IGodotUiRegistry>()!;
@@ -84,9 +88,9 @@ public partial class GameEntryPoint : Node
         foreach (var textureConfig in TextureConfigs) _textureRegistry.Registry(textureConfig);
 
         if (ShouldEnterAppState())
-            this.RegisterEvent<UiRoot.UiRootReadyEvent>(_ =>
+            this.RegisterEvent<UiRoot.UiRootReadyEvent>(_evt =>
             {
-                this.GetSystem<IStateMachineSystem>()!.ChangeTo<AppState>();
+                _ = this.GetSystem<IStateMachineSystem>()!.ChangeToAsync<AppState>();
             });
 
         _log.Debug("框架入口点就绪.");

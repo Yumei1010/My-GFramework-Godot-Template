@@ -39,7 +39,7 @@ scripts/cqrs/<domain>/event/    → GFrameworkTemplate.scripts.cqrs.<domain>.@ev
 
 | 目录 | 用途 | 示例 |
 |---|---|---|
-| `scripts/component/` | 可复用组件（含接口和实现） | VolumeContainer |
+| `scripts/component/` | 可复用组件（含接口和实现） | HFSM、行为树 |
 | `scripts/entities/` | 领域实体与核心组件 | 按业务域自定义 |
 | `scripts/system/` | GFramework ISystem 实现 | 按业务域自定义 |
 | `scripts/menu/` | UI 页面（被 UiRouter 管理） | 按业务域自定义 |
@@ -50,7 +50,7 @@ scripts/cqrs/<domain>/event/    → GFrameworkTemplate.scripts.cqrs.<domain>.@ev
 | `scripts/module/` | GFramework 模块安装 | ModelModule、SystemModule |
 | `scripts/constants/` | 全局常量 | GameConstants、UiLayers |
 | `scripts/data/` | 可持久化数据类与提供者 | SettingDataLocationProvider |
-| `scripts/utility/` | 通用工具与存储接口 | GameUtil、GodotTextureRegistry |
+| `scripts/utility/` | 通用工具，按域分子目录 | GameUtil、event/、registry/ |
 | `global/` | Godot 自动加载单例 | GameEntryPoint、UiRoot、SceneRoot |
 | `tests/` | xUnit 单元测试 | 按模块自定义 |
 
@@ -331,8 +331,8 @@ private TextureRect ShadowRect => GetNode<TextureRect>("%ShadowRect");
 public partial class Calculator : Node, ICalculator
 ```
 
-- `[Log]` 来自 `GFramework.SourceGenerators.Abstractions.logging` — 自动生成静态 `Log` 属性
-- `[ContextAware]` 来自 `GFramework.SourceGenerators.Abstractions.rule` — 自动注入架构上下文
+- `[Log]` 来自 `GFramework.Core.SourceGenerators.Abstractions.Logging` — 自动生成静态 `Log` 属性
+- `[ContextAware]` 来自 `GFramework.Core.SourceGenerators.Abstractions.Rule` — 自动注入架构上下文
 - **两者成对出现**，`[Log]` 在前，`[ContextAware]` 在后
 
 ### CQRS 通信 API
@@ -379,8 +379,8 @@ global using LanguageExt;
 ```csharp
 using GFramework.Core.extensions;
 using GFramework.Godot.extensions;
-using GFramework.SourceGenerators.Abstractions.logging;
-using GFramework.SourceGenerators.Abstractions.rule;
+using GFramework.Core.SourceGenerators.Abstractions.Logging;
+using GFramework.Core.SourceGenerators.Abstractions.Rule;
 using Godot;
 using GFrameworkTemplate.scripts.entities.my_entity;
 using GFrameworkTemplate.scripts.cqrs.my_domain.@event;

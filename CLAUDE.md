@@ -7,7 +7,7 @@
 ## 构建与测试
 
 ```bash
-# 构建项目（需要 Godot .NET SDK 4.6）
+# 构建项目（需要 Godot .NET SDK 4.7）
 dotnet build
 
 # 运行全部测试
@@ -38,7 +38,7 @@ dotnet test
 
 ## 架构
 
-**技术栈：** Godot 4.6 + C# (.NET 10) + GFramework (0.0.177) — NuGet 上的 CQRS/ECS 框架。
+**技术栈：** Godot 4.7 + C# (.NET 10) + GFramework (0.7.1) — NuGet 上的 CQRS/ECS 框架。
 
 **DI 引导：** `global/GameEntryPoint`（自动加载单例）创建 `GameArchitecture`，安装 4 个模块：
 
@@ -100,7 +100,7 @@ dotnet test
 
 ```
 scripts/
-├── component/       # 可复用组件（VolumeContainer 等）
+├── component/       # 可复用组件（HFSM、行为树等）
 ├── constants/       # 全局常量
 ├── core/            # 框架核心（架构、路由、状态、UI 基类）
 ├── cqrs/            # CQRS 命令/事件/查询（按域划分）

@@ -1,4 +1,5 @@
-using GFrameworkTemplate.scripts.utility.event_bus;
+using GFrameworkTemplate.scripts.constants;
+using GFrameworkTemplate.scripts.utility.@event;
 
 namespace GFrameworkTemplate.Tests;
 
@@ -28,10 +29,10 @@ public class ChannelEventBusTests
         var gameplayReceived = new List<string>();
         var uiReceived = new List<string>();
 
-        bus.Register<TestEvent>(ChannelConst.Gameplay, e => gameplayReceived.Add(e.Value));
-        bus.Register<TestEvent>(ChannelConst.Ui, e => uiReceived.Add(e.Value));
+        bus.RegisterOnChannel<TestEvent>(ChannelConstants.Gameplay, e => gameplayReceived.Add(e.Value));
+        bus.RegisterOnChannel<TestEvent>(ChannelConstants.Ui, e => uiReceived.Add(e.Value));
 
-        bus.Send(ChannelConst.Gameplay, new TestEvent { Value = "player-died" });
+        bus.SendOnChannel(ChannelConstants.Gameplay, new TestEvent { Value = "player-died" });
 
         Assert.Equal(new[] { "player-died" }, gameplayReceived);
         Assert.Empty(uiReceived);
@@ -44,11 +45,11 @@ public class ChannelEventBusTests
         var gameplayReceived = new List<string>();
         var uiReceived = new List<string>();
 
-        bus.Register<TestEvent>(ChannelConst.Gameplay, e => gameplayReceived.Add(e.Value));
-        bus.Register<TestEvent>(ChannelConst.Ui, e => uiReceived.Add(e.Value));
+        bus.RegisterOnChannel<TestEvent>(ChannelConstants.Gameplay, e => gameplayReceived.Add(e.Value));
+        bus.RegisterOnChannel<TestEvent>(ChannelConstants.Ui, e => uiReceived.Add(e.Value));
 
-        bus.Send(ChannelConst.Gameplay, new TestEvent { Value = "a" });
-        bus.Send(ChannelConst.Ui, new TestEvent { Value = "b" });
+        bus.SendOnChannel(ChannelConstants.Gameplay, new TestEvent { Value = "a" });
+        bus.SendOnChannel(ChannelConstants.Ui, new TestEvent { Value = "b" });
 
         Assert.Equal(new[] { "a" }, gameplayReceived);
         Assert.Equal(new[] { "b" }, uiReceived);
@@ -61,10 +62,10 @@ public class ChannelEventBusTests
         var received1 = new List<string>();
         var received2 = new List<string>();
 
-        bus.Register<TestEvent>(ChannelConst.Gameplay, e => received1.Add(e.Value));
-        bus.Register<TestEvent>(ChannelConst.Gameplay, e => received2.Add(e.Value));
+        bus.RegisterOnChannel<TestEvent>(ChannelConstants.Gameplay, e => received1.Add(e.Value));
+        bus.RegisterOnChannel<TestEvent>(ChannelConstants.Gameplay, e => received2.Add(e.Value));
 
-        bus.Send(ChannelConst.Gameplay, new TestEvent { Value = "x" });
+        bus.SendOnChannel(ChannelConstants.Gameplay, new TestEvent { Value = "x" });
 
         Assert.Equal(new[] { "x" }, received1);
         Assert.Equal(new[] { "x" }, received2);
@@ -76,11 +77,11 @@ public class ChannelEventBusTests
         var bus = new ChannelEventBus();
         var received = new List<string>();
 
-        var unReg = bus.Register<TestEvent>(ChannelConst.Gameplay, e => received.Add(e.Value));
-        bus.Send(ChannelConst.Gameplay, new TestEvent { Value = "before" });
+        var unReg = bus.RegisterOnChannel<TestEvent>(ChannelConstants.Gameplay, e => received.Add(e.Value));
+        bus.SendOnChannel(ChannelConstants.Gameplay, new TestEvent { Value = "before" });
 
         unReg.UnRegister();
-        bus.Send(ChannelConst.Gameplay, new TestEvent { Value = "after" });
+        bus.SendOnChannel(ChannelConstants.Gameplay, new TestEvent { Value = "after" });
 
         Assert.Equal(new[] { "before" }, received);
     }
@@ -92,10 +93,10 @@ public class ChannelEventBusTests
         var gameplayFired = false;
         var uiFired = false;
 
-        bus.Register<MarkerEvent>(ChannelConst.Gameplay, _ => gameplayFired = true);
-        bus.Register<MarkerEvent>(ChannelConst.Ui, _ => uiFired = true);
+        bus.RegisterOnChannel<MarkerEvent>(ChannelConstants.Gameplay, _ => gameplayFired = true);
+        bus.RegisterOnChannel<MarkerEvent>(ChannelConstants.Ui, _ => uiFired = true);
 
-        bus.Send<MarkerEvent>(ChannelConst.Gameplay);
+        bus.SendOnChannel<MarkerEvent>(ChannelConstants.Gameplay);
 
         Assert.True(gameplayFired);
         Assert.False(uiFired);
@@ -107,8 +108,8 @@ public class ChannelEventBusTests
         var bus = new ChannelEventBus();
         var received = new List<string>();
 
-        bus.Register<TestEvent>("MyCustomChannel", e => received.Add(e.Value));
-        bus.Send("MyCustomChannel", new TestEvent { Value = "custom" });
+        bus.RegisterOnChannel<TestEvent>("MyCustomChannel", e => received.Add(e.Value));
+        bus.SendOnChannel("MyCustomChannel", new TestEvent { Value = "custom" });
 
         Assert.Equal(new[] { "custom" }, received);
     }

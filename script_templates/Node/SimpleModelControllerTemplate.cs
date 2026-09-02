@@ -1,82 +1,66 @@
-﻿// meta-name: 简单模态UI控制器类模板
-// meta-description: 负责管理UI页面场景的生命周期和架构关联
+// meta-name: 简单模态UI控制器类模板
+// meta-description: 负责管理模态UI页面场景的生命周期和架构关联（语法糖版：AutoUiPage + GetNode + BindNodeSignal）
 using Godot;
-using GFramework.Core.Abstractions.controller;
-using GFramework.Core.extensions;
-using GFramework.Game.Abstractions.ui;
-using GFramework.Godot.ui;
-using GFramework.SourceGenerators.Abstractions.logging;
-using GFramework.SourceGenerators.Abstractions.rule;
-using GFrameworkTemplate.scripts.constants;
+using GFramework.Core.Abstractions.Controller;
+using GFramework.Core.Extensions;
+using GFramework.Game.Abstractions.Enums;
+using GFramework.Game.Abstractions.UI;
+using GFramework.Godot.SourceGenerators.Abstractions;
+using GFramework.Godot.SourceGenerators.Abstractions.UI;
+using GFramework.Core.SourceGenerators.Abstractions.Logging;
+using GFramework.Core.SourceGenerators.Abstractions.Rule;
 using GFrameworkTemplate.scripts.core.ui;
 using GFrameworkTemplate.scripts.enums.ui;
 using GFrameworkTemplate.global;
 
-
+/// <summary>
+///     _CLASS_ 模态 UI 页面——语法糖模板（Modal 层弹出）
+///     [AutoUiPage] 自动生成 UiKeyStr + GetPage() + 缓存字段
+/// </summary>
 [Log]
 [ContextAware]
-public partial class _CLASS_ :_BASE_,IController,IUiPageBehaviorProvider,ISimpleUiPage
+[AutoUiPage(nameof(UiKey._CLASS_), nameof(UiLayer.Modal))]
+public partial class _CLASS_ : _BASE_, IController, IUiPageBehaviorProvider, ISimpleUiPage
 {
-	/// <summary>
-    /// 页面行为实例的私有字段
-    /// </summary>
-	private IUiPageBehavior? _page;
-    
-    private IUiRouter _uiRouter = null!;
-    
-    /// <summary>
-    ///  Ui Key的字符串形式
-    /// </summary>
-    public static string UiKeyStr => nameof(UiKey._CLASS_);
-    
+    // 节点字段注入（字段名 → %唯一名，场景需配置 unique_name_in_owner）
+    // [GetNode] private Button _confirmButton = null!;
+
+    // 信号语法糖：自动生成 __BindNodeSignals_Generated / __UnbindNodeSignals_Generated
+    // [BindNodeSignal(nameof(_confirmButton), nameof(Button.Pressed))]
+    // private void OnConfirmPressed() { }
 
     /// <summary>
-    /// 获取当前UI页面的行为实例。
-    /// 如果_page字段尚未初始化，则通过UiPageBehaviorFactory创建一个新的实例并赋值给_page。
-    /// 返回类型为IUiPageBehavior，表示UI页面的行为接口。
-    /// </summary>
-    /// <returns>返回当前UI页面的行为实例。</returns>
-    public IUiPageBehavior GetPage()
-    {
-        // 如果_page为空，则使用UiPageBehaviorFactory创建一个基于_BASE_类型的页面行为实例
-        _page ??= UiPageBehaviorFactory.Create<_BASE_>(this, UiKeyStr, UiLayer.Modal, UiLayer.Model);
-        return _page;
-    }
-
-	
-    /// <summary>
-    /// 检查当前UI是否在路由栈顶，如果不在则将页面推入路由栈
-    /// </summary>
-    private void CallDeferredInit()
-    {
-        // 在此添加延迟初始化逻辑
-    }
-    /// <summary>
-    /// 节点准备就绪时的回调方法
-    /// 在节点添加到场景树后调用
+    ///     Godot 节点就绪回调：节点注入 → 信号绑定 → 异步初始化 → 事件注册
     /// </summary>
     public override void _Ready()
     {
+        // __InjectGetNodes_Generated();    // 启用 [GetNode] 字段后取消注释
+        // __BindNodeSignals_Generated();   // 启用 [BindNodeSignal] 后取消注释
         _ = ReadyAsync();
+        RegisterEvents();
     }
+
     /// <summary>
-    /// 异步等待架构准备完成并获取UI路由器系统
+    ///     节点退出场景树：解绑 [BindNodeSignal] 信号（防泄漏；启用后取消注释）
+    /// </summary>
+    // public override void _ExitTree()
+    // {
+    //     __UnbindNodeSignals_Generated();
+    // }
+
+    /// <summary>
+    ///     异步等待架构就绪，获取 UI 路由器依赖
     /// </summary>
     private async Task ReadyAsync()
     {
         await GameEntryPoint.Architecture.WaitUntilReadyAsync().ConfigureAwait(false);
-        _uiRouter = this.GetSystem<IUiRouter>()!;
-        
-        // 在此添加就绪逻辑
-        SetupEventHandlers();
-        // 这个需要延迟调用，因为UiRoot还没有添加到场景树中
-        CallDeferred(nameof(CallDeferredInit));
+        _log.Debug("_CLASS_ 初始化完成");
     }
+
     /// <summary>
-    /// 设置事件处理器
+    ///     注册 CQRS 事件订阅（模板用户在此处添加事件处理逻辑）
     /// </summary>
-    private void SetupEventHandlers()
+    private void RegisterEvents()
     {
-        
     }
 }

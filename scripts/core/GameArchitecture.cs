@@ -1,7 +1,10 @@
-﻿using GFramework.Core.Abstractions.architecture;
-using GFramework.Core.Abstractions.environment;
-using GFramework.Godot.architecture;
+using GFramework.Core.Abstractions.Architectures;
+using GFramework.Core.Abstractions.Events;
+using GFramework.Core.Abstractions.Environment;
+using GFramework.Godot.Architectures;
 using GFrameworkTemplate.scripts.module;
+using GFrameworkTemplate.scripts.utility.@event;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace GFrameworkTemplate.scripts.core;
 
@@ -12,6 +15,20 @@ namespace GFrameworkTemplate.scripts.core;
 public sealed class GameArchitecture(IArchitectureConfiguration configuration, IEnvironment environment) : AbstractArchitecture(configuration, environment)
 {
     public IArchitectureConfiguration Configuration { get; } = configuration;
+
+    /// <summary>
+    ///     容器配置器：在框架内置模块注册后，用频段版事件总线覆盖原版 IEventBus。
+    ///     新版框架（0.7.1+）的 EventBus 属性从容器动态获取，此处覆盖后原版
+    ///     RegisterEvent / SendEvent 直接支持频段。
+    /// </summary>
+    public override Action<IServiceCollection>? Configurator =>
+        services =>
+        {
+            var bus = new ChannelEventBus();
+            // 同时注册具体类型与接口，确保 GetService<ChannelEventBus>() 和 GetService<IEventBus>() 都能解析
+            services.AddSingleton(bus);
+            services.AddSingleton(typeof(IEventBus), bus);
+        };
 
     /// <summary>
     ///     安装游戏所需的各个功能模块
