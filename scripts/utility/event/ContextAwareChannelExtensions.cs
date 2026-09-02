@@ -1,6 +1,7 @@
 using GFramework.Core.Abstractions.Events;
 using GFramework.Core.Abstractions.Rule;
 using GFramework.Core.Extensions;
+using GFrameworkTemplate.scripts.constants;
 
 namespace GFrameworkTemplate.scripts.utility.@event;
 
