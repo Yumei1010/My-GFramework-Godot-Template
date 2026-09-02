@@ -1,12 +1,23 @@
+using GFramework.Godot.SourceGenerators.Abstractions;
+using Godot;
+
 namespace GFrameworkTemplate.scripts.menu;
 
 public partial class TemplatePage
 {
     /// <summary>
-    ///     连接 Godot 信号并桥接到 CQRS 事件（模板用户在此处添加信号绑定逻辑）
+    ///     [BindNodeSignal] 语法糖：把节点字段的 CLR 事件绑定/解绑收敛为生成方法。
+    ///     第一个参数是节点字段（来自 .Dependencies.cs 的 [GetNode]），第二个是信号名。
+    ///     回调里可桥接 CQRS 事件：this.SendEvent(new SomeEvent { ... })
     /// </summary>
-    private void ConnectPageSignals()
+    [BindNodeSignal(nameof(_startButton), nameof(Button.Pressed))]
+    private void OnStartPressed()
     {
-        // 示例：Button.Pressed += () => this.SendEvent(new ButtonPressedEvent { ... });
+        // this.SendEvent(new StartButtonPressedEvent { ... });
+    }
+
+    [BindNodeSignal(nameof(_startButton), nameof(Button.MouseEntered))]
+    private void OnStartHovered()
+    {
     }
 }

@@ -3,6 +3,7 @@ using GFramework.Core.SourceGenerators.Abstractions.Logging;
 using GFramework.Core.SourceGenerators.Abstractions.Rule;
 using GFramework.Game.Abstractions.Enums;
 using GFramework.Game.Abstractions.UI;
+using GFramework.Godot.SourceGenerators.Abstractions;
 using GFramework.Godot.SourceGenerators.Abstractions.UI;
 using GFrameworkTemplate.scripts.core.ui;
 using GFrameworkTemplate.scripts.enums.ui;
@@ -20,13 +21,21 @@ namespace GFrameworkTemplate.scripts.menu;
 public partial class TemplatePage : Control, IController, IUiPageBehaviorProvider, ISimpleUiPage
 {
     /// <summary>
-    ///     Godot 节点就绪回调，按顺序执行：节点注入 → 异步初始化 → 信号绑定 → 事件注册
+    ///     Godot 节点就绪回调：节点注入 → 信号绑定 → 异步初始化 → 事件注册
     /// </summary>
     public override void _Ready()
     {
-        __InjectGetNodes_Generated();  // [GetNode] 字段注入（由生成器提供）
+        __InjectGetNodes_Generated();      // [GetNode] 字段注入（生成器提供）
+        __BindNodeSignals_Generated();     // [BindNodeSignal] 信号绑定（生成器提供）
         _ = ReadyAsync();
-        ConnectPageSignals();
         RegisterEvents();
+    }
+
+    /// <summary>
+    ///     节点退出场景树：解绑 [BindNodeSignal] 信号（防泄漏）
+    /// </summary>
+    public override void _ExitTree()
+    {
+        __UnbindNodeSignals_Generated();
     }
 }
