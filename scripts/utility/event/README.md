@@ -1,6 +1,6 @@
 # 频段事件总线（Channel Event Bus）
 
-`scripts/utility/event_bus/` 下的频段事件总线，**集成进框架原版事件总线体系**（`RegisterEvent` / `SendEvent`），
+`scripts/utility/event/` 下的频段事件总线，**集成进框架原版事件总线体系**（`RegisterEvent` / `SendEvent`），
 在"按事件类型分发"之上增加 **频段（Channel）** 维度：**订阅者可以订阅不同频段的同名事件，互不干扰**。
 
 ## 为什么需要频段？

@@ -331,8 +331,8 @@ private TextureRect ShadowRect => GetNode<TextureRect>("%ShadowRect");
 public partial class Calculator : Node, ICalculator
 ```
 
-- `[Log]` 来自 `GFramework.SourceGenerators.Abstractions.logging` — 自动生成静态 `Log` 属性
-- `[ContextAware]` 来自 `GFramework.SourceGenerators.Abstractions.rule` — 自动注入架构上下文
+- `[Log]` 来自 `GFramework.Core.SourceGenerators.Abstractions.Logging` — 自动生成静态 `Log` 属性
+- `[ContextAware]` 来自 `GFramework.Core.SourceGenerators.Abstractions.Rule` — 自动注入架构上下文
 - **两者成对出现**，`[Log]` 在前，`[ContextAware]` 在后
 
 ### CQRS 通信 API
@@ -379,8 +379,8 @@ global using LanguageExt;
 ```csharp
 using GFramework.Core.extensions;
 using GFramework.Godot.extensions;
-using GFramework.SourceGenerators.Abstractions.logging;
-using GFramework.SourceGenerators.Abstractions.rule;
+using GFramework.Core.SourceGenerators.Abstractions.Logging;
+using GFramework.Core.SourceGenerators.Abstractions.Rule;
 using Godot;
 using GFrameworkTemplate.scripts.entities.my_entity;
 using GFrameworkTemplate.scripts.cqrs.my_domain.@event;
