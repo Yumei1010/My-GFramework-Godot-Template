@@ -6,7 +6,7 @@ namespace GFrameworkTemplate.scripts.enums.ui;
 public enum UiKey
 {
     /// <summary>
-    ///     模板主页面
+    ///     示例页面键（对应参考代码见 script_templates/UiPage/，新项目在此加自己的键）
     /// </summary>
     TemplatePage,
 }
