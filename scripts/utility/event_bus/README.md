@@ -1,6 +1,6 @@
 # 频段事件总线（Channel Event Bus）
 
-`scripts/utility/event_bus/` 下的频段事件总线，**集成进框架原本的事件总线体系**（`RegisterEvent` / `SendEvent`），
+`scripts/utility/event_bus/` 下的频段事件总线，**集成进框架原版事件总线体系**（`RegisterEvent` / `SendEvent`），
 在"按事件类型分发"之上增加 **频段（Channel）** 维度：**订阅者可以订阅不同频段的同名事件，互不干扰**。
 
 ## 为什么需要频段？
@@ -62,21 +62,35 @@ this.RegisterEvent<SomeEvent>("MyCustomChannel", handler);
 this.SendEvent("MyCustomChannel", new SomeEvent { ... });
 ```
 
-## 架构集成
+## 架构集成（GFramework 0.7.1+）
 
 | 组件 | 作用 |
 |---|---|
-| `IChannelEventBus` | 频段事件总线接口契约（`Register` / `Send` / `UnRegister`），实现 `IUtility` |
-| `ChannelEventBus` | 实现：`Dictionary<string, EventBus>`，每频段一个独立 GFramework `EventBus` |
-| `ContextAwareChannelExtensions` | **集成关键**：为 `IContextAware` 扩展 `RegisterEvent<T>(channel, ...)` / `SendEvent(channel, ...)`，与框架 API 风格一致 |
+| `ChannelEventBus` | **继承原版 `EventBus`**，新增频段能力（`RegisterOnChannel` / `SendOnChannel` / `SendOnChannel<T>`），天然实现 `IEventBus` |
+| `ContextAwareChannelExtensions` | 为 `IContextAware` 扩展 `RegisterEvent<T>(channel, ...)` / `SendEvent(channel, ...)`，与框架 API 风格一致 |
 | `ChannelConst` | 预定义频段（`Gameplay` / `Ui` / `Audio` / `Net`） |
 
-已在 `UtilityModule` 注册：`architecture.RegisterUtility(new ChannelEventBus())`，节点通过 `GetUtility<IChannelEventBus>()` 或扩展方法直接使用。
+### 如何生效（关键）
+
+`GameArchitecture.Configurator` 用 `ChannelEventBus` **覆盖容器中的 `IEventBus`**：
+
+```csharp
+public override Action<IServiceCollection>? Configurator =>
+    services =>
+    {
+        var bus = new ChannelEventBus();
+        services.AddSingleton(bus);                    // 具体类型（扩展方法 GetService 用）
+        services.AddSingleton(typeof(IEventBus), bus); // 接口（原版 RegisterEvent/SendEvent 用）
+    };
+```
+
+升级到 0.7.1 后，框架的 `ArchitectureServices.EventBus => Container.Get<IEventBus>()` 动态获取，
+因此**原版 `RegisterEvent` / `SendEvent` 直接走频段总线**（不替换时行为不变）。
 
 ## 实现说明
 
-内部结构：`Dictionary<string, EventBus>` —— 每个频段一个独立的 `EventBus`（GFramework 原生的按类型分发总线）。
-`GetOrCreate` 惰性创建频段总线，首次使用时自动建立。
+`ChannelEventBus` 继承原版 `EventBus`，内部为每个频段维护一个独立的 `EventBus` 实例
+（`Dictionary<string, EventBus>`），按"频段 + 事件类型"分发。`GetChannel` 惰性创建频段总线。
 
 ## 测试验证
 

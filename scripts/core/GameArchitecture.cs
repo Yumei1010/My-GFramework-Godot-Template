@@ -22,7 +22,13 @@ public sealed class GameArchitecture(IArchitectureConfiguration configuration, I
     ///     RegisterEvent / SendEvent 直接支持频段。
     /// </summary>
     public override Action<IServiceCollection>? Configurator =>
-        services => services.AddSingleton(typeof(IEventBus), new ChannelEventBus());
+        services =>
+        {
+            var bus = new ChannelEventBus();
+            // 同时注册具体类型与接口，确保 GetService<ChannelEventBus>() 和 GetService<IEventBus>() 都能解析
+            services.AddSingleton(bus);
+            services.AddSingleton(typeof(IEventBus), bus);
+        };
 
     /// <summary>
     ///     安装游戏所需的各个功能模块

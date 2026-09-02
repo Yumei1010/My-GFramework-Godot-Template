@@ -100,7 +100,7 @@ dotnet test
 
 ```
 scripts/
-├── component/       # 可复用组件（VolumeContainer 等）
+├── component/       # 可复用组件（HFSM、行为树等）
 ├── constants/       # 全局常量
 ├── core/            # 框架核心（架构、路由、状态、UI 基类）
 ├── cqrs/            # CQRS 命令/事件/查询（按域划分）

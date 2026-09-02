@@ -39,7 +39,7 @@ scripts/cqrs/<domain>/event/    → GFrameworkTemplate.scripts.cqrs.<domain>.@ev
 
 | 目录 | 用途 | 示例 |
 |---|---|---|
-| `scripts/component/` | 可复用组件（含接口和实现） | VolumeContainer |
+| `scripts/component/` | 可复用组件（含接口和实现） | HFSM、行为树 |
 | `scripts/entities/` | 领域实体与核心组件 | 按业务域自定义 |
 | `scripts/system/` | GFramework ISystem 实现 | 按业务域自定义 |
 | `scripts/menu/` | UI 页面（被 UiRouter 管理） | 按业务域自定义 |

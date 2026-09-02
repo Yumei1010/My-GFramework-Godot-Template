@@ -43,7 +43,7 @@ My-GFramework-Godot-Template（从 Twenty-four 剥离业务逻辑，保留骨架
 | `scripts/core/` | 框架核心：架构引导、状态机、UI/场景路由、配置资源 |
 | `scripts/module/` | DI 模块安装（Model / System / Utility / State） |
 | `scripts/cqrs/` | CQRS 命令/事件/查询，按域分目录 |
-| `scripts/component/` | 可复用组件（VolumeContainer、IState 等） |
+| `scripts/component/` | 可复用组件（HFSM、行为树等） |
 | `scripts/enums/` | 枚举定义（UiKey、SceneKey、TextureKey、InputPhase） |
 | `scripts/constants/` | 全局常量（GameConstants、UiLayers） |
 | `scripts/utility/` | 工具类（纹理注册表、存储接口） |
@@ -58,7 +58,7 @@ My-GFramework-Godot-Template（从 Twenty-four 剥离业务逻辑，保留骨架
 | 状态机 | `GameStateMachineSystem` + `AppState` 示例 |
 | 全局节点 | `GameEntryPoint`、`UiRoot`、`SceneRoot`、`SceneTransitionManager` |
 | CQRS 示例 | 音量控制、分辨率/全屏切换、设置存取、退出游戏 |
-| 通用组件 | `VolumeContainer`、`IState` |
+| 通用组件 | 分层状态机（HFSM）、行为树（Behavior Tree） |
 | 编码模板 | `script_templates/` 下 3 个 Godot 脚本模板 |
 | 编码规范 | `CONVENTIONS.md` — 命名空间、CQRS、partial class、XML 注释等全套约束 |
 | CI 审查 | TruffleHog 密钥扫描 + CodeQL 静态分析 + .NET 构建 + 自动版本标签 |
