@@ -1,9 +1,8 @@
-using GFramework.Core.Extensions;
 using GFramework.Core.SourceGenerators.Abstractions.Rule;
 using GFramework.Game.Abstractions.UI;
 using GFramework.Godot.SourceGenerators.Abstractions;
-using GFrameworkTemplate.global;
 using Godot;
+using GFrameworkTemplate.global;
 
 namespace GFrameworkTemplate.scripts.menu;
 

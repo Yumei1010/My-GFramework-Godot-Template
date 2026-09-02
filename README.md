@@ -20,6 +20,7 @@ My-GFramework-Godot-Template（从 Twenty-four 剥离业务逻辑，保留骨架
 - **运行时：** .NET 10
 - **框架：** GFramework 0.7.1（NuGet: `GeWuYou.GFramework.Ecs.Arch` 等）
 - **ECS：** Arch 2.1.0（经 GFramework.Ecs.Arch 集成）
+- **语法糖：** SourceGenerators 代码生成（页面样板 / 节点注入 / 信号绑定 / 依赖注入）
 - **语言：** C# (LangVersion preview)
 
 ## 命名规范
@@ -40,7 +41,7 @@ My-GFramework-Godot-Template（从 Twenty-four 剥离业务逻辑，保留骨架
 | `global/` | Godot 自动加载单例（GameEntryPoint、UiRoot、SceneRoot 等） |
 | `resource/` | Godot 资源文件（音频总线布局、主题） |
 | `scenes/` | 主场景 `main.tscn` 及组件场景 |
-| `script_templates/` | Godot 自定义脚本模板（Controller / Page / Model） |
+| `script_templates/` | Godot 脚本模板：`Node/` 右键模板 + `UiPage/` 五文件 partial 参考 |
 | `scripts/core/` | 框架核心：架构引导、状态机、UI/场景路由、配置资源 |
 | `scripts/module/` | DI 模块安装（Model / System / Utility / State） |
 | `scripts/cqrs/` | CQRS 命令/事件/查询，按域分目录 |
@@ -63,7 +64,8 @@ My-GFramework-Godot-Template（从 Twenty-four 剥离业务逻辑，保留骨架
 | 频段事件 | 事件总线频段（Gameplay/Ui/Audio/Net），原版 API 直接支持 |
 | ECS | Arch ECS（`UseArch` 接入，World 容器注册） |
 | 工具 | 按域分子目录（event、registry） |
-| 编码模板 | `script_templates/` 下 3 个 Godot 脚本模板 |
+| 编码模板 | `script_templates/`：Node 右键模板 + UiPage 五文件参考 |
+| 语法糖 | SourceGenerators：`[AutoUiPage]`/`[GetNode]`/`[BindNodeSignal]`/`[GetSystem]` 字段注入 |
 | 编码规范 | `CONVENTIONS.md` — 命名空间、CQRS、partial class、XML 注释等全套约束 |
 | CI 审查 | TruffleHog 密钥扫描 + CodeQL 静态分析 + .NET 构建 + 自动版本标签 |
 
@@ -86,7 +88,8 @@ dotnet build
 4. 在 `scripts/enums/scene/SceneKey.cs` 中添加你的场景键
 5. 在 `scripts/core/state/impls/` 下创建你的状态
 6. 在 `scripts/module/StateModule.cs` 中注册新状态
-7. 开始在 `scripts/cqrs/`、`scripts/entities/`、`scripts/menu/` 下添加业务代码
+7. 页面开发参照 `script_templates/UiPage/` 五文件参考（`[AutoUiPage]` 自动生成 `GetPage()` 样板）
+8. 开始在 `scripts/cqrs/`、`scripts/entities/`、`scripts/menu/` 下添加业务代码
 
 ## CI/CD 工作流
 

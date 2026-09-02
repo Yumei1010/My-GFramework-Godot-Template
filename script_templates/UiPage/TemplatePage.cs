@@ -5,9 +5,9 @@ using GFramework.Game.Abstractions.Enums;
 using GFramework.Game.Abstractions.UI;
 using GFramework.Godot.SourceGenerators.Abstractions;
 using GFramework.Godot.SourceGenerators.Abstractions.UI;
+using Godot;
 using GFrameworkTemplate.scripts.core.ui;
 using GFrameworkTemplate.scripts.enums.ui;
-using Godot;
 
 namespace GFrameworkTemplate.scripts.menu;
 
