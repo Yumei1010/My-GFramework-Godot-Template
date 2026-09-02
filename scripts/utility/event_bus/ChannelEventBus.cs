@@ -1,7 +1,7 @@
 using GFramework.Core.Abstractions.events;
 using GFramework.Core.events;
 
-namespace GFrameworkTemplate.scripts.component.event_bus;
+namespace GFrameworkTemplate.scripts.utility.event_bus;
 
 /// <summary>
 ///     频段事件总线实现。

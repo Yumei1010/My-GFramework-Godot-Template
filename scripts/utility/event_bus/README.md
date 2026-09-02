@@ -1,6 +1,6 @@
 # 频段事件总线（Channel Event Bus）
 
-`scripts/component/event_bus/` 下的频段事件总线组件，基于 GFramework 的 `EventBus` 扩展，
+`scripts/utility/event_bus/` 下的频段事件总线，**集成进框架原本的事件总线体系**（`RegisterEvent` / `SendEvent`），
 在"按事件类型分发"之上增加 **频段（Channel）** 维度：**订阅者可以订阅不同频段的同名事件，互不干扰**。
 
 ## 为什么需要频段？
@@ -17,37 +17,39 @@
 没有频段时：所有订阅者都收同一个事件，靠事件内部字段区分，订阅者要做一堆 `if` 判断。
 有频段后：**发到哪个频段，只有那个频段的订阅者收到**，逻辑清晰解耦。
 
-## 快速上手
+## 快速上手（框架风格）
+
+在任意 `[ContextAware]` 节点中，与框架 API 完全一致，只是多一个频段参数：
 
 ```csharp
-var bus = new ChannelEventBus();
-
 // 订阅：游戏逻辑频段的玩家死亡事件
-bus.Register<PlayerDiedEvent>(ChannelConst.Gameplay, e =>
+this.RegisterEvent<PlayerDiedEvent>(ChannelConst.Gameplay, e =>
 {
     // 只有 Gameplay 频段的事件会到这里
     ScoreManager.AddScore(e.PlayerId);
 });
 
 // 订阅：UI 频段的同名事件（互不干扰）
-bus.Register<PlayerDiedEvent>(ChannelConst.Ui, e =>
+this.RegisterEvent<PlayerDiedEvent>(ChannelConst.Ui, e =>
 {
     DeathScreen.Show(e.PlayerId);
 });
 
 // 发送：只通知 Gameplay 频段的订阅者（UI 频段收不到）
-bus.Send(ChannelConst.Gameplay, new PlayerDiedEvent { PlayerId = 1 });
+this.SendEvent(ChannelConst.Gameplay, new PlayerDiedEvent { PlayerId = 1 });
 
 // 无数据事件
-bus.Send<GameStartedEvent>(ChannelConst.Gameplay);
+this.SendEvent<GameStartedEvent>(ChannelConst.Gameplay);
 ```
+
+> 无频段的 `this.RegisterEvent<T>(e => ...)` / `this.SendEvent(new T{...})` 仍是框架原版，两者重载共存互不影响。
 
 ## 取消订阅
 
-`Register` 返回 `IUnRegister` 句柄，调用 `UnRegister()` 即可注销：
+`RegisterEvent` 返回 `IUnRegister` 句柄，调用 `UnRegister()` 即可注销：
 
 ```csharp
-var unReg = bus.Register<PlayerDiedEvent>(ChannelConst.Gameplay, handler);
+var unReg = this.RegisterEvent<PlayerDiedEvent>(ChannelConst.Gameplay, handler);
 unReg.UnRegister(); // 取消订阅
 ```
 
@@ -56,20 +58,20 @@ unReg.UnRegister(); // 取消订阅
 `ChannelConst` 是预定义常量，也可直接传字符串自定义频段：
 
 ```csharp
-bus.Register<SomeEvent>("MyCustomChannel", handler);
-bus.Send("MyCustomChannel", new SomeEvent { ... });
+this.RegisterEvent<SomeEvent>("MyCustomChannel", handler);
+this.SendEvent("MyCustomChannel", new SomeEvent { ... });
 ```
 
-## 接口契约
+## 架构集成
 
-`IChannelEventBus`：
-
-| 方法 | 作用 |
+| 组件 | 作用 |
 |---|---|
-| `Register<T>(channel, handler)` | 订阅指定频段的事件，返回取消句柄 |
-| `Send<T>(channel, eventData)` | 向指定频段发送带数据的事件 |
-| `Send<T>(channel)` | 向指定频段发送无数据事件 |
-| `UnRegister<T>(channel, handler)` | 取消指定频段的事件订阅 |
+| `IChannelEventBus` | 频段事件总线接口契约（`Register` / `Send` / `UnRegister`），实现 `IUtility` |
+| `ChannelEventBus` | 实现：`Dictionary<string, EventBus>`，每频段一个独立 GFramework `EventBus` |
+| `ContextAwareChannelExtensions` | **集成关键**：为 `IContextAware` 扩展 `RegisterEvent<T>(channel, ...)` / `SendEvent(channel, ...)`，与框架 API 风格一致 |
+| `ChannelConst` | 预定义频段（`Gameplay` / `Ui` / `Audio` / `Net`） |
+
+已在 `UtilityModule` 注册：`architecture.RegisterUtility(new ChannelEventBus())`，节点通过 `GetUtility<IChannelEventBus>()` 或扩展方法直接使用。
 
 ## 实现说明
 
@@ -82,3 +84,4 @@ bus.Send("MyCustomChannel", new SomeEvent { ... });
 - 不同频段同名事件互不干扰
 - 同频段多订阅者均收到
 - 取消订阅后不再收到
+- 无数据标记事件、自定义频段

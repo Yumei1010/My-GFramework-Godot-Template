@@ -1,11 +1,13 @@
 using GFramework.Core.Abstractions.events;
+using GFramework.Core.Abstractions.utility;
 
-namespace GFrameworkTemplate.scripts.component.event_bus;
+namespace GFrameworkTemplate.scripts.utility.event_bus;
 
 /// <summary>
 ///     频段事件总线接口契约。
-///     在普通事件总线的基础上增加"频段（Channel）"维度：
+///     在框架原有事件总线的基础上增加"频段（Channel）"维度：
 ///     订阅者订阅某个频段上的事件，只收到该频段发出的同名事件，不同频段互不干扰。
+///     作为架构 Utility 注册（见 <c>UtilityModule</c>），通过 <c>GetUtility&lt;IChannelEventBus&gt;()</c> 获取。
 /// </summary>
 /// <example>
 ///     同一事件 <c>PlayerDiedEvent</c> 可以发到不同频段：
@@ -19,7 +21,7 @@ namespace GFrameworkTemplate.scripts.component.event_bus;
 ///     channelBus.Send(ChannelConst.Gameplay, new PlayerDiedEvent { ... });
 ///     </code>
 /// </example>
-public interface IChannelEventBus
+public interface IChannelEventBus : IUtility
 {
     /// <summary>
     ///     订阅指定频段上的事件。同一频段、同一事件类型可多个订阅者，均会收到。

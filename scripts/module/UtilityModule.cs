@@ -7,6 +7,7 @@ using GFramework.Godot.scene;
 using GFramework.Godot.storage;
 using GFramework.Godot.ui;
 using GFrameworkTemplate.scripts.utility;
+using GFrameworkTemplate.scripts.utility.event_bus;
 using Godot;
 
 namespace GFrameworkTemplate.scripts.module;
@@ -22,6 +23,7 @@ public class UtilityModule : AbstractModule
         architecture.RegisterUtility(new GodotSceneRegistry());
         architecture.RegisterUtility(new GodotTextureRegistry());
         architecture.RegisterUtility(new GodotUiFactory());
+        architecture.RegisterUtility(new ChannelEventBus());
 
         var jsonSerializer = new JsonSerializer();
         architecture.RegisterUtility(jsonSerializer);
