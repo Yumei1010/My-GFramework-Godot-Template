@@ -1,79 +1,70 @@
-﻿// meta-name: 简单UI页面控制器类模板
+// meta-name: 简单UI页面控制器类模板
 // meta-description: 负责管理UI页面场景的生命周期和架构关联
 using Godot;
 using GFramework.Core.Abstractions.Controller;
 using GFramework.Core.Extensions;
+using GFramework.Game.Abstractions.Enums;
 using GFramework.Game.Abstractions.UI;
 using GFramework.Godot.UI;
 using GFramework.Core.SourceGenerators.Abstractions.Logging;
 using GFramework.Core.SourceGenerators.Abstractions.Rule;
-using GFrameworkTemplate.scripts.constants;
 using GFrameworkTemplate.scripts.core.ui;
 using GFrameworkTemplate.scripts.enums.ui;
 using GFrameworkTemplate.global;
 
-
+/// <summary>
+///     _CLASS_ UI 页面——继承 ISimpleUiPage 的标准页面模式
+///     建议按 partial 五文件模式拆分：.cs / .Dependencies.cs / .Properties.cs / .Events.cs / .Signals.cs
+/// </summary>
 [Log]
 [ContextAware]
-public partial class _CLASS_ :_BASE_,IController,IUiPageBehaviorProvider,ISimpleUiPage
+public partial class _CLASS_ : _BASE_, IController, IUiPageBehaviorProvider, ISimpleUiPage
 {
-	/// <summary>
-    /// 页面行为实例的私有字段
-    /// </summary>
-	private IUiPageBehavior? _page;
-    
+    private IUiPageBehavior? _page;
     private IUiRouter _uiRouter = null!;
-    
     /// <summary>
-    ///  Ui Key的字符串形式
+    ///     UI 键的字符串形式（需先在 UiKey 枚举中注册）
     /// </summary>
     public static string UiKeyStr => nameof(UiKey._CLASS_);
-    
     /// <summary>
-    /// 获取当前UI页面的行为实例。
-    /// 如果_page字段尚未初始化，则通过UiPageBehaviorFactory创建一个新的实例并赋值给_page。
-    /// 返回类型为IUiPageBehavior，表示UI页面的行为接口。
+    ///     Godot 节点就绪回调，按顺序执行：异步初始化 → 信号绑定 → 事件注册
     /// </summary>
-    /// <returns>返回当前UI页面的行为实例。</returns>
+    public override void _Ready()
+    {
+        _ = ReadyAsync();
+        ConnectPageSignals();
+        RegisterEvents();
+    }
+    /// <summary>
+    ///     获取当前页面的 UI 行为实例
+    /// </summary>
     public IUiPageBehavior GetPage()
     {
         _page ??= UiPageBehaviorFactory.Create<_BASE_>(this, UiKeyStr, UiLayer.Page);
         return _page;
     }
-	
     /// <summary>
-    /// 检查当前UI是否在路由栈顶，如果不在则将页面推入路由栈
-    /// </summary>
-    private void CallDeferredInit()
-    {
-        // 在此添加延迟初始化逻辑
-    }
-    /// <summary>
-    /// 节点准备就绪时的回调方法
-    /// 在节点添加到场景树后调用
-    /// </summary>
-    public override void _Ready()
-    {
-        _ = ReadyAsync();
-    }
-    /// <summary>
-    /// 异步等待架构准备完成并获取UI路由器系统
+    ///     异步等待架构就绪，获取 UI 路由器依赖
     /// </summary>
     private async Task ReadyAsync()
     {
         await GameEntryPoint.Architecture.WaitUntilReadyAsync().ConfigureAwait(false);
         _uiRouter = this.GetSystem<IUiRouter>()!;
-        
-        // 在此添加就绪逻辑
-        SetupEventHandlers();
-        // 这个需要延迟调用，因为UiRoot还没有添加到场景树中
-        CallDeferred(nameof(CallDeferredInit));
+        _log.Debug("_CLASS_ 初始化完成");
     }
     /// <summary>
-    /// 设置事件处理器
+    ///     连接 Godot 信号并桥接到 CQRS 事件（模板用户在此处添加信号绑定逻辑）
     /// </summary>
-    private void SetupEventHandlers()
+    private void ConnectPageSignals()
     {
-        
+        // 示例：Button.Pressed += () => this.SendEvent(new ButtonPressedEvent { ... });
+    }
+    /// <summary>
+    ///     注册 CQRS 事件订阅（模板用户在此处添加事件处理逻辑）
+    /// </summary>
+    private void RegisterEvents()
+    {
+        // 示例：this.RegisterEvent<SomeEvent>(e => { ... })
+        //     .UnRegisterWhenNodeExitTree(this);
     }
 }

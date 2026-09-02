@@ -1,6 +1,6 @@
 # My GFramework Godot Template
 
-基于 [GFramework](https://github.com/GeWuYou/GFramework) (v0.0.177) 的 Godot 4.6 项目起手模板，**经 [Twenty-four](https://github.com/Yumei1010/Twenty-four) 项目重度实战魔改后反向提炼**，贴合个人使用习惯。
+基于 [GFramework](https://github.com/GeWuYou/GFramework) (v0.7.1) 的 Godot 4.7 项目起手模板，**经 [Twenty-four](https://github.com/Yumei1010/Twenty-four) 项目重度实战魔改后反向提炼**，贴合个人使用习惯。
 
 ## 项目渊源
 
@@ -16,9 +16,10 @@ My-GFramework-Godot-Template（从 Twenty-four 剥离业务逻辑，保留骨架
 
 ## 技术栈
 
-- **引擎：** Godot 4.6 (.NET)
+- **引擎：** Godot 4.7 (.NET)
 - **运行时：** .NET 10
-- **框架：** GFramework 0.0.177（NuGet: `GeWuYou.GFramework`）
+- **框架：** GFramework 0.7.1（NuGet: `GeWuYou.GFramework.Ecs.Arch` 等）
+- **ECS：** Arch 2.1.0（经 GFramework.Ecs.Arch 集成）
 - **语言：** C# (LangVersion preview)
 
 ## 命名规范
@@ -59,6 +60,9 @@ My-GFramework-Godot-Template（从 Twenty-four 剥离业务逻辑，保留骨架
 | 全局节点 | `GameEntryPoint`、`UiRoot`、`SceneRoot`、`SceneTransitionManager` |
 | CQRS 示例 | 音量控制、分辨率/全屏切换、设置存取、退出游戏 |
 | 通用组件 | 分层状态机（HFSM）、行为树（Behavior Tree） |
+| 频段事件 | 事件总线频段（Gameplay/Ui/Audio/Net），原版 API 直接支持 |
+| ECS | Arch ECS（`UseArch` 接入，World 容器注册） |
+| 工具 | 按域分子目录（event、registry） |
 | 编码模板 | `script_templates/` 下 3 个 Godot 脚本模板 |
 | 编码规范 | `CONVENTIONS.md` — 命名空间、CQRS、partial class、XML 注释等全套约束 |
 | CI 审查 | TruffleHog 密钥扫描 + CodeQL 静态分析 + .NET 构建 + 自动版本标签 |
