@@ -1,5 +1,7 @@
 using GFramework.Core.Extensions;
+using GFramework.Core.SourceGenerators.Abstractions.Rule;
 using GFramework.Game.Abstractions.UI;
+using GFramework.Godot.SourceGenerators.Abstractions;
 using GFrameworkTemplate.global;
 using Godot;
 
@@ -7,15 +9,24 @@ namespace GFrameworkTemplate.scripts.menu;
 
 public partial class TemplatePage
 {
+    /// <summary>
+    ///     UI 路由器（架构依赖注入）
+    /// </summary>
+    [GetSystem]
     private IUiRouter _uiRouter = null!;
 
     /// <summary>
-    ///     异步等待架构就绪，获取 UI 路由器依赖
+    ///     页面节点引用：[GetNode] 按字段名推断 %唯一名（_titleLabel → %TitleLabel）
+    /// </summary>
+    [GetNode]
+    private Label _titleLabel = null!;
+
+    /// <summary>
+    ///     异步等待架构就绪（若页面逻辑依赖就绪后的系统/模型可在此继续）
     /// </summary>
     private async Task ReadyAsync()
     {
         await GameEntryPoint.Architecture.WaitUntilReadyAsync().ConfigureAwait(false);
-        _uiRouter = this.GetSystem<IUiRouter>()!;
         _log.Debug("TemplatePage 初始化完成");
     }
 }

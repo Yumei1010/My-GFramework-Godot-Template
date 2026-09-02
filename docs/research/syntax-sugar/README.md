@@ -85,7 +85,15 @@ public partial class TemplatePage : Control
 - **不写 `_Ready`**：生成器自动补 `_Ready` + 注入 + `partial void OnGetNodeReadyGenerated()` 钩子
 - `[AutoUiPage]` 无需 `_Ready`（只生成 UiKeyStr/GetPage/缓存字段）
 
-## 待办（下一步）
+## ✅ 已引入模板（commit 待填）
 
-- [ ] 决定模板是否引入 `[AutoUiPage]` / `[GetNode]`（减少 .Dependencies/.Properties 样板）
-- [ ] 评估五文件 partial 模式是否仍推荐（语法糖可能压缩拆分需求）
+- `script_templates/UiPage/`：TemplatePage 五文件改造为语法糖版
+  - `.cs`：`[AutoUiPage]` 生成 UiKeyStr/GetPage，_Ready 调注入钩子
+  - `.Dependencies.cs`：`[GetSystem]` + `[GetNode]` 字段注入演示
+  - `.Properties.cs`：说明 UiKeyStr 由生成器提供（文件用于其他属性）
+- `script_templates/Node/`：3 个右键模板同步语法糖形态（[AutoUiPage] 等），_Ready 注入钩子条件化注释
+- 编译验证：五文件参考 + 模板生成类均 0 错误
+
+### 模板使用注意（已写入模板注释）
+- `[GetNode]` 字段启用后：`_Ready` 需调 `__InjectGetNodes_Generated()`
+- 不用 `[GetNode]` 时该钩子不存在——注入调用须与字段启用保持一致

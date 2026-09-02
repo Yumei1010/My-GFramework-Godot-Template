@@ -9,10 +9,10 @@ script_templates/
 │   ├── ControllerTemplate.cs           # 通用控制器（IController）
 │   ├── SimplePageControllerTemplate.cs # 简单 UI 页面（ISimpleUiPage + Page 层）
 │   └── SimpleModelControllerTemplate.cs# 模态 UI 页面（ISimpleUiPage + Modal 层）
-└── UiPage/                # UI 页面五文件 partial 参考（完整形态，可编译代码）
-    ├── TemplatePage.cs                # 核心：_Ready 调用链
-    ├── TemplatePage.Dependencies.cs   # 节点引用 + ReadyAsync 初始化
-    ├── TemplatePage.Properties.cs     # 字段/属性/UiKeyStr
+└── UiPage/                # UI 页面五文件 partial 参考（语法糖版）
+    ├── TemplatePage.cs                # 核心：[AutoUiPage] + _Ready 调用链
+    ├── TemplatePage.Dependencies.cs   # [GetSystem]/[GetNode] 字段注入 + ReadyAsync
+    ├── TemplatePage.Properties.cs     # 页面级属性（UiKeyStr 由生成器提供）
     ├── TemplatePage.Events.cs         # CQRS 事件订阅（RegisterEvents）
     └── TemplatePage.Signals.cs        # Godot 信号桥接（ConnectPageSignals）
 ```
@@ -32,17 +32,18 @@ Godot 编辑器右键节点 → "附加脚本" → 选择模板，生成单文�
 
 | 文件 | 职责 |
 |---|---|
-| `*.cs` | 核心：`_Ready()` 只做 `ReadyAsync()` → `ConnectPageSignals()` → `RegisterEvents()` |
-| `*.Dependencies.cs` | `GetNode<T>("%Xxx")` 节点引用、`ReadyAsync()` 异步初始化 |
-| `*.Properties.cs` | 字段、属性、`UiKeyStr` |
+| `*.cs` | 核心：`[AutoUiPage]` 特性（生成 UiKeyStr/GetPage）+ `_Ready()` 调用链 |
+| `*.Dependencies.cs` | `[GetSystem]`/`[GetNode]` 字段注入（编译期生成）、`ReadyAsync()` 异步初始化 |
+| `*.Properties.cs` | 页面级字段/属性（`UiKeyStr` 已由生成器提供，勿重复定义） |
 | `*.Events.cs` | `RegisterEvents()` 内订阅 CQRS 事件（`.UnRegisterWhenNodeExitTree(this)`） |
 | `*.Signals.cs` | `ConnectPageSignals()` 内桥接 Godot 信号 → CQRS 事件 |
 
 **新页面步骤**（参照 TemplatePage 拆分）：
-1. `UiKey` 枚举加页面键
-2. 复制 5 文件改名（TemplatePage → 你的页面名）
-3. 按场景节点补 `*.Dependencies.cs` 引用、`*.Events.cs` / `*.Signals.cs` 逻辑
-4. 在 `GameEntryPoint` 场景配置 `UiPageConfigs` 注册
+1. `UiKey` 枚举加页面键（`[AutoUiPage(nameof(UiKey.Xxx), ...)]` 引用）
+2. 复制 5 文件改名（TemplatePage → 你的页面名），同步改 `[AutoUiPage]` 参数
+3. 场景节点加 `unique_name_in_owner`，在 `*.Dependencies.cs` 用 `[GetNode]` 字段声明
+4. **启用 [GetNode] 字段后**：`_Ready` 开头调 `__InjectGetNodes_Generated()`（生成器提供）
+5. 补 `*.Events.cs` / `*.Signals.cs` 逻辑，在 `GameEntryPoint` 场景配置 `UiPageConfigs` 注册
 
 > 注意：`UiPage/` 下的 .cs 作为参考**不参与编译**（csproj 排除了 script_templates），
 > 实际使用请复制到 `scripts/menu/`（或业务目录）再改命名空间。
