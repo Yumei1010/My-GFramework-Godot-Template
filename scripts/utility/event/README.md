@@ -23,23 +23,23 @@
 
 ```csharp
 // 订阅：游戏逻辑频段的玩家死亡事件
-this.RegisterEvent<PlayerDiedEvent>(ChannelConst.Gameplay, e =>
+this.RegisterEvent<PlayerDiedEvent>(ChannelConstants.Gameplay, e =>
 {
     // 只有 Gameplay 频段的事件会到这里
     ScoreManager.AddScore(e.PlayerId);
 });
 
 // 订阅：UI 频段的同名事件（互不干扰）
-this.RegisterEvent<PlayerDiedEvent>(ChannelConst.Ui, e =>
+this.RegisterEvent<PlayerDiedEvent>(ChannelConstants.Ui, e =>
 {
     DeathScreen.Show(e.PlayerId);
 });
 
 // 发送：只通知 Gameplay 频段的订阅者（UI 频段收不到）
-this.SendEvent(ChannelConst.Gameplay, new PlayerDiedEvent { PlayerId = 1 });
+this.SendEvent(ChannelConstants.Gameplay, new PlayerDiedEvent { PlayerId = 1 });
 
 // 无数据事件
-this.SendEvent<GameStartedEvent>(ChannelConst.Gameplay);
+this.SendEvent<GameStartedEvent>(ChannelConstants.Gameplay);
 ```
 
 > 无频段的 `this.RegisterEvent<T>(e => ...)` / `this.SendEvent(new T{...})` 仍是框架原版，两者重载共存互不影响。
@@ -49,13 +49,13 @@ this.SendEvent<GameStartedEvent>(ChannelConst.Gameplay);
 `RegisterEvent` 返回 `IUnRegister` 句柄，调用 `UnRegister()` 即可注销：
 
 ```csharp
-var unReg = this.RegisterEvent<PlayerDiedEvent>(ChannelConst.Gameplay, handler);
+var unReg = this.RegisterEvent<PlayerDiedEvent>(ChannelConstants.Gameplay, handler);
 unReg.UnRegister(); // 取消订阅
 ```
 
 ## 自定义频段
 
-`ChannelConst` 是预定义常量，也可直接传字符串自定义频段：
+`ChannelConstants` 是预定义常量，也可直接传字符串自定义频段：
 
 ```csharp
 this.RegisterEvent<SomeEvent>("MyCustomChannel", handler);
@@ -68,7 +68,7 @@ this.SendEvent("MyCustomChannel", new SomeEvent { ... });
 |---|---|
 | `ChannelEventBus` | **继承原版 `EventBus`**，新增频段能力（`RegisterOnChannel` / `SendOnChannel` / `SendOnChannel<T>`），天然实现 `IEventBus` |
 | `ContextAwareChannelExtensions` | 为 `IContextAware` 扩展 `RegisterEvent<T>(channel, ...)` / `SendEvent(channel, ...)`，与框架 API 风格一致 |
-| `ChannelConst` | 预定义频段（`Gameplay` / `Ui` / `Audio` / `Net`） |
+| `ChannelConstants` | 预定义频段（`Gameplay` / `Ui` / `Audio` / `Net`） |
 
 ### 如何生效（关键）
 

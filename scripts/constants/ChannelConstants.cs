@@ -1,10 +1,10 @@
-namespace GFrameworkTemplate.scripts.utility.@event;
+namespace GFrameworkTemplate.scripts.constants;
 
 /// <summary>
 ///     预定义频段常量，避免魔法字符串。
 ///     可根据项目需要扩展（例如：Net 网络频段、Audio 音频频段等）。
 /// </summary>
-public static class ChannelConst
+public static class ChannelConstants
 {
     /// <summary>
     ///     游戏逻辑频段：核心玩法逻辑（战斗、移动、得分等）。

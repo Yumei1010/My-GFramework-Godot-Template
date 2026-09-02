@@ -12,9 +12,9 @@ namespace GFrameworkTemplate.scripts.utility.@event;
 /// <example>
 ///     <code>
 ///     // 在任意 [ContextAware] 节点中：
-///     this.RegisterEvent&lt;PlayerDiedEvent&gt;(ChannelConst.Gameplay, e =&gt; { ... });
-///     this.SendEvent(ChannelConst.Gameplay, new PlayerDiedEvent { PlayerId = 1 });
-///     this.SendEvent&lt;GameStartedEvent&gt;(ChannelConst.Gameplay); // 无数据事件
+///     this.RegisterEvent&lt;PlayerDiedEvent&gt;(ChannelConstants.Gameplay, e =&gt; { ... });
+///     this.SendEvent(ChannelConstants.Gameplay, new PlayerDiedEvent { PlayerId = 1 });
+///     this.SendEvent&lt;GameStartedEvent&gt;(ChannelConstants.Gameplay); // 无数据事件
 ///     </code>
 /// </example>
 public static class ContextAwareChannelExtensions
@@ -35,7 +35,7 @@ public static class ContextAwareChannelExtensions
     /// </summary>
     /// <typeparam name="TEvent">事件类型</typeparam>
     /// <param name="contextAware">上下文感知对象</param>
-    /// <param name="channel">频段名称（见 <see cref="ChannelConst"/>）</param>
+    /// <param name="channel">频段名称（见 <see cref="ChannelConstants"/>）</param>
     /// <param name="handler">事件处理回调</param>
     /// <returns>取消订阅句柄</returns>
     public static IUnRegister RegisterEvent<TEvent>(this GFramework.Core.Abstractions.Rule.IContextAware contextAware, string channel, Action<TEvent> handler)
@@ -48,7 +48,7 @@ public static class ContextAwareChannelExtensions
     /// </summary>
     /// <typeparam name="TEvent">事件类型</typeparam>
     /// <param name="contextAware">上下文感知对象</param>
-    /// <param name="channel">频段名称（见 <see cref="ChannelConst"/>）</param>
+    /// <param name="channel">频段名称（见 <see cref="ChannelConstants"/>）</param>
     /// <param name="eventData">事件数据</param>
     public static void SendEvent<TEvent>(this GFramework.Core.Abstractions.Rule.IContextAware contextAware, string channel, TEvent eventData)
     {
@@ -60,7 +60,7 @@ public static class ContextAwareChannelExtensions
     /// </summary>
     /// <typeparam name="TEvent">事件类型（需有公共无参构造函数）</typeparam>
     /// <param name="contextAware">上下文感知对象</param>
-    /// <param name="channel">频段名称（见 <see cref="ChannelConst"/>）</param>
+    /// <param name="channel">频段名称（见 <see cref="ChannelConstants"/>）</param>
     public static void SendEvent<TEvent>(this GFramework.Core.Abstractions.Rule.IContextAware contextAware, string channel) where TEvent : new()
     {
         contextAware.GetChannelBus().SendOnChannel<TEvent>(channel);
