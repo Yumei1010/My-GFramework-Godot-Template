@@ -1,4 +1,4 @@
-﻿using GFramework.Core.environment;
+﻿using GFramework.Core.Environment;
 using GFrameworkTemplate.scripts.constants;
 
 namespace GFrameworkTemplate.scripts.core.environment;

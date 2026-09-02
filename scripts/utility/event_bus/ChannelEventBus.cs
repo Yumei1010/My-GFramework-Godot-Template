@@ -1,53 +1,52 @@
-using GFramework.Core.Abstractions.events;
-using GFramework.Core.events;
+using GFramework.Core.Abstractions.Events;
+using GFramework.Core.Events;
 
 namespace GFrameworkTemplate.scripts.utility.event_bus;
 
 /// <summary>
-///     频段事件总线实现。
-///     内部为每个频段维护一个独立的 <see cref="EventBus"/>，按"频段 + 事件类型"分发：
+///     频段事件总线实现：**继承框架原版 <see cref="EventBus"/>**，
+///     在保留原版按类型分发能力的同时，增加"频段（Channel）"维度：
 ///     同名事件发到不同频段互不干扰，订阅者只收到自己订阅频段的事件。
 /// </summary>
 /// <remarks>
-///     用法示例：
-///     <code>
-///     var bus = new ChannelEventBus();
-///
-///     // 订阅"游戏逻辑"频段的玩家死亡事件
-///     var unReg = bus.Register&lt;PlayerDiedEvent&gt;(ChannelConst.Gameplay, e =&gt; { ... });
-///
-///     // 向"游戏逻辑"频段发送（只通知该频段订阅者）
-///     bus.Send(ChannelConst.Gameplay, new PlayerDiedEvent { PlayerId = 1 });
-///
-///     unReg.UnRegister(); // 取消订阅
-///     </code>
+///     继承原版 EventBus 使其天然实现 <c>IEventBus</c>，可通过架构 <c>Configurator</c>
+///     覆盖容器中的 IEventBus 注册，让原版 RegisterEvent / SendEvent 直接支持频段。
 /// </remarks>
-public sealed class ChannelEventBus : IChannelEventBus
+public class ChannelEventBus : EventBus
 {
     private readonly Dictionary<string, EventBus> _channels = new(StringComparer.Ordinal);
 
-    /// <inheritdoc />
-    public IUnRegister Register<T>(string channel, Action<T> handler)
+    /// <summary>
+    ///     订阅指定频段上的事件。
+    /// </summary>
+    /// <typeparam name="T">事件类型</typeparam>
+    /// <param name="channel">频段名称</param>
+    /// <param name="handler">事件处理回调</param>
+    /// <returns>取消订阅句柄</returns>
+    public IUnRegister RegisterOnChannel<T>(string channel, Action<T> handler)
     {
-        return GetOrCreate(channel).Register(handler);
+        return GetChannel(channel).Register(handler);
     }
 
-    /// <inheritdoc />
-    public void Send<T>(string channel, T eventData)
+    /// <summary>
+    ///     向指定频段发送事件（带数据）。
+    /// </summary>
+    /// <typeparam name="T">事件类型</typeparam>
+    /// <param name="channel">频段名称</param>
+    /// <param name="eventData">事件数据</param>
+    public void SendOnChannel<T>(string channel, T eventData)
     {
-        GetOrCreate(channel).Send(eventData);
+        GetChannel(channel).Send(eventData);
     }
 
-    /// <inheritdoc />
-    public void Send<T>(string channel) where T : new()
+    /// <summary>
+    ///     向指定频段发送事件（无数据标记事件）。
+    /// </summary>
+    /// <typeparam name="T">事件类型（需有公共无参构造函数）</typeparam>
+    /// <param name="channel">频段名称</param>
+    public void SendOnChannel<T>(string channel) where T : new()
     {
-        GetOrCreate(channel).Send(new T());
-    }
-
-    /// <inheritdoc />
-    public void UnRegister<T>(string channel, Action<T> handler)
-    {
-        GetOrCreate(channel).UnRegister(handler);
+        GetChannel(channel).Send(new T());
     }
 
     /// <summary>
@@ -55,7 +54,7 @@ public sealed class ChannelEventBus : IChannelEventBus
     /// </summary>
     /// <param name="channel">频段名称</param>
     /// <returns>该频段对应的 EventBus</returns>
-    private EventBus GetOrCreate(string channel)
+    private EventBus GetChannel(string channel)
     {
         if (!_channels.TryGetValue(channel, out var bus))
         {

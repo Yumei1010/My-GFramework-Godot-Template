@@ -1,17 +1,17 @@
-using GFramework.Core.Abstractions.architecture;
-using GFramework.Core.Abstractions.logging;
-using GFramework.Core.Abstractions.properties;
-using GFramework.Core.Abstractions.state;
-using GFramework.Core.architecture;
-using GFramework.Core.extensions;
-using GFramework.Game.Abstractions.setting;
-using GFramework.Game.setting.events;
-using GFramework.Godot.coroutine;
-using GFramework.Godot.logging;
-using GFramework.Godot.scene;
-using GFramework.Godot.ui;
-using GFramework.SourceGenerators.Abstractions.logging;
-using GFramework.SourceGenerators.Abstractions.rule;
+using GFramework.Core.Abstractions.Architectures;
+using GFramework.Core.Abstractions.Logging;
+using GFramework.Core.Abstractions.Properties;
+using GFramework.Core.Abstractions.State;
+using GFramework.Core.Architectures;
+using GFramework.Core.Extensions;
+using GFramework.Game.Abstractions.Setting;
+using GFramework.Game.Setting.Events;
+using GFramework.Godot.Coroutine;
+using GFramework.Godot.Logging;
+using GFramework.Godot.Scene;
+using GFramework.Godot.UI;
+using GFramework.SourceGenerators.Abstractions.Logging;
+using GFramework.SourceGenerators.Abstractions.Rule;
 using GFrameworkTemplate.scripts.core;
 using GFrameworkTemplate.scripts.core.environment;
 using GFrameworkTemplate.scripts.core.resource;
@@ -84,9 +84,9 @@ public partial class GameEntryPoint : Node
         foreach (var textureConfig in TextureConfigs) _textureRegistry.Registry(textureConfig);
 
         if (ShouldEnterAppState())
-            this.RegisterEvent<UiRoot.UiRootReadyEvent>(_ =>
+            this.RegisterEvent<UiRoot.UiRootReadyEvent>(_evt =>
             {
-                this.GetSystem<IStateMachineSystem>()!.ChangeTo<AppState>();
+                _ = this.GetSystem<IStateMachineSystem>()!.ChangeToAsync<AppState>();
             });
 
         _log.Debug("框架入口点就绪.");

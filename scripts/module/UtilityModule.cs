@@ -1,11 +1,10 @@
-using GFramework.Core.Abstractions.architecture;
-using GFramework.Game.Abstractions.data;
-using GFramework.Game.architecture;
-using GFramework.Game.data;
-using GFramework.Game.serializer;
-using GFramework.Godot.scene;
-using GFramework.Godot.storage;
-using GFramework.Godot.ui;
+using GFramework.Core.Abstractions.Architectures;
+using GFramework.Game.Abstractions.Data;
+using GFramework.Game.Data;
+using GFramework.Game.Serializer;
+using GFramework.Godot.Scene;
+using GFramework.Godot.Storage;
+using GFramework.Godot.UI;
 using GFrameworkTemplate.scripts.utility;
 using GFrameworkTemplate.scripts.utility.event_bus;
 using Godot;
@@ -15,15 +14,14 @@ namespace GFrameworkTemplate.scripts.module;
 /// <summary>
 ///     工具模块类，负责安装和管理框架中的实用工具组件
 /// </summary>
-public class UtilityModule : AbstractModule
+public class UtilityModule : IArchitectureModule
 {
-    public override void Install(IArchitecture architecture)
+    public void Install(IArchitecture architecture)
     {
         architecture.RegisterUtility(new GodotUiRegistry());
         architecture.RegisterUtility(new GodotSceneRegistry());
         architecture.RegisterUtility(new GodotTextureRegistry());
         architecture.RegisterUtility(new GodotUiFactory());
-        architecture.RegisterUtility(new ChannelEventBus());
 
         var jsonSerializer = new JsonSerializer();
         architecture.RegisterUtility(jsonSerializer);

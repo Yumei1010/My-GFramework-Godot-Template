@@ -1,4 +1,4 @@
-﻿using GFramework.Core.Abstractions.utility;
+﻿using GFramework.Core.Abstractions.Utility;
 
 namespace GFrameworkTemplate.scripts.utility;
 

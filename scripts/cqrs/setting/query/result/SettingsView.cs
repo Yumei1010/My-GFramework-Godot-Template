@@ -1,4 +1,4 @@
-﻿using GFramework.Game.Abstractions.setting.data;
+﻿using GFramework.Game.Abstractions.Setting.Data;
 
 namespace GFrameworkTemplate.scripts.cqrs.setting.query.result;
 

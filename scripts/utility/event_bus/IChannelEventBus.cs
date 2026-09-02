@@ -1,5 +1,5 @@
-using GFramework.Core.Abstractions.events;
-using GFramework.Core.Abstractions.utility;
+using GFramework.Core.Abstractions.Events;
+using GFramework.Core.Abstractions.Utility;
 
 namespace GFrameworkTemplate.scripts.utility.event_bus;
 

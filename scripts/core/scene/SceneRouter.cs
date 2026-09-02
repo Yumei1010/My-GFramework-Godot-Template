@@ -1,4 +1,6 @@
-﻿using GFramework.Game.scene;
+using GFramework.Game.Abstractions.Scene;
+using GFramework.Game.Scene;
+using GFramework.Game.Scene.Handler;
 using Godot;
 
 namespace GFrameworkTemplate.scripts.core.scene;
@@ -14,6 +16,14 @@ public class SceneRouter : SceneRouterBase
     /// 将基类的Root属性转换为Node类型返回
     /// </summary>
     public Node? SceneRoot => Root as Node;
+
+    /// <summary>
+    /// 注册默认的场景过渡处理器
+    /// </summary>
+    protected override void RegisterHandlers()
+    {
+        RegisterHandler(new LoggingTransitionHandler(), new SceneTransitionHandlerOptions());
+    }
 
     /// <summary>
     /// 初始化方法，在场景路由器创建时调用

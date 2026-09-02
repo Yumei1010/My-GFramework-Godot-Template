@@ -1,7 +1,6 @@
-using GFramework.Core.Abstractions.architecture;
-using GFramework.Core.functional.pipe;
-using GFramework.Game.architecture;
-using GFramework.Game.state;
+using GFramework.Core.Abstractions.Architectures;
+using GFramework.Core.Functional.Pipe;
+using GFramework.Game.State;
 using GFrameworkTemplate.scripts.core.state.impls;
 
 namespace GFrameworkTemplate.scripts.module;
@@ -9,9 +8,9 @@ namespace GFrameworkTemplate.scripts.module;
 /// <summary>
 ///     状态模块类，负责安装和注册应用状态机及状态
 /// </summary>
-public class StateModule : AbstractModule
+public class StateModule : IArchitectureModule
 {
-    public override void Install(IArchitecture architecture)
+    public void Install(IArchitecture architecture)
     {
         architecture.RegisterSystem(new GameStateMachineSystem().Also(it =>
         {

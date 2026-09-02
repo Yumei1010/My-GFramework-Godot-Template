@@ -1,4 +1,4 @@
-using GFramework.Game.Abstractions.data;
+using GFramework.Game.Abstractions.Data;
 
 namespace GFrameworkTemplate.scripts.data.setting;
 

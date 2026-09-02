@@ -1,5 +1,5 @@
-using GFramework.Game.Abstractions.data;
-using GFramework.Game.Abstractions.enums;
+using GFramework.Game.Abstractions.Data;
+using GFramework.Game.Abstractions.Enums;
 
 namespace GFrameworkTemplate.scripts.data.setting;
 

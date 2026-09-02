@@ -1,5 +1,5 @@
-using GFramework.Core.extensions;
-using GFramework.Game.Abstractions.ui;
+using GFramework.Core.Extensions;
+using GFramework.Game.Abstractions.UI;
 using GFrameworkTemplate.global;
 using Godot;
 

@@ -1,5 +1,5 @@
-using GFramework.SourceGenerators.Abstractions.logging;
-using GFramework.SourceGenerators.Abstractions.rule;
+using GFramework.SourceGenerators.Abstractions.Logging;
+using GFramework.SourceGenerators.Abstractions.Rule;
 using Godot;
 using GFrameworkTemplate.scripts.enums.behavior_tree;
 

@@ -1,7 +1,7 @@
-﻿using GFramework.Core.extensions;
-using GFramework.Core.query;
-using GFramework.Game.Abstractions.setting;
-using GFramework.Game.Abstractions.setting.data;
+﻿using GFramework.Core.Extensions;
+using GFramework.Core.Query;
+using GFramework.Game.Abstractions.Setting;
+using GFramework.Game.Abstractions.Setting.Data;
 using GFrameworkTemplate.scripts.cqrs.setting.query.result;
 
 namespace GFrameworkTemplate.scripts.cqrs.setting.query;
