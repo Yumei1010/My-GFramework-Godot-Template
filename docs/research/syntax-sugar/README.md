@@ -85,7 +85,7 @@ public partial class TemplatePage : Control
 - **不写 `_Ready`**：生成器自动补 `_Ready` + 注入 + `partial void OnGetNodeReadyGenerated()` 钩子
 - `[AutoUiPage]` 无需 `_Ready`（只生成 UiKeyStr/GetPage/缓存字段）
 
-## ✅ 已引入模板（commit 待填）
+## ✅ 已引入模板（73633d4）
 
 - `script_templates/UiPage/`：TemplatePage 五文件改造为语法糖版
   - `.cs`：`[AutoUiPage]` 生成 UiKeyStr/GetPage，_Ready 调注入钩子
