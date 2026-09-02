@@ -10,6 +10,7 @@ using GFramework.Godot.Coroutine;
 using GFramework.Godot.Logging;
 using GFramework.Godot.Scene;
 using GFramework.Godot.UI;
+using GFramework.Ecs.Arch.Extensions;
 using GFramework.Core.SourceGenerators.Abstractions.Logging;
 using GFramework.Core.SourceGenerators.Abstractions.Rule;
 using GFrameworkTemplate.scripts.core;
@@ -60,7 +61,8 @@ public partial class GameEntryPoint : Node
                     MinLevel = LogLevel.Debug
                 }
             }
-        }, IsDev ? new GameDevEnvironment() : new GameMainEnvironment());
+        }, IsDev ? new GameDevEnvironment() : new GameMainEnvironment())
+        .UseArch(); // 接入 Arch ECS（World 注册进容器，可选：UseArch(options => options.WorldCapacity = 2048)）
         Architecture = arch;
         arch.Initialize();
         try { GameContext.Bind(typeof(GameArchitecture), arch.Context); }

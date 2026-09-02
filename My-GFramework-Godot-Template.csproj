@@ -33,6 +33,9 @@
         <PackageReference Include="GeWuYou.GFramework.Godot" Version="0.7.1" />
         <PackageReference Include="GeWuYou.GFramework.Godot.SourceGenerators" Version="0.7.1" />
         <PackageReference Include="GeWuYou.GFramework.Core.SourceGenerators" Version="0.7.1" />
+        <PackageReference Include="GeWuYou.GFramework.Ecs.Arch" Version="0.7.1" />
+        <PackageReference Include="GeWuYou.GFramework.Game.SourceGenerators" Version="0.7.1" />
+        <PackageReference Include="GeWuYou.GFramework.Cqrs.SourceGenerators" Version="0.7.1" />
     </ItemGroup>
     <ItemGroup>
         <Content Include=".github\workflows\auto-tag.yml" />

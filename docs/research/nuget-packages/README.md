@@ -70,11 +70,22 @@
 `GFramework.Generator`(0.0.54)、`GFramework.Core.Godot`(0.0.33)、
 `SourceGenerators.Attributes`(0.0.61) 均为旧版本线，不用。
 
-## 最终建议（供决策）
+## 最终采纳结果
 
-| 动作 | 包 | 理由 |
+| 包 | 状态 | 说明 |
 |---|---|---|
-| **推荐做** | `SourceGenerators` 0.0.220 → `Core.SourceGenerators` 0.7.1 | 版本线对齐，消除旧依赖 |
-| 暂不 | `Ecs.Arch` | 可选进阶，骨架保持精简 |
-| 暂不 | `Game.SourceGenerators` | 无配置 Schema 需求 |
-| 不做 | `Generator`/`Core.Godot`/旧 Attributes | 过时 |
+| `Core.SourceGenerators` 0.7.1 | ✅ 已引入 | 替换旧 SourceGenerators 0.0.220，版本线对齐 |
+| `Ecs.Arch` 0.7.1 | ✅ 已引入+接入 | `GameEntryPoint.UseArch()` 接入，World 注册进容器，Arch 2.1.0 可用 |
+| `Game.SourceGenerators` 0.7.1 | ✅ 已引入 | JSON Schema → 强类型配置生成，按需配 schema |
+| `Cqrs.SourceGenerators` 0.7.1 | ✅ 已引入 | CQRS handler 注册生成，按需用新 handler 模式 |
+| `Generator`/`Core.Godot`/旧 Attributes | ❌ 不用 | 过时版本线 |
+
+### Ecs.Arch 接入方式（模板已含）
+
+```csharp
+// GameEntryPoint:
+var arch = new GameArchitecture(...)
+    .UseArch(); // Arch ECS：World 自动注册进容器，可选 UseArch(o => o.WorldCapacity = 2048)
+```
+
+使用：`context.GetService<World>()` 创建实体；`ArchSystemAdapter<T>` 写 ECS 系统。
