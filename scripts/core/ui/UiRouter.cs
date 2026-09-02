@@ -1,7 +1,7 @@
 ﻿using GFramework.Game.UI;
 using GFramework.Game.UI.Handler;
-using GFramework.SourceGenerators.Abstractions.Logging;
-using GFramework.SourceGenerators.Abstractions.Rule;
+using GFramework.Core.SourceGenerators.Abstractions.Logging;
+using GFramework.Core.SourceGenerators.Abstractions.Rule;
 
 namespace GFrameworkTemplate.scripts.core.ui;
 

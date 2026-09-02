@@ -3,8 +3,8 @@ using GFramework.Core.Abstractions.Coroutine;
 using GFramework.Core.Coroutine.Extensions;
 using GFramework.Core.Coroutine.Instructions;
 using GFramework.Godot.Extensions;
-using GFramework.SourceGenerators.Abstractions.Logging;
-using GFramework.SourceGenerators.Abstractions.Rule;
+using GFramework.Core.SourceGenerators.Abstractions.Logging;
+using GFramework.Core.SourceGenerators.Abstractions.Rule;
 using Godot;
 
 namespace GFrameworkTemplate.global;

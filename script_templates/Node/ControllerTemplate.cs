@@ -1,13 +1,13 @@
 // meta-name: 控制器类模板
 // meta-description: 负责管理场景的生命周期和架构关联
 using Godot;
-using GFramework.Core.Abstractions.controller;
-using GFramework.SourceGenerators.Abstractions.logging;
-using GFramework.SourceGenerators.Abstractions.rule;
+using GFramework.Core.Abstractions.Controller;
+using GFramework.Core.SourceGenerators.Abstractions.Logging;
+using GFramework.Core.SourceGenerators.Abstractions.Rule;
 
 
-[ContextAware]
 [Log]
+[ContextAware]
 public partial class _CLASS_ :_BASE_,IController
 {
     /// <summary>

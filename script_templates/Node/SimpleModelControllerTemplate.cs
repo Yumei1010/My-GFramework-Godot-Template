@@ -1,12 +1,12 @@
 ﻿// meta-name: 简单模态UI控制器类模板
 // meta-description: 负责管理UI页面场景的生命周期和架构关联
 using Godot;
-using GFramework.Core.Abstractions.controller;
-using GFramework.Core.extensions;
-using GFramework.Game.Abstractions.ui;
-using GFramework.Godot.ui;
-using GFramework.SourceGenerators.Abstractions.logging;
-using GFramework.SourceGenerators.Abstractions.rule;
+using GFramework.Core.Abstractions.Controller;
+using GFramework.Core.Extensions;
+using GFramework.Game.Abstractions.UI;
+using GFramework.Godot.UI;
+using GFramework.Core.SourceGenerators.Abstractions.Logging;
+using GFramework.Core.SourceGenerators.Abstractions.Rule;
 using GFrameworkTemplate.scripts.constants;
 using GFrameworkTemplate.scripts.core.ui;
 using GFrameworkTemplate.scripts.enums.ui;
@@ -39,7 +39,7 @@ public partial class _CLASS_ :_BASE_,IController,IUiPageBehaviorProvider,ISimple
     public IUiPageBehavior GetPage()
     {
         // 如果_page为空，则使用UiPageBehaviorFactory创建一个基于_BASE_类型的页面行为实例
-        _page ??= UiPageBehaviorFactory.Create<_BASE_>(this, UiKeyStr, UiLayer.Modal, UiLayer.Model);
+        _page ??= UiPageBehaviorFactory.Create<_BASE_>(this, UiKeyStr, UiLayer.Modal);
         return _page;
     }
 
