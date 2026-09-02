@@ -66,14 +66,16 @@ public partial class GameEntryPoint : Node
         try { GameContext.Bind(typeof(GameArchitecture), arch.Context); }
         catch (InvalidOperationException) { /* 上下文已绑定 */ }
         _settingsModel = this.GetModel<ISettingsModel>()!;
-        _ = _settingsModel.InitializeAsync();
 
+        // 先注册事件再初始化设置，避免异步发送错过订阅（0.7.1 时序变化）
         this.RegisterEvent<SettingsInitializedEvent>(e =>
         {
             _settingsSystem = this.GetSystem<ISettingsSystem>()!;
             _ = _settingsSystem.ApplyAll();
             _log.Info("设置已加载");
         });
+
+        _ = _settingsModel.InitializeAsync();
 
         _sceneRegistry = this.GetUtility<IGodotSceneRegistry>()!;
         _uiRegistry = this.GetUtility<IGodotUiRegistry>()!;
