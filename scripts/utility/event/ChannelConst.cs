@@ -1,4 +1,4 @@
-namespace GFrameworkTemplate.scripts.utility.event_bus;
+namespace GFrameworkTemplate.scripts.utility.@event;
 
 /// <summary>
 ///     预定义频段常量，避免魔法字符串。

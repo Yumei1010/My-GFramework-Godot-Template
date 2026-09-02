@@ -3,7 +3,7 @@ using GFramework.Core.Abstractions.Events;
 using GFramework.Core.Abstractions.Environment;
 using GFramework.Godot.Architectures;
 using GFrameworkTemplate.scripts.module;
-using GFrameworkTemplate.scripts.utility.event_bus;
+using GFrameworkTemplate.scripts.utility.@event;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace GFrameworkTemplate.scripts.core;

@@ -1,4 +1,4 @@
-using GFrameworkTemplate.scripts.utility.event_bus;
+using GFrameworkTemplate.scripts.utility.@event;
 
 namespace GFrameworkTemplate.Tests;
 

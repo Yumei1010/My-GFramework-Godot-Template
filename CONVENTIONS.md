@@ -50,7 +50,7 @@ scripts/cqrs/<domain>/event/    → GFrameworkTemplate.scripts.cqrs.<domain>.@ev
 | `scripts/module/` | GFramework 模块安装 | ModelModule、SystemModule |
 | `scripts/constants/` | 全局常量 | GameConstants、UiLayers |
 | `scripts/data/` | 可持久化数据类与提供者 | SettingDataLocationProvider |
-| `scripts/utility/` | 通用工具与存储接口 | GameUtil、GodotTextureRegistry |
+| `scripts/utility/` | 通用工具，按域分子目录 | GameUtil、event/、registry/ |
 | `global/` | Godot 自动加载单例 | GameEntryPoint、UiRoot、SceneRoot |
 | `tests/` | xUnit 单元测试 | 按模块自定义 |
 

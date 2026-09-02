@@ -5,8 +5,7 @@ using GFramework.Game.Serializer;
 using GFramework.Godot.Scene;
 using GFramework.Godot.Storage;
 using GFramework.Godot.UI;
-using GFrameworkTemplate.scripts.utility;
-using GFrameworkTemplate.scripts.utility.event_bus;
+using GFrameworkTemplate.scripts.utility.registry;
 using Godot;
 
 namespace GFrameworkTemplate.scripts.module;

@@ -17,7 +17,7 @@ using GFrameworkTemplate.scripts.core.environment;
 using GFrameworkTemplate.scripts.core.resource;
 using GFrameworkTemplate.scripts.core.state.impls;
 using GFrameworkTemplate.scripts.enums.scene;
-using GFrameworkTemplate.scripts.utility;
+using GFrameworkTemplate.scripts.utility.registry;
 using GFrameworkTemplate.scripts.cqrs.setting.command;
 using Godot;
 using Godot.Collections;

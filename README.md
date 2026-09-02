@@ -46,7 +46,7 @@ My-GFramework-Godot-Template（从 Twenty-four 剥离业务逻辑，保留骨架
 | `scripts/component/` | 可复用组件（HFSM、行为树等） |
 | `scripts/enums/` | 枚举定义（UiKey、SceneKey、TextureKey、InputPhase） |
 | `scripts/constants/` | 全局常量（GameConstants、UiLayers） |
-| `scripts/utility/` | 工具类（纹理注册表、存储接口） |
+| `scripts/utility/` | 工具类，按域分子目录（event 事件、registry 注册表等） |
 | `scripts/data/` | 数据层（设置位置提供者） |
 
 ## 骨架包含
