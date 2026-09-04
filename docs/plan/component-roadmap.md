@@ -45,27 +45,17 @@
 
 卡牌/回合、战斗/动作（输入缓冲/连击）、解谜/叙事（对话/任务）、平台（移动控制器）
 
-## 对象池接入设计（对象池组件/示例）
+## 教程文档（docs/guides/）
 
-基于 GFramework Pool 研究，模板层定位：
+框架能力用**教学文档**而非示例组件承载（避免代码重复维护）：
 
-```
-scripts/component/object_pool/
-├── SceneObjectPool.cs      # PackedScene 对象池（便捷封装，非 System）
-│                            #   Acquire/Release + Prewarm + 自动挂载/卸载
-├── PoolableNodeSample.cs   # 示例：子弹节点实现 IPoolableNode
-└── README.md               # 用法：定义池 → Prewarm → Acquire/Release
-```
-
-**关键设计问题待定**：
-1. 用 GFramework 的 `IObjectPoolSystem`（System 注册）还是独立组件类？
-2. 节点"获取后挂到哪 / 释放后藏哪"——父容器策略
-3. 是否需要子弹/特效示例（让模板使用者看懂场景）
+- [x] `docs/guides/object-pool.md` — 对象池详解（框架原生 AbstractNodePoolSystem 用法）
+- [x] `docs/guides/ecs.md` — Arch ECS 详解（接入/组件/系统/驱动/示例）
+- 原 object_pool 示例代码已删除（教学由文档承担）
 
 ## 待办
 
-- [ ] 对象池：模板接入层 + 示例
-- [ ] Pause 接入示例
-- [ ] 音频管理器
-- [ ] 计时器组件
-- [ ] UI 弹窗库
+- [ ] Pause 教程
+- [ ] 音频管理器教程
+- [ ] 计时器教程
+- [ ] UI 弹窗教程
