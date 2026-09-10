@@ -91,14 +91,29 @@ dotnet build
 
 ## 与新项目对接
 
-1. 全局替换命名空间 `GFrameworkTemplate` → 你的项目名
-2. 重命名 `.csproj`、`.sln` 文件
-3. 在 `scripts/enums/ui/UiKey.cs` 中添加你的 UI 页面键
-4. 在 `scripts/enums/scene/SceneKey.cs` 中添加你的场景键
-5. 在 `scripts/core/state/impls/` 下创建你的状态
-6. 在 `scripts/module/StateModule.cs` 中注册新状态
-7. 页面开发参照 `script_templates/UiPage/` 五文件参考（`[AutoUiPage]` 自动生成 `GetPage()` 样板）
-8. 开始在 `scripts/cqrs/`、`scripts/ui/menu/` 等目录下按业务域添加代码
+### 第 1 步：一键重命名（命名空间 / 项目名 / 工程文件）
+
+```powershell
+# Windows PowerShell
+powershell -NoProfile -ExecutionPolicy Bypass -File toolsename-project.ps1 -Namespace MyGame
+
+# PowerShell 7 / 跨平台（可用 -ProjectName 单独指定项目名）
+pwsh -File tools/rename-project.ps1 -Namespace MyCompany.MyGame -ProjectName MyGame
+```
+
+脚本会：替换全部源码与文档中的命名空间与项目名 → 重命名 `.sln` / `.csproj` / 测试项目目录 → 执行 `dotnet build` 验证。
+（可用 `-SkipBuild` 跳过验证；脚本自身与 `.git`/`.godot`/`obj`/`bin` 会被跳过。）
+
+### 第 2 步：接入业务代码
+
+1. 在 `scripts/enums/ui/UiKey.cs` 中添加你的 UI 页面键
+2. 在 `scripts/enums/scene/SceneKey.cs` 中添加你的场景键
+3. 在 `scripts/core/state/` 下创建你的状态
+4. 在 `scripts/module/StateModule.cs` 中注册新状态
+5. 页面开发参照 `script_templates/UiPage/` 五文件参考（`[AutoUiPage]` 自动生成 `GetPage()` 样板）
+6. 示例页面与端到端链路参考 `scripts/ui/menu/MainMenu.cs`
+7. 按业务域在 `scripts/cqrs/`、`scripts/ui/<域>/` 等下添加代码
+8. 替换示例数据：`config/`（见 `config/README.md`）、`schemas/`、`localization/`
 
 ## CI/CD 工作流
 
