@@ -1,4 +1,4 @@
-using GFrameworkTemplate.scripts.component.hierarchical_state_machine;
+﻿using GFrameworkTemplate.scripts.component.hierarchical_state_machine;
 using GFrameworkTemplate.scripts.component.state_machine;
 
 namespace GFrameworkTemplate.Tests;
@@ -112,5 +112,83 @@ public class HierarchicalStateMachineTests
                 "ChildRun:Exit", "Parent:Exit"
             },
             history);
+    }
+
+    [Fact]
+    public void StateChanged_EventReportsFromAndTo()
+    {
+        var history = new List<string>();
+        var idle = new TestState("Idle", history);
+        var run = new TestState("Run", history);
+        var toggle = false;
+
+        var fsm = new HierarchicalStateMachine()
+            .AddState(idle)
+            .AddState(run)
+            .AddTransition(idle, run, new ToggleCondition(() => toggle));
+
+        var transitions = new List<(IState? From, IState To)>();
+        fsm.OnStateChanged += (from, to) => transitions.Add((from, to));
+
+        fsm.Start();          // Idle 进入：来源为 null
+        toggle = true;
+        fsm.Process(0.016);   // Idle → Run
+
+        Assert.Equal(2, transitions.Count);
+        Assert.Null(transitions[0].From);
+        Assert.Same(idle, transitions[0].To);
+        Assert.Same(idle, transitions[1].From);
+        Assert.Same(run, transitions[1].To);
+    }
+
+    [Fact]
+    public void IsRunning_ReflectsActiveState()
+    {
+        var history = new List<string>();
+        var fsm = new HierarchicalStateMachine().AddState(new TestState("Idle", history));
+
+        Assert.False(fsm.IsRunning);
+
+        fsm.Start();
+        Assert.True(fsm.IsRunning);
+        Assert.NotNull(fsm.ActiveState);
+
+        fsm.Stop();
+        Assert.False(fsm.IsRunning);
+        Assert.Null(fsm.ActiveState);
+    }
+
+    [Fact]
+    public void ActiveState_ResolvesDeepestState_WhileCurrentStateIsNull()
+    {
+        var history = new List<string>();
+        var parent = new TestState("Parent", history);
+        var child = new TestState("Child", history);
+
+        var sub = new HierarchicalStateMachine().AddState(child);
+        var fsm = new HierarchicalStateMachine()
+            .AddState(parent)
+            .AttachSubMachine(parent, sub);
+
+        fsm.Start();
+
+        // CurrentState 是本机直接状态（父状态）；ActiveState 递归到最深的活动状态（子状态）
+        Assert.Same(parent, fsm.CurrentState);
+        Assert.Same(parent, fsm.ActiveMachine == fsm ? parent : fsm.ActiveMachine.Parent?.CurrentState);
+        Assert.Same(child, fsm.ActiveState);
+    }
+
+    [Fact]
+    public void AttachSubMachine_RejectsAlreadyAttachedSubMachine()
+    {
+        var history = new List<string>();
+        var a = new TestState("A", history);
+        var b = new TestState("B", history);
+        var sub = new HierarchicalStateMachine().AddState(new TestState("C", history));
+
+        var first = new HierarchicalStateMachine().AddState(a).AttachSubMachine(a, sub);
+
+        Assert.Throws<InvalidOperationException>(
+            () => new HierarchicalStateMachine().AddState(b).AttachSubMachine(b, sub));
     }
 }

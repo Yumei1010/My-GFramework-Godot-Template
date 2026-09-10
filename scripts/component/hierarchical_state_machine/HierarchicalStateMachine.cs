@@ -29,8 +29,11 @@ namespace GFrameworkTemplate.scripts.component.hierarchical_state_machine;
 public sealed class HierarchicalStateMachine
 {
     /// <summary>
-    ///     当前状态（本机直接持有的状态；若当前状态挂有活动子机，则为 null，活动状态在子机中）。
+    ///     本机直接持有的当前状态（不递归到子状态机）；未运行时为 null。
     /// </summary>
+    /// <remarks>
+    ///     若需要"真正在运行的最深状态"，请使用 <see cref="ActiveState" />。
+    /// </remarks>
     public IState? CurrentState => _current;
 
     /// <summary>
@@ -40,6 +43,20 @@ public sealed class HierarchicalStateMachine
         _current is not null && _subMachines.TryGetValue(_current, out var sub) && sub._current is not null
             ? sub.ActiveMachine
             : this;
+
+    /// <summary>
+    ///     状态切换事件：参数为（来源状态, 目标状态）。
+    /// </summary>
+    /// <remarks>
+    ///     顶级状态机与子状态机的切换都会触发（子机的切换通过其自身的本事件通知）。
+    ///     来源状态为切换前真正在运行的最深状态（首次进入时为 null）。
+    /// </remarks>
+    public event Action<IState?, IState>? OnStateChanged;
+
+    /// <summary>
+    ///     是否处于运行中（存在活动状态）。
+    /// </summary>
+    public bool IsRunning => ActiveState is not null;
 
     /// <summary>
     ///     当前处于活动状态的最深层状态（递归到子状态机）；无活动状态时为 null。
@@ -177,6 +194,7 @@ public sealed class HierarchicalStateMachine
 
     private void ChangeState(IState next)
     {
+        var previous = ActiveState;
         ExitCurrentState();
 
         _current = next;
@@ -185,6 +203,8 @@ public sealed class HierarchicalStateMachine
         // 进入新状态后，若它挂有子状态机，则递归进入子状态机的初始状态
         if (_subMachines.TryGetValue(next, out var sub))
             sub.Start();
+
+        OnStateChanged?.Invoke(previous, ActiveState ?? next);
     }
 
     private void ExitCurrentState()
