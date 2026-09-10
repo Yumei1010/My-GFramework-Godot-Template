@@ -1,4 +1,4 @@
-# 项目约束规范
+﻿# 项目约束规范
 
 本文档定义基于本框架模板的项目的编码规范、架构约束和命名约定。所有贡献者必须遵守。
 
@@ -40,19 +40,21 @@ scripts/cqrs/<domain>/event/    → GFrameworkTemplate.scripts.cqrs.<domain>.@ev
 | 目录 | 用途 | 示例 |
 |---|---|---|
 | `scripts/component/` | 可复用组件（含接口和实现） | HFSM、行为树 |
-| `scripts/entities/` | 领域实体与核心组件 | 按业务域自定义 |
-| `scripts/system/` | GFramework ISystem 实现 | 按业务域自定义 |
-| `scripts/menu/` | UI 页面（被 UiRouter 管理） | 按业务域自定义 |
-| `scripts/cqrs/` | CQRS 命令、事件、命令输入 | 见第 4 节 |
+| `scripts/core/` | 架构核心（状态机、路由、UI 工厂、配置/本地化接入） | GameArchitecture、UiRouter、ConfigRuntime |
+| `scripts/cqrs/` | CQRS 命令、事件、命令输入（按业务域分子目录） | 见第 4 节 |
 | `scripts/enums/` | 枚举定义（按域分子目录） | UiKey、SceneKey、TextureKey |
-| `scripts/model/` | 领域模型（纯数据结构） | 按业务域自定义 |
-| `scripts/core/` | 架构核心（状态机、路由、UI 工厂） | GameArchitecture、UiRouter |
-| `scripts/module/` | GFramework 模块安装 | ModelModule、SystemModule |
+| `scripts/menu/` | UI 页面（被 UiRouter 管理，按业务域分子目录） | MainMenu |
+| `scripts/framework/` | 对 GFramework 的自研扩展（框架未提供的能力） | logging/（会话文件日志） |
+| `scripts/module/` | GFramework 模块安装 | ModelModule、SystemModule、ConfigModule |
 | `scripts/constants/` | 全局常量 | GameConstants、UiLayers |
 | `scripts/data/` | 可持久化数据类与提供者 | SettingDataLocationProvider |
 | `scripts/utility/` | 通用工具，按域分子目录 | GameUtil、event/、registry/ |
 | `global/` | Godot 自动加载单例 | GameEntryPoint、UiRoot、SceneRoot |
 | `tests/` | xUnit 单元测试 | 按模块自定义 |
+| `config/` `schemas/` | 配置数据目录（YAML 数据 + JSON Schema，生成器自动拾取 schemas/） | config/monster、monster.schema.json |
+| `localization/` | 语言表目录（`{语言码}/{表名}.json`） | localization/eng/common.json |
+
+> 业务代码建议：按业务域在 `scripts/` 下自建子目录（参考 `scripts/menu/`），不要为"未来可能的实体/模型/系统"预留空目录。
 
 ### 目录命名规范
 
@@ -93,7 +95,17 @@ MyPage.Properties.cs
 
 - 文件名格式：`{ClassName}.{Suffix}.cs`
 - 所有 partial 文件声明为 `public partial class {ClassName}`（不加修饰符）
-- `_Ready()` 中调用顺序：`ReadyAsync()` → `ConnectSignal()` → `RegisterEvent()`
+- `_Ready()` 中调用顺序：**架构注入 → 节点注入 → 信号绑定 → 事件订阅 → 异步初始化**
+  ```csharp
+  public override void _Ready()
+  {
+      __InjectContextBindings_Generated();   // [GetSystem]/[GetModel]/[GetUtility] 字段注入（漏掉会导致字段为 null）
+      __InjectGetNodes_Generated();          // [GetNode] 节点注入
+      __BindNodeSignals_Generated();         // [BindNodeSignal] 信号绑定
+      RegisterEvents();                      // 事件订阅（必须先于异步初始化，否则初始化期间事件会丢失）
+      _ = ReadyAsync();                      // 异步初始化（等待架构就绪等）
+  }
+  ```
 
 ---
 
@@ -144,6 +156,11 @@ public sealed class SomeEvent;
 ### 命令规范
 
 **所有命令必须是 `public sealed class`。**
+
+> ⚠️ **Godot 主线程约束**：框架禁止在 Godot 主线程同步派发 CQRS——
+> `this.SendCommand(...)` / `SendQuery(...)` / `SendRequest(...)` 会抛 `InvalidOperationException`（`GuardSyncCqrs`）。
+> 因此本项目**命令统一使用 `AbstractAsyncCommand`**，调用方 `await this.SendCommandAsync(new XxxCommand(...))`；
+> `this.SendEvent(...)` 不受此限制。
 
 **带输入的命令**（异步）— 使用主构造函数：
 ```csharp
@@ -316,6 +333,25 @@ private TextureRect ShadowRect => GetNode<TextureRect>("%ShadowRect");
   - 若目标实现了项目接口 → 使用接口类型（`ICalculator`）
   - 否则 → 使用 Godot 具体类型（`Button`、`Label`）
 - 属性声明位置：**仅**在 `*.Dependencies.cs` 中
+
+### 架构组件注入（[GetSystem] 等）
+
+使用 `[GetSystem]` / `[GetModel]` / `[GetUtility]` 字段注入时，
+**必须在 `_Ready()` 开头调用 `__InjectContextBindings_Generated()` 完成绑定**，否则注入字段恒为 `null`：
+
+```csharp
+[GetSystem]
+private ILocalizationManager _localization = null!;
+
+public override void _Ready()
+{
+    __InjectContextBindings_Generated();   // 不可省略
+    // ... 之后才可使用 _localization
+}
+```
+
+> 语法糖字段注入（`[GetNode]`/`[BindNodeSignal]`/`[GetSystem]`）与对应生成方法签名见
+> `script_templates/UiPage/`（页面骨架）与 `docs/guides/` 各教程。
 
 ---
 

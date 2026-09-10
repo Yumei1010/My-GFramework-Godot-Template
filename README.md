@@ -1,4 +1,4 @@
-# My GFramework Godot Template
+﻿# My GFramework Godot Template
 
 基于 [GFramework](https://github.com/GeWuYou/GFramework) (v0.7.1) 的 Godot 4.7 项目起手模板，**经 [Twenty-four](https://github.com/Yumei1010/Twenty-four) 项目重度实战魔改后反向提炼**，贴合个人使用习惯。
 
@@ -40,26 +40,35 @@ My-GFramework-Godot-Template（从 Twenty-four 剥离业务逻辑，保留骨架
 | `assets/` | 游戏资源：字体、Shader、音频/数据占位目录 |
 | `global/` | Godot 自动加载单例（GameEntryPoint、UiRoot、SceneRoot 等） |
 | `resource/` | Godot 资源文件（音频总线布局、主题） |
-| `scenes/` | 主场景 `main.tscn` 及组件场景 |
+| `scenes/` | 主场景 `main.tscn` 及 UI 页面场景（`menu/`） |
 | `script_templates/` | Godot 脚本模板：`Node/` 右键模板 + `UiPage/` 五文件 partial 参考 |
-| `scripts/core/` | 框架核心：架构引导、状态机、UI/场景路由、配置资源 |
-| `scripts/module/` | DI 模块安装（Model / System / Utility / State） |
+| `scripts/core/` | 框架核心：架构引导、状态机、UI/场景路由、配置资源、配置/本地化接入 |
+| `scripts/module/` | DI 模块安装（Model / System / Utility / Config / State） |
 | `scripts/cqrs/` | CQRS 命令/事件/查询，按域分目录 |
 | `scripts/component/` | 可复用组件（HFSM、行为树等） |
+| `scripts/menu/` | UI 页面（被 UiRouter 管理） |
+| `scripts/framework/` | 对 GFramework 的自研扩展（如 `logging/` 会话文件日志） |
 | `scripts/enums/` | 枚举定义（UiKey、SceneKey、TextureKey、InputPhase） |
 | `scripts/constants/` | 全局常量（GameConstants、UiLayers） |
 | `scripts/utility/` | 工具类，按域分子目录（event 事件、registry 注册表等） |
 | `scripts/data/` | 数据层（设置位置提供者） |
+| `config/` | YAML 配置数据（一对象一文件） |
+| `schemas/` | JSON Schema（配置源生成器自动拾取） |
+| `localization/` | 语言表（`{语言码}/{表名}.json`） |
 
 ## 骨架包含
 
 | 层级 | 内容 |
 |---|---|
-| DI 引导 | `GameArchitecture` + 4 模块（Model / System / Utility / State） |
+| DI 引导 | `GameArchitecture` + 5 模块（Model / System / Utility / Config / State） |
 | 路由 | `UiRouter`、`SceneRouter`、`UiFactory` |
 | 状态机 | `GameStateMachineSystem` + `AppState` 示例 |
 | 全局节点 | `GameEntryPoint`、`UiRoot`、`SceneRoot`、`SceneTransitionManager` |
-| CQRS 示例 | 音量控制、分辨率/全屏切换、设置存取、退出游戏 |
+| CQRS 示例 | 音量控制、分辨率/全屏切换、设置存取、游戏流程（`StartGameCommand` → `GameStartedEvent` 闭环）、退出游戏 |
+| 示例页面 | `scripts/menu/MainMenu.cs` — 语法糖 + CQRS 端到端链路完整参考 |
+| 配置系统 | Config：`schemas/*.schema.json` → 源生成器 → `config/*.yaml`（`ConfigModule` 接入） |
+| 本地化 | `localization/{语言码}/{表名}.json` + `LocalizationManager` |
+| 会话日志 | 控制台 + `user://logs/YYYYMMDD_HHmmss.log`（JSON 行，F12 打开目录） |
 | 通用组件 | 分层状态机（HFSM）、行为树（Behavior Tree） |
 | 频段事件 | 事件总线频段（Gameplay/Ui/Audio/Net），原版 API 直接支持 |
 | ECS | Arch ECS（`UseArch` 接入，World 容器注册） |
@@ -89,7 +98,7 @@ dotnet build
 5. 在 `scripts/core/state/impls/` 下创建你的状态
 6. 在 `scripts/module/StateModule.cs` 中注册新状态
 7. 页面开发参照 `script_templates/UiPage/` 五文件参考（`[AutoUiPage]` 自动生成 `GetPage()` 样板）
-8. 开始在 `scripts/cqrs/`、`scripts/entities/`、`scripts/menu/` 下添加业务代码
+8. 开始在 `scripts/cqrs/`、`scripts/menu/` 等目录下按业务域添加代码
 
 ## CI/CD 工作流
 
