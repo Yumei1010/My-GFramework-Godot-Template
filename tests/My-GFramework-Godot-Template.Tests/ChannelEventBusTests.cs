@@ -1,4 +1,4 @@
-using GFrameworkTemplate.scripts.constants;
+﻿using GFrameworkTemplate.scripts.constants;
 using GFrameworkTemplate.scripts.framework.@event;
 
 namespace GFrameworkTemplate.Tests;
@@ -112,5 +112,74 @@ public class ChannelEventBusTests
         bus.SendOnChannel("MyCustomChannel", new TestEvent { Value = "custom" });
 
         Assert.Equal(new[] { "custom" }, received);
+    }
+
+    [Fact]
+    public void RuntimeChannelCreation_IsLazy()
+    {
+        var bus = new ChannelEventBus();
+        Assert.Equal(0, bus.ChannelCount);
+
+        bus.SendOnChannel("runtime-channel", new TestEvent { Value = "x" });
+
+        Assert.Equal(1, bus.ChannelCount);
+        Assert.True(bus.ContainsChannel("runtime-channel"));
+        Assert.Contains("runtime-channel", bus.ChannelNames);
+    }
+
+    [Fact]
+    public void RemoveChannel_DropsSubscribers_AndRecreatesFresh()
+    {
+        var bus = new ChannelEventBus();
+        var received = new List<string>();
+        bus.RegisterOnChannel<TestEvent>("room-1", e => received.Add(e.Value));
+
+        bus.SendOnChannel("room-1", new TestEvent { Value = "first" });
+        Assert.Single(received);
+
+        Assert.True(bus.RemoveChannel("room-1"));
+        Assert.False(bus.ContainsChannel("room-1"));
+        Assert.False(bus.RemoveChannel("room-1"));   // 幂等：移除不存在的频段返回 false
+
+        // 移除后同名频段为全新实例，旧订阅者不再收到（Send 会懒创建新实例）
+        bus.SendOnChannel("room-1", new TestEvent { Value = "second" });
+        Assert.Single(received);
+        Assert.True(bus.ContainsChannel("room-1"));  // 已重建为新实例
+    }
+
+    [Fact]
+    public void ClearChannels_RemovesAllChannels()
+    {
+        var bus = new ChannelEventBus();
+        bus.SendOnChannel("c1", new TestEvent { Value = "a" });
+        bus.SendOnChannel("c2", new TestEvent { Value = "b" });
+        Assert.Equal(2, bus.ChannelCount);
+
+        bus.ClearChannels();
+
+        Assert.Equal(0, bus.ChannelCount);
+        Assert.Empty(bus.ChannelNames);
+    }
+
+    [Theory]
+    [InlineData("")]
+    [InlineData(null)]
+    public void EmptyChannel_Throws(string? channel)
+    {
+        var bus = new ChannelEventBus();
+
+        // 用 ThrowsAny 兼容 ArgumentNullException（ArgumentException 的派生类型）
+        Assert.ThrowsAny<ArgumentException>(() => bus.SendOnChannel(channel!, new TestEvent { Value = "x" }));
+        Assert.ThrowsAny<ArgumentException>(() => bus.RegisterOnChannel<TestEvent>(channel!, _ => { }));
+    }
+
+    [Fact]
+    public void ConcurrentChannelCreation_IsThreadSafe()
+    {
+        var bus = new ChannelEventBus();
+
+        Parallel.For(0, 200, i => bus.SendOnChannel($"room-{i % 20}", new TestEvent { Value = i.ToString() }));
+
+        Assert.Equal(20, bus.ChannelCount);
     }
 }

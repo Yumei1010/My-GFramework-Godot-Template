@@ -53,7 +53,7 @@ var unReg = this.RegisterEvent<PlayerDiedEvent>(ChannelConstants.Gameplay, handl
 unReg.UnRegister(); // 取消订阅
 ```
 
-## 自定义频段
+## 自定义频段与运行时创建
 
 `ChannelConstants` 是预定义常量，也可直接传字符串自定义频段：
 
@@ -61,6 +61,26 @@ unReg.UnRegister(); // 取消订阅
 this.RegisterEvent<SomeEvent>("MyCustomChannel", handler);
 this.SendEvent("MyCustomChannel", new SomeEvent { ... });
 ```
+
+**频段是惰性创建的**：向任意名称发送/订阅都会自动创建该频段，因此**运行时可自由创建新频段**。
+但频段会一直驻留内存，**动态频段必须配对释放**，否则持续累积：
+
+```csharp
+// 动态频段示例：每局/每房间一个独立频段
+var bus = this.GetService<ChannelEventBus>()!;
+var channel = $"room-{roomId}";
+bus.SendOnChannel(channel, new RoomStartedEvent { RoomId = roomId });
+
+// 用完释放（移除频段及其全部订阅；此后同名频段会被重建为全新实例）
+bus.RemoveChannel(channel);
+```
+
+| 建议 | 说明 |
+|---|---|
+| 固定用途 → 用 `ChannelConstants` 常量频段 | 有限且长期存在，无需释放 |
+| 动态用途（局/房间/实例级）→ 配对 `RemoveChannel` | 避免内存只增不减 |
+| 调试/诊断 | `ChannelCount` / `ChannelNames` / `ContainsChannel` |
+| 整批清理（如返回主菜单） | `ClearChannels()` |
 
 ## 架构集成（GFramework 0.7.1+）
 
@@ -90,7 +110,10 @@ public override Action<IServiceCollection>? Configurator =>
 ## 实现说明
 
 `ChannelEventBus` 继承原版 `EventBus`，内部为每个频段维护一个独立的 `EventBus` 实例
-（`Dictionary<string, EventBus>`），按"频段 + 事件类型"分发。`GetChannel` 惰性创建频段总线。
+（`ConcurrentDictionary<string, EventBus>`，可跨线程安全创建/发送/移除），按"频段 + 事件类型"分发。
+`GetChannel` 惰性创建频段总线；`RemoveChannel` 丢弃整个频段实例（其上订阅随之失效）。
+
+> 说明：框架原版 `EventBus` 未提供"清空订阅/统计订阅数"能力，因此频段的释放粒度是**整个频段实例**。
 
 ## 测试验证
 
@@ -99,3 +122,5 @@ public override Action<IServiceCollection>? Configurator =>
 - 同频段多订阅者均收到
 - 取消订阅后不再收到
 - 无数据标记事件、自定义频段
+- 运行时惰性创建频段、`RemoveChannel` 释放与重建、`ClearChannels`、频段统计
+- 空频段名校验、并发创建频段（线程安全）
