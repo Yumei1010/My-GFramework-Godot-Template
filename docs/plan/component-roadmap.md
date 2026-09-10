@@ -62,5 +62,5 @@
 - [x] `docs/guides/pause.md` — 暂停栈详解（PauseGroup 分栈/PauseToken 任意释放/PauseScope/Godot 桥接/UI 联动/模板 5 步接入；配 9 个验证测试）
 - [x] `docs/guides/audio.md` — 音频设置与音量管理（模板 audio CQRS 域链路/GodotAudioSettings+AudioBusMap 扩展新总线/播放器组织建议；配 4 验证测试）
 - [ ] 计时器教程
-- [ ] UI 弹窗教程
+- [x] `docs/guides/ui.md` — UI 路由与弹窗详解（页面栈+五层管理/Show·Hide·Resume/交互档案 Cancel·Confirm 与输入阻断/自动暂停联动/路由守卫/过渡处理器/页面骨架；配 8 验证测试）
 - [x] `docs/guides/logging.md` — 日志系统详解（框架日志体系全景/Core·Godot 分工/结构化属性双路输出/会话文件/导出 F12/配置与扩展点/坑；配 6 验证测试）
