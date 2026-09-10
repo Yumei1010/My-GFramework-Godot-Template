@@ -52,6 +52,7 @@
 - [x] `docs/guides/object-pool.md` — 对象池详解（框架原生 AbstractNodePoolSystem 用法）
 - [x] `docs/guides/ecs.md` — Arch ECS 详解（接入/组件/系统/驱动/示例）
 - [x] `docs/guides/store.md` — Store 状态管理详解（Redux 风格：State/Action/Reducer/Selector/Middleware/History + Model 承载模式；配 11 个验证测试）
+- [x] `docs/guides/config.md` — Config 配置系统详解（YAML + JSON Schema + Source Generator 全链路；Godot 桥接/校验/跨表引用/热重载；配 5 个验证测试）
 - 原 object_pool 示例代码已删除（教学由文档承担）
 
 ## 待办
