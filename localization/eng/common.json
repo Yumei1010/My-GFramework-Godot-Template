@@ -3,5 +3,6 @@
   "ui.confirm": "Confirm",
   "ui.cancel": "Cancel",
   "ui.settings": "Settings",
-  "ui.quit": "Quit"
+  "ui.quit": "Quit",
+  "ui.state.running": "Running"
 }

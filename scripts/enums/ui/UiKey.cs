@@ -1,12 +1,13 @@
 namespace GFrameworkTemplate.scripts.enums.ui;
 
 /// <summary>
-///     定义 UI 页面键值枚举，用于标识不同的 UI 面板
+///     UI 页面键，与 <c>UiPageConfig</c>（场景配置）一一对应。
 /// </summary>
 public enum UiKey
 {
-    /// <summary>
-    ///     示例页面键（对应参考代码见 script_templates/UiPage/，新项目在此加自己的键）
-    /// </summary>
+    /// <summary>主菜单页面（模板真实页面示例）。</summary>
+    MainMenu,
+
+    /// <summary>脚本模板生成的示例页面占位键。</summary>
     TemplatePage,
 }

@@ -1,8 +1,9 @@
-using GFramework.Core.Abstractions.State;
+﻿using GFramework.Core.Abstractions.State;
 using GFramework.Core.Extensions;
 using GFramework.Core.State;
 using GFramework.Game.Abstractions.Scene;
 using GFramework.Game.Abstractions.UI;
+using GFrameworkTemplate.scripts.enums.ui;
 
 namespace GFrameworkTemplate.scripts.core.state.impls;
 
@@ -20,6 +21,9 @@ public class AppState : AsyncContextAwareStateBase
         var uiRouter = this.GetSystem<IUiRouter>()!;
         await uiRouter.ClearAsync().ConfigureAwait(false);
         await this.GetSystem<ISceneRouter>()!.ClearAsync().ConfigureAwait(false);
+
+        // 推送默认页面（模板真实页面示例：菜单 → 命令 → 事件闭环）
+        await uiRouter.PushAsync(UiKey.MainMenu.ToString()).ConfigureAwait(false);
     }
 
     /// <inheritdoc />

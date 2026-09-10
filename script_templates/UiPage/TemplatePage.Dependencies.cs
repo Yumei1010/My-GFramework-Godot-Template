@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using GFramework.Core.SourceGenerators.Abstractions.Rule;
 using GFramework.Game.Abstractions.UI;
 using GFramework.Godot.SourceGenerators.Abstractions;
@@ -29,7 +31,16 @@ public partial class TemplatePage
     /// </summary>
     private async Task ReadyAsync()
     {
-        await GameEntryPoint.Architecture.WaitUntilReadyAsync().ConfigureAwait(false);
-        _log.Debug("TemplatePage 初始化完成");
+        try
+        {
+            // 不要使用 ConfigureAwait(false)：续体会被切到线程池，之后访问 Godot 节点 API 会失败
+            await GameEntryPoint.Architecture.WaitUntilReadyAsync();
+            _log.Debug("TemplatePage 初始化完成");
+        }
+        catch (Exception ex)
+        {
+            // _ = ReadyAsync() 不观察异常，显式记录避免初始化失败静默
+            _log.Error("TemplatePage 初始化失败", ex);
+        }
     }
 }

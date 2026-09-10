@@ -3,5 +3,6 @@
   "ui.confirm": "确定",
   "ui.cancel": "取消",
   "ui.settings": "设置",
-  "ui.quit": "退出"
+  "ui.quit": "退出",
+  "ui.state.running": "进行中"
 }
