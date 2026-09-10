@@ -1,4 +1,4 @@
-using GFrameworkTemplate.scripts.component.action_queue;
+﻿using GFrameworkTemplate.scripts.component.action_queue;
 
 namespace GFrameworkTemplate.Tests;
 
@@ -109,5 +109,70 @@ public class ActionQueueTests
         Assert.True(queue.IsEmpty);
         Assert.False(queue.IsRunning);
         Assert.Equal(0, queue.PendingCount);
+    }
+
+    [Fact]
+    public async Task StepFailure_PropagatesToWaiter_AndNotifiesEvent()
+    {
+        var queue = new ActionQueue();
+        var notified = new List<Exception>();
+        queue.OnStepFailed += notified.Add;
+
+        var gate = new TaskCompletionSource();
+        queue.Enqueue(() => gate.Task);            // 第 1 步：挂起，保证后续步骤都在本轮入队
+        queue.Enqueue(() => throw new InvalidOperationException("步骤失败"));
+        queue.Enqueue(() => Task.CompletedTask);   // 失败后应被丢弃
+
+        var waitTask = queue.WaitUntilIdleAsync();
+        gate.SetResult();
+
+        var exception = await Assert.ThrowsAsync<InvalidOperationException>(() => waitTask);
+
+        Assert.Equal("步骤失败", exception.Message);
+        Assert.Single(notified);
+        Assert.Equal(0, queue.PendingCount);       // 剩余步骤已丢弃
+        Assert.True(queue.IsEmpty);
+    }
+
+    [Fact]
+    public async Task WaitUntilIdle_CoversStepsEnqueuedDuringWait()
+    {
+        var queue = new ActionQueue();
+        var executed = new List<string>();
+
+        queue.Enqueue(async () =>
+        {
+            await Task.Delay(1);
+            executed.Add("A");
+            queue.Enqueue(async () =>
+            {
+                await Task.Delay(1);
+                executed.Add("B");   // 等待期间入队，也应被等到
+            });
+        });
+
+        await queue.WaitUntilIdleAsync();
+
+        Assert.Equal(new[] { "A", "B" }, executed);
+        Assert.True(queue.IsEmpty);
+    }
+
+    [Fact]
+    public async Task ConcurrentEnqueue_AllStepsExecutedOnce()
+    {
+        var queue = new ActionQueue();
+        var counter = 0;
+
+        await Task.WhenAll(Enumerable.Range(0, 50).Select(_ => Task.Run(() =>
+            queue.Enqueue(() =>
+            {
+                Interlocked.Increment(ref counter);
+                return Task.CompletedTask;
+            }))));
+
+        await queue.WaitUntilIdleAsync();
+
+        Assert.Equal(50, counter);
+        Assert.True(queue.IsEmpty);
     }
 }

@@ -1,4 +1,4 @@
-using GFramework.Core.SourceGenerators.Abstractions.Logging;
+﻿using GFramework.Core.SourceGenerators.Abstractions.Logging;
 using GFramework.Core.SourceGenerators.Abstractions.Rule;
 using Godot;
 
@@ -17,10 +17,33 @@ namespace GFrameworkTemplate.scripts.component.tween_tree;
 [ContextAware]
 public abstract partial class TweenNode : Node
 {
+    private IReadOnlyList<TweenNode>? _children;
+
     /// <summary>
     ///     当前节点的子动画节点（组合节点用）。
     /// </summary>
-    protected IReadOnlyList<TweenNode> ChildNodes => GetChildren().OfType<TweenNode>().ToList();
+    /// <remarks>
+    ///     结果会被缓存：子节点增删（<see cref="Node.NotificationChildOrderChanged" />）时自动失效。
+    /// </remarks>
+    protected IReadOnlyList<TweenNode> ChildNodes =>
+        _children ??= GetChildren().OfType<TweenNode>().ToList();
+
+    /// <summary>
+    ///     使子节点缓存立即失效（子节点增删会自动失效，一般无需手动调用）。
+    /// </summary>
+    public void InvalidateChildren()
+    {
+        _children = null;
+    }
+
+    /// <inheritdoc />
+    public override void _Notification(int what)
+    {
+        if (what == NotificationChildOrderChanged)
+        {
+            InvalidateChildren();
+        }
+    }
 
     /// <summary>
     ///     构建本节点的 Tween 片段（供父节点嵌入或根节点播放）。

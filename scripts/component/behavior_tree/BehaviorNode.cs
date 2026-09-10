@@ -1,4 +1,4 @@
-using GFramework.Core.SourceGenerators.Abstractions.Logging;
+﻿using GFramework.Core.SourceGenerators.Abstractions.Logging;
 using GFramework.Core.SourceGenerators.Abstractions.Rule;
 using Godot;
 using GFrameworkTemplate.scripts.enums.behavior_tree;
@@ -18,10 +18,34 @@ namespace GFrameworkTemplate.scripts.component.behavior_tree;
 [ContextAware]
 public abstract partial class BehaviorNode : Node, IBehaviorNode
 {
+    private IReadOnlyList<BehaviorNode>? _children;
+
     /// <summary>
     ///     当前节点的子行为树节点（复合节点用）。
     /// </summary>
-    protected IReadOnlyList<BehaviorNode> ChildNodes => GetChildren().OfType<BehaviorNode>().ToList();
+    /// <remarks>
+    ///     结果会被缓存：子节点增删（<see cref="Node.NotificationChildOrderChanged" />）时自动失效，
+    ///     避免行为树每帧执行时重复分配列表。
+    /// </remarks>
+    protected IReadOnlyList<BehaviorNode> ChildNodes =>
+        _children ??= GetChildren().OfType<BehaviorNode>().ToList();
+
+    /// <summary>
+    ///     使子节点缓存立即失效（子节点增删会自动失效，一般无需手动调用）。
+    /// </summary>
+    public void InvalidateChildren()
+    {
+        _children = null;
+    }
+
+    /// <inheritdoc />
+    public override void _Notification(int what)
+    {
+        if (what == NotificationChildOrderChanged)
+        {
+            InvalidateChildren();
+        }
+    }
 
     /// <summary>
     ///     执行本节点，返回执行结果。
