@@ -124,9 +124,19 @@ public interface ISaveMigration<TSaveData> where TSaveData : class, IData
 
 ---
 
-## 五、建议使用顺序（沉淀模板节奏）
+## 五、子文档索引与建议使用顺序（沉淀模板节奏）
 
-1. **输入域**（三端热切换玩法需求）→ 详见 `docs/research/gframework-extensions/input-domain.md`
-2. **ISaveMigration** → Twenty-four run 存档设计
-3. **IPauseHandler 分组暂停栈 + ITimeProvider** → countdown_timer/暂停组件的正确地基
-4. 其余按需吃
+| 子文档 | 内容 |
+|---|---|
+| `input-domain.md` | 输入三层协议（绑定/设备/UI 语义动作），三端热切换地基 |
+| `pause-stack.md` | 分组引用计数暂停栈，UI 自动暂停联动 |
+| `store.md` | Redux 风格状态管理（另有教学文档 `docs/guides/store.md`） |
+| `game-services.md` | Config(YAML 配置)/Data(存档)/Storage/Resource/Coroutine/RichText/UI·Scene 扩展点 |
+
+建议接入顺序：
+
+1. **Config 配置系统**（数据驱动地基）→ 详见 `game-services.md`
+2. **输入域**（三端热切换玩法需求）→ 详见 `input-domain.md`
+3. **ISaveMigration + SaveRepository**（Twenty-four run 存档）→ 详见 `game-services.md`
+4. **IPauseHandler 分组暂停栈 + ITimeProvider**（countdown_timer/暂停组件地基）→ 详见 `pause-stack.md`
+5. **Store**（Run/结算等聚合状态）→ 详见 `store.md` + `docs/guides/store.md`
