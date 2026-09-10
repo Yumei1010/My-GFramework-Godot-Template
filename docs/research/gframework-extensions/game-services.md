@@ -1,4 +1,4 @@
-# GFramework 服务层扩展组件研究（Config / Data / Storage / Resource / Coroutine / RichText）
+﻿# GFramework 服务层扩展组件研究（Config / Data / Storage / Resource / Coroutine / RichText）
 
 > 日期：2026-09 | 源码：`GFramework.Game/` + `GFramework.Godot/` + `GFramework.Core/`
 > 对应文档：`GFramework/docs/zh-CN/game/*.md`（config-system/data/storage/scene/ui/serialization/setting/input）、`core/coroutine.md`
@@ -109,10 +109,10 @@ new YamlConfigLoader("config-root").RegisterAllGeneratedConfigTables(
 
 ### 对项目的意义
 
-- **数据驱动**：玩法数据（关卡/牌型/词条/角色）从代码里挪出来，策划/自己用 YAML 改
+- **数据驱动**：静态内容（关卡/道具/词条/角色）从代码里挪出来，策划/自己用 YAML 改
 - **强类型安全**：schema 校验 + 源生成器，写错字段编译期/启动期就报
 - **与 AI 协作友好**：schema 是机器可读契约，AI 生成配置有据可依
-- 对应 Twenty-four：`Rule` 定义、`ChallengeModifier` 词条表、关卡表都可走这套
+- 适用场景：规则定义、词条表、关卡表等**数据驱动内容**都可走这套
 
 ### ⚠️ 已知边界（实测发现，2026-09）
 
@@ -310,8 +310,8 @@ sceneRouter.RegisterAroundHandler(ISceneAroundTransitionHandler handler, options
 
 | 优先级 | 项 | 理由 |
 |---|---|---|
-| **P0** | **Config 配置系统** | 数据驱动的地基；Twenty-four 的 Rule/词条/关卡数据直接受益 |
-| **P0** | **SaveRepository + ISaveMigration** | 多槽位存档 + 版本迁移，Twenty-four run 存档必需 |
+| **P0** | **Config 配置系统** | 数据驱动地基；规则/词条/关卡等静态内容直接受益 |
+| **P0** | **SaveRepository + ISaveMigration** | 多槽位存档 + 版本迁移，存档系统必需 |
 | **P1** | Resource 资源管理 | 资源量大时必需（引用计数/自动释放） |
 | **P1** | Coroutine 调度器 | 已部分使用，补全统计/快照能力 |
 | **P2** | UI/Scene RouteGuard + Handler | 业务化钩子（拦截/转场动画） |

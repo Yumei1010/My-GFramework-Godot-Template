@@ -1,11 +1,11 @@
-# 动作队列（Action Queue）
+﻿# 动作队列（Action Queue）
 
 `scripts/component/action_queue/` 下的动作队列组件：**按序串行执行异步步骤**（前一个完成才执行下一个）。
 契合"按序播放动画 / 连锁效果"场景——把步骤排入队列，自动逐个执行。
 
 ## 为什么需要？
 
-游戏里常有"连锁反应"：出牌 → 移动动画 → 翻牌 → 计分 → 反馈。
+游戏里常有"连锁反应"：触发 → 移动动画 → 播放动画 → 计分 → 反馈。
 如果用事件直接广播，各步骤会**并行乱序**；用回调嵌套则代码难以维护。
 动作队列把步骤排成 FIFO，**自动串行**，每步可 `await` 自己的动画/异步逻辑。
 
@@ -15,11 +15,11 @@
 var queue = new ActionQueue();
 
 // 按序排入步骤（可混合同步/异步）
-queue.Enqueue(async () => await MoveCardToTarget());  // 第 1 步：移动（await 动画完成）
-queue.Enqueue(async () => await FlipCard());           // 第 2 步：翻牌
+queue.Enqueue(async () => await MoveToTargetAsync());  // 第 1 步：移动（await 动画完成）
+queue.Enqueue(async () => await PlayAnimationAsync()); // 第 2 步：播放动画
 queue.Enqueue(() => CalculateScore());                 // 第 3 步：计分（同步也可）
 
-// 队列自动串行：移动完 → 翻牌完 → 计分
+// 队列自动串行：移动完 → 动画完 → 计分
 // 运行中再 Enqueue 会自动追加到队尾，等前序完成
 ```
 
@@ -44,15 +44,15 @@ var queue = new ActionQueue();
 // 步骤里 await 动画完成信号
 queue.Enqueue(async () =>
 {
-    var tween = GetNode<Control>("%Card").CreateTween();
-    tween.TweenProperty(GetNode<Control>("%Card"), "position", targetPos, 0.3);
+    var tween = GetNode<Control>("%Panel").CreateTween();
+    tween.TweenProperty(GetNode<Control>("%Panel"), "position", targetPos, 0.3);
     await ToSignal(tween, Tween.SignalName.Finished);
 });
 
 queue.Enqueue(async () =>
 {
     // 或触发 CQRS 事件后等对应完成事件
-    this.SendEvent(new PlayFlipAnimEvent { CardId = id });
+    this.SendEvent(new PlayAnimEvent { TargetId = id });
     await ToSignal(this, AnimationFinishedSignal);  // 等动画系统回执
 });
 ```

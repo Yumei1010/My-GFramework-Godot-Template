@@ -231,7 +231,7 @@ public sealed class SomeCommandInput : ICommandInput
 
 ### 命名
 
-- 接口以 `I` 为前缀：`ICalculator`、`IPoker`、`IDeck`
+- 接口以 `I` 为前缀：`IInventory`、`IPlayerService`、`IGameState`
 - 接口文件与主要实现放在同一目录
 - 一个接口一个文件
 
@@ -239,10 +239,10 @@ public sealed class SomeCommandInput : ICommandInput
 
 | 类别 | 接口特征 | 示例 |
 |---|---|---|
-| **组件契约** | 定义在 `component/`，实现也在 `component/` | `ICalculator` → `Calculator` |
-| **实体契约** | 定义在 `entities/`，实现也在 `entities/` | `IPoker` → `Poker` |
-| **跨层抽象** | 定义在 `component/`，实现在 `entities/` | `IState` → `PokerState` |
-| **UI 页面** | **不需要** `I*` 接口，页面由 UiRouter 管理 | MainMenu、CalculateMenu |
+| **组件契约** | 定义在 `component/`，实现也在 `component/` | `IInventory` → `Inventory` |
+| **业务契约** | 与实现同置于业务域目录 | `IPlayerService` → `PlayerService` |
+| **跨层抽象** | 定义在 `component/`，实现在业务域目录 | `IState` → `PlayerState` |
+| **UI 页面** | **不需要** `I*` 接口，页面由 UiRouter 管理 | MainMenu、SettingsPage |
 
 ### 规则
 
@@ -321,7 +321,7 @@ public sealed class SomeCommandInput : ICommandInput
 
 ```csharp
 // 组件类型 — 通过接口注入
-private ICalculator Calculator => GetNode<ICalculator>("%Calculator");
+private IInventory Inventory => GetNode<IInventory>("%Inventory");
 
 // Godot 原生类型 — 通过具体类型注入
 private Button CheckButton => GetNode<Button>("%CheckButton");
@@ -333,7 +333,7 @@ private TextureRect ShadowRect => GetNode<TextureRect>("%ShadowRect");
 - 全部使用 `%` 唯一名称语法（Godot 4.x unique name）
 - 属性访问级别：`private`（不对外暴露）
 - 属性类型选择：
-  - 若目标实现了项目接口 → 使用接口类型（`ICalculator`）
+  - 若目标实现了项目接口 → 使用接口类型（`IInventory`）
   - 否则 → 使用 Godot 具体类型（`Button`、`Label`）
 - 属性声明位置：**仅**在 `*.Dependencies.cs` 中
 
@@ -367,7 +367,7 @@ public override void _Ready()
 ```csharp
 [Log]
 [ContextAware]
-public partial class Calculator : Node, ICalculator
+public partial class PlayerHud : Node, IInventoryView
 ```
 
 - `[Log]` 来自 `GFramework.Core.SourceGenerators.Abstractions.Logging` — 自动生成静态 `Log` 属性

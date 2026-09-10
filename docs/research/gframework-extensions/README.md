@@ -29,7 +29,7 @@
 
 **注意**：`IGodotInputMapBackend` 是 internal（测试注入用），公开入口是 `GodotInputBindingStore()`。
 
-→ **对应玩法需求**：手柄/键盘/触摸热切换（Twenty-four 玩法方向③）——框架已备好地基。
+→ **对应需求场景**：手柄/键盘/触摸三端热切换——框架已备好地基。
 
 ### 2. 事件过滤（接口留空）
 
@@ -57,7 +57,7 @@ public interface ISaveMigration<TSaveData> where TSaveData : class, IData
 }
 ```
 
-契约完整：`FromVersion → ToVersion` 迁移链，配 `IVersionedData` 判断当前版本。用途：Twenty-four run 存档、模板设置结构升级。
+契约完整：`FromVersion → ToVersion` 迁移链，配 `IVersionedData` 判断当前版本。用途：多槽位存档（run/存档槽）、模板设置结构升级。
 
 ### 4. Store / Redux 风格状态管理（完整实现）🔥
 
@@ -137,6 +137,6 @@ public interface ISaveMigration<TSaveData> where TSaveData : class, IData
 
 1. **Config 配置系统**（数据驱动地基）→ 详见 `game-services.md`
 2. **输入域**（三端热切换玩法需求）→ 详见 `input-domain.md`
-3. **ISaveMigration + SaveRepository**（Twenty-four run 存档）→ 详见 `game-services.md`
+3. **ISaveMigration + SaveRepository**（多槽位存档）→ 详见 `game-services.md`
 4. **IPauseHandler 分组暂停栈 + ITimeProvider**（暂停组件地基）→ 详见 `pause-stack.md`
 5. **Store**（Run/结算等聚合状态）→ 详见 `store.md` + `docs/guides/store.md`

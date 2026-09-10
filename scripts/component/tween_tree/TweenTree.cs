@@ -1,4 +1,4 @@
-using GFramework.Core.SourceGenerators.Abstractions.Logging;
+﻿using GFramework.Core.SourceGenerators.Abstractions.Logging;
 using GFramework.Core.SourceGenerators.Abstractions.Rule;
 using Godot;
 
@@ -12,15 +12,15 @@ namespace GFrameworkTemplate.scripts.component.tween_tree;
 ///     场景树示例：
 ///     <code>
 ///     TweenTree
-///     ├── TweenPropertyNode (卡牌移到台面)
+///     ├── TweenPropertyNode (位移动画)
 ///     └── TweenSequenceNode
-///         ├── TweenPropertyNode (翻牌：scale.x 0→1)
+///         ├── TweenPropertyNode (缩放：scale.x 0→1)
 ///         └── TweenPropertyNode (发光：modulate)
 ///
 ///     // 播放：
-///     GetNode&lt;TweenTree&gt;("%CardAnim").Play();
+///     GetNode&lt;TweenTree&gt;("%PanelAnim").Play();
 ///     // 或等完成：
-///     await GetNode&lt;TweenTree&gt;("%CardAnim").PlayAsync();
+///     await GetNode&lt;TweenTree&gt;("%PanelAnim").PlayAsync();
 ///     </code>
 /// </remarks>
 [Log]

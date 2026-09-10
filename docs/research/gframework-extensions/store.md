@@ -1,4 +1,4 @@
-# GFramework Store（Redux 风格状态管理）深度研究
+﻿# GFramework Store（Redux 风格状态管理）深度研究
 
 > 日期：2026-09 | 源码：`GFramework.Core.Abstractions/StateManagement/` + `GFramework.Core/StateManagement/`
 > 文档：`GFramework/docs/zh-CN/core/state-management.md`（493 行，覆盖完整）
@@ -153,12 +153,12 @@ bridge.UnRegister();  // 拆除
 4. 默认精确类型匹配，确有继承复用再开多态
 5. 引入顺序：先聚合状态封装进 Model → 修改入口迁 Command → Controller 用 selector 绑定
 
-## 八、与 Twenty-four / 模板的关系
+## 八、与模板落地场景的关系
 
 **候选场景**：
 - **结算/计分聚合**：一次结算多字段协同（分数/解锁/统计）→ Store + batch
-- **Run 状态**（roguelike run 进度/词条/生命）→ Model 承载 Store 比散 BindableProperty 干净
-- **撤销需求**：若玩法要"悔棋"（词条禁悔棋是玩法反面，但基础版可做）→ historyCapacity
+- **会话状态**（一轮游戏的进度/词条/生命）→ Model 承载 Store 比散 BindableProperty 干净
+- **撤销需求**：若玩法要支持"悔棋/回退"→ historyCapacity
 
 **模板沉淀候选**：Store 是四件套唯一未示范的——可加教学文档 `docs/guides/store.md` + 一个小 Model 承载示例（沿用角色面板样例），让模板覆盖"聚合状态"档位。
 

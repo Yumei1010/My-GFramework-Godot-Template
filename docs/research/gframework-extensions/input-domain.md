@@ -1,6 +1,6 @@
-# GFramework 输入域深度研究
+﻿# GFramework 输入域深度研究
 
-> 日期：2026-09 | 对应玩法需求：手柄/键盘/触摸热切换（Twenty-four 玩法方向③）
+> 日期：2026-09 | 对应需求场景：手柄/键盘/触摸三端热切换
 > 源码：`GFramework/GFramework.Game(.Abstractions)/Input/` + `GFramework.Godot/Input/` + `GFramework.Game(.Abstractions)/UI/` 输入相关
 
 ## 结论（TL;DR）
@@ -127,7 +127,7 @@ public bool TryHandleUiAction(UiInputAction action) =>
 | 页面 InteractionProfile | 页面无 profile 概念 | 页面类加属性（Modal 类页面用 BlockingCancel） |
 | 键盘焦点导航 | Godot 原生 focus 机制 | 表现层规范（focus 链 + 触摸末次输入隐藏焦点环） |
 
-## 四、与 Twenty-four 玩法方向③的关系
+## 四、与三端输入热切换需求的关系
 
 热切换玩法本质拆解为：
 1. **设备感知**：`IInputDeviceTracker` → 触摸时隐藏焦点环/显示触控 UI、手柄时显示按键提示

@@ -1,4 +1,4 @@
-# Tween 动画树（Tween Tree）
+﻿# Tween 动画树（Tween Tree）
 
 `scripts/component/tween_tree/` 下的 Tween 动画树组件：把 **Tween 动画包装成 Godot 节点**，
 在**编辑器里拼装节点树即可可视化编排动画序列**——像动画树（AnimationTree）一样直观，
@@ -28,7 +28,7 @@
 ```
 TweenTree（挂到场景，如角色节点下）
 └── TweenSequenceNode（顺序）
-    ├── TweenPropertyNode    卡牌移到台面 (position → (300,0), 0.4s)
+    ├── TweenPropertyNode    位移动画 (position → (300,0), 0.4s)
     ├── TweenParallelNode（并行）
     │   ├── TweenPropertyNode    淡入 (modulate → 白, 0.3s)
     │   └── TweenPropertyNode    放大 (scale → 1.2, 0.3s)
@@ -52,10 +52,10 @@ TweenTree（挂到场景，如角色节点下）
 
 ```csharp
 // 播放（不等待）
-GetNode<TweenTree>("%CardAnim").Play();
+GetNode<TweenTree>("%PanelAnim").Play();
 
 // 播放并等待完成（配合 ActionQueue 做更大序列，或 async/await）
-await GetNode<TweenTree>("%CardAnim").PlayAsync();
+await GetNode<TweenTree>("%PanelAnim").PlayAsync();
 
 // 停止 / 立即终止
 tree.Stop();
@@ -68,8 +68,8 @@ TweenTree 是"一条完整动画"，ActionQueue 是"多个动作排队"。可嵌
 
 ```csharp
 var queue = new ActionQueue();
-queue.Enqueue(async () => await GetNode<TweenTree>("%CardAnim").PlayAsync()); // 播一段动画树
-queue.Enqueue(async () => await GetNode<TweenTree>("%ScoreAnim").PlayAsync()); // 再播计分
+queue.Enqueue(async () => await GetNode<TweenTree>("%PanelAnim").PlayAsync()); // 播一段动画树
+queue.Enqueue(async () => await GetNode<TweenTree>("%TextAnim").PlayAsync()); // 再播计分
 queue.Enqueue(() => CheckWin());                                              // 再判赢
 ```
 

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.IO;
 using GFramework.Core.Logging.Appenders;
 using GFramework.Core.Logging.Formatters;
@@ -100,7 +100,7 @@ public class SessionLoggingTests : IDisposable
                 GFramework.Core.Abstractions.Logging.LogLevel.Error,
                 "计算失败",
                 new InvalidOperationException("boom"),
-                ("scope", "deck"));
+                ("scope", "inventory"));
 
             provider.Flush();
         }
@@ -109,7 +109,7 @@ public class SessionLoggingTests : IDisposable
         using var doc = System.Text.Json.JsonDocument.Parse(json);
         var root = doc.RootElement;
         Assert.Equal("ERROR", root.GetProperty("level").GetString());
-        Assert.Equal("deck", root.GetProperty("properties").GetProperty("scope").GetString());
+        Assert.Equal("inventory", root.GetProperty("properties").GetProperty("scope").GetString());
         var exception = root.GetProperty("exception");
         Assert.Contains("InvalidOperationException", exception.GetProperty("type").GetString(), StringComparison.Ordinal);
     }

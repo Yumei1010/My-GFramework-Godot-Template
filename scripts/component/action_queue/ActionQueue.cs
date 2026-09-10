@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -14,10 +14,10 @@ namespace GFrameworkTemplate.scripts.component.action_queue;
 ///     用法示例：
 ///     <code>
 ///     var queue = new ActionQueue();
-///     queue.Enqueue(async () =&gt; { await MoveCardToTarget(); });   // 第 1 步：移动卡牌
-///     queue.Enqueue(async () =&gt; { await FlipCard(); });            // 第 2 步：翻牌
+///     queue.Enqueue(async () =&gt; { await MoveToTargetAsync(); });   // 第 1 步：移动对象
+///     queue.Enqueue(async () =&gt; { await PlayAnimationAsync(); });  // 第 2 步：播放动画
 ///     queue.Enqueue(() =&gt; CalculateScore());                       // 第 3 步：计分
-///     // 自动串行执行：移动完成 → 翻牌完成 → 计分
+///     // 自动串行执行：移动完成 → 动画完成 → 计分
 ///     </code>
 ///     </para>
 /// </remarks>

@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 
 namespace GFrameworkTemplate.scripts.component.tween_tree;
 
@@ -10,7 +10,7 @@ namespace GFrameworkTemplate.scripts.component.tween_tree;
 ///     场景树示例：
 ///     <code>
 ///     TweenPropertyNode
-///       TargetNode = %Card          （目标节点路径）
+///       TargetNode = %Panel          （目标节点路径）
 ///       Property   = "position"
 ///       TargetValue = (300, 0)       （目标值）
 ///       Duration   = 0.5
