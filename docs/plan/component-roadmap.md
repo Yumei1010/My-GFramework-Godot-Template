@@ -51,11 +51,13 @@
 
 - [x] `docs/guides/object-pool.md` — 对象池详解（框架原生 AbstractNodePoolSystem 用法）
 - [x] `docs/guides/ecs.md` — Arch ECS 详解（接入/组件/系统/驱动/示例）
+- [x] `docs/guides/store.md` — Store 状态管理详解（Redux 风格：State/Action/Reducer/Selector/Middleware/History + Model 承载模式；配 11 个验证测试）
 - 原 object_pool 示例代码已删除（教学由文档承担）
 
 ## 待办
 
-- [ ] Pause 教程
+- [ ] Pause 教程（已有研究：docs/research/gframework-extensions/pause-stack.md）
 - [ ] 音频管理器教程
 - [ ] 计时器教程
 - [ ] UI 弹窗教程
+- [ ] 日志教程（已有设计：docs/plan/session-file-logging.md）
