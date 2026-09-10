@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.IO;
 
 namespace GFrameworkTemplate.scripts.framework.logging;
@@ -30,6 +30,50 @@ public static class SessionLogFileHelper
         var fullPath = Path.Combine(logDirectoryPath, fileName);
 
         return new SessionLogFileInfo(fullPath, logDirectoryPath, fileName);
+    }
+
+    /// <summary>
+    ///     清理历史会话日志，只保留最近的若干个文件。
+    /// </summary>
+    /// <param name="logDirectoryPath">日志目录（真实文件系统路径）。</param>
+    /// <param name="keepCount">保留的最新会话文件数量（按文件名时间戳倒序，&lt;= 0 表示全部清理）。</param>
+    /// <returns>实际删除的文件数量。</returns>
+    /// <remarks>
+    ///     文件名格式为 <c>yyyyMMdd_HHmmss.log</c>，因此字典序即时间序，无需读取文件时间。
+    ///     被占用而删除失败的文件会被跳过，不影响启动。
+    /// </remarks>
+    public static int PruneOldSessions(string logDirectoryPath, int keepCount = 20)
+    {
+        if (string.IsNullOrWhiteSpace(logDirectoryPath) || !Directory.Exists(logDirectoryPath))
+        {
+            return 0;
+        }
+
+        var expiredFiles = Directory
+            .GetFiles(logDirectoryPath, "*" + LogFileExtension, SearchOption.TopDirectoryOnly)
+            .OrderByDescending(static path => path, StringComparer.Ordinal)
+            .Skip(Math.Max(0, keepCount))
+            .ToArray();
+
+        var deleted = 0;
+        foreach (var file in expiredFiles)
+        {
+            try
+            {
+                File.Delete(file);
+                deleted++;
+            }
+            catch (IOException)
+            {
+                // 文件被其他进程占用（例如正在查看）：跳过，下次启动再清理
+            }
+            catch (UnauthorizedAccessException)
+            {
+                // 无权限：跳过
+            }
+        }
+
+        return deleted;
     }
 
     /// <summary>

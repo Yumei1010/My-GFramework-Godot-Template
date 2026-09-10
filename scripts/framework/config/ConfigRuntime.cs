@@ -1,4 +1,4 @@
-using GFramework.Core.Abstractions.Utility;
+﻿using GFramework.Core.Abstractions.Utility;
 using GFramework.Game.Abstractions.Config;
 using GFramework.Game.Config.Generated;
 
@@ -23,6 +23,15 @@ public sealed class ConfigRuntime : IUtility
     {
         _registry = registry;
     }
+
+    /// <summary>
+    ///     获取底层配置注册表。
+    /// </summary>
+    /// <remarks>
+    ///     可直接使用源生成器提供的强类型表扩展（如 <c>Registry.GetMonsterTable()</c>），
+    ///     便于在不新增 ConfigRuntime 方法的情况下访问自定义配置域。
+    /// </remarks>
+    public IConfigRegistry Registry => _registry;
 
     /// <summary>
     ///     获取指定怪物配置（示例：config/monster 表）。

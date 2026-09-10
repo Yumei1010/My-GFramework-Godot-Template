@@ -115,6 +115,35 @@ public class SessionLoggingTests : IDisposable
     }
 
     [Fact]
+    public void PruneOldSessions_KeepsNewestFiles()
+    {
+        // 造 5 个会话日志文件（文件名含时间戳，字典序即时间序）
+        Directory.CreateDirectory(_tempDir);
+        var names = new[]
+        {
+            "20260101_010101.log", "20260202_020202.log", "20260303_030303.log",
+            "20260404_040404.log", "20260505_050505.log"
+        };
+        foreach (var name in names)
+        {
+            File.WriteAllText(Path.Combine(_tempDir, name), "{}");
+        }
+
+        var deleted = SessionLogFileHelper.PruneOldSessions(_tempDir, keepCount: 2);
+
+        Assert.Equal(3, deleted);
+        var remaining = Directory.GetFiles(_tempDir, "*.log").Select(Path.GetFileName).OrderBy(n => n).ToArray();
+        Assert.Equal(new[] { "20260404_040404.log", "20260505_050505.log" }, remaining);
+    }
+
+    [Fact]
+    public void PruneOldSessions_IgnoresMissingDirectory()
+    {
+        var deleted = SessionLogFileHelper.PruneOldSessions(Path.Combine(_tempDir, "not-exist"), keepCount: 5);
+        Assert.Equal(0, deleted);
+    }
+
+    [Fact]
     public void Provider_MinLevel过滤低级别日志()
     {
         var filePath = Path.Combine(_tempDir, "session_filter.log");

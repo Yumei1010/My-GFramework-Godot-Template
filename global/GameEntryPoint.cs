@@ -70,6 +70,7 @@ public partial class GameEntryPoint : Node
 
         // 初始化会话日志文件（先于架构创建，供 LoggerProperties 引用）
         var logDirectory = ProjectSettings.GlobalizePath("user://logs/");
+        SessionLogFileHelper.PruneOldSessions(logDirectory);   // 清理历史会话日志，只保留最近若干份
         SessionLogFile = SessionLogFileHelper.CreateNow(logDirectory);
         _logProvider = new SessionFileLoggerFactoryProvider(SessionLogFile.FullPath)
         {
