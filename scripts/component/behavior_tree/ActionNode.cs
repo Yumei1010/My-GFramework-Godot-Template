@@ -1,4 +1,4 @@
-using GFramework.Core.SourceGenerators.Abstractions.Logging;
+﻿using GFramework.Core.SourceGenerators.Abstractions.Logging;
 using Godot;
 using GFrameworkTemplate.scripts.enums.behavior_tree;
 
@@ -75,6 +75,12 @@ public partial class ActionNode : BehaviorNode
         if (_delegateAction is not null)
             return _delegateAction();
 
-        return Action.Method != default ? ToStatus(Action.Call()) : NodeStatus.Failure;
+        if (Action.Method == default)
+        {
+            _log.Warn($"动作节点 [{Name}] 未配置 Action 委托或 Callable，返回失败");
+            return NodeStatus.Failure;
+        }
+
+        return ToStatus(Action.Call());
     }
 }

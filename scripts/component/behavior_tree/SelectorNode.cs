@@ -1,4 +1,4 @@
-using GFramework.Core.SourceGenerators.Abstractions.Logging;
+﻿using GFramework.Core.SourceGenerators.Abstractions.Logging;
 using GFrameworkTemplate.scripts.enums.behavior_tree;
 
 namespace GFrameworkTemplate.scripts.component.behavior_tree;
@@ -48,6 +48,7 @@ public partial class SelectorNode : BehaviorNode
         }
 
         // 全部失败
+        _log.Debug("选择器全部子节点失败，返回失败");
         _currentIndex = 0;
         return NodeStatus.Failure;
     }

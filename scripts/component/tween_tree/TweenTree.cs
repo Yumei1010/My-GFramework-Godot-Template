@@ -90,9 +90,13 @@ public partial class TweenTree : TweenNode
     public async Task PlayAsync()
     {
         Play();
-        if (_current != null)
+        var tween = _current;
+        // 无动画或已瞬间结束（例如时长为 0）时直接返回，避免等待不会到来的 Finished 信号
+        if (tween is null || !tween.IsValid() || !tween.IsRunning())
         {
-            await ToSignal(_current, Tween.SignalName.Finished);
+            return;
         }
+
+        await ToSignal(tween, Tween.SignalName.Finished);
     }
 }

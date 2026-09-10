@@ -1,4 +1,4 @@
-using GFramework.Core.SourceGenerators.Abstractions.Logging;
+﻿using GFramework.Core.SourceGenerators.Abstractions.Logging;
 using Godot;
 using GFrameworkTemplate.scripts.enums.behavior_tree;
 
@@ -45,8 +45,12 @@ public partial class ConditionNode : BehaviorNode
         if (_delegateCondition is not null)
             return _delegateCondition() ? NodeStatus.Success : NodeStatus.Failure;
 
-        return Condition.Method != default && Condition.Call().AsBool()
-            ? NodeStatus.Success
-            : NodeStatus.Failure;
+        if (Condition.Method == default)
+        {
+            _log.Warn($"条件节点 [{Name}] 未配置 Condition 委托或 Callable，返回失败");
+            return NodeStatus.Failure;
+        }
+
+        return Condition.Call().AsBool() ? NodeStatus.Success : NodeStatus.Failure;
     }
 }

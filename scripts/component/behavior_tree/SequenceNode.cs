@@ -1,4 +1,4 @@
-using GFramework.Core.SourceGenerators.Abstractions.Logging;
+﻿using GFramework.Core.SourceGenerators.Abstractions.Logging;
 using GFrameworkTemplate.scripts.enums.behavior_tree;
 
 namespace GFrameworkTemplate.scripts.component.behavior_tree;
@@ -33,6 +33,7 @@ public partial class SequenceNode : BehaviorNode
             if (status == NodeStatus.Failure)
             {
                 // 某一步失败，整体失败，下次从头开始
+                _log.Debug($"序列中断：第 {_currentIndex} 个子节点失败（{ChildNodes[_currentIndex].Name}）");
                 _currentIndex = 0;
                 return NodeStatus.Failure;
             }

@@ -1,4 +1,4 @@
-using GFrameworkTemplate.scripts.component.state_machine;
+﻿using GFrameworkTemplate.scripts.component.state_machine;
 
 namespace GFrameworkTemplate.scripts.component.hierarchical_state_machine;
 
@@ -42,6 +42,15 @@ public sealed class HierarchicalStateMachine
             : this;
 
     /// <summary>
+    ///     当前处于活动状态的最深层状态（递归到子状态机）；无活动状态时为 null。
+    /// </summary>
+    /// <remarks>
+    ///     与 <see cref="CurrentState" /> 的区别：当当前状态挂有子状态机时，
+    ///     <see cref="CurrentState" /> 返回 null，而本属性始终返回真正在运行的最深状态。
+    /// </remarks>
+    public IState? ActiveState => ActiveMachine.CurrentState;
+
+    /// <summary>
     ///     父状态机；顶级状态机（未被嵌套）时为 null。
     /// </summary>
     public HierarchicalStateMachine? Parent { get; private set; }
@@ -81,6 +90,9 @@ public sealed class HierarchicalStateMachine
     /// <returns>本状态机（支持链式调用）</returns>
     public HierarchicalStateMachine AddTransition(IState from, IState to, ITransitionCondition condition)
     {
+        ArgumentNullException.ThrowIfNull(from);
+        ArgumentNullException.ThrowIfNull(to);
+        ArgumentNullException.ThrowIfNull(condition);
         _transitions.Add(new Transition(from, to, condition));
         return this;
     }
@@ -98,6 +110,11 @@ public sealed class HierarchicalStateMachine
             throw new ArgumentNullException(nameof(state));
         if (sub is null)
             throw new ArgumentNullException(nameof(sub));
+
+        if (sub.Parent is not null && !ReferenceEquals(sub.Parent, this))
+        {
+            throw new InvalidOperationException("该子状态机已挂载到其他父状态机，不能重复挂载。");
+        }
 
         _subMachines[state] = sub;
         sub.Parent = this;

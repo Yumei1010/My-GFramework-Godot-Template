@@ -1,4 +1,4 @@
-namespace GFrameworkTemplate.scripts.component.hierarchical_state_machine;
+﻿namespace GFrameworkTemplate.scripts.component.hierarchical_state_machine;
 
 /// <summary>
 ///     布尔转换条件：封装一个可随时更新的布尔值，满足时触发转换。
@@ -14,6 +14,7 @@ public sealed class BoolCondition : ITransitionCondition
     /// <param name="predicate">每次检查转换时都会调用的判断函数</param>
     public BoolCondition(Func<bool> predicate)
     {
+        ArgumentNullException.ThrowIfNull(predicate);
         _predicate = predicate;
     }
 
