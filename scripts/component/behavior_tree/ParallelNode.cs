@@ -20,10 +20,19 @@ namespace GFrameworkTemplate.scripts.component.behavior_tree;
 public partial class ParallelNode : BehaviorNode
 {
     /// <summary>
-    ///     成功判定策略。
+    ///     成功判定策略的导出值（编辑器下拉选择）。
     /// </summary>
-    [Export]
-    public ParallelPolicy SuccessPolicy { get; set; } = ParallelPolicy.RequireAll;
+    /// <remarks>
+    ///     说明：直接 <c>[Export]</c> 自定义 C# 枚举会在 Godot 退出时留下 Variant 池残留告警，
+    ///     因此这里以 <c>int + PropertyHint.Enum</c> 导出，对外仍通过 <see cref="SuccessPolicy" /> 暴露类型安全的枚举。
+    /// </remarks>
+    [Export(PropertyHint.Enum, "RequireAll,RequireOne")]
+    public int SuccessPolicyValue { get; set; } = (int)ParallelPolicy.RequireAll;
+
+    /// <summary>
+    ///     获取成功判定策略。
+    /// </summary>
+    public ParallelPolicy SuccessPolicy => (ParallelPolicy)SuccessPolicyValue;
 
     /// <inheritdoc />
     public override NodeStatus Execute(BehaviorContext context)
