@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
 using System.IO;
 using GFramework.Game.Config;
 using GFramework.Game.Config.Generated;
@@ -9,6 +8,7 @@ namespace GFrameworkTemplate.Tests;
 /// <summary>
 ///     GFramework Config 系统验证：加载本地 YAML + schema 校验 + 强类型读取。
 ///     使用非 Godot 的 YamlConfigLoader（普通文件系统路径），不依赖 Godot 运行时。
+///     示例域为 config/monster（教学样品），验证枚举/数值校验/默认值等能力。
 /// </summary>
 public class ConfigSystemTests
 {
@@ -34,13 +34,12 @@ public class ConfigSystemTests
     private static ConfigRegistry LoadRegistry()
     {
         var root = FindRepoRoot();
-        // 加载器根 = 仓库根；表相对路径与 schema 相对路径都由生成器元数据给出
         var registry = new ConfigRegistry();
         var loader = new YamlConfigLoader(root)
-            .RegisterTable<string, DifficultyConfig>(
-                DifficultyConfigBindings.Metadata.TableName,
-                DifficultyConfigBindings.Metadata.ConfigRelativePath,
-                DifficultyConfigBindings.Metadata.SchemaRelativePath,
+            .RegisterTable<string, MonsterConfig>(
+                MonsterConfigBindings.Metadata.TableName,
+                MonsterConfigBindings.Metadata.ConfigRelativePath,
+                MonsterConfigBindings.Metadata.SchemaRelativePath,
                 static c => c.Id,
                 StringComparer.Ordinal);
         loader.LoadAsync(registry).GetAwaiter().GetResult();
@@ -48,55 +47,53 @@ public class ConfigSystemTests
     }
 
     [Fact]
-    public void 加载_三档难度全部读取()
+    public void 加载_示例怪物全部读取()
     {
         var registry = LoadRegistry();
-        var table = registry.GetDifficultyTable();
+        var table = registry.GetMonsterTable();
 
         Assert.Equal(3, table.Count);
-        Assert.True(table.ContainsKey("easy"));
-        Assert.True(table.ContainsKey("normal"));
-        Assert.True(table.ContainsKey("hard"));
+        Assert.True(table.ContainsKey("slime"));
+        Assert.True(table.ContainsKey("goblin"));
+        Assert.True(table.ContainsKey("orc"));
     }
 
     [Fact]
-    public void 强类型读取_Normal配置正确()
+    public void 强类型读取_Slime配置正确()
     {
         var registry = LoadRegistry();
-        var normal = registry.GetDifficultyTable().Get("normal");
+        var slime = registry.GetMonsterTable().Get("slime");
 
-        Assert.Equal(4, normal.CardCount);
-        Assert.Equal(60, normal.TimeLimitSec);
-        Assert.Equal("普通", normal.Name);
-        Assert.True(normal.HintEnabled);
-        Assert.Equal(4, normal.OperatorLimit);
+        Assert.Equal("Slime", slime.Name);
+        Assert.Equal(10, slime.Hp);
+        Assert.Equal("nature", slime.Faction);
+        Assert.Equal("common", slime.Rarity);
     }
 
     [Fact]
-    public void 强类型读取_Hard限制运算符且禁提示()
+    public void 强类型读取_Orc为Boss稀有度()
     {
         var registry = LoadRegistry();
-        var hard = registry.GetDifficultyTable().Get("hard");
+        var orc = registry.GetMonsterTable().Get("orc");
 
-        Assert.Equal(6, hard.CardCount);
-        Assert.False(hard.HintEnabled);
-        Assert.Equal(3, hard.OperatorLimit);
+        Assert.Equal(120, orc.Hp);
+        Assert.Equal("boss", orc.Rarity);
     }
 
     [Fact]
     public void 生成元数据_表名与路径正确()
     {
-        Assert.Equal("difficulty", DifficultyConfigBindings.Metadata.TableName);
-        Assert.True(DifficultyConfigBindings.Metadata.SchemaRelativePath.EndsWith(
-            "difficulty.schema.json", StringComparison.Ordinal));
+        Assert.Equal("monster", MonsterConfigBindings.Metadata.TableName);
+        Assert.True(MonsterConfigBindings.Metadata.SchemaRelativePath.EndsWith(
+            "monster.schema.json", StringComparison.Ordinal));
     }
 
     [Fact]
     public void 目录_未声明配置Key时返回默认()
     {
         var registry = LoadRegistry();
-        var table = registry.GetDifficultyTable();
+        var table = registry.GetMonsterTable();
 
-        Assert.False(table.ContainsKey("extreme"));   // 不存在的档位无配置
+        Assert.False(table.ContainsKey("bat"));   // schema 允许但未提供 yaml 的 key 无配置
     }
 }

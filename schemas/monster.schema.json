@@ -1,0 +1,36 @@
+{
+  "title": "Monster Config",
+  "description": "演示 GFramework Config 系统：JSON Schema 定义结构 → Source Generator 生成强类型配置类 → YAML 数据加载与校验。枚举演示：id 四选一、rarity 三选一。",
+  "x-gframework-config-path": "config/monster",
+  "type": "object",
+  "required": ["id", "name", "hp", "faction"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "enum": ["slime", "goblin", "bat", "orc"],
+      "description": "怪物主键（四选一演示）。"
+    },
+    "name": {
+      "type": "string",
+      "default": "Slime",
+      "description": "怪物显示名。"
+    },
+    "hp": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 1000,
+      "multipleOf": 5,
+      "description": "基础生命值（multipleOf/max 校验演示）。"
+    },
+    "faction": {
+      "type": "string",
+      "description": "阵营标签（非索引普通字符串字段）。"
+    },
+    "rarity": {
+      "type": "string",
+      "enum": ["common", "rare", "boss"],
+      "default": "common",
+      "description": "稀有度（enum + default 校验演示）。"
+    }
+  }
+}

@@ -1,6 +1,0 @@
-id: normal
-name: 普通
-cardCount: 4
-timeLimitSec: 60
-operatorLimit: 4
-hintEnabled: true

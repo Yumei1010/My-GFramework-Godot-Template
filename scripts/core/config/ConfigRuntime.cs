@@ -1,4 +1,4 @@
-﻿using GFramework.Core.Abstractions.Utility;
+using GFramework.Core.Abstractions.Utility;
 using GFramework.Game.Abstractions.Config;
 using GFramework.Game.Config.Generated;
 
@@ -8,7 +8,8 @@ namespace GFrameworkTemplate.scripts.core.config;
 ///     配置读取入口：把初始化后的配置注册表封装成强类型访问，业务层不接触字符串表名。
 /// </summary>
 /// <remarks>
-///     由 <c>ConfigModule</c> 初始化后注入。演示 <c>Registry.GetDifficultyTable()</c> 强类型表查询。
+///     由 <c>ConfigModule</c> 初始化后注册进架构。演示 <c>Registry.GetMonsterTable()</c> 强类型表查询。
+///     示例域为 <c>config/monster</c>（教学样品）；开发自己的游戏时替换为对应配置域的表方法。
 /// </remarks>
 public sealed class ConfigRuntime : IUtility
 {
@@ -24,21 +25,21 @@ public sealed class ConfigRuntime : IUtility
     }
 
     /// <summary>
-    ///     获取指定难度配置。
+    ///     获取指定怪物配置（示例：config/monster 表）。
     /// </summary>
-    /// <param name="difficultyId">难度主键（easy/normal/hard）。</param>
-    /// <returns>强类型难度配置。</returns>
-    public DifficultyConfig GetDifficulty(string difficultyId)
+    /// <param name="monsterId">怪物主键（slime/goblin/bat/orc）。</param>
+    /// <returns>强类型怪物配置。</returns>
+    public MonsterConfig GetMonster(string monsterId)
     {
-        return _registry.GetDifficultyTable().Get(difficultyId);
+        return _registry.GetMonsterTable().Get(monsterId);
     }
 
     /// <summary>
-    ///     获取全部难度配置。
+    ///     获取全部怪物配置。
     /// </summary>
-    /// <returns>难度配置集合。</returns>
-    public IReadOnlyCollection<DifficultyConfig> GetAllDifficulties()
+    /// <returns>怪物配置集合。</returns>
+    public IReadOnlyCollection<MonsterConfig> GetAllMonsters()
     {
-        return _registry.GetDifficultyTable().All();
+        return _registry.GetMonsterTable().All();
     }
 }
