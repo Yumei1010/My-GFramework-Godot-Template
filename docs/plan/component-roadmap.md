@@ -63,4 +63,4 @@
 - [x] `docs/guides/audio.md` — 音频设置与音量管理（模板 audio CQRS 域链路/GodotAudioSettings+AudioBusMap 扩展新总线/播放器组织建议；配 4 验证测试）
 - [ ] 计时器教程
 - [ ] UI 弹窗教程
-- [ ] 日志教程（已有设计：docs/plan/session-file-logging.md）
+- [x] `docs/guides/logging.md` — 日志系统详解（框架日志体系全景/Core·Godot 分工/结构化属性双路输出/会话文件/导出 F12/配置与扩展点/坑；配 6 验证测试）
