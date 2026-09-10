@@ -60,7 +60,7 @@
 ## 待办
 
 - [x] `docs/guides/pause.md` — 暂停栈详解（PauseGroup 分栈/PauseToken 任意释放/PauseScope/Godot 桥接/UI 联动/模板 5 步接入；配 9 个验证测试）
-- [ ] 音频管理器教程
+- [x] `docs/guides/audio.md` — 音频设置与音量管理（模板 audio CQRS 域链路/GodotAudioSettings+AudioBusMap 扩展新总线/播放器组织建议；配 4 验证测试）
 - [ ] 计时器教程
 - [ ] UI 弹窗教程
 - [ ] 日志教程（已有设计：docs/plan/session-file-logging.md）
