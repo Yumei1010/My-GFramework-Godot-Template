@@ -1,4 +1,4 @@
-using GFramework.Core.Abstractions.Architectures;
+﻿using GFramework.Core.Abstractions.Architectures;
 using GFramework.Game.Abstractions.Data;
 using GFramework.Game.Data;
 using GFramework.Game.Serializer;
@@ -15,6 +15,10 @@ namespace GFrameworkTemplate.scripts.module;
 /// </summary>
 public class UtilityModule : IArchitectureModule
 {
+    /// <summary>
+    ///     安装 UtilityModule：注册注册表/存储/序列化等工具。
+    /// </summary>
+    /// <param name="architecture">目标架构。</param>
     public void Install(IArchitecture architecture)
     {
         architecture.RegisterUtility(new GodotUiRegistry());

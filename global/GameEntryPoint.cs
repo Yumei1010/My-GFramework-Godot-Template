@@ -1,4 +1,4 @@
-using GFramework.Core.Abstractions.Architectures;
+﻿using GFramework.Core.Abstractions.Architectures;
 using GFramework.Core.Abstractions.Logging;
 using GFramework.Core.Abstractions.Properties;
 using GFramework.Core.Abstractions.State;
@@ -46,7 +46,14 @@ public partial class GameEntryPoint : Node
     private ISettingsSystem _settingsSystem = null!;
     private IGodotTextureRegistry _textureRegistry = null!;
     private IGodotUiRegistry _uiRegistry = null!;
+    /// <summary>
+    ///     获取当前游戏架构实例（全局访问入口）。
+    /// </summary>
     public static IArchitecture Architecture { get; private set; } = null!;
+
+    /// <summary>
+    ///     获取当前场景树引用。
+    /// </summary>
     public static SceneTree Tree { get; private set; } = null!;
 
     /// <summary>
@@ -56,6 +63,7 @@ public partial class GameEntryPoint : Node
 
     private static SessionFileLoggerFactoryProvider _logProvider = null!;
 
+    /// <inheritdoc />
     public override void _Ready()
     {
         Tree = GetTree();
@@ -159,6 +167,7 @@ public partial class GameEntryPoint : Node
         }
     }
 
+    /// <inheritdoc />
     public override void _ExitTree()
     {
         _logProvider?.Flush();

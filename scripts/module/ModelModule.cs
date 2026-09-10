@@ -1,4 +1,4 @@
-using GFramework.Core.Abstractions.Architectures;
+﻿using GFramework.Core.Abstractions.Architectures;
 using GFramework.Core.Functional.Pipe;
 using GFramework.Game.Abstractions.Data;
 using GFramework.Game.Setting;
@@ -13,6 +13,10 @@ namespace GFrameworkTemplate.scripts.module;
 /// </summary>
 public class ModelModule : IArchitectureModule
 {
+    /// <summary>
+    ///     安装 ModelModule：注册设置模型及其应用器。
+    /// </summary>
+    /// <param name="architecture">目标架构。</param>
     public void Install(IArchitecture architecture)
     {
         var settingsDataRepository = architecture.Context.GetUtility<ISettingsDataRepository>()!;

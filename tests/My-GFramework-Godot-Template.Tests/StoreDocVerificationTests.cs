@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using GFramework.Core.Abstractions.Property;
 using GFramework.Core.Abstractions.StateManagement;
@@ -8,6 +8,10 @@ using GFramework.Core.StateManagement;
 namespace GFrameworkTemplate.Tests;
 
 // 临时验证：Store 教学文档 docs/guides/store.md 中的 API 用法是否真实可用
+/// <summary>
+///     Store 教学文档（docs/guides/store.md）的 API 用法验证。
+///     确保文档示例的编译与运行行为与框架实际一致。
+/// </summary>
 public class StoreDocVerificationTests
 {
     public sealed record RunState(int Score, int Hp, int Level, bool IsCleared);

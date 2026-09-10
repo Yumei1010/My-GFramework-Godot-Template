@@ -142,5 +142,8 @@ public partial class UiRoot : CanvasLayer, IUiRoot
     }
 
 
+    /// <summary>
+    ///     UI 根节点就绪事件：容器创建完成后发出，供入口点切状态。
+    /// </summary>
     public sealed class UiRootReadyEvent;
 }

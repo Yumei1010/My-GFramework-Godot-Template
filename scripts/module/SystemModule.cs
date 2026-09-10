@@ -13,6 +13,10 @@ namespace GFrameworkTemplate.scripts.module;
 /// </summary>
 public class SystemModule : IArchitectureModule
 {
+    /// <summary>
+    ///     安装 SystemModule：注册路由/设置/本地化等系统。
+    /// </summary>
+    /// <param name="architecture">目标架构。</param>
     public void Install(IArchitecture architecture)
     {
         architecture.RegisterSystem(new UiRouter());
