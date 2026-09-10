@@ -1,4 +1,4 @@
-# 行为树（Behavior Tree）
+﻿# 行为树（Behavior Tree）
 
 `scripts/component/behavior_tree/` 下的行为树组件，用于 AI 决策。与 HFSM 互补：**HFSM 管"状态切换"，行为树管"做什么"**。
 
@@ -7,13 +7,17 @@
 所有节点都是 **Godot 节点**（继承 `Node`），在场景树中拖拽拼装即组成行为树：
 
 ```
-IBehaviorNode（接口契约：Execute()）
+IBehaviorNode（接口契约：Execute(BehaviorContext)）
     └── BehaviorNode（抽象基类，继承 Node，提供 ChildNodes）
         ├── ActionNode（叶子：动作）
         ├── ConditionNode（叶子：条件）
+        ├── WaitNode（叶子：等待 N 秒）
         ├── SequenceNode（复合：顺序）
         ├── SelectorNode（复合：选择）
-        └── BehaviorTree（根：自动每帧 Tick）
+        ├── ParallelNode（复合：并行 + 成功策略）
+        ├── InverterNode（装饰器：成功/失败取反）
+        ├── RepeatNode（装饰器：重复 N 次）
+        └── BehaviorTree（根：自动每帧 Tick，提供执行上下文与黑板）
 ```
 
 ## 核心概念
@@ -32,8 +36,32 @@ IBehaviorNode（接口契约：Execute()）
 |---|---|---|
 | `ActionNode` | 做一件事（攻击、移动、装弹） | 由动作决定 |
 | `ConditionNode` | 判断条件（闸门） | 满足→Success，否则 Failure |
+| `WaitNode` | 等待 N 秒后继续 | 等待中 Running，到时 Success |
 | `SequenceNode` | 顺序：**先 A 再做 B 再做 C** | 遇 Failure 整体失败；全 Success 才成功 |
 | `SelectorNode` | 选择：**优先 A，不行就 B，再不行 C** | 遇 Success 整体成功；全 Failure 才失败 |
+| `ParallelNode` | 并行：**同一帧驱动全部子节点**（边走边打） | 按 `SuccessPolicy`（RequireAll / RequireOne）判定 |
+| `InverterNode` | 取反：**不满足时才通过**（单子节点） | Success↔Failure 互换，Running 保持 |
+| `RepeatNode` | 重复：**连续执行 N 次**（单子节点，`Times ≤ 0` 无限） | 每次循环未满返回 Running；失败则中止 |
+
+### 执行上下文与黑板（BehaviorContext / Blackboard）
+
+根节点 `BehaviorTree` 持有**执行上下文**并逐帧传入子树，节点因此可以感知时间、共享状态：
+
+```csharp
+public sealed class BehaviorContext
+{
+    public double Delta { get; set; }          // 距上一帧时间（秒），由根节点写入
+    public Blackboard Blackboard { get; }      // 树内共享数据黑板
+}
+```
+
+| 用途 | 写法 |
+|---|---|
+| 等待 / 冷却 / 蓄力 | `SetAction(ctx => { _t += ctx.Delta; return ...; })` |
+| 节点间共享状态 | `ctx.Blackboard.Set("target", node)` / `Get<Node>("target")` |
+| 取整棵树的黑板 | `GetNode<BehaviorTree>("%Ai").Context.Blackboard` |
+
+`ActionNode` / `ConditionNode` 提供两种委托重载：无参（简单判断）与带 `BehaviorContext`（需要时间/黑板）。
 
 ---
 

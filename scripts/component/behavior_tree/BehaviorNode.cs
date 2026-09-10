@@ -54,6 +54,7 @@ public abstract partial class BehaviorNode : Node, IBehaviorNode
     ///     复合节点执行时会递归调用子节点，整棵树从根节点开始自上而下评估。
     ///     <para>返回 <see cref="NodeStatus.Running"/> 表示任务需要多帧完成，下一帧会继续执行。</para>
     /// </remarks>
+    /// <param name="context">执行上下文（帧间隔与共享黑板）。</param>
     /// <returns>节点执行结果：成功 / 失败 / 执行中</returns>
-    public abstract NodeStatus Execute();
+    public abstract NodeStatus Execute(BehaviorContext context);
 }

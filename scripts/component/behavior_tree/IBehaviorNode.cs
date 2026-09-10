@@ -1,4 +1,4 @@
-using GFrameworkTemplate.scripts.enums.behavior_tree;
+﻿using GFrameworkTemplate.scripts.enums.behavior_tree;
 
 namespace GFrameworkTemplate.scripts.component.behavior_tree;
 
@@ -13,6 +13,7 @@ public interface IBehaviorNode
     ///     执行本节点，返回执行结果。
     ///     <para>返回 <see cref="NodeStatus.Running"/> 表示任务需要多帧完成，下一帧会继续执行本节点。</para>
     /// </summary>
+    /// <param name="context">执行上下文（帧间隔与共享黑板），由根节点提供。</param>
     /// <returns>成功 / 失败 / 执行中</returns>
-    NodeStatus Execute();
+    NodeStatus Execute(BehaviorContext context);
 }

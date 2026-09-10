@@ -23,6 +23,7 @@ namespace GFrameworkTemplate.scripts.component.behavior_tree;
 public partial class ConditionNode : BehaviorNode
 {
     private Func<bool>? _delegateCondition;
+    private Func<BehaviorContext, bool>? _contextCondition;
 
     /// <summary>
     ///     要调用的 Godot 方法（返回 bool）。
@@ -39,9 +40,21 @@ public partial class ConditionNode : BehaviorNode
         _delegateCondition = condition;
     }
 
-    /// <inheritdoc />
-    public override NodeStatus Execute()
+    /// <summary>
+    ///     通过带执行上下文的委托注入条件判断（可读取 <see cref="BehaviorContext.Delta" /> 与黑板）。
+    /// </summary>
+    /// <param name="condition">条件委托，接收执行上下文并返回是否满足</param>
+    public void SetCondition(Func<BehaviorContext, bool> condition)
     {
+        _contextCondition = condition;
+    }
+
+    /// <inheritdoc />
+    public override NodeStatus Execute(BehaviorContext context)
+    {
+        if (_contextCondition is not null)
+            return _contextCondition(context) ? NodeStatus.Success : NodeStatus.Failure;
+
         if (_delegateCondition is not null)
             return _delegateCondition() ? NodeStatus.Success : NodeStatus.Failure;
 

@@ -23,12 +23,12 @@ public partial class SequenceNode : BehaviorNode
     private int _currentIndex;
 
     /// <inheritdoc />
-    public override NodeStatus Execute()
+    public override NodeStatus Execute(BehaviorContext context)
     {
         // 从上次暂停的位置继续（避免每帧从头重跑已完成/进行中的子节点）
         while (_currentIndex < ChildNodes.Count)
         {
-            var status = ChildNodes[_currentIndex].Execute();
+            var status = ChildNodes[_currentIndex].Execute(context);
 
             if (status == NodeStatus.Failure)
             {

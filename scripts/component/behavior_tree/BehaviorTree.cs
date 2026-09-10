@@ -1,4 +1,4 @@
-using GFramework.Core.SourceGenerators.Abstractions.Logging;
+﻿using GFramework.Core.SourceGenerators.Abstractions.Logging;
 using Godot;
 using GFrameworkTemplate.scripts.enums.behavior_tree;
 
@@ -33,13 +33,23 @@ public partial class BehaviorTree : BehaviorNode
     /// </summary>
     public NodeStatus? LastStatus { get; private set; }
 
+    private readonly BehaviorContext _context = new();
+
+    /// <summary>
+    ///     获取本树的执行上下文（帧间隔与共享黑板），供节点间共享数据。
+    /// </summary>
+    public BehaviorContext Context => _context;
+
     /// <summary>
     ///     执行一帧：从本节点（根）开始评估整棵子树。
     /// </summary>
     /// <returns>根节点执行结果</returns>
-    public NodeStatus Tick()
+    /// <param name="delta">距上一帧的时间（秒），供时间相关节点使用。</param>
+    /// <returns>根节点执行结果</returns>
+    public NodeStatus Tick(double delta = 0)
     {
-        LastStatus = Execute();
+        _context.Delta = delta;
+        LastStatus = Execute(_context);
         return LastStatus.Value;
     }
 
@@ -49,9 +59,10 @@ public partial class BehaviorTree : BehaviorNode
     public override void _Process(double delta)
     {
         if (AutoTick)
-            Tick();
+            Tick(delta);
     }
 
     /// <inheritdoc />
-    public override NodeStatus Execute() => ChildNodes.FirstOrDefault()?.Execute() ?? NodeStatus.Success;
+    public override NodeStatus Execute(BehaviorContext context) =>
+        ChildNodes.FirstOrDefault()?.Execute(context) ?? NodeStatus.Success;
 }

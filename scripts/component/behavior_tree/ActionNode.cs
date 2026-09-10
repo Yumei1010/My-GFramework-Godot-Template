@@ -28,6 +28,7 @@ namespace GFrameworkTemplate.scripts.component.behavior_tree;
 public partial class ActionNode : BehaviorNode
 {
     private Func<NodeStatus>? _delegateAction;
+    private Func<BehaviorContext, NodeStatus>? _contextAction;
 
     /// <summary>
     ///     要调用的 Godot 方法（可在编辑器绑定，或代码调用 <see cref="SetAction"/> 注入委托）。
@@ -42,6 +43,15 @@ public partial class ActionNode : BehaviorNode
     public void SetAction(Func<NodeStatus> action)
     {
         _delegateAction = action;
+    }
+
+    /// <summary>
+    ///     通过带执行上下文的委托注入动作逻辑（可读取 <see cref="BehaviorContext.Delta" /> 与黑板）。
+    /// </summary>
+    /// <param name="action">动作委托，接收执行上下文并返回执行结果</param>
+    public void SetAction(Func<BehaviorContext, NodeStatus> action)
+    {
+        _contextAction = action;
     }
 
     /// <summary>
@@ -70,8 +80,11 @@ public partial class ActionNode : BehaviorNode
     }
 
     /// <inheritdoc />
-    public override NodeStatus Execute()
+    public override NodeStatus Execute(BehaviorContext context)
     {
+        if (_contextAction is not null)
+            return _contextAction(context);
+
         if (_delegateAction is not null)
             return _delegateAction();
 

@@ -23,12 +23,12 @@ public partial class SelectorNode : BehaviorNode
     private int _currentIndex;
 
     /// <inheritdoc />
-    public override NodeStatus Execute()
+    public override NodeStatus Execute(BehaviorContext context)
     {
         // 从上次暂停的位置继续
         while (_currentIndex < ChildNodes.Count)
         {
-            var status = ChildNodes[_currentIndex].Execute();
+            var status = ChildNodes[_currentIndex].Execute(context);
 
             if (status == NodeStatus.Success)
             {
