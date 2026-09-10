@@ -1,4 +1,4 @@
-# 模板组件规划
+﻿# 模板组件规划
 
 分支：main
 更新：2026-09-03
@@ -59,7 +59,7 @@
 
 ## 待办
 
-- [ ] Pause 教程（已有研究：docs/research/gframework-extensions/pause-stack.md）
+- [x] `docs/guides/pause.md` — 暂停栈详解（PauseGroup 分栈/PauseToken 任意释放/PauseScope/Godot 桥接/UI 联动/模板 5 步接入；配 9 个验证测试）
 - [ ] 音频管理器教程
 - [ ] 计时器教程
 - [ ] UI 弹窗教程
