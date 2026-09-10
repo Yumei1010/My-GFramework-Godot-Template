@@ -1,4 +1,4 @@
-using GFramework.Core.Abstractions.Architectures;
+﻿using GFramework.Core.Abstractions.Architectures;
 using GFramework.Core.Abstractions.Events;
 using GFramework.Core.Abstractions.Environment;
 using GFramework.Godot.Architectures;
@@ -42,6 +42,8 @@ public sealed class GameArchitecture(IArchitectureConfiguration configuration, I
         InstallModule(new SystemModule());
         // 安装数据模型相关的Godot模块
         InstallModule(new ModelModule());
+        // 配置模块：安装 GFramework Config 系统（YAML + Schema + Source Generator）
+        InstallModule(new ConfigModule());
         // 安装状态相关的Godot模块
         InstallModule(new StateModule());
     }

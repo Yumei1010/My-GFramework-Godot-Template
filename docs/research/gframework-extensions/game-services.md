@@ -114,6 +114,16 @@ new YamlConfigLoader("config-root").RegisterAllGeneratedConfigTables(
 - **与 AI 协作友好**：schema 是机器可读契约，AI 生成配置有据可依
 - 对应 Twenty-four：`Rule` 定义、`ChallengeModifier` 词条表、关卡表都可走这套
 
+### ⚠️ 已知边界（实测发现，2026-09）
+
+**schema 数组字段 + 生成配置类的组合当前不可用**：
+
+- 生成器把数组属性生成为 `IReadOnlyList<T> { get; set; }`
+- 但 `YamlConfigLoader` 用 YamlDotNet 16.3 默认反序列化，**无法实例化 `IReadOnlyList<T>`**（报 "No node deserializer was able to deserialize the node into type IReadOnlyList`1"）
+- 铁证：最小 case（YamlDotNet 直反序列化 IReadOnlyList 属性）同样失败
+
+**规避**：schema 演示暂不用数组字段（用标量/嵌套对象替代）。若项目必须数组配置，需等框架修复或自行扩展 loader（当前不建议 fork）。
+
 ---
 
 ## 二、Data 数据仓库（三个仓库，按需选）

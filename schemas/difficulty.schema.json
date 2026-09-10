@@ -1,0 +1,43 @@
+{
+  "title": "Difficulty Config",
+  "description": "定义游戏难度静态配置。演示 GFramework Config 系统（Schema → Source Generator → 强类型读取）全流程。",
+  "x-gframework-config-path": "config/difficulty",
+  "type": "object",
+  "required": ["id", "name", "cardCount", "timeLimitSec", "operatorLimit", "hintEnabled"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "enum": ["easy", "normal", "hard"],
+      "description": "难度主键。"
+    },
+    "name": {
+      "type": "string",
+      "description": "难度显示名。",
+      "default": "普通"
+    },
+    "cardCount": {
+      "type": "integer",
+      "minimum": 4,
+      "maximum": 10,
+      "description": "出牌张数。"
+    },
+    "timeLimitSec": {
+      "type": "integer",
+      "multipleOf": 10,
+      "minimum": 0,
+      "description": "每关时限（秒），0 表示不限时。"
+    },
+    "operatorLimit": {
+      "type": "integer",
+      "minimum": 2,
+      "maximum": 4,
+      "default": 4,
+      "description": "允许使用的运算符数量（4 = 加减乘除全开）。"
+    },
+    "hintEnabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "是否允许提示。"
+    }
+  }
+}

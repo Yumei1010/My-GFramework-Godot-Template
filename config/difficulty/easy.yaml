@@ -1,0 +1,6 @@
+id: easy
+name: 简单
+cardCount: 4
+timeLimitSec: 90
+operatorLimit: 4
+hintEnabled: true
