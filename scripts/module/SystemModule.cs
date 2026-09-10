@@ -1,5 +1,8 @@
-using GFramework.Core.Abstractions.Architectures;
+﻿using GFramework.Core.Abstractions.Architectures;
+using GFramework.Core.Abstractions.Localization;
+using GFramework.Core.Localization;
 using GFramework.Game.Setting;
+using GFrameworkTemplate.scripts.core.localization;
 using GFrameworkTemplate.scripts.core.scene;
 using GFrameworkTemplate.scripts.core.ui;
 
@@ -15,5 +18,14 @@ public class SystemModule : IArchitectureModule
         architecture.RegisterSystem(new UiRouter());
         architecture.RegisterSystem(new SceneRouter());
         architecture.RegisterSystem(new SettingsSystem());
+
+        // 本地化系统：语言表从 localization/ 目录加载（编辑器直读 res://，导出自动同步至 user://）
+        // 注册后 GodotLocalizationSettings 应用器才能解析到 ILocalizationManager 并联动语言切换
+        architecture.RegisterSystem(new LocalizationManager(new LocalizationConfig
+        {
+            DefaultLanguage = "zhs",
+            FallbackLanguage = "eng",
+            LocalizationPath = LocalizationPathResolver.Resolve()
+        }));
     }
 }
