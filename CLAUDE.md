@@ -1,4 +1,4 @@
-# CLAUDE.md
+﻿# CLAUDE.md
 
 本文档为 Claude Code (claude.ai/code) 在基于本框架模板构建的项目中工作时提供指导。
 
@@ -12,9 +12,16 @@ dotnet build
 
 # 运行全部测试
 dotnet test
+
+# 运行时端到端自检（Godot headless：验证架构装配 + UI→命令→事件链路）
+godot --headless --path . --quit-after 300
 ```
 
-测试使用 xUnit，测试项目位于 `tests/` 目录下；教程文档配套验证测试覆盖框架能力用法。
+测试使用 xUnit，测试项目位于 `tests/` 目录下，包含：
+- 各框架能力的教程配套验证测试（Store/Config/协程/本地化/暂停/日志/UI 等）
+- 仓库一致性自检（`RepositoryConsistencyTests`）：命令/事件 `sealed` 规范、
+  `[ContextAware]`+`[Log]` 成对、schema↔config 数据目录、多语言 key 一致性
+- 会话文件日志落在 `user://logs/`（JSON 行），排错时优先查看（游戏内 F12 打开目录）
 
 ## 关键约束速查
 
