@@ -1,4 +1,4 @@
-# script_templates 组织说明
+﻿# script_templates 组织说明
 
 Godot 脚本模板与页面参考示例按域分装：
 
@@ -27,7 +27,7 @@ Godot 编辑器右键节点 → "附加脚本" → 选择模板，生成单文�
 
 ## UiPage/（五文件 partial 参考）
 
-`TemplatePage*` 是从 `scripts/menu/` 迁移的**完整可编译示例**，
+`TemplatePage*` 是从 `scripts/ui/menu/` 迁移的**完整可编译示例**，
 演示规范推荐的 UI 页面五文件 partial 拆分粒度：
 
 | 文件 | 职责 |
@@ -48,4 +48,4 @@ Godot 编辑器右键节点 → "附加脚本" → 选择模板，生成单文�
 6. 补 `*.Events.cs` 的 CQRS 订阅，在 `GameEntryPoint` 场景配置 `UiPageConfigs` 注册
 
 > 注意：`UiPage/` 下的 .cs 作为参考**不参与编译**（csproj 排除了 script_templates），
-> 实际使用请复制到 `scripts/menu/`（或业务目录）再改命名空间。
+> 实际使用请复制到 `scripts/ui/menu/`（或业务目录）再改命名空间。

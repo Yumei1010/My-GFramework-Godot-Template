@@ -2,7 +2,7 @@
 using GFramework.Core.Abstractions.Localization;
 using GFramework.Core.Localization;
 using GFramework.Game.Setting;
-using GFrameworkTemplate.scripts.core.localization;
+using GFrameworkTemplate.scripts.framework.localization;
 using GFrameworkTemplate.scripts.core.scene;
 using GFrameworkTemplate.scripts.core.ui;
 

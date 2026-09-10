@@ -9,7 +9,7 @@ using Godot;
 using GFrameworkTemplate.scripts.core.ui;
 using GFrameworkTemplate.scripts.enums.ui;
 
-namespace GFrameworkTemplate.scripts.menu;
+namespace GFrameworkTemplate.scripts.ui.menu;
 
 /// <summary>
 ///     模板页面——语法糖版 UI 页面示例（partial class 模式）

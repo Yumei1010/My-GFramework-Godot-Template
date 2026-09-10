@@ -6,7 +6,7 @@ using GFramework.Godot.SourceGenerators.Abstractions;
 using Godot;
 using GFrameworkTemplate.global;
 
-namespace GFrameworkTemplate.scripts.menu;
+namespace GFrameworkTemplate.scripts.ui.menu;
 
 public partial class TemplatePage
 {

@@ -1,6 +1,6 @@
 using GFramework.Core.SourceGenerators.Abstractions.Logging;
 using GFramework.Core.SourceGenerators.Abstractions.Rule;
-using GFrameworkTemplate.scripts.core.controller;
+using GFrameworkTemplate.scripts.core.input;
 using GFrameworkTemplate.scripts.enums.input;
 using Godot;
 

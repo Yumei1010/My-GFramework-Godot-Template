@@ -14,15 +14,18 @@
 根命名空间: GFrameworkTemplate
 
 global/ 目录                    → GFrameworkTemplate.global;
-scripts/component/<name>/       → GFrameworkTemplate.scripts.component.<name>;
-scripts/entities/<name>/        → GFrameworkTemplate.scripts.entities.<name>;
-scripts/system/<name>/          → GFrameworkTemplate.scripts.system.<name>;
-scripts/enums/<domain>/         → GFrameworkTemplate.scripts.enums.<domain>;
-scripts/menu/<name>/            → GFrameworkTemplate.scripts.menu.<name>;
 scripts/core/<dir>/             → GFrameworkTemplate.scripts.core.<dir>;
+scripts/component/<name>/       → GFrameworkTemplate.scripts.component.<name>;
 scripts/cqrs/<domain>/command/  → GFrameworkTemplate.scripts.cqrs.<domain>.command;
 scripts/cqrs/<domain>/command/input/ → GFrameworkTemplate.scripts.cqrs.<domain>.command.input;
 scripts/cqrs/<domain>/event/    → GFrameworkTemplate.scripts.cqrs.<domain>.@event;
+scripts/framework/<name>/       → GFrameworkTemplate.scripts.framework.<name>;
+scripts/ui/<domain>/            → GFrameworkTemplate.scripts.ui.<domain>;
+scripts/enums/<domain>/         → GFrameworkTemplate.scripts.enums.<domain>;
+scripts/data/<name>/            → GFrameworkTemplate.scripts.data.<name>;
+scripts/module/                 → GFrameworkTemplate.scripts.module;
+scripts/constants/              → GFrameworkTemplate.scripts.constants;
+scripts/utility/                → GFrameworkTemplate.scripts.utility;
 ```
 
 ### 注意事项
@@ -40,11 +43,11 @@ scripts/cqrs/<domain>/event/    → GFrameworkTemplate.scripts.cqrs.<domain>.@ev
 | 目录 | 用途 | 示例 |
 |---|---|---|
 | `scripts/component/` | 可复用组件（含接口和实现） | HFSM、行为树 |
-| `scripts/core/` | 架构核心（状态机、路由、UI 工厂、配置/本地化接入） | GameArchitecture、UiRouter、ConfigRuntime |
+| `scripts/core/` | 框架核心接线（架构引导、输入基类、路由、状态、UI 基类、资源配置） | GameArchitecture、UiRouter、AppState |
 | `scripts/cqrs/` | CQRS 命令、事件、命令输入（按业务域分子目录） | 见第 4 节 |
 | `scripts/enums/` | 枚举定义（按域分子目录） | UiKey、SceneKey、TextureKey |
-| `scripts/menu/` | UI 页面（被 UiRouter 管理，按业务域分子目录） | MainMenu |
-| `scripts/framework/` | 对 GFramework 的自研扩展（框架未提供的能力） | logging/（会话文件日志） |
+| `scripts/ui/` | UI 页面（被 UiRouter 管理，按域分子目录） | ui/menu/MainMenu |
+| `scripts/framework/` | 对 GFramework 的自研扩展与接入 | config/、event/、localization/、logging/、registry/ |
 | `scripts/module/` | GFramework 模块安装 | ModelModule、SystemModule、ConfigModule |
 | `scripts/constants/` | 全局常量 | GameConstants、UiLayers |
 | `scripts/data/` | 可持久化数据类与提供者 | SettingDataLocationProvider |
@@ -54,7 +57,7 @@ scripts/cqrs/<domain>/event/    → GFrameworkTemplate.scripts.cqrs.<domain>.@ev
 | `config/` `schemas/` | 配置数据目录（YAML 数据 + JSON Schema，生成器自动拾取 schemas/） | config/monster、monster.schema.json |
 | `localization/` | 语言表目录（`{语言码}/{表名}.json`） | localization/eng/common.json |
 
-> 业务代码建议：按业务域在 `scripts/` 下自建子目录（参考 `scripts/menu/`），不要为"未来可能的实体/模型/系统"预留空目录。
+> 业务代码建议：按业务域在 `scripts/` 下自建子目录（参考 `scripts/ui/menu/`），不要为"未来可能的实体/模型/系统"预留空目录。
 
 ### 目录命名规范
 
@@ -243,7 +246,7 @@ public sealed class SomeCommandInput : ICommandInput
 
 ### 规则
 
-- UI 页面（`scripts/menu/` 下的类）**不需要**提取 `I*` 接口
+- UI 页面（`scripts/ui/` 下的类）**不需要**提取 `I*` 接口
 - 页面通过 `GetNode<IComponent>("%NodeName")` 消费组件，但不被其他组件消费
 - `ISimpleUiPage` 是页面生命周期契约，由 GFramework 的 UiRouter 调用
 

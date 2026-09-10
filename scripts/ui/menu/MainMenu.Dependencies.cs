@@ -6,7 +6,7 @@ using GFramework.Godot.SourceGenerators.Abstractions;
 using Godot;
 using GFrameworkTemplate.global;
 
-namespace GFrameworkTemplate.scripts.menu;
+namespace GFrameworkTemplate.scripts.ui.menu;
 
 /// <summary>
 ///     主菜单页面依赖：架构组件注入（[GetSystem]）、节点引用（[GetNode]）与异步初始化。

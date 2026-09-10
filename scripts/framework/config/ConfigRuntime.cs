@@ -2,7 +2,7 @@ using GFramework.Core.Abstractions.Utility;
 using GFramework.Game.Abstractions.Config;
 using GFramework.Game.Config.Generated;
 
-namespace GFrameworkTemplate.scripts.core.config;
+namespace GFrameworkTemplate.scripts.framework.config;
 
 /// <summary>
 ///     配置读取入口：把初始化后的配置注册表封装成强类型访问，业务层不接触字符串表名。

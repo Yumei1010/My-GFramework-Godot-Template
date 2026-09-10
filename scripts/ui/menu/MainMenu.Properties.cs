@@ -1,4 +1,4 @@
-namespace GFrameworkTemplate.scripts.menu;
+namespace GFrameworkTemplate.scripts.ui.menu;
 
 /// <summary>
 ///     主菜单页面字段与属性。

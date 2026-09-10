@@ -3,7 +3,7 @@ using System.IO;
 using Godot;
 using FileAccess = Godot.FileAccess;
 
-namespace GFrameworkTemplate.scripts.core.localization;
+namespace GFrameworkTemplate.scripts.framework.localization;
 
 /// <summary>
 ///     本地化数据路径解析器：为框架 <c>LocalizationManager</c> 准备"真实文件系统路径"。

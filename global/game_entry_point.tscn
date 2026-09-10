@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://7tmuhvthtrnh" path="res://global/GameEntryPoint.cs" id="1_a14y6"]
 [ext_resource type="PackedScene" uid="uid://6s2urcdmkpbt" path="res://scenes/main.tscn" id="2_main"]
 [ext_resource type="Script" uid="uid://5mfgbvaive07" path="res://scripts/core/resource/SceneConfig.cs" id="3_scfg"]
-[ext_resource type="PackedScene" path="res://scenes/menu/main_menu.tscn" id="4_uimenu"]
+[ext_resource type="PackedScene" path="res://scenes/ui/menu/main_menu.tscn" id="4_uimenu"]
 [ext_resource type="Script" uid="uid://cowpnmhamgtd3" path="res://scripts/core/resource/UiPageConfig.cs" id="5_uicfg"]
 
 [sub_resource type="Resource" id="Resource_main_scene"]

@@ -40,14 +40,14 @@ My-GFramework-Godot-Template（从 Twenty-four 剥离业务逻辑，保留骨架
 | `assets/` | 游戏资源：字体、Shader、音频/数据占位目录 |
 | `global/` | Godot 自动加载单例（GameEntryPoint、UiRoot、SceneRoot 等） |
 | `resource/` | Godot 资源文件（音频总线布局、主题） |
-| `scenes/` | 主场景 `main.tscn` 及 UI 页面场景（`menu/`） |
+| `scenes/` | 主场景 `main.tscn` 及 UI 页面场景（`ui/menu/`…） |
 | `script_templates/` | Godot 脚本模板：`Node/` 右键模板 + `UiPage/` 五文件 partial 参考 |
-| `scripts/core/` | 框架核心：架构引导、状态机、UI/场景路由、配置资源、配置/本地化接入 |
+| `scripts/core/` | 框架核心接线：架构引导、输入基类、UI/场景路由、状态、资源配置 |
 | `scripts/module/` | DI 模块安装（Model / System / Utility / Config / State） |
 | `scripts/cqrs/` | CQRS 命令/事件/查询，按域分目录 |
 | `scripts/component/` | 可复用组件（HFSM、行为树等） |
-| `scripts/menu/` | UI 页面（被 UiRouter 管理） |
-| `scripts/framework/` | 对 GFramework 的自研扩展（如 `logging/` 会话文件日志） |
+| `scripts/ui/` | UI 页面（被 UiRouter 管理，按域分子目录：`menu/`、`hud/`…） |
+| `scripts/framework/` | 对 GFramework 的自研扩展与接入（`config/`、`event/`、`localization/`、`logging/`、`registry/`） |
 | `scripts/enums/` | 枚举定义（UiKey、SceneKey、TextureKey、InputPhase） |
 | `scripts/constants/` | 全局常量（GameConstants、UiLayers） |
 | `scripts/utility/` | 工具类，按域分子目录（event 事件、registry 注册表等） |
@@ -65,7 +65,7 @@ My-GFramework-Godot-Template（从 Twenty-four 剥离业务逻辑，保留骨架
 | 状态机 | `GameStateMachineSystem` + `AppState` 示例 |
 | 全局节点 | `GameEntryPoint`、`UiRoot`、`SceneRoot`、`SceneTransitionManager` |
 | CQRS 示例 | 音量控制、分辨率/全屏切换、设置存取、游戏流程（`StartGameCommand` → `GameStartedEvent` 闭环）、退出游戏 |
-| 示例页面 | `scripts/menu/MainMenu.cs` — 语法糖 + CQRS 端到端链路完整参考 |
+| 示例页面 | `scripts/ui/menu/MainMenu.cs` — 语法糖 + CQRS 端到端链路完整参考 |
 | 配置系统 | Config：`schemas/*.schema.json` → 源生成器 → `config/*.yaml`（`ConfigModule` 接入） |
 | 本地化 | `localization/{语言码}/{表名}.json` + `LocalizationManager` |
 | 会话日志 | 控制台 + `user://logs/YYYYMMDD_HHmmss.log`（JSON 行，F12 打开目录） |
@@ -98,7 +98,7 @@ dotnet build
 5. 在 `scripts/core/state/impls/` 下创建你的状态
 6. 在 `scripts/module/StateModule.cs` 中注册新状态
 7. 页面开发参照 `script_templates/UiPage/` 五文件参考（`[AutoUiPage]` 自动生成 `GetPage()` 样板）
-8. 开始在 `scripts/cqrs/`、`scripts/menu/` 等目录下按业务域添加代码
+8. 开始在 `scripts/cqrs/`、`scripts/ui/menu/` 等目录下按业务域添加代码
 
 ## CI/CD 工作流
 

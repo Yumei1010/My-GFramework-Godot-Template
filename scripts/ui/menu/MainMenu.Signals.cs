@@ -3,7 +3,7 @@ using GFramework.Godot.SourceGenerators.Abstractions;
 using Godot;
 using GFrameworkTemplate.scripts.cqrs.game.command;
 
-namespace GFrameworkTemplate.scripts.menu;
+namespace GFrameworkTemplate.scripts.ui.menu;
 
 /// <summary>
 ///     主菜单页面信号桥接：[BindNodeSignal] 把节点信号绑定为 CQRS 命令发送。

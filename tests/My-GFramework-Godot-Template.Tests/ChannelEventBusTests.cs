@@ -1,5 +1,5 @@
 using GFrameworkTemplate.scripts.constants;
-using GFrameworkTemplate.scripts.utility.@event;
+using GFrameworkTemplate.scripts.framework.@event;
 
 namespace GFrameworkTemplate.Tests;
 

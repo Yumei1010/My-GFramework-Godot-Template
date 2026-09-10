@@ -9,7 +9,7 @@ using Godot;
 using GFrameworkTemplate.scripts.core.ui;
 using GFrameworkTemplate.scripts.enums.ui;
 
-namespace GFrameworkTemplate.scripts.menu;
+namespace GFrameworkTemplate.scripts.ui.menu;
 
 /// <summary>
 ///     主菜单页面——模板真实页面示例（语法糖 + CQRS 端到端链路）。

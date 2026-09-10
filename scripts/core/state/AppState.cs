@@ -5,7 +5,7 @@ using GFramework.Game.Abstractions.Scene;
 using GFramework.Game.Abstractions.UI;
 using GFrameworkTemplate.scripts.enums.ui;
 
-namespace GFrameworkTemplate.scripts.core.state.impls;
+namespace GFrameworkTemplate.scripts.core.state;
 
 /// <summary>
 ///     应用默认状态，清除 UI 和场景路由，为推送新页面做准备

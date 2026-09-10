@@ -4,7 +4,7 @@ using GFramework.Core.SourceGenerators.Abstractions.Rule;
 using GFrameworkTemplate.scripts.enums.input;
 using Godot;
 
-namespace GFrameworkTemplate.scripts.core.controller;
+namespace GFrameworkTemplate.scripts.core.input;
 
 /// <summary>
 ///     游戏输入控制器抽象基类，继承自Node并实现IController接口

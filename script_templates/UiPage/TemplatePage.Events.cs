@@ -1,4 +1,4 @@
-namespace GFrameworkTemplate.scripts.menu;
+namespace GFrameworkTemplate.scripts.ui.menu;
 
 public partial class TemplatePage
 {

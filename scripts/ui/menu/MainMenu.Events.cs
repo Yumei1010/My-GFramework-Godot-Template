@@ -2,7 +2,7 @@
 using GFramework.Godot.Extensions;
 using GFrameworkTemplate.scripts.cqrs.game.@event;
 
-namespace GFrameworkTemplate.scripts.menu;
+namespace GFrameworkTemplate.scripts.ui.menu;
 
 /// <summary>
 ///     主菜单页面事件订阅：响应 CQRS 事件刷新自身状态。

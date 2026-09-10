@@ -3,7 +3,7 @@ using GFramework.Game.Abstractions.Config;
 using GFramework.Game.Config;
 using GFramework.Game.Config.Generated;
 using GFramework.Godot.Config;
-using GFrameworkTemplate.scripts.core.config;
+using GFrameworkTemplate.scripts.framework.config;
 
 namespace GFrameworkTemplate.scripts.module;
 

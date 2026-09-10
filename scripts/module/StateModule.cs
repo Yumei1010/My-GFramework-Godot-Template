@@ -1,7 +1,7 @@
 using GFramework.Core.Abstractions.Architectures;
 using GFramework.Core.Functional.Pipe;
 using GFramework.Game.State;
-using GFrameworkTemplate.scripts.core.state.impls;
+using GFrameworkTemplate.scripts.core.state;
 
 namespace GFrameworkTemplate.scripts.module;
 

@@ -120,29 +120,32 @@ godot --headless --path . --quit-after 300
 - `scripts/cqrs/setting/` — 设置保存/重置/查询命令
 - `scripts/cqrs/game/` — 游戏流程命令（`StartGameCommand` → `GameStartedEvent` 演示命令-事件-UI 闭环、`ExitGameCommand`）
 
-**示例页面**：`scripts/menu/MainMenu.cs`（语法糖 + CQRS 端到端链路的完整参考）。
+**示例页面**：`scripts/ui/menu/MainMenu.cs`（语法糖 + CQRS 端到端链路的完整参考）。
 
 ## 目录结构约定
 
 ```
 scripts/
-├── component/       # 可复用组件（HFSM、行为树等）
+├── component/       # 通用组件（HFSM、行为树、TweenTree…）
 ├── constants/       # 全局常量
-├── core/            # 框架核心（架构、路由、状态、UI 基类、配置/本地化接入）
+├── core/            # 框架核心接线：架构引导 GameArchitecture、environment/、input/、
+│                    #   resource/（*Config 资源类型）、scene/、state/、ui/（UiRouter 等）
 ├── cqrs/            # CQRS 命令/事件/查询（按业务域划分）
-├── data/            # 数据层（设置数据位置提供者等）
+├── data/            # 持久化数据（设置数据位置提供者等）
 ├── enums/           # 枚举（UI Key、场景 Key、纹理 Key 等）
-├── framework/       # 对 GFramework 的自研扩展（框架未提供的能力，如 logging/）
-├── menu/            # UI 页面（被 UiRouter 管理，按业务域可再分子目录）
+├── framework/       # 对 GFramework 的自研扩展：config/、event/、localization/、
+│                    #   logging/（会话日志）、registry/（资源注册表）
 ├── module/          # DI 模块
-└── utility/         # 工具类
+├── ui/              # UI 页面（按域分子目录：menu/、hud/…）
+└── utility/         # 与框架无关的纯工具（GameUtil 等）
 
+scenes/              # 场景（ui/menu/… + main.tscn）
 config/              # YAML 配置数据（一对象一文件）
 schemas/             # JSON Schema（源生成器自动拾取）
 localization/        # 语言表（{语言码}/{表名}.json）
 ```
 
-> 业务代码按业务域在 `scripts/` 下自建子目录（参考 `scripts/menu/`），不要为"未来可能的实体/模型/系统"预留空目录。
+> 业务代码按业务域在 `scripts/` 下自建子目录（参考 `scripts/ui/menu/`），不要为"未来可能的实体/模型/系统"预留空目录。
 
 ## 深入学习
 
