@@ -1,7 +1,7 @@
-# GFramework Pause 栈深度研究
+﻿# GFramework Pause 栈深度研究
 
 > 日期：2026-09 | 源码：`GFramework.Core.Abstractions/Pause/` + `GFramework.Core/Pause/` + `GFramework.Godot/Pause/`
-> 关联：countdown_timer / 暂停组件的地基；UI InteractionProfile 与暂停联动
+> 关联：UI InteractionProfile 与暂停联动；业务侧计时器/倒计时的暂停组选择参考
 
 ## 结论（TL;DR）
 
@@ -138,4 +138,4 @@ public UiInteractionProfile InteractionProfile => new()
 
 - 扩展总览：`docs/research/gframework-extensions/README.md`
 - 输入域（InteractionProfile 的另一半）：`docs/research/gframework-extensions/input-domain.md`
-- 模板组件候选：countdown_timer（Animation/Gameplay 组暂停 vs 全局暂停的关系）
+- 计时器/倒计时：已评估**不纳入模板**（定制玩法，业务项目自实现）；如实现，暂停组选 Gameplay/Animation 而非全局

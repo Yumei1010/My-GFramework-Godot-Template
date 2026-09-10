@@ -1,4 +1,4 @@
-# GFramework 0.7.1 预留扩展接口研究
+﻿# GFramework 0.7.1 预留扩展接口研究
 
 > 日期：2026-09 | 来源：GFramework 源码全量盘查（`E:\project\GitHub\GFramework`）
 > 用途：日后开发速查——哪些扩展点开箱即用、哪些留空待实现、哪些是刻意边界
@@ -138,5 +138,5 @@ public interface ISaveMigration<TSaveData> where TSaveData : class, IData
 1. **Config 配置系统**（数据驱动地基）→ 详见 `game-services.md`
 2. **输入域**（三端热切换玩法需求）→ 详见 `input-domain.md`
 3. **ISaveMigration + SaveRepository**（Twenty-four run 存档）→ 详见 `game-services.md`
-4. **IPauseHandler 分组暂停栈 + ITimeProvider**（countdown_timer/暂停组件地基）→ 详见 `pause-stack.md`
+4. **IPauseHandler 分组暂停栈 + ITimeProvider**（暂停组件地基）→ 详见 `pause-stack.md`
 5. **Store**（Run/结算等聚合状态）→ 详见 `store.md` + `docs/guides/store.md`
