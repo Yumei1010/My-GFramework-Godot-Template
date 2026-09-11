@@ -1,7 +1,9 @@
 ﻿using GFramework.Core.Abstractions.Controller;
 using GFramework.Core.SourceGenerators.Abstractions.Logging;
+using GFramework.Core.Extensions;
 using GFramework.Core.SourceGenerators.Abstractions.Rule;
 using GFrameworkTemplate.scripts.enums.input;
+using GFrameworkTemplate.scripts.framework.input;
 using Godot;
 
 namespace GFrameworkTemplate.scripts.core.input;
@@ -26,6 +28,10 @@ public abstract partial class GameInputController : Node, IController
     /// <param name="event">输入事件对象</param>
     public override void _Input(InputEvent @event)
     {
+        // 设备跟踪优先于阶段分发：任何输入事件都应更新"当前活跃设备"
+        // （热切换的基础：UI 据此切换按键提示/手柄图标/焦点环）
+        this.GetUtility<InputDeviceService>()?.Feed(@event);
+
         var pausedAtFrameStart = Tree.Paused;
 
         Dispatch(InputPhase.Global, @event);

@@ -1,4 +1,4 @@
-# 可复用组件（scripts/component/）
+﻿# 可复用组件（scripts/component/）
 
 本目录收录**与框架无关的自研组件**。组件分两种风格，按场景选择：
 
@@ -21,6 +21,7 @@
 | `action_queue` | 动作队列：异步步骤串行执行，支持异常传播与等待空闲 |
 | `tween_tree` | Tween 动画树（节点版）：Sequence / Parallel / Property / Interval |
 | `state_machine` | 状态契约 `IState`（Enter / Process / Exit），供分层状态机使用 |
+| `input_rebind` | 输入改键（纯逻辑版）：捕获输入、冲突自动交换、快照持久化 |
 
 ## 测试
 
@@ -28,6 +29,7 @@
 |---|---|
 | `action_queue` | 单元测试（串行顺序、运行中入队、清空、异常传播、等待空闲、并发入队） |
 | `hierarchical_state_machine` | 单元测试（状态切换、嵌套子机、转换条件） |
+| `input_rebind` | 单元测试（Code 格式、冲突查找、捕获状态机、快照序列化往返） |
 | `behavior_tree` / `tween_tree` | 依赖 Godot 运行时，通过 headless 运行验证（`godot --headless --path . --quit-after 300`） |
 
 ## 相关文档

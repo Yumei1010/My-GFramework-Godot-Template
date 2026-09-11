@@ -1,4 +1,4 @@
-# 文档索引
+﻿# 文档索引
 
 本目录收录模板的**教程**、**研究**与**规划**文档。
 
@@ -18,6 +18,7 @@
 | [audio.md](guides/audio.md) | 音频设置与音量管理 |
 | [ui.md](guides/ui.md) | UI 路由与弹窗 |
 | [logging.md](guides/logging.md) | 日志系统（双路输出/会话文件） |
+| [input-rebind.md](guides/input-rebind.md) | 输入改键（捕获/冲突交换/快照持久化） |
 
 ## 研究（`docs/research/`）— 框架源码调研
 
@@ -28,6 +29,7 @@
 | [gframework-extensions/pause-stack.md](research/gframework-extensions/pause-stack.md) | 暂停栈（分组引用计数） |
 | [gframework-extensions/store.md](research/gframework-extensions/store.md) | Store 状态管理 |
 | [gframework-extensions/game-services.md](research/gframework-extensions/game-services.md) | 服务层（Config/Data/Storage/Resource/Coroutine/RichText…） |
+| [input-hot-switching/README.md](research/input-hot-switching/README.md) | 输入热切换（设备识别/提示图标/焦点归位）+ Steam Controller 实测 |
 | [syntax-sugar/README.md](research/syntax-sugar/README.md) | SourceGenerator 语法糖清单 |
 
 ## 规划（`docs/plan/`）— 组件决策与设计

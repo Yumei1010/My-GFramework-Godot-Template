@@ -5,6 +5,8 @@ using GFramework.Game.Serializer;
 using GFramework.Godot.Scene;
 using GFramework.Godot.Storage;
 using GFramework.Godot.UI;
+using GFrameworkTemplate.scripts.component.input_rebind;
+using GFrameworkTemplate.scripts.framework.input;
 using GFrameworkTemplate.scripts.framework.registry;
 using Godot;
 
@@ -21,6 +23,13 @@ public class UtilityModule : IArchitectureModule
     /// <param name="architecture">目标架构。</param>
     public void Install(IArchitecture architecture)
     {
+        // 输入设备服务：跟踪键盘/手柄/触摸热切换（供 UI 提示与交互模式使用）
+        var inputDeviceService = new InputDeviceService();
+        architecture.RegisterUtility(inputDeviceService);
+
+        // 改键组件：复用设备服务持有的绑定存储，动作列表默认取 InputMap 中非 ui_ 的动作
+        architecture.RegisterUtility(new InputRebindService(inputDeviceService.BindingStore));
+
         architecture.RegisterUtility(new GodotUiRegistry());
         architecture.RegisterUtility(new GodotSceneRegistry());
         architecture.RegisterUtility(new GodotTextureRegistry());
