@@ -35,5 +35,6 @@ addons/*
 # Claude Code
 .claude/settings.local.json
 
-# Pi agent memory
-.pi/
+# Pi agent memory（.pi/settings.json 需要随仓库共享，故用 .pi/* 排除其余）
+.pi/*
+!.pi/settings.json
